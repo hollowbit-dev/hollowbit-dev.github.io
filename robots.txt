@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Sitemap: https://hollowbit.dev/sitemap.xml
+Sitemap: https://hollowbit.dev/diskshaper/sitemap.xml
+Sitemap: https://hollowbit.dev/writeshaper/sitemap.xml
