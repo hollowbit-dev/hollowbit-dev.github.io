@@ -117,8 +117,14 @@ const navItems = (L) => [
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 
-function page(L, { path, key = '', title, desc, body, cls = '' }) {
+// Share cards: every page gets its own 1200x630 image per language, rendered by scripts/og.mjs from site/og.json.
+const OG = [];
+const OG_COLOR = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', studio: '#a07cff' };
+function page(L, { path, key = '', title, desc, body, cls = '', og }) {
   const t = L;
+  const ogFile = og ? `assets/img/og/${L.lang}/${og.id}.png` : 'assets/img/og/en/home.png';
+  if (og) OG.push({ file: ogFile, lang: L.lang, ...og });
+  const ogAlt = og ? [og.h, og.sub].filter(Boolean).join(' ') : title;
   const NAV = navItems(L);
   const nav = NAV.map(([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(l)}</span></a>`).join('');
   const sheet = [[`${pre(L)}/`, t.nav.home, 'home'], ...NAV].map(([h, l, k], i) => `<a href="${h}" style="--i:${i}"${k === key ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('');
@@ -133,14 +139,22 @@ function page(L, { path, key = '', title, desc, body, cls = '' }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 ${path ? `<link rel="canonical" href="${url(L.lang)}">\n${alt}` : '<meta name="robots" content="noindex">'}
-<meta name="theme-color" content="#0b0a10">
+<meta name="theme-color" content="${OG_COLOR[og?.v || 'studio']}">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Hollowbit Studio">
 ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:locale" content="${L.html.replace('-', '_')}">
-<meta property="og:image" content="${ORIGIN}/assets/img/og.png">
+<meta property="og:image" content="${ORIGIN}/${ogFile}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(ogAlt)}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@hollowbitstudio">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${ORIGIN}/${ogFile}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
@@ -302,6 +316,7 @@ const PR_ICONS = ['i-upload', 'i-wifi', 'i-ads', 'i-account', 'i-track', 'i-code
 /* ---------- pages ---------- */
 const home = (L) => page(L, {
   path: '/', key: 'home', title: L.home.title, desc: L.home.desc,
+  og: { id: 'home', kind: 'home', h: L.home.h1, hl: L.home.hl, sub: L.home.sub },
   body: `
 <section class="hero wrap">
   <a class="hero-badge in-0" href="${siteIn(WS, L.lang)}"><span class="dot"></span>${esc(fill(L.home.badge, { v: WS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
@@ -365,6 +380,7 @@ function productPage(L, p, next) {
   const c = L.products[p.slug], n = L.products[next.slug];
   return page(L, {
     path: `/${p.slug}/`, key: p.slug, cls: `p-${p.v}`,
+    og: { id: p.slug, kind: 'product', v: p.v, slug: p.slug, name: p.name, h: p.name, sub: c.blurb, kicker: c.kind, plats: plats(L, p), domain: p.domain },
     title: `${p.name}: ${c.kind} ${L.product.titleSuffix}`,
     desc: fill(L.product.desc, { blurb: c.blurb, plats: plats(L, p) }),
     body: `
@@ -415,6 +431,7 @@ const download = (L) => {
   const date = (p) => (p.date ? new Date(p.date).toLocaleDateString(L.locale, { day: 'numeric', month: 'long', year: 'numeric' }) : '');
   return page(L, {
     path: '/download/', key: 'download', title: d.title, desc: d.desc,
+    og: { id: 'download', kind: 'apps', h: d.h1, sub: d.sub },
     body: `
 <section class="dhero wrap">
   <h1 class="h1" data-words>${esc(d.h1)}</h1>
@@ -459,6 +476,7 @@ const about = (L) => {
   const a = L.about;
   return page(L, {
     path: '/about/', key: 'about', title: a.title, desc: a.desc,
+    og: { id: 'about', kind: 'plain', h: a.h1, sub: a.desc },
     body: `
 <section class="ahero wrap-narrow">
   <span class="ahero-logo">${ic('logo')}</span>
@@ -497,6 +515,7 @@ const contact = (L) => {
   const c = L.contact;
   return page(L, {
     path: '/contact/', key: 'contact', title: c.title, desc: c.desc,
+    og: { id: 'contact', kind: 'plain', h: c.h1, sub: c.sub },
     body: `
 <section class="dhero wrap">
   <h1 class="h1" data-words>${esc(c.h1)}</h1>
@@ -541,6 +560,7 @@ const donate = (L) => {
   const goIcons = [['apple', 'blue'], ['logo', 'violet'], ['spark', 'yellow']];
   return page(L, {
     path: '/donate/', key: 'donate', title: d.title, desc: d.desc,
+    og: { id: 'donate', kind: 'plain', h: d.h1, sub: d.sub },
     body: `
 <section class="dhero wrap">
   <span class="heart-badge in-0">${ic('heart')}</span>
@@ -585,6 +605,7 @@ const privacy = (L) => {
   const p = L.privacy;
   return page(L, {
     path: '/privacy/', key: '', title: p.title, desc: p.desc,
+    og: { id: 'privacy', kind: 'plain', h: p.h1, sub: p.lead },
     body: `
 <section class="wrap-narrow doc">
   <h1 class="h1" data-words>${esc(p.h1)}</h1>
@@ -645,6 +666,7 @@ for (const [f, raw] of Object.entries(out)) {
   mkdirSync(dirname(p), { recursive: true });
   writeFileSync(p, relink(raw, f));
 }
+writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
 const paths = ['/', '/fileshaper/', '/captionshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;

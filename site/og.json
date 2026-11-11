@@ -1,0 +1,464 @@
+[
+ {
+  "file": "assets/img/og/en/home.png",
+  "lang": "en",
+  "id": "home",
+  "kind": "home",
+  "h": "Free tools that never upload your files.",
+  "hl": "never upload",
+  "sub": "Small, polished apps for Windows and Mac that do one job well, entirely on your own computer. No ads, no accounts, no watermarks."
+ },
+ {
+  "file": "assets/img/og/en/fileshaper.png",
+  "lang": "en",
+  "id": "fileshaper",
+  "kind": "product",
+  "v": "fs",
+  "slug": "fileshaper",
+  "name": "Fileshaper",
+  "h": "Fileshaper",
+  "sub": "Compress videos for Discord, convert iPhone photos, merge and sign PDFs. One toolbox, fully offline.",
+  "kicker": "free offline file toolbox",
+  "plats": "Mac and Windows",
+  "domain": "fileshaper.app"
+ },
+ {
+  "file": "assets/img/og/en/captionshaper.png",
+  "lang": "en",
+  "id": "captionshaper",
+  "kind": "product",
+  "v": "cs",
+  "slug": "captionshaper",
+  "name": "Captionshaper",
+  "h": "Captionshaper",
+  "sub": "Word-timed subtitles for any video, written by a speech model on your own computer. SRT, VTT or burned in.",
+  "kicker": "free offline auto subtitles",
+  "plats": "Mac and Windows",
+  "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/en/download.png",
+  "lang": "en",
+  "id": "download",
+  "kind": "apps",
+  "h": "Download.",
+  "sub": "Free, with no account. Pick an app and your computer."
+ },
+ {
+  "file": "assets/img/og/en/about.png",
+  "lang": "en",
+  "id": "about",
+  "kind": "plain",
+  "h": "Hi, I’m Elvis.",
+  "sub": "Hollowbit Studio is Elvis Zygmanta’s studio for small, free tools that run on your own computer. No ads, no accounts, no tracking, open source."
+ },
+ {
+  "file": "assets/img/og/en/contact.png",
+  "lang": "en",
+  "id": "contact",
+  "kind": "plain",
+  "h": "Get in touch.",
+  "sub": "Questions, bugs, ideas or just a hello. I read every message."
+ },
+ {
+  "file": "assets/img/og/en/donate.png",
+  "lang": "en",
+  "id": "donate",
+  "kind": "plain",
+  "h": "Keep the tools free.",
+  "sub": "Hollowbit apps have no ads, no subscriptions and no paid tier, and they never will. If one saved you time or money, a donation helps keep it that way."
+ },
+ {
+  "file": "assets/img/og/en/privacy.png",
+  "lang": "en",
+  "id": "privacy",
+  "kind": "plain",
+  "h": "Privacy.",
+  "sub": "Short version: Hollowbit doesn’t collect anything about you."
+ },
+ {
+  "file": "assets/img/og/es/home.png",
+  "lang": "es",
+  "id": "home",
+  "kind": "home",
+  "h": "Herramientas gratis que nunca suben tus archivos.",
+  "hl": "nunca suben",
+  "sub": "Apps pequeñas y cuidadas para Windows y Mac que hacen bien una sola cosa, por completo en tu ordenador. Sin anuncios, sin cuentas, sin marcas de agua."
+ },
+ {
+  "file": "assets/img/og/es/fileshaper.png",
+  "lang": "es",
+  "id": "fileshaper",
+  "kind": "product",
+  "v": "fs",
+  "slug": "fileshaper",
+  "name": "Fileshaper",
+  "h": "Fileshaper",
+  "sub": "Comprime vídeos para Discord, convierte fotos del iPhone, une y firma PDF. Una sola caja de herramientas, totalmente sin conexión.",
+  "kicker": "caja de herramientas de archivos gratis y sin conexión",
+  "plats": "Mac y Windows",
+  "domain": "fileshaper.app"
+ },
+ {
+  "file": "assets/img/og/es/captionshaper.png",
+  "lang": "es",
+  "id": "captionshaper",
+  "kind": "product",
+  "v": "cs",
+  "slug": "captionshaper",
+  "name": "Captionshaper",
+  "h": "Captionshaper",
+  "sub": "Subtítulos sincronizados palabra por palabra para cualquier vídeo, escritos por un modelo de voz en tu propio ordenador. SRT, VTT o incrustados.",
+  "kicker": "subtítulos automáticos gratis y sin conexión",
+  "plats": "Mac y Windows",
+  "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/es/download.png",
+  "lang": "es",
+  "id": "download",
+  "kind": "apps",
+  "h": "Descargar.",
+  "sub": "Gratis y sin cuenta. Elige una app y tu ordenador."
+ },
+ {
+  "file": "assets/img/og/es/about.png",
+  "lang": "es",
+  "id": "about",
+  "kind": "plain",
+  "h": "Hola, soy Elvis.",
+  "sub": "Hollowbit Studio es el estudio de Elvis Zygmanta para herramientas pequeñas y gratuitas que funcionan en tu ordenador. Sin anuncios, sin cuentas, sin rastreo, de código abierto."
+ },
+ {
+  "file": "assets/img/og/es/contact.png",
+  "lang": "es",
+  "id": "contact",
+  "kind": "plain",
+  "h": "Escríbeme.",
+  "sub": "Preguntas, errores, ideas o simplemente un hola. Leo todos los mensajes."
+ },
+ {
+  "file": "assets/img/og/es/donate.png",
+  "lang": "es",
+  "id": "donate",
+  "kind": "plain",
+  "h": "Que las herramientas sigan gratis.",
+  "sub": "Las apps de Hollowbit no tienen anuncios, ni suscripciones, ni versión de pago, y nunca los tendrán. Si una te ahorró tiempo o dinero, una donación ayuda a que siga así."
+ },
+ {
+  "file": "assets/img/og/es/privacy.png",
+  "lang": "es",
+  "id": "privacy",
+  "kind": "plain",
+  "h": "Privacidad.",
+  "sub": "Versión corta: Hollowbit no recoge nada sobre ti."
+ },
+ {
+  "file": "assets/img/og/fr/home.png",
+  "lang": "fr",
+  "id": "home",
+  "kind": "home",
+  "h": "Des outils gratuits qui n’envoient jamais vos fichiers.",
+  "hl": "n’envoient jamais",
+  "sub": "De petites applis soignées pour Windows et Mac qui font bien une seule chose, entièrement sur votre ordinateur. Pas de pub, pas de compte, pas de filigrane."
+ },
+ {
+  "file": "assets/img/og/fr/fileshaper.png",
+  "lang": "fr",
+  "id": "fileshaper",
+  "kind": "product",
+  "v": "fs",
+  "slug": "fileshaper",
+  "name": "Fileshaper",
+  "h": "Fileshaper",
+  "sub": "Compressez des vidéos pour Discord, convertissez les photos d’iPhone, fusionnez et signez des PDF. Une seule boîte à outils, entièrement hors ligne.",
+  "kicker": "boîte à outils de fichiers gratuite et hors ligne",
+  "plats": "Mac et Windows",
+  "domain": "fileshaper.app"
+ },
+ {
+  "file": "assets/img/og/fr/captionshaper.png",
+  "lang": "fr",
+  "id": "captionshaper",
+  "kind": "product",
+  "v": "cs",
+  "slug": "captionshaper",
+  "name": "Captionshaper",
+  "h": "Captionshaper",
+  "sub": "Des sous-titres calés mot par mot pour n’importe quelle vidéo, écrits par un modèle vocal sur votre propre ordinateur. SRT, VTT ou incrustés.",
+  "kicker": "sous-titres automatiques gratuits et hors ligne",
+  "plats": "Mac et Windows",
+  "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/fr/download.png",
+  "lang": "fr",
+  "id": "download",
+  "kind": "apps",
+  "h": "Télécharger.",
+  "sub": "Gratuit, sans compte. Choisissez une appli et votre ordinateur."
+ },
+ {
+  "file": "assets/img/og/fr/about.png",
+  "lang": "fr",
+  "id": "about",
+  "kind": "plain",
+  "h": "Bonjour, je suis Elvis.",
+  "sub": "Hollowbit Studio est le studio d’Elvis Zygmanta pour de petits outils gratuits qui tournent sur votre ordinateur. Sans pub, sans compte, sans pistage, open source."
+ },
+ {
+  "file": "assets/img/og/fr/contact.png",
+  "lang": "fr",
+  "id": "contact",
+  "kind": "plain",
+  "h": "Me contacter.",
+  "sub": "Questions, bugs, idées ou juste un bonjour. Je lis chaque message."
+ },
+ {
+  "file": "assets/img/og/fr/donate.png",
+  "lang": "fr",
+  "id": "donate",
+  "kind": "plain",
+  "h": "Gardons les outils gratuits.",
+  "sub": "Les applis Hollowbit n’ont ni pub, ni abonnement, ni version payante, et n’en auront jamais. Si l’une vous a fait gagner du temps ou de l’argent, un don aide à continuer."
+ },
+ {
+  "file": "assets/img/og/fr/privacy.png",
+  "lang": "fr",
+  "id": "privacy",
+  "kind": "plain",
+  "h": "Confidentialité.",
+  "sub": "En bref : Hollowbit ne collecte rien sur vous."
+ },
+ {
+  "file": "assets/img/og/de/home.png",
+  "lang": "de",
+  "id": "home",
+  "kind": "home",
+  "h": "Kostenlose Werkzeuge, die deine Dateien nie hochladen.",
+  "hl": "nie hochladen.",
+  "sub": "Kleine, ausgefeilte Apps für Windows und Mac, die eine Sache gut machen, komplett auf deinem eigenen Computer. Keine Werbung, keine Konten, keine Wasserzeichen."
+ },
+ {
+  "file": "assets/img/og/de/fileshaper.png",
+  "lang": "de",
+  "id": "fileshaper",
+  "kind": "product",
+  "v": "fs",
+  "slug": "fileshaper",
+  "name": "Fileshaper",
+  "h": "Fileshaper",
+  "sub": "Videos für Discord komprimieren, iPhone-Fotos umwandeln, PDFs zusammenfügen und unterschreiben. Ein Werkzeugkasten, komplett offline.",
+  "kicker": "kostenlose Offline-Dateiwerkzeuge",
+  "plats": "Mac und Windows",
+  "domain": "fileshaper.app"
+ },
+ {
+  "file": "assets/img/og/de/captionshaper.png",
+  "lang": "de",
+  "id": "captionshaper",
+  "kind": "product",
+  "v": "cs",
+  "slug": "captionshaper",
+  "name": "Captionshaper",
+  "h": "Captionshaper",
+  "sub": "Wortgenaue Untertitel für jedes Video, geschrieben von einem Sprachmodell auf deinem eigenen Computer. SRT, VTT oder eingebrannt.",
+  "kicker": "kostenlose Offline-Untertitel",
+  "plats": "Mac und Windows",
+  "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/de/download.png",
+  "lang": "de",
+  "id": "download",
+  "kind": "apps",
+  "h": "Download.",
+  "sub": "Kostenlos, ohne Konto. Wähl eine App und deinen Computer."
+ },
+ {
+  "file": "assets/img/og/de/about.png",
+  "lang": "de",
+  "id": "about",
+  "kind": "plain",
+  "h": "Hi, ich bin Elvis.",
+  "sub": "Hollowbit Studio ist das Studio von Elvis Zygmanta für kleine, kostenlose Werkzeuge, die auf deinem eigenen Computer laufen. Keine Werbung, keine Konten, kein Tracking, Open Source."
+ },
+ {
+  "file": "assets/img/og/de/contact.png",
+  "lang": "de",
+  "id": "contact",
+  "kind": "plain",
+  "h": "Schreib mir.",
+  "sub": "Fragen, Fehler, Ideen oder einfach ein Hallo. Ich lese jede Nachricht."
+ },
+ {
+  "file": "assets/img/og/de/donate.png",
+  "lang": "de",
+  "id": "donate",
+  "kind": "plain",
+  "h": "Halte die Werkzeuge kostenlos.",
+  "sub": "Hollowbit-Apps haben keine Werbung, keine Abos und keine Bezahlstufe, und das bleibt so. Hat dir eine Zeit oder Geld gespart, hilft eine Spende, dass es so bleibt."
+ },
+ {
+  "file": "assets/img/og/de/privacy.png",
+  "lang": "de",
+  "id": "privacy",
+  "kind": "plain",
+  "h": "Datenschutz.",
+  "sub": "Kurz gesagt: Hollowbit sammelt nichts über dich."
+ },
+ {
+  "file": "assets/img/og/ru/home.png",
+  "lang": "ru",
+  "id": "home",
+  "kind": "home",
+  "h": "Бесплатные инструменты без загрузки файлов.",
+  "hl": "без загрузки",
+  "sub": "Небольшие продуманные приложения для Windows и Mac, которые хорошо делают одно дело и полностью работают на вашем компьютере. Без рекламы, аккаунтов и водяных знаков."
+ },
+ {
+  "file": "assets/img/og/ru/fileshaper.png",
+  "lang": "ru",
+  "id": "fileshaper",
+  "kind": "product",
+  "v": "fs",
+  "slug": "fileshaper",
+  "name": "Fileshaper",
+  "h": "Fileshaper",
+  "sub": "Сжимайте видео для Discord, конвертируйте фото с iPhone, объединяйте и подписывайте PDF. Один набор инструментов, полностью офлайн.",
+  "kicker": "бесплатный офлайн-набор для файлов",
+  "plats": "Mac и Windows",
+  "domain": "fileshaper.app"
+ },
+ {
+  "file": "assets/img/og/ru/captionshaper.png",
+  "lang": "ru",
+  "id": "captionshaper",
+  "kind": "product",
+  "v": "cs",
+  "slug": "captionshaper",
+  "name": "Captionshaper",
+  "h": "Captionshaper",
+  "sub": "Субтитры с точностью до слова для любого видео, написанные речевой моделью на вашем компьютере. SRT, VTT или вшитые в видео.",
+  "kicker": "бесплатные офлайн-субтитры",
+  "plats": "Mac и Windows",
+  "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/ru/download.png",
+  "lang": "ru",
+  "id": "download",
+  "kind": "apps",
+  "h": "Скачать.",
+  "sub": "Бесплатно, без аккаунта. Выберите приложение и свой компьютер."
+ },
+ {
+  "file": "assets/img/og/ru/about.png",
+  "lang": "ru",
+  "id": "about",
+  "kind": "plain",
+  "h": "Привет, я Элвис.",
+  "sub": "Hollowbit Studio — студия Элвиса Зигманта: небольшие бесплатные инструменты, которые работают на вашем компьютере. Без рекламы, аккаунтов и слежки, с открытым кодом."
+ },
+ {
+  "file": "assets/img/og/ru/contact.png",
+  "lang": "ru",
+  "id": "contact",
+  "kind": "plain",
+  "h": "Напишите мне.",
+  "sub": "Вопросы, ошибки, идеи или просто привет. Я читаю каждое сообщение."
+ },
+ {
+  "file": "assets/img/og/ru/donate.png",
+  "lang": "ru",
+  "id": "donate",
+  "kind": "plain",
+  "h": "Пусть инструменты остаются бесплатными.",
+  "sub": "В приложениях Hollowbit нет рекламы, подписок и платных версий, и не будет. Если какое-то сэкономило вам время или деньги, пожертвование помогает сохранить это."
+ },
+ {
+  "file": "assets/img/og/ru/privacy.png",
+  "lang": "ru",
+  "id": "privacy",
+  "kind": "plain",
+  "h": "Конфиденциальность.",
+  "sub": "Коротко: Hollowbit ничего о вас не собирает."
+ },
+ {
+  "file": "assets/img/og/zh/home.png",
+  "lang": "zh",
+  "id": "home",
+  "kind": "home",
+  "h": "从不上传你文件的免费工具。",
+  "hl": "从不上传",
+  "sub": "小而精致的 Windows 和 Mac 应用，每个只把一件事做好，完全在你自己的电脑上运行。没有广告，没有账号，没有水印。"
+ },
+ {
+  "file": "assets/img/og/zh/fileshaper.png",
+  "lang": "zh",
+  "id": "fileshaper",
+  "kind": "product",
+  "v": "fs",
+  "slug": "fileshaper",
+  "name": "Fileshaper",
+  "h": "Fileshaper",
+  "sub": "为 Discord 压缩视频、转换 iPhone 照片、合并和签署 PDF。一个工具箱，完全离线。",
+  "kicker": "免费离线文件工具箱",
+  "plats": "Mac 和 Windows",
+  "domain": "fileshaper.app"
+ },
+ {
+  "file": "assets/img/og/zh/captionshaper.png",
+  "lang": "zh",
+  "id": "captionshaper",
+  "kind": "product",
+  "v": "cs",
+  "slug": "captionshaper",
+  "name": "Captionshaper",
+  "h": "Captionshaper",
+  "sub": "为任何视频生成逐词对齐的字幕，由你电脑上的语音模型完成。导出 SRT、VTT 或直接烧录进视频。",
+  "kicker": "免费离线自动字幕",
+  "plats": "Mac 和 Windows",
+  "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/zh/download.png",
+  "lang": "zh",
+  "id": "download",
+  "kind": "apps",
+  "h": "下载。",
+  "sub": "免费，无需账号。选择应用和你的电脑。"
+ },
+ {
+  "file": "assets/img/og/zh/about.png",
+  "lang": "zh",
+  "id": "about",
+  "kind": "plain",
+  "h": "你好，我是 Elvis。",
+  "sub": "Hollowbit Studio 是 Elvis Zygmanta 的工作室，制作在你自己电脑上运行的小型免费工具。没有广告、账号和追踪，开源。"
+ },
+ {
+  "file": "assets/img/og/zh/contact.png",
+  "lang": "zh",
+  "id": "contact",
+  "kind": "plain",
+  "h": "联系我。",
+  "sub": "问题、错误、想法，或者只是打个招呼。每条消息我都会看。"
+ },
+ {
+  "file": "assets/img/og/zh/donate.png",
+  "lang": "zh",
+  "id": "donate",
+  "kind": "plain",
+  "h": "让工具保持免费。",
+  "sub": "Hollowbit 的应用没有广告、订阅和付费版，以后也不会有。如果某个应用帮你省了时间或钱，捐助能让它一直这样。"
+ },
+ {
+  "file": "assets/img/og/zh/privacy.png",
+  "lang": "zh",
+  "id": "privacy",
+  "kind": "plain",
+  "h": "隐私。",
+  "sub": "简单说：Hollowbit 不收集你的任何信息。"
+ }
+]
