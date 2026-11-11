@@ -162,11 +162,12 @@ ${body}
 }
 
 /* ---------- pieces ---------- */
-const dlButtons = (p, { dark = false } = {}) => {
+const dlButtons = (p, { dark = false, site = false } = {}) => {
   const cls = dark ? 'btn-dark' : 'btn-primary';
   const b = [];
   if (p.mac) b.push(`<a class="btn ${cls} btn-lg dl-btn" data-os-btn="mac" href="${p.mac}">${ic('apple')}<span>Download for Mac</span></a>`);
   if (p.win) b.push(`<a class="btn ${cls} btn-lg dl-btn" data-os-btn="win" href="${p.win}">${ic('windows')}<span>Download for Windows</span></a>`);
+  if (site) b.push(`<a class="btn btn-ghost btn-lg site-btn" href="${p.site}">Visit ${p.domain} ${ic('out')}</a>`);
   return `<div class="dl-row">${b.join('')}</div>`;
 };
 
@@ -250,7 +251,7 @@ const home = page({
   body: `
 <section class="hero wrap">
   <a class="hero-badge in-0" href="/download/"><span class="dot"></span>Fileshaper ${FS.version} and Captionshaper ${CS.version} are out<svg aria-hidden="true"><use href="#arrow"/></svg></a>
-  <h1 class="hero-title" data-words>Free tools that never upload your files.</h1>
+  <h1 class="hero-title" data-words data-hl="never upload">Free tools that never upload your files.</h1>
   <p class="hero-sub in-1">Small, polished apps for Windows and Mac that do one job well, entirely on your own computer. No ads, no accounts, no watermarks.</p>
   <div class="hero-cta in-2">
     <a class="btn btn-primary btn-lg" href="/download/">${ic('down')}Download the apps</a>
@@ -275,22 +276,23 @@ ${ticker()}
         <div class="pcard-cta">
           <a class="btn btn-dark" href="/${p.slug}/">Learn more ${ic('arrow')}</a>
           <a class="btn btn-line" href="/download/#${p.slug}">${ic('down')}Download</a>
+          <a class="btn btn-line" href="${p.site}">Website ${ic('out')}</a>
         </div>
-        <small class="pcard-meta">v${p.version} · ${p.plats} · <a href="${p.site}">${p.domain}</a></small>
+        <small class="pcard-meta">v${p.version} · ${p.plats} · Official site: ${p.domain}</small>
       </div>
       <div class="pcard-shot"><img src="/assets/img/${p.slug}-app.webp" width="1600" height="1018" alt="" loading="lazy"></div>
     </article>`).join('\n    ')}
   </div>
 </section>
 
-<section class="band-light">
-  <div class="wrap sec">
+<section class="wrap sec">
+  <div>
     <div class="sec-head">
       <h2 class="h2" data-words="scroll">Free means free.</h2>
       <p class="reveal">No trial, no “pro” tier, no data harvested on the side. These rules apply to every Hollowbit app and this website.</p>
     </div>
     <div class="princ">
-      ${PRINCIPLES.map(([i, h, t], n) => `<div class="pr reveal" style="--d:${n * 70}ms">${ic(i, 'pr-icon')}<h3>${h}</h3><p>${t}</p></div>`).join('\n      ')}
+      ${PRINCIPLES.map(([i, h, t], n) => `<div class="pr reveal" style="--d:${n * 70}ms; --c: var(--k${n})"><span class="pr-tile">${ic(i, 'pr-icon')}</span><h3>${h}</h3><p>${t}</p></div>`).join('\n      ')}
     </div>
   </div>
 </section>
@@ -316,8 +318,8 @@ function productPage(p, next) {
   <p class="phero-name in-0">${p.name}</p>
   <h1 class="phero-title" data-words>${p.line}</h1>
   <p class="phero-sub in-1">${p.lede}</p>
-  <div class="in-2">${dlButtons(p)}</div>
-  <p class="phero-meta in-2">Version ${p.version} · Free · <a href="${p.site}">Visit ${p.domain}</a> · <a href="${p.source}">Source code</a></p>
+  <div class="in-2">${dlButtons(p, { site: true })}</div>
+  <p class="phero-meta in-2">Version ${p.version} · Free · <a href="${p.source}">Source code</a> · <a href="${p.changelog}">What's new</a></p>
   <div class="in-3 phero-stage">${stage(p.v)}</div>
 </section>
 
@@ -423,8 +425,8 @@ const about = page({
   </ol>
 </section>
 
-<section class="band-light">
-  <div class="wrap sec">
+<section class="wrap sec">
+  <div>
     <div class="sec-head"><h2 class="h2" data-words="scroll">The apps so far</h2><p class="reveal">Two released, both free, both open source.</p></div>
     <div class="mini-list">
       ${[FS, CS].map((p, i) => `<a class="mini reveal" style="--d:${i * 90}ms" href="/${p.slug}/"><img src="/assets/img/${p.slug}-icon.png" width="52" height="52" alt=""><span><b>${p.name}</b><small>${p.blurb}</small></span><em>v${p.version}</em>${ic('arrow', 'go')}</a>`).join('')}
@@ -458,19 +460,19 @@ const contact = page({
   </div>
   <div class="ways">
     <div class="way reveal">
-      ${ic('bug', 'way-icon')}
+      <span class="way-tile" style="--c: var(--k3)">${ic('bug', 'way-icon')}</span>
       <h2>Found a bug?</h2>
       <p>Open an issue on GitHub so it can be tracked and fixed. Mention your system and what you clicked.</p>
       <div class="way-links"><a href="${FS.issues}">Report a Fileshaper bug ${ic('out')}</a><a href="${CS.issues}">Report a Captionshaper bug ${ic('out')}</a></div>
     </div>
     <div class="way reveal" style="--d:90ms">
-      ${ic('spark', 'way-icon')}
+      <span class="way-tile" style="--c: var(--k4)">${ic('spark', 'way-icon')}</span>
       <h2>Have an idea?</h2>
       <p>Feature requests are welcome on GitHub, or by email if you’d rather not make an account.</p>
       <div class="way-links"><a href="https://github.com/hollowbit-dev">github.com/hollowbit-dev ${ic('out')}</a></div>
     </div>
     <div class="way reveal" style="--d:180ms">
-      ${ic('cup', 'way-icon')}
+      <span class="way-tile" style="--c: var(--k5)">${ic('cup', 'way-icon')}</span>
       <h2>Want to support it?</h2>
       <p>The apps stay free either way. If one saved you time, a coffee helps keep them going.</p>
       <div class="way-links"><a href="https://ko-fi.com/hollowbit">ko-fi.com/hollowbit ${ic('out')}</a></div>

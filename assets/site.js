@@ -51,7 +51,12 @@
   for (const el of $$('[data-words]')) {
     const text = el.textContent.trim();
     el.setAttribute('aria-label', text);
-    el.innerHTML = text.split(/\s+/).map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>`).join(' ');
+    const words = text.split(/\s+/);
+    const hl = (el.dataset.hl || '').split(/\s+/).filter(Boolean);
+    const at = hl.length ? words.findIndex((w, i) => hl.every((h, k) => words[i + k] === h)) : -1;
+    let out = words.map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>`);
+    if (at >= 0) out = [...out.slice(0, at), `<span class="hlg">${out.slice(at, at + hl.length).join(' ')}</span>`, ...out.slice(at + hl.length)];
+    el.innerHTML = out.join(' ');
     if (el.dataset.words === 'scroll') wordsIO.observe(el); else el.classList.add('go');
   }
 
