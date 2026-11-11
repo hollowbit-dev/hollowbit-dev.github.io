@@ -123,6 +123,7 @@ ${path ? `<meta property="og:url" content="${ORIGIN}${path}">` : ''}
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"ezygmanta@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://fileshaper.app","https://captionshaper.app"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent)</script>
 </head>
 <body class="${cls}">
@@ -147,14 +148,14 @@ ${body}
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="brand" href="/" aria-label="Hollowbit home">${ic('logo', 'logo')}<span>Hollowbit</span></a>
-        <p>Free tools that never upload your files. Made by Elvis Zygmanta in Thailand.</p>
+        <p>Hollowbit Studio makes free tools that never upload your files. Made by Elvis Zygmanta in Thailand.</p>
         <a class="foot-mail" data-email-link href="/contact/">${ic('mail')}<span data-email>Contact</span></a>
       </div>
       <nav aria-label="Products"><h2>Products</h2><a href="/fileshaper/">Fileshaper</a><a href="/captionshaper/">Captionshaper</a><a href="/download/">Download</a></nav>
       <nav aria-label="Studio"><h2>Studio</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/donate/">Donate</a><a href="/privacy/">Privacy</a></nav>
       <nav aria-label="Elsewhere"><h2>Elsewhere</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${FS.site}">fileshaper.app</a><a href="${CS.site}">captionshaper.app</a></nav>
     </div>
-    <div class="foot-bottom"><span>© 2026 Elvis Zygmanta</span><span>No cookies, no analytics, nothing loaded from anyone else.</span></div>
+    <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>No cookies, no analytics, nothing loaded from anyone else.</span></div>
   </div>
   <div class="foot-word" aria-hidden="true"><span>Hollowbit</span></div>
 </footer>
@@ -179,7 +180,7 @@ const fsDemo = `<div class="demo demo-fs" id="demo-fs" role="tabpanel" aria-labe
   <div class="win" aria-hidden="true">
     <aside class="fs-side">
       <div class="tl"><i></i><i></i><i></i></div>
-      <div class="fs-brand"><img src="/assets/img/fileshaper-icon.png" alt=""><div><b>Fileshaper</b><small>by Hollowbit</small></div></div>
+      <div class="fs-brand"><img src="/assets/img/fileshaper-icon.png" alt=""><div><b>Fileshaper</b><small>by Hollowbit Studio</small></div></div>
       <div class="fs-search">Search actions <kbd>⌘K</kbd></div>
       <div class="fs-nav"><span class="on">Home</span><em>Tools</em><span>Video <small>2</small></span><span>Images <small>4</small></span><span>PDF</span><span>Audio <small>1</small></span></div>
       <div class="fs-offline"><i></i>Offline. Nothing is uploaded.</div>
@@ -249,8 +250,8 @@ const PRINCIPLES = [
 /* ---------- pages ---------- */
 const home = page({
   path: '/', key: 'home',
-  title: 'Hollowbit: free tools that never upload your files',
-  desc: 'Hollowbit is a small software studio by Elvis Zygmanta. Free, open-source apps for Windows and Mac that run entirely on your own computer.',
+  title: 'Hollowbit Studio: free tools that never upload your files',
+  desc: 'Hollowbit Studio is a small software studio by Elvis Zygmanta. Free, open-source apps for Windows and Mac that run entirely on your own computer.',
   body: `
 <section class="hero wrap">
   <a class="hero-badge in-0" href="/download/"><span class="dot"></span>Fileshaper ${FS.version} and Captionshaper ${CS.version} are out<svg aria-hidden="true"><use href="#arrow"/></svg></a>
@@ -313,7 +314,7 @@ ${ticker()}
 function productPage(p, next) {
   return page({
     path: `/${p.slug}/`, key: p.slug, cls: `p-${p.v}`,
-    title: `${p.name}: ${p.kind} · Hollowbit`,
+    title: `${p.name}: ${p.kind} · Hollowbit Studio`,
     desc: `${p.blurb} Free for ${p.plats}, nothing uploaded.`,
     body: `
 <section class="phero wrap" style="--c: var(--${p.v})">
@@ -350,7 +351,7 @@ function productPage(p, next) {
 <section class="wrap next-sec">
   <a class="next reveal" href="/${next.slug}/" style="--c: var(--${next.v})">
     <img src="/assets/img/${next.slug}-icon.png" alt="" width="56" height="56">
-    <span><small>Also from Hollowbit</small><b>${next.name}</b><em>${next.blurb}</em></span>
+    <span><small>Also from Hollowbit Studio</small><b>${next.name}</b><em>${next.blurb}</em></span>
     <span class="next-go">${ic('arrow')}</span>
   </a>
 </section>`,
@@ -360,7 +361,7 @@ function productPage(p, next) {
 const steps = (arr) => `<ol>${arr.map((s) => `<li>${s}</li>`).join('')}</ol>`;
 const download = page({
   path: '/download/', key: 'download',
-  title: 'Download · Hollowbit',
+  title: 'Download · Hollowbit Studio',
   desc: 'Download Fileshaper and Captionshaper for Mac and Windows. Free, no account, nothing uploaded.',
   body: `
 <section class="dhero wrap">
@@ -403,8 +404,8 @@ const download = page({
 
 const about = page({
   path: '/about/', key: 'about',
-  title: 'About · Hollowbit',
-  desc: 'Hollowbit is Elvis Zygmanta’s studio for small, free tools that run on your own computer. No ads, no accounts, no tracking, open source.',
+  title: 'About · Hollowbit Studio',
+  desc: 'Hollowbit Studio is Elvis Zygmanta’s studio for small, free tools that run on your own computer. No ads, no accounts, no tracking, open source.',
   body: `
 <section class="ahero wrap-narrow">
   <span class="ahero-logo">${ic('logo')}</span>
@@ -445,8 +446,8 @@ const about = page({
 
 const contact = page({
   path: '/contact/', key: 'contact',
-  title: 'Contact · Hollowbit',
-  desc: 'Get in touch with Hollowbit: email, bug reports and feature ideas for Fileshaper and Captionshaper.',
+  title: 'Contact · Hollowbit Studio',
+  desc: 'Get in touch with Hollowbit Studio: email, bug reports and feature ideas for Fileshaper and Captionshaper.',
   body: `
 <section class="dhero wrap">
   <h1 class="h1" data-words>Get in touch.</h1>
@@ -486,8 +487,8 @@ const contact = page({
 
 const donate = page({
   path: '/donate/', key: 'donate',
-  title: 'Donate · Hollowbit',
-  desc: 'Support Hollowbit. Donations keep Fileshaper and Captionshaper free, with no ads, no accounts and no paid tier.',
+  title: 'Donate · Hollowbit Studio',
+  desc: 'Support Hollowbit Studio. Donations keep Fileshaper and Captionshaper free, with no ads, no accounts and no paid tier.',
   body: `
 <section class="dhero wrap">
   <span class="heart-badge in-0">${ic('heart')}</span>
@@ -531,8 +532,8 @@ const donate = page({
 
 const privacy = page({
   path: '/privacy/', key: '',
-  title: 'Privacy · Hollowbit',
-  desc: 'Hollowbit’s privacy policy: no cookies, no analytics, and apps that never upload your files.',
+  title: 'Privacy · Hollowbit Studio',
+  desc: 'Hollowbit Studio’s privacy policy: no cookies, no analytics, and apps that never upload your files.',
   body: `
 <section class="wrap-narrow doc">
   <h1 class="h1" data-words>Privacy.</h1>
@@ -556,7 +557,7 @@ const privacy = page({
 
 const notFound = page({
   path: null,
-  title: 'Page not found · Hollowbit',
+  title: 'Page not found · Hollowbit Studio',
   desc: 'This page does not exist.',
   body: `
 <section class="dhero wrap nf">
