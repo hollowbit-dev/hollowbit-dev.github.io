@@ -1,6 +1,6 @@
 // Renders the 1200x630 share cards (Discord, X, iMessage, Slack...) listed in site/og.json.
-// Run after the build: node site/build.mjs && node scripts/og.mjs
-// Same dark liquid-glass look as the site: colour wash, frosted panel, product colours.
+// Run after the build: node site/build.mjs && node scripts/og.mjs [filter]
+// Calm and exact: one controlled light in the page's colour, a strict 72px grid, real app screenshots.
 import { createRequire } from 'node:module';
 import { readFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -13,110 +13,114 @@ const only = process.argv[2]; // optional filter, e.g. "en/" or "fileshaper"
 
 const b64 = (f) => readFileSync(resolve(root, f)).toString('base64');
 const font = `data:font/woff2;base64,${b64('assets/fonts/Geist-Variable.woff2')}`;
-const icon = Object.fromEntries(['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper'].map((s) => [s, `data:image/png;base64,${b64(`assets/img/${s}-icon.png`)}`]));
-const shot = Object.fromEntries(['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper'].map((s) => [s, `data:image/webp;base64,${b64(`assets/img/${s}-app.webp`)}`]));
-const C = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', violet: '#a07cff' };
-const LOGO = '<svg viewBox="0 0 24 24" width="40" height="40"><path fill="#f4f4f5" fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></svg>';
-const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const APPS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper'];
+const icon = Object.fromEntries(APPS.map((s) => [s, `data:image/png;base64,${b64(`assets/img/${s}-icon.png`)}`]));
+const shot = Object.fromEntries(APPS.map((s) => [s, `data:image/webp;base64,${b64(`assets/img/${s}-app.webp`)}`]));
+const C = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', violet: '#a07cff' };
+const LOGO = '<svg viewBox="0 0 24 24" width="34" height="34"><path fill="#f4f4f5" fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></svg>';
+// Fine grain so the gradients don't band in Discord's JPEG re-encode.
+const GRAIN = `url("data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>')}")`;
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-// Wash colours: a product page is lit by its own colour, the studio pages by all four.
-const wash = (o) => {
-  const c = o.v ? [C[o.v], C.violet, C[o.v], C.violet] : [C.fs, C.ws, C.violet, C.ds];
-  return `<div class="wash"><i style="background:${c[0]};left:-260px;top:-300px"></i><i style="background:${c[1]};right:-240px;top:-320px"></i><i style="background:${c[2]};left:180px;bottom:-460px"></i><i style="background:${c[3]};right:-300px;bottom:-420px"></i></div>`;
-};
-const brand = (o) => `<div class="brand">${LOGO}<span>Hollowbit</span><em>Studio</em></div>`;
-const head = (o) => {
+const top = (o) => `<header><div class="brand">${LOGO}<span>Hollowbit</span><em>Studio</em></div><span class="url">${esc(o.domain || 'hollowbit.dev')}</span></header>`;
+const headline = (o) => {
   let h = esc(o.h);
-  if (o.hl && o.h.includes(o.hl)) h = h.replace(esc(o.hl), `<mark>${esc(o.hl)}</mark>`);
+  if (o.hl && o.h.includes(o.hl)) h = h.replace(esc(o.hl), `<b>${esc(o.hl)}</b>`);
   return h;
 };
 
 function card(o) {
   if (o.kind === 'product') {
-    return `<div class="prod" style="--c:${C[o.v]}">
-      <div class="left">
-        ${brand(o)}
-        <div class="mid">
-          <img class="appicon" src="${icon[o.slug]}">
-          <h1 class="fit name">${esc(o.name)}</h1>
-          <p class="kicker">${esc(o.kicker)}</p>
-          <p class="sub fit-sub">${esc(o.sub)}</p>
-        </div>
-        <div class="foot"><span class="pill">${esc(o.plats)}</span><span class="url">${esc(o.domain)}</span></div>
-      </div>
-      <div class="frame"><img src="${shot[o.slug]}"></div>
-    </div>`;
+    return `<div class="light" style="--c:${C[o.v]}"></div>${top(o)}
+    <section class="ptext">
+      <img class="appicon" src="${icon[o.slug]}" alt="">
+      <h1 class="fit">${esc(o.name)}</h1>
+      <p class="kicker">${esc(o.kicker)}</p>
+      <p class="sub fit-sub">${esc(o.sub)}</p>
+    </section>
+    <figure class="win"><img src="${shot[o.slug]}" alt=""></figure>`;
   }
-  const icons = `<div class="icons">${APPS.map((s, i) => `<img src="${icon[s]}" style="--i:${i}">`).join('')}</div>`;
-  return `<div class="std ${o.kind}">
-    ${brand(o)}
-    <div class="mid"><h1 class="fit">${head(o)}</h1><p class="sub fit-sub">${esc(o.sub)}</p></div>
-    <div class="foot">${icons}<span class="url">hollowbit.dev</span></div>
-  </div>`;
+  const big = o.kind === 'home' || o.kind === 'apps';
+  const icons = `<div class="icons${big ? ' grid' : ''}">${APPS.map((s) => `<img src="${icon[s]}" alt="">`).join('')}</div>`;
+  return `<div class="light studio"></div>${top(o)}
+    <section class="stext${big ? ' narrow' : ''}">
+      <h1 class="fit">${headline(o)}</h1>
+      <p class="sub fit-sub">${esc(o.sub)}</p>
+    </section>
+    ${icons}`;
 }
 
 const css = `
 @font-face { font-family: G; src: url(${font}) format('woff2'); font-weight: 100 900; }
 * { margin: 0; box-sizing: border-box; }
 html, body { width: 1200px; height: 630px; overflow: hidden; }
-body { background: #0b0a10; color: #f4f4f5; font-family: G, "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif; position: relative; -webkit-font-smoothing: antialiased; }
-.wash { position: absolute; inset: 0; overflow: hidden; }
-.wash i { position: absolute; width: 760px; height: 760px; border-radius: 50%; filter: blur(110px); opacity: .34; }
-.glass { position: absolute; inset: 28px; border-radius: 40px; background: linear-gradient(160deg, rgba(255,255,255,.085), rgba(255,255,255,.025) 45%, rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.12); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 40px 120px -40px rgba(0,0,0,.7); overflow: hidden; }
-.glass::before { content: ""; position: absolute; inset: 0; background: radial-gradient(900px 300px at 20% -10%, rgba(255,255,255,.08), transparent 70%); pointer-events: none; }
-.brand { display: flex; align-items: center; gap: 14px; font-size: 30px; font-weight: 640; letter-spacing: -.03em; }
-.brand em { font-style: normal; color: #9a99a6; font-weight: 500; margin-left: -4px; }
-.url { color: #8b8a96; font-size: 24px; font-weight: 500; letter-spacing: -.01em; }
-.sub { text-wrap: pretty; color: #b4b3bf; font-size: 28px; line-height: 1.34; letter-spacing: -.012em; }
-h1 { text-wrap: balance; font-weight: 650; letter-spacing: -.045em; line-height: 1.02; }
-mark { color: #0b0a10; background: ${C.fs}; padding: 0 .12em; border-radius: .16em; box-shadow: inset 0 .04em 0 rgba(255,255,255,.45); -webkit-box-decoration-break: clone; }
+body { position: relative; background: #08070c; color: #f5f5f7; font-family: G, "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+body::after { content: ""; position: absolute; inset: 0; background: ${GRAIN}; opacity: .045; mix-blend-mode: overlay; pointer-events: none; z-index: 5; }
 
-/* studio pages */
-.std { position: absolute; inset: 28px; padding: 54px 64px 50px; display: flex; flex-direction: column; }
-.std .mid { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px; min-height: 0; overflow: hidden; }
-.std h1 { font-size: 88px; max-width: 980px; }
-.std .sub { max-width: 900px; }
-.std .foot { display: flex; align-items: center; justify-content: space-between; }
-.icons { display: flex; gap: 14px; }
-.icons img { width: 64px; height: 64px; border-radius: 16px; filter: drop-shadow(0 10px 22px rgba(0,0,0,.45)); }
-.home .icons img, .apps .icons img { width: 76px; height: 76px; }
+/* One light source, top right, in the page's colour. */
+.light { position: absolute; inset: 0; background:
+  radial-gradient(620px 420px at 88% -6%, color-mix(in srgb, var(--c) 38%, transparent), transparent 70%),
+  radial-gradient(520px 380px at 104% 92%, color-mix(in srgb, ${C.violet} 16%, transparent), transparent 70%),
+  radial-gradient(700px 300px at 10% 120%, rgba(255,255,255,.035), transparent 70%); }
+.light.studio { background:
+  radial-gradient(440px 320px at 80% 30%, color-mix(in srgb, ${C.fs} 26%, transparent), transparent 70%),
+  radial-gradient(440px 320px at 98% 64%, color-mix(in srgb, ${C.ws} 24%, transparent), transparent 70%),
+  radial-gradient(480px 340px at 74% 92%, color-mix(in srgb, ${C.ds} 20%, transparent), transparent 70%),
+  radial-gradient(520px 360px at 104% 0%, color-mix(in srgb, ${C.violet} 26%, transparent), transparent 70%); }
 
-/* product pages */
-.prod { position: absolute; inset: 28px; display: flex; }
-.prod .left { width: 600px; padding: 54px 0 50px 64px; display: flex; flex-direction: column; flex: none; }
-.prod .mid { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; overflow: hidden; }
-.appicon { width: 84px; height: 84px; border-radius: 20px; margin: 10px 0 18px; filter: drop-shadow(0 16px 34px color-mix(in srgb, var(--c) 55%, transparent)); }
-.name { font-size: 76px; }
-.kicker { color: var(--c); font-size: 30px; font-weight: 600; letter-spacing: -.02em; margin: 10px 0 12px; }
-.prod .sub { font-size: 24px; max-width: 520px; margin-bottom: 10px; }
-.prod .foot { display: flex; align-items: center; gap: 18px; }
-.pill { padding: 9px 18px; border-radius: 99px; font-size: 21px; font-weight: 600; color: #0b0a10; background: var(--c); box-shadow: inset 0 1px 0 rgba(255,255,255,.4); }
-.frame { position: absolute; left: 640px; top: 72px; width: 760px; height: 520px; border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,.16); box-shadow: 0 40px 90px -20px rgba(0,0,0,.75), 0 0 0 10px rgba(255,255,255,.035), 0 0 120px -30px var(--c); }
-.frame img { width: 100%; height: 100%; object-fit: cover; object-position: left top; display: block; }
+header { position: absolute; left: 72px; right: 72px; top: 60px; display: flex; align-items: center; justify-content: space-between; z-index: 2; }
+.brand { display: flex; align-items: center; gap: 12px; font-size: 27px; font-weight: 620; letter-spacing: -.025em; }
+.brand em { font-style: normal; font-weight: 450; color: #8e8d99; }
+.url { font-size: 22px; font-weight: 500; color: #8e8d99; letter-spacing: -.01em; }
+
+h1 { font-weight: 640; letter-spacing: -.045em; line-height: 1.02; text-wrap: balance; }
+h1 b { font-weight: inherit; color: ${C.fs}; }
+.sub { color: #a3a2ae; font-size: 26px; line-height: 1.38; letter-spacing: -.01em; text-wrap: pretty; }
+
+/* studio pages: text bottom-left on the grid, icons on the right */
+.stext { position: absolute; left: 72px; bottom: 72px; width: 900px; max-height: 400px; display: flex; flex-direction: column; justify-content: flex-end; gap: 20px; overflow: hidden; }
+.stext.narrow { width: 720px; }
+.stext h1 { font-size: 80px; }
+.stext .sub { max-width: 640px; }
+.icons { position: absolute; right: 72px; bottom: 72px; display: flex; gap: 14px; }
+.icons img { width: 60px; height: 60px; filter: drop-shadow(0 8px 14px rgba(0,0,0,.55)); }
+.icons.grid { top: 150px; bottom: auto; display: grid; grid-template-columns: repeat(2, 150px); gap: 10px; }
+.icons.grid img { width: 150px; height: 150px; filter: drop-shadow(0 22px 30px rgba(0,0,0,.6)); }
+
+/* product pages: text left, the real app window bleeding off the right and bottom edge */
+.ptext { position: absolute; left: 72px; top: 136px; bottom: 72px; width: 470px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+.appicon { width: 92px; height: 92px; margin: 0 0 18px -8px; filter: drop-shadow(0 14px 24px color-mix(in srgb, var(--c) 45%, transparent)); }
+.ptext h1 { font-size: 72px; }
+.kicker { color: var(--c); font-size: 26px; font-weight: 580; letter-spacing: -.015em; margin: 14px 0 14px; }
+.ptext .sub { font-size: 22px; }
+.ptext { --c: inherit; }
+.win { position: absolute; left: 600px; top: 136px; width: 760px; height: 560px; border-radius: 18px; overflow: hidden; background: #111;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 50px 100px -30px rgba(0,0,0,.9), 0 0 0 9px rgba(255,255,255,.04); }
+.win img { width: 100%; height: 100%; object-fit: cover; object-position: left top; display: block; }
 `;
 
-// Shrink the headline (then the sub line) until the middle block fits.
+// Shrink the headline, then the sub line, until the text block fits its box.
 const fitJs = `(() => {
-  const mid = document.querySelector('.mid'); const h = document.querySelector('.fit'); const s = document.querySelector('.fit-sub');
+  const box = document.querySelector('section'), h = document.querySelector('.fit'), s = document.querySelector('.fit-sub');
   let n = parseFloat(getComputedStyle(h).fontSize), m = parseFloat(getComputedStyle(s).fontSize);
-  while (mid.scrollHeight > mid.clientHeight + 1 && n > 44) { n -= 2; h.style.fontSize = n + 'px'; }
-  while (mid.scrollHeight > mid.clientHeight + 1 && m > 18) { m -= 1; s.style.fontSize = m + 'px'; }
-  while (h.scrollWidth > h.clientWidth + 1 && n > 44) { n -= 2; h.style.fontSize = n + 'px'; }
+  const over = () => box.scrollHeight > box.clientHeight + 1 || h.scrollWidth > h.clientWidth + 1;
+  while (over() && n > 46) { n -= 2; h.style.fontSize = n + 'px'; }
+  while (over() && m > 18) { m -= 1; s.style.fontSize = m + 'px'; }
 })()`;
 
 const br = await chromium.launch({ channel: 'chrome' });
 const pg = await br.newPage({ viewport: { width: 1200, height: 630 } });
-let n = 0;
+let count = 0;
 for (const o of list) {
   if (only && !o.file.includes(only)) continue;
-  await pg.setContent(`<!doctype html><html lang="${o.lang}"><head><meta charset="utf-8"><style>${css}</style></head><body>${wash(o)}<div class="glass"></div>${card(o)}</body></html>`, { waitUntil: 'load' });
+  const c = o.v ? C[o.v] : C.violet;
+  await pg.setContent(`<!doctype html><html lang="${o.lang}"><head><meta charset="utf-8"><style>${css}</style></head><body style="--c:${c}">${card(o)}</body></html>`, { waitUntil: 'load' });
   await pg.evaluate(() => document.fonts.ready);
   await pg.evaluate(fitJs);
   const out = resolve(root, o.file);
   mkdirSync(dirname(out), { recursive: true });
   await pg.screenshot({ path: out, type: 'png' });
-  n++;
+  count++;
 }
 await br.close();
-console.log('rendered', n, 'share cards');
+console.log('rendered', count, 'share cards');
