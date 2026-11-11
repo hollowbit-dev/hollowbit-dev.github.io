@@ -1,4 +1,4 @@
-// Renders favicon.png, img/apple-touch-icon.png and img/og.png: node scripts/assets.mjs
+// Renders favicon.png, apple-touch-icon and the share image: node scripts/assets.mjs
 import { createRequire } from 'node:module';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,19 +6,18 @@ const require = createRequire(resolve(process.env.HOME, 'Desktop/Fileshaper/pack
 const { chromium } = require('playwright');
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const b = await chromium.launch({ channel: 'chrome' });
-const icon = async (size, out, pad) => {
-  const p = await b.newPage({ viewport: { width: size, height: size } });
-  await p.setContent(`<body style="margin:0;background:${pad ? '#141518' : 'transparent'};display:grid;place-items:center;height:100vh"><img src="file://${root}/favicon.svg" style="width:${pad ? 62 : 100}%"></body>`);
-  await p.waitForTimeout(200);
-  await p.screenshot({ path: resolve(root, out), omitBackground: !pad });
+const logo = `<svg viewBox="0 0 24 24" fill="#f4f4f5"><path fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></svg>`;
+const shot = async (w, h, html, out, transparent) => {
+  const p = await b.newPage({ viewport: { width: w, height: h } });
+  await p.setContent(html, { waitUntil: 'load' });
+  await p.waitForTimeout(300);
+  await p.screenshot({ path: resolve(root, out), omitBackground: transparent });
   await p.close();
 };
-await icon(64, 'favicon.png', false);
-await icon(180, 'img/apple-touch-icon.png', true);
-const p = await b.newPage({ viewport: { width: 1200, height: 630 } });
-await p.goto('file://' + resolve(root, 'index.html'));
-await p.addStyleTag({ content: `.top,.tools,.principles,.about,.foot{display:none}.hero{padding:34px 0 0}main{max-width:none;padding:0 34px}body{background:#111214}.laser{display:none}.studio-body{display:none}.hero h1{font-size:108px;max-width:none;margin-top:30px}.plate__face{height:562px}.plate__ink{clip-path:none!important;animation:none!important}` });
-await p.waitForTimeout(500);
-await p.screenshot({ path: resolve(root, 'img/og.png') });
+await shot(64, 64, `<body style="margin:0">${logo.replace('<svg', '<svg width="64" height="64"')}</body>`, 'favicon.png', true);
+await shot(180, 180, `<body style="margin:0;background:#08080a;display:grid;place-items:center;height:100vh">${logo.replace('<svg', '<svg width="112" height="112"')}</body>`, 'assets/img/apple-touch-icon.png', false);
+const font = 'file://' + resolve(root, 'assets/fonts/Geist-Variable.woff2');
+await shot(1200, 630, `<style>@font-face{font-family:G;src:url(${font})}body{margin:0;height:100vh;background:#08080a;color:#f4f4f5;font-family:G;display:flex;flex-direction:column;justify-content:center;padding:0 96px;box-sizing:border-box}h1{font-size:92px;line-height:1.02;letter-spacing:-0.045em;font-weight:600;margin:40px 0 0;max-width:12ch}p{color:#a1a1aa;font-size:30px;margin:28px 0 0}.b{display:flex;align-items:center;gap:16px;font-size:32px;font-weight:600}</style>
+<div class="b">${logo.replace('<svg', '<svg width="44" height="44"')}Hollowbit</div><h1>Free tools that never upload your files.</h1><p>Fileshaper · Captionshaper</p>`, 'assets/img/og.png', false);
 await b.close();
 console.log('ok');
