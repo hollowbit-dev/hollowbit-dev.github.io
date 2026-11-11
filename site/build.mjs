@@ -32,8 +32,16 @@ const P = {
     site: 'https://hollowbit.dev/diskshaper/', repo: 'hollowbit-dev/diskshaper',
     fallback: { tag: 'v1.0.0', assets: ['Diskshaper-1.0.0-mac-arm64.dmg', 'Diskshaper-1.0.0-mac-x64.dmg', 'Diskshaper-Setup-1.0.0-win-x64.exe'] },
   },
+  // Writeshaper's website also lives on this domain, at /writeshaper/.
+  writeshaper: {
+    slug: 'writeshaper', name: 'Writeshaper', v: 'ws', domain: 'hollowbit.dev/writeshaper', page: false,
+    site: 'https://hollowbit.dev/writeshaper/', repo: 'hollowbit-dev/writeshaper',
+    fallback: { tag: 'v1.0.0', assets: ['Writeshaper-1.0.0-mac-arm64.dmg', 'Writeshaper-1.0.0-mac-x64.dmg', 'Writeshaper-Setup-1.0.0-win-x64.exe'] },
+  },
 };
-const ORDER = ['fileshaper', 'captionshaper', 'diskshaper'];
+const ORDER = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper'];
+// Screenshot sizes for the home page cards.
+const SHOT = { fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085] };
 
 for (const p of Object.values(P)) {
   let rel = p.fallback;
@@ -56,7 +64,7 @@ for (const p of Object.values(P)) {
 // Each product site has the same languages, at /<lang>/ (English at the root).
 const siteIn = (p, lang) => p.site + (lang === 'en' ? '' : `${lang}/`);
 const changelog = (p, lang) => `${siteIn(p, lang)}changelog.html`;
-const FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper;
+const FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper;
 
 /* ---------- icons ---------- */
 const GH = 'M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z';
@@ -92,7 +100,7 @@ const ic = (id, cls = '') => `<svg class="${cls}" aria-hidden="true"><use href="
 // Paths are written root-absolute for the page's language (/es/about/), then made relative at write time.
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
 const navItems = (L) => [
-  [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'],
+  [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'],
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 
@@ -112,7 +120,7 @@ function page(L, { path, key = '', title, desc, body, cls = '' }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 ${path ? `<link rel="canonical" href="${url(L.lang)}">\n${alt}` : '<meta name="robots" content="noindex">'}
-<meta name="theme-color" content="#08080a">
+<meta name="theme-color" content="#0b0a10">
 <meta property="og:type" content="website">
 ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <meta property="og:title" content="${esc(title)}">
@@ -124,10 +132,11 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note })}</script>
 </head>
 <body class="${cls}">
+<div class="wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <a class="skip" href="#main">${esc(t.nav.skip)}</a>
 ${sprite}
 <header class="nav" data-nav>
@@ -153,7 +162,7 @@ ${body}
         <p>${esc(t.footer.about)}</p>
         <a class="foot-mail" data-email-link href="${pre(L)}/contact/">${ic('mail')}<span data-email>${esc(t.footer.contact)}</span></a>
       </div>
-      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
+      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
       <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
@@ -241,17 +250,37 @@ const dsDemo = (L) => `<div class="demo demo-ds" id="demo-ds" role="tabpanel" ar
   </div>
 </div>`;
 
+// Writeshaper demo: a sentence in a mail window is selected, the panel opens and fixes it, Replace pastes it back.
+const wsDemo = (L) => `<div class="demo demo-ws" id="demo-ws" role="tabpanel" aria-labelledby="tab-ws">
+  <p class="sr-only">${esc(L.home.srWs)}</p>
+  <div class="win" aria-hidden="true">
+    <div class="ws-top"><div class="tl"><i></i><i></i><i></i></div><span>New message</span></div>
+    <div class="ws-meta"><div><b>To</b>sarah.lee@company.com</div><div><b>Subject</b>Report</div></div>
+    <div class="ws-text"><span class="ws-line"></span></div>
+    <div class="ws-keys"><span>⌥</span><span>Space</span></div>
+    <div class="ws-panel">
+      <div class="ws-glow"></div>
+      <div class="ws-card">
+        <div class="ws-ph"><img src="/assets/img/writeshaper-icon.png" alt=""><b>Writeshaper</b><span class="ws-st">Fixing…</span><span class="ws-esc">esc</span></div>
+        <div class="ws-out"></div>
+        <div class="ws-modes"><span class="on">Fix</span><span>Clearer</span><span>Shorter</span><span>Friendlier</span><span>Professional</span><span>Translate</span></div>
+        <div class="ws-foot"><span class="ws-count"></span><span class="ws-copy">Copy</span><span class="ws-rep">Replace ↵</span></div>
+      </div>
+    </div>
+  </div>
+</div>`;
+
 function stage(L, only) {
-  const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'fs'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20">${p.name}<span class="tab-bar"><i></i></span></button>`;
-  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}</div>`;
-  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : fsDemo(L) + csDemo(L) + dsDemo(L);
+  const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'fs'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
+  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}</div>`;
+  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L);
   return `<div class="stage${only ? ' stage-single' : ''}" data-stage>${tabs}<div class="stage-frame"><div class="stage-scale">${demos}</div></div></div>`;
 }
 
 const ticker = (L) => {
   const items = (p) => L.products[p.slug].tasks.map((t) => `<span style="--c: var(--${p.v})"><i></i>${esc(t)}</span>`).join('');
-  const a = items(FS) + items(DS) + items(CS);
-  const b = items(CS) + items(FS) + items(DS);
+  const a = items(FS) + items(WS) + items(DS) + items(CS);
+  const b = items(CS) + items(DS) + items(FS) + items(WS);
   return `<div class="ticker" aria-hidden="true"><div class="ticker-track">${a}${a}</div><div class="ticker-track rev">${b}${b}</div></div>`;
 };
 const PR_ICONS = ['i-upload', 'i-wifi', 'i-ads', 'i-account', 'i-track', 'i-code'];
@@ -261,7 +290,7 @@ const home = (L) => page(L, {
   path: '/', key: 'home', title: L.home.title, desc: L.home.desc,
   body: `
 <section class="hero wrap">
-  <a class="hero-badge in-0" href="${siteIn(DS, L.lang)}"><span class="dot"></span>${esc(fill(L.home.badge, { v: DS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  <a class="hero-badge in-0" href="${siteIn(WS, L.lang)}"><span class="dot"></span>${esc(fill(L.home.badge, { v: WS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
   <h1 class="hero-title" data-words data-hl="${esc(L.home.hl)}">${esc(L.home.h1)}</h1>
   <p class="hero-sub in-1">${esc(L.home.sub)}</p>
   <div class="hero-cta in-2">
@@ -291,7 +320,7 @@ ${ticker(L)}
         </div>
         <small class="pcard-meta">v${p.version} · ${esc(plats(L, p))} · ${esc(fill(L.common.official, { domain: p.domain }))}</small>
       </div>
-      <div class="pcard-shot"><img src="/assets/img/${p.slug}-app.webp" width="1600" height="${p.slug === 'diskshaper' ? 1025 : 1018}" alt="" loading="lazy"></div>
+      <div class="pcard-shot"><img src="/assets/img/${p.slug}-app.webp" width="${SHOT[k][0]}" height="${SHOT[k][1]}" alt="" loading="lazy"></div>
     </article>`; }).join('\n    ')}
   </div>
 </section>

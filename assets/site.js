@@ -163,6 +163,50 @@
         await sleep(2600, sig);
       },
     },
+    'demo-ws': {
+      length: 9000,
+      // The fix as segments: [kind, text]; '=' kept, '-' removed, '+' added. Real output from Writeshaper.
+      segs: [['-', 'hi sarah'], ['+', 'Hi Sarah'], ['=', ', sorry for the late reply, '], ['-', 'i'], ['+', 'I'], ['=', ' was '], ['-', 'abit'], ['+', 'a bit'], ['=', ' busy this week. '], ['-', 'i'], ['+', 'I'], ['=', ' will send you the report by '], ['-', 'friday, let'], ['+', 'Friday. Let'], ['=', ' me know if '], ['-', 'theres'], ['+', 'there’s'], ['=', ' anything else you need'], ['+', '.']],
+      setup(d) { return d; },
+      text(segs, keep) { return segs.filter(([k]) => k !== keep).map(([, t]) => t).join(''); },
+      reset(d, final) {
+        const def = DEMOS['demo-ws'];
+        d.className = 'demo demo-ws' + (final ? ' fixed' : '');
+        $('.ws-line', d).textContent = final ? def.text(def.segs, '-') : def.text(def.segs, '+');
+        $('.ws-out', d).innerHTML = ''; $('.ws-count', d).textContent = ''; $('.ws-st', d).textContent = 'Fixing…';
+      },
+      async run(d, sig) {
+        const def = DEMOS['demo-ws'];
+        const esc = (t) => t.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+        await sleep(700, sig);
+        d.classList.add('sel'); await sleep(650, sig);
+        d.classList.add('keys'); await sleep(420, sig);
+        d.classList.add('press'); await sleep(260, sig);
+        d.classList.add('open', 'work'); await sleep(450, sig);
+        // Stream: removed text shows first, then the new text types in after it.
+        const out = $('.ws-out', d);
+        const total = def.segs.reduce((n, [k, t]) => n + (k === '-' ? 0 : t.length), 0);
+        await tween(2100, (p) => {
+          let left = Math.round(total * p), html = '';
+          for (const [k, t] of def.segs) {
+            if (k === '-') { html += `<s>${esc(t)}</s>`; continue; }
+            if (left <= 0) break;
+            const part = t.slice(0, left); left -= part.length;
+            html += k === '+' ? `<b>${esc(part)}</b>` : esc(part);
+          }
+          const rest = def.text(def.segs, '+').slice(def.text(def.segs, '+').length * p | 0);
+          out.innerHTML = html + (p < 1 ? `<i class="ws-caret"></i><span class="ws-ghost">${esc(rest)}</span>` : '');
+        }, sig);
+        d.classList.remove('work'); d.classList.add('done');
+        $('.ws-st', d).textContent = 'Done'; $('.ws-count', d).innerHTML = '<b>7</b> fixes';
+        await sleep(1300, sig);
+        d.classList.add('click'); await sleep(220, sig);
+        d.classList.remove('open', 'sel', 'keys', 'press', 'click');
+        $('.ws-line', d).textContent = def.text(def.segs, '-');
+        d.classList.add('fixed', 'flash');
+        await sleep(2200, sig);
+      },
+    },
     'demo-fs': {
       length: 8200,
       setup(d) { return d; },
