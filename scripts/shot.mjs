@@ -12,7 +12,7 @@ mkdirSync(out, { recursive: true });
 const srv = spawn('python3', ['-m', 'http.server', '8765', '--bind', '127.0.0.1'], { cwd: root, stdio: 'ignore' });
 await new Promise((r) => setTimeout(r, 800));
 const b = await chromium.launch({ channel: 'chrome' });
-const pages = { home: '/', fileshaper: '/fileshaper/', captionshaper: '/captionshaper/', about: '/about/', '404': '/404.html' };
+const pages = { home: '/', fileshaper: '/fileshaper/', captionshaper: '/captionshaper/', download: '/download/', about: '/about/', contact: '/contact/', privacy: '/privacy/', '404': '/404.html' };
 for (const [vp, w, h] of [['d', 1440, 900], ['m', 390, 844]]) {
   for (const [name, path] of Object.entries(pages)) {
     const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: vp === 'm' ? 2 : 1 });
@@ -22,7 +22,7 @@ for (const [vp, w, h] of [['d', 1440, 900], ['m', 390, 844]]) {
     // scroll through so reveals and scroll effects settle
     const H = await p.evaluate(() => document.documentElement.scrollHeight);
     for (let y = 0; y < H; y += 400) { await p.evaluate((y) => scrollTo(0, y), y); await p.waitForTimeout(60); }
-    await p.evaluate(() => { document.querySelectorAll('.reveal').forEach((e) => e.classList.add('is-in')); document.querySelectorAll('.rules li').forEach((e) => e.classList.add('lit')); document.querySelectorAll('[data-tilt]').forEach((e) => { e.style.setProperty('--rx', '0deg'); e.style.setProperty('--sc', '1'); }); scrollTo(0, 0); });
+    await p.evaluate(() => { document.querySelectorAll('.reveal, [data-wipe], .foot-word').forEach((e) => e.classList.add('is-in')); document.querySelectorAll('.rules li').forEach((e) => e.classList.add('lit')); document.querySelectorAll('[data-words]').forEach((e) => e.classList.add('go')); window.__noRules = 1; });
     await p.waitForTimeout(1200);
     await p.screenshot({ path: `${out}/${name}-${vp}.png`, fullPage: true });
     await p.close();

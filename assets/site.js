@@ -1,48 +1,88 @@
 (() => {
-  // Opened from the folder (file://): folder links need index.html to open the page.
-  if (location.protocol === 'file:') {
-    document.querySelectorAll('a[href]').forEach((a) => {
-      const h = a.getAttribute('href');
-      if (!/^[a-z]+:|^#/.test(h) && (h.endsWith('/') || h === '.' || h === '..')) a.setAttribute('href', h.replace(/\/?$/, '/') + 'index.html');
-    });
-  }
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const html = document.documentElement;
 
-  /* headline: words blur in one after another */
+  // Opened from the folder (file://): folder links need index.html to open the page.
+  if (location.protocol === 'file:') {
+    $$('a[href]').forEach((a) => {
+      const h = a.getAttribute('href');
+      if (!/^[a-z]+:|^#/.test(h) && (/\/(#.*)?$/.test(h) || h === '.' || h === '..')) a.setAttribute('href', h.replace(/^(\.\.?)$/, '$1/').replace(/\/(#.*)?$/, '/index.html$1'));
+    });
+  }
+
+  /* email: assembled here so scrapers reading the HTML don't get it */
+  const email = ['ezygmanta', 'gmail.com'].join('@');
+  $$('[data-email]').forEach((el) => { el.textContent = email; });
+  $$('[data-email-link]').forEach((a) => { a.href = 'mailto:' + email; });
+  $$('[data-copy-email]').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(email); } catch { const t = document.createElement('textarea'); t.value = email; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
+    const label = $('span', b), old = label.textContent;
+    b.classList.add('copied'); label.textContent = 'Copied';
+    b.querySelector('use').setAttribute('href', '#check');
+    setTimeout(() => { b.classList.remove('copied'); label.textContent = old; b.querySelector('use').setAttribute('href', '#copy'); }, 1800);
+  }));
+
+  /* your OS: highlight the matching download */
+  const os = html.dataset.os;
+  if (os === 'mac' || os === 'win') {
+    $$(`.plat[data-plat="${os}"]`).forEach((p) => p.classList.add('is-rec'));
+    const note = $('[data-os-note]');
+    if (note) note.textContent = os === 'mac' ? ' Looks like you’re on a Mac.' : ' Looks like you’re on Windows.';
+  }
+
+  /* sticky nav + mobile menu */
+  const nav = $('[data-nav]');
+  const menuBtn = $('.nav-menu');
+  const setNav = () => nav.classList.toggle('scrolled', scrollY > 8);
+  addEventListener('scroll', setNav, { passive: true }); setNav();
+  menuBtn?.addEventListener('click', () => {
+    const open = !nav.classList.contains('open');
+    nav.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('open')) menuBtn.click(); });
+
+  /* headlines: words blur in (hero at once, others when scrolled to) */
+  const wordsIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('go'); wordsIO.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
   for (const el of $$('[data-words]')) {
     const text = el.textContent.trim();
     el.setAttribute('aria-label', text);
     el.innerHTML = text.split(/\s+/).map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>`).join(' ');
+    if (el.dataset.words === 'scroll') wordsIO.observe(el); else el.classList.add('go');
   }
 
   /* reveal on scroll */
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
-  $$('.reveal').forEach((el) => io.observe(el));
+  $$('.reveal, [data-wipe], .foot-word').forEach((el) => io.observe(el));
 
-  /* scroll-linked: screenshot tilt + principles lighting up */
-  const tilts = $$('[data-tilt]');
+  /* product cards: tilt toward the pointer, light follows */
+  if (!reduce && matchMedia('(hover: hover)').matches) {
+    for (const c of $$('[data-tilt-card]')) {
+      c.addEventListener('pointermove', (e) => {
+        const r = c.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        c.style.setProperty('--rx', `${(x - 0.5) * 6}deg`);
+        c.style.setProperty('--ry', `${(0.5 - y) * 5}deg`);
+        c.style.setProperty('--mx', `${x * 100}%`);
+        c.style.setProperty('--my', `${y * 100}%`);
+      });
+      c.addEventListener('pointerleave', () => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+    }
+  }
+
+  /* principles light up as you scroll past */
   const rules = $$('.rules li');
   let tick = false;
   function onScroll() {
     tick = false;
     const vh = innerHeight;
-    if (!reduce) for (const t of tilts) {
-      const r = t.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.75)));
-      const e = 1 - Math.pow(1 - p, 3);
-      t.style.setProperty('--rx', `${(1 - e) * 24}deg`);
-      t.style.setProperty('--sc', (0.9 + 0.1 * e).toFixed(4));
-    }
-    for (const li of rules) {
-      const r = li.getBoundingClientRect();
-      li.classList.toggle('lit', r.top + r.height / 2 < vh * 0.66);
-    }
+    for (const li of rules) { const r = li.getBoundingClientRect(); li.classList.toggle('lit', r.top + r.height / 2 < vh * 0.66); }
   }
-  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, { passive: true });
-  addEventListener('resize', onScroll);
-  onScroll();
+  if (rules.length) { addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, { passive: true }); onScroll(); }
 
   /* ---------- demos ---------- */
   const sleep = (ms, sig) => new Promise((res, rej) => {
