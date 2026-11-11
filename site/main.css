@@ -49,6 +49,8 @@ body {
   overflow-x: clip;
 }
 ::selection { background: #f4f4f5; color: #0a0a0c; }
+/* faint film grain so the black reads as a material */
+body::after { content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: .045; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3, p { margin: 0; }
@@ -442,7 +444,7 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .js .row-shot { clip-path: none; } .js .row-shot img { transform: none; }
   .js .pr.reveal .pr-icon path { stroke-dashoffset: 0; }
-  .ticker-track, .cta-icons img, .dot::after, .cs-video, .cta-box, .mail-card { animation: none; }
+  .stage-frame::before, .ticker-track, .cta-icons img, .dot::after, .cs-video, .cta-box, .mail-card { animation: none; }
   .hlg::before { animation: none; transform: none; }
   .pcard { transform: none !important; }
   .rule-big { color: var(--text); }

@@ -266,6 +266,7 @@
     const show = (i) => {
       cur = i;
       demos.forEach((d, j) => { d.hidden = j !== i; });
+      stage.style.setProperty('--glow', demos[i].id === 'demo-cs' ? 'var(--cs)' : 'var(--fs)');
       tabs.forEach((t, j) => { t.setAttribute('aria-selected', j === i); t.tabIndex = j === i ? 0 : -1; t.style.setProperty('--p', 0); });
     };
     const stopRun = () => { ctrl?.abort(); ctrl = null; cancelAnimationFrame(barRaf); };

@@ -1,5 +1,14 @@
 /* ---------- demo stage ---------- */
-.stage { margin-top: clamp(48px, 8vh, 80px); }
+.stage { position: relative; margin-top: clamp(48px, 8vh, 80px); --glow: var(--fs); }
+/* coloured light behind the window, in the colour of the demo that's playing */
+.stage-frame::before {
+  content: ""; position: absolute; z-index: -1; left: -5%; right: -5%; top: 18%; bottom: -12%;
+  border-radius: 50%; background: var(--glow); opacity: .42; filter: blur(110px);
+  transition: background-color 1.2s var(--ease), opacity 1.2s var(--ease);
+  animation: breathe 7s ease-in-out infinite;
+}
+@keyframes breathe { 50% { opacity: .3; transform: scale(.97); } }
+.stage-frame { isolation: isolate; }
 .stage-tabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 13px; background: var(--bg-1); box-shadow: inset 0 0 0 1px var(--line); margin-bottom: 18px; }
 .tab {
   position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 9px;
