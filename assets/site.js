@@ -13,7 +13,7 @@
   }
 
   /* email: assembled here so scrapers reading the HTML don't get it */
-  const email = ['ezygmanta', 'gmail.com'].join('@');
+  const email = ['hollowbitstudio', 'gmail.com'].join('@');
   $$('[data-email]').forEach((el) => { el.textContent = email; });
   $$('[data-email-link]').forEach((a) => { a.href = 'mailto:' + email; });
   $$('[data-copy-email]').forEach((b) => b.addEventListener('click', async () => {

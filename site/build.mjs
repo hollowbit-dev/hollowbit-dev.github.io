@@ -124,7 +124,7 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"ezygmanta@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note })}</script>
 </head>
 <body class="${cls}">
@@ -462,7 +462,7 @@ const contact = (L) => {
 <section class="wrap contact">
   <div class="mail-card in-2">
     <span class="mc-icon">${ic('mail')}</span>
-    <div class="mc-text"><small>${esc(c.email)}</small><a class="mc-addr" data-email-link href="${pre(L)}/contact/"><span data-email>ezygmanta [at] gmail.com</span></a></div>
+    <div class="mc-text"><small>${esc(c.email)}</small><a class="mc-addr" data-email-link href="${pre(L)}/contact/"><span data-email>hollowbitstudio [at] gmail.com</span></a></div>
     <div class="mc-actions">
       <button class="btn btn-ghost" type="button" data-copy-email>${ic('copy')}<span>${esc(c.copy)}</span></button>
       <a class="btn btn-primary" data-email-link href="${pre(L)}/contact/">${esc(c.write)} ${ic('arrow')}</a>
