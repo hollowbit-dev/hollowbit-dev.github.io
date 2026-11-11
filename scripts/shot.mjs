@@ -12,7 +12,7 @@ mkdirSync(out, { recursive: true });
 const srv = spawn('python3', ['-m', 'http.server', '8765', '--bind', '127.0.0.1'], { cwd: root, stdio: 'ignore' });
 await new Promise((r) => setTimeout(r, 800));
 const b = await chromium.launch({ channel: 'chrome' });
-const pages = { home: '/', fileshaper: '/fileshaper/', captionshaper: '/captionshaper/', download: '/download/', about: '/about/', contact: '/contact/', privacy: '/privacy/', '404': '/404.html' };
+const pages = { home: '/', fileshaper: '/fileshaper/', captionshaper: '/captionshaper/', download: '/download/', about: '/about/', contact: '/contact/', donate: '/donate/', privacy: '/privacy/', '404': '/404.html' };
 for (const [vp, w, h] of [['d', 1440, 900], ['m', 390, 844]]) {
   for (const [name, path] of Object.entries(pages)) {
     const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: vp === 'm' ? 2 : 1 });

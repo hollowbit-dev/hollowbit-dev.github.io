@@ -82,6 +82,9 @@ const sprite = `<svg width="0" height="0" style="position:absolute" aria-hidden=
   <symbol id="mail" viewBox="0 0 16 16"><path ${S('M2.5 4.5h11v7.5h-11zM2.5 4.75 8 9l5.5-4.25')}/></symbol>
   <symbol id="bug" viewBox="0 0 16 16"><path ${S('M5.5 5.5a2.5 2.5 0 0 1 5 0M4.5 6.5h7v3.5a3.5 3.5 0 0 1-7 0V6.5ZM2.5 8.5h2m7 0h2M3 5l1.5 1.5M13 5l-1.5 1.5M3 13l1.6-1.4M13 13l-1.6-1.4M8 6.5v7')}/></symbol>
   <symbol id="spark" viewBox="0 0 16 16"><path ${S('M8 2v3m0 6v3m6-6h-3M5 8H2m10.2-4.2-2.1 2.1M5.9 10.1l-2.1 2.1m8.4 0-2.1-2.1M5.9 5.9 3.8 3.8')}/></symbol>
+  <symbol id="heart" viewBox="0 0 16 16"><path fill="currentColor" d="M8 14s-5.5-3.3-5.5-7.3A3.2 3.2 0 0 1 8 4.5a3.2 3.2 0 0 1 5.5 2.2C13.5 10.7 8 14 8 14Z"/></symbol>
+  <symbol id="star" viewBox="0 0 16 16"><path ${S('m8 2 1.8 3.8 4.2.5-3.1 2.9.8 4.1L8 11.3l-3.7 2 .8-4.1L2 6.3l4.2-.5L8 2Z')}/></symbol>
+  <symbol id="share" viewBox="0 0 16 16"><path ${S('M8 10V2.5m0 0L5 5.5m3-3 3 3M3.5 8.5v4a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-4')}/></symbol>
   <symbol id="cup" viewBox="0 0 16 16"><path ${S('M2.5 5.5h8v4a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-4Zm8 1h1a1.75 1.75 0 0 1 0 3.5h-1M5 2.5v1.2m2.5-1.2v1.2')}/></symbol>
   <symbol id="gh" viewBox="0 0 16 16"><path fill="currentColor" d="${GH}"/></symbol>
   <symbol id="apple" viewBox="0 0 16 16"><path fill="currentColor" d="M11.24 8.5c-.02-1.63 1.33-2.41 1.39-2.45-.76-1.11-1.94-1.26-2.36-1.28-1-.1-1.96.59-2.47.59-.51 0-1.29-.58-2.12-.56-1.09.02-2.1.64-2.66 1.61-1.14 1.97-.29 4.89.82 6.49.54.78 1.19 1.66 2.03 1.63.82-.03 1.13-.53 2.12-.53.99 0 1.27.53 2.13.51.88-.01 1.44-.8 1.98-1.58.62-.9.88-1.78.89-1.83-.02-.01-1.71-.66-1.73-2.6Zm-1.62-4.8c.45-.55.76-1.31.67-2.07-.65.03-1.44.43-1.91.98-.42.48-.79 1.26-.69 2 .73.06 1.47-.37 1.93-.91Z"/></symbol>
@@ -96,7 +99,7 @@ const sprite = `<svg width="0" height="0" style="position:absolute" aria-hidden=
 const ic = (id, cls = '') => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
 
 /* ---------- shell ---------- */
-const NAV = [['/fileshaper/', 'Fileshaper', 'fileshaper'], ['/captionshaper/', 'Captionshaper', 'captionshaper'], ['/download/', 'Download', 'download'], ['/about/', 'About', 'about'], ['/contact/', 'Contact', 'contact']];
+const NAV = [['/fileshaper/', 'Fileshaper', 'fileshaper'], ['/captionshaper/', 'Captionshaper', 'captionshaper'], ['/download/', 'Download', 'download'], ['/about/', 'About', 'about'], ['/contact/', 'Contact', 'contact'], ['/donate/', 'Donate', 'donate']];
 
 function page({ path, key = '', title, desc, body, cls = '' }) {
   const nav = NAV.map(([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${l}</span></a>`).join('');
@@ -148,7 +151,7 @@ ${body}
         <a class="foot-mail" data-email-link href="/contact/">${ic('mail')}<span data-email>Contact</span></a>
       </div>
       <nav aria-label="Products"><h2>Products</h2><a href="/fileshaper/">Fileshaper</a><a href="/captionshaper/">Captionshaper</a><a href="/download/">Download</a></nav>
-      <nav aria-label="Studio"><h2>Studio</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a></nav>
+      <nav aria-label="Studio"><h2>Studio</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/donate/">Donate</a><a href="/privacy/">Privacy</a></nav>
       <nav aria-label="Elsewhere"><h2>Elsewhere</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${FS.site}">fileshaper.app</a><a href="${CS.site}">captionshaper.app</a></nav>
     </div>
     <div class="foot-bottom"><span>© 2026 Elvis Zygmanta</span><span>No cookies, no analytics, nothing loaded from anyone else.</span></div>
@@ -436,7 +439,7 @@ const about = page({
 
 <section class="wrap-narrow sec links-sec">
   <a class="link-card reveal" href="/contact/">${ic('mail', 'lc-icon')}<span><b>Get in touch</b><small>Email, bug reports and ideas</small></span>${ic('arrow', 'go')}</a>
-  <a class="link-card reveal" style="--d:90ms" href="https://ko-fi.com/hollowbit">${ic('cup', 'lc-icon')}<span><b>Ko-fi</b><small>Buy me a coffee if a tool saved you time</small></span>${ic('out', 'go')}</a>
+  <a class="link-card reveal" style="--d:90ms" href="/donate/">${ic('heart', 'lc-icon')}<span><b>Donate</b><small>Help keep the apps free</small></span>${ic('arrow', 'go')}</a>
 </section>`,
 });
 
@@ -475,8 +478,53 @@ const contact = page({
       <span class="way-tile" style="--c: var(--k5)">${ic('cup', 'way-icon')}</span>
       <h2>Want to support it?</h2>
       <p>The apps stay free either way. If one saved you time, a coffee helps keep them going.</p>
-      <div class="way-links"><a href="https://ko-fi.com/hollowbit">ko-fi.com/hollowbit ${ic('out')}</a></div>
+      <div class="way-links"><a href="/donate/">Ways to support ${ic('arrow')}</a></div>
     </div>
+  </div>
+</section>`,
+});
+
+const donate = page({
+  path: '/donate/', key: 'donate',
+  title: 'Donate · Hollowbit',
+  desc: 'Support Hollowbit. Donations keep Fileshaper and Captionshaper free, with no ads, no accounts and no paid tier.',
+  body: `
+<section class="dhero wrap">
+  <span class="heart-badge in-0">${ic('heart')}</span>
+  <h1 class="h1" data-words>Keep the tools free.</h1>
+  <p class="phero-sub in-1">Hollowbit apps have no ads, no subscriptions and no paid tier, and they never will. If one saved you time or money, a donation helps keep it that way.</p>
+</section>
+
+<section class="wrap donate">
+  <div class="kofi-card in-2">
+    <div class="kofi-copy">
+      <span class="kofi-icon">${ic('cup')}</span>
+      <h2>Buy me a coffee</h2>
+      <p>Donate any amount on Ko-fi, once or monthly. No account needed.</p>
+    </div>
+    <div class="kofi-amounts">${['$3', '$5', '$10', 'Any amount'].map((a) => `<a href="https://ko-fi.com/hollowbit">${a}</a>`).join('')}</div>
+    <a class="btn btn-primary btn-lg" href="https://ko-fi.com/hollowbit">${ic('heart')}Donate on Ko-fi</a>
+    <small class="kofi-note">Nothing unlocks. You get the same apps either way, and a thank-you.</small>
+  </div>
+
+  <div class="sec-head donate-head">
+    <h2 class="h2" data-words="scroll">Where donations go</h2>
+    <p class="reveal">Hollowbit is one person. The apps cost real money to ship properly.</p>
+  </div>
+  <div class="goes">
+    <div class="go-card reveal" style="--c: var(--blue)"><span class="go-tile">${ic('apple')}</span><h3>Signing the apps</h3><p>An Apple developer account and a Windows code-signing certificate, so the “unidentified developer” warnings go away.</p></div>
+    <div class="go-card reveal" style="--d:90ms; --c: var(--violet)"><span class="go-tile">${ic('logo')}</span><h3>Domains and hosting</h3><p>hollowbit.dev, fileshaper.app and captionshaper.app renew every year.</p></div>
+    <div class="go-card reveal" style="--d:180ms; --c: var(--yellow)"><span class="go-tile">${ic('spark')}</span><h3>New tools</h3><p>Time to build the next free app and keep the current ones up to date.</p></div>
+  </div>
+
+  <div class="sec-head donate-head">
+    <h2 class="h2" data-words="scroll">Free ways to help</h2>
+    <p class="reveal">Money isn’t the only thing that helps.</p>
+  </div>
+  <div class="free-help">
+    <a class="link-card reveal" href="https://github.com/hollowbit-dev">${ic('star', 'lc-icon')}<span><b>Star the repos on GitHub</b><small>It helps other people find the apps</small></span>${ic('out', 'go')}</a>
+    <a class="link-card reveal" style="--d:70ms" href="/contact/">${ic('bug', 'lc-icon')}<span><b>Report a bug or idea</b><small>Every report makes the apps better</small></span>${ic('arrow', 'go')}</a>
+    <a class="link-card reveal" style="--d:140ms" href="/">${ic('share', 'lc-icon')}<span><b>Tell a friend</b><small>Share hollowbit.dev with someone who uploads files to sketchy sites</small></span>${ic('arrow', 'go')}</a>
   </div>
 </section>`,
 });
@@ -526,6 +574,7 @@ const out = {
   'download/index.html': download,
   'about/index.html': about,
   'contact/index.html': contact,
+  'donate/index.html': donate,
   'privacy/index.html': privacy,
   '404.html': notFound,
 };
@@ -542,7 +591,7 @@ for (const [f, raw] of Object.entries(out)) {
   writeFileSync(p, relink(raw, f));
 }
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
-const urls = ['/', '/fileshaper/', '/captionshaper/', '/download/', '/about/', '/contact/', '/privacy/'];
+const urls = ['/', '/fileshaper/', '/captionshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${ORIGIN}${u}</loc><lastmod>2026-11-11</lastmod></url>`).join('\n')}

@@ -366,6 +366,34 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 .way-links a:hover { border-color: var(--text); }
 .way-links svg { width: 13px; height: 13px; }
 
+/* ---------- donate ---------- */
+.heart-badge { display: inline-grid; place-items: center; width: 64px; height: 64px; border-radius: 18px; background: var(--pink); color: #0b0b0c; margin-bottom: 26px; box-shadow: 0 16px 40px -14px color-mix(in srgb, var(--pink) 70%, transparent); }
+.heart-badge svg { width: 30px; height: 30px; animation: beat 2.4s var(--ease) infinite; }
+@keyframes beat { 0%, 40%, 100% { transform: scale(1); } 10% { transform: scale(1.18); } 20% { transform: scale(.96); } 30% { transform: scale(1.1); } }
+.donate { padding-top: clamp(48px, 7vh, 72px); padding-bottom: clamp(40px, 6vh, 60px); }
+.kofi-card { max-width: 720px; margin: 0 auto; text-align: center; padding: clamp(32px, 5vw, 56px); border-radius: 28px; border: 1.5px solid transparent;
+  background: linear-gradient(var(--bg-1), var(--bg-1)) padding-box, conic-gradient(from var(--a), var(--pink), var(--violet), var(--blue), var(--teal), var(--yellow), var(--fs), var(--pink)) border-box; animation: spin 8s linear infinite; }
+.kofi-icon { display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--fs); color: #0b0b0c; }
+.kofi-icon svg { width: 28px; height: 28px; }
+.kofi-card h2 { margin-top: 20px; font-size: clamp(28px, 3.4vw, 40px); letter-spacing: -0.04em; }
+.kofi-card p { margin-top: 10px; color: var(--text-2); font-size: 17px; }
+.kofi-amounts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 26px 0; }
+.kofi-amounts a { padding: 8px 16px; border-radius: 999px; background: var(--bg-2); box-shadow: inset 0 0 0 1px var(--line); font-weight: 550; font-variant-numeric: tabular-nums; transition: background-color .2s, box-shadow .2s, transform .3s var(--ease); }
+.kofi-amounts a:hover { background: color-mix(in srgb, var(--pink) 16%, var(--bg-2)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pink) 50%, transparent); transform: translateY(-2px); }
+.kofi-amounts a:last-child { color: var(--text-2); }
+.kofi-card .btn svg { color: var(--pink); }
+.kofi-note { display: block; margin-top: 16px; color: var(--text-3); font-size: 14px; }
+.donate-head { margin-top: clamp(96px, 14vh, 140px); }
+.goes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.go-card { padding: 28px; border-radius: 22px; background: var(--bg-1); box-shadow: inset 0 0 0 1px var(--line); transition: transform .5s var(--ease), box-shadow .4s; }
+.go-card:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent); }
+.go-tile { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 13px; background: var(--c); color: #0b0b0c; }
+.go-tile svg { width: 24px; height: 24px; }
+.go-card h3 { margin-top: 20px; font-size: 19px; letter-spacing: -0.02em; }
+.go-card p { margin-top: 8px; color: var(--text-2); font-size: 15.5px; }
+.free-help { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 980px) { .goes, .free-help { grid-template-columns: 1fr; } }
+
 /* ---------- privacy ---------- */
 .doc { padding-top: clamp(48px, 9vh, 104px); padding-bottom: clamp(80px, 12vh, 120px); }
 .doc .lead { margin-top: 24px; }
@@ -395,7 +423,7 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 .foot-word.is-in span { --fy: 8%; }
 
 /* ---------- responsive ---------- */
-@media (max-width: 980px) {
+@media (max-width: 1080px) {
   .nav-in { grid-template-columns: 1fr auto; }
   .nav-links { display: none; }
   .nav-menu { display: block; }
@@ -444,7 +472,7 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .js .row-shot { clip-path: none; } .js .row-shot img { transform: none; }
   .js .pr.reveal .pr-icon path { stroke-dashoffset: 0; }
-  .stage-frame::before, .ticker-track, .cta-icons img, .dot::after, .cs-video, .cta-box, .mail-card { animation: none; }
+  .heart-badge svg, .kofi-card, .stage-frame::before, .ticker-track, .cta-icons img, .dot::after, .cs-video, .cta-box, .mail-card { animation: none; }
   .hlg::before { animation: none; transform: none; }
   .pcard { transform: none !important; }
   .rule-big { color: var(--text); }
