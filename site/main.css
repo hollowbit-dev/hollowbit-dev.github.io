@@ -12,6 +12,7 @@
   --text-3: #8a8a93;
   --fs: #f26a1b;
   --cs: #c6ff3d;
+  --ds: #5b9dff;
   --paper: #f3f3ef;
   --blue: #5b8cff;
   --pink: #ff6aa9;
@@ -176,6 +177,23 @@ button { font: inherit; color: inherit; }
 .js .pcard.reveal { transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .pcard-fs { background: var(--fs); }
 .pcard-cs { background: var(--cs); }
+.pcard-ds { background: var(--ds); }
+/* the third (newest) app gets a full-width card: copy on the left, screenshot on the right */
+.cards > .pcard:nth-child(3) { grid-column: 1 / -1; min-height: 0; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.cards > .pcard:nth-child(3) .pcard-in { padding-bottom: 40px; }
+.cards > .pcard:nth-child(3) .pcard-shot { margin-top: 0; align-self: end; }
+.pcard-new { display: inline-block; vertical-align: middle; margin-left: 8px; padding: 4px 10px; border-radius: 99px; background: #0b0b0d; color: #fff; font-size: 13px; letter-spacing: 0; font-weight: 600; transform: translateY(-4px); }
+/* language menu */
+.lang { position: relative; }
+.lang summary { list-style: none; display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 11px; border-radius: 999px; color: var(--text-2); font-size: 13px; font-weight: 550; cursor: pointer; box-shadow: inset 0 0 0 1px var(--line); transition: color .2s; }
+.lang summary::-webkit-details-marker { display: none; }
+.lang summary:hover, .lang[open] summary { color: var(--text); }
+.lang summary svg { width: 15px; height: 15px; }
+.lang-menu { position: absolute; right: 0; top: 44px; min-width: 170px; background: #141417; box-shadow: inset 0 0 0 1px var(--line), 0 20px 50px rgba(0,0,0,.55); border-radius: 13px; padding: 5px; display: grid; z-index: 60; }
+.lang-menu a { padding: 8px 11px; border-radius: 8px; font-size: 14px; color: var(--text-2); }
+.lang-menu a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+.lang-menu a[aria-current] { color: var(--text); }
+.lang-menu a[aria-current]::after { content: "✓"; float: right; }
 .pcard::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.28), transparent 45%); opacity: 0; transition: opacity .4s; }
 .pcard:hover::before { opacity: 1; }
 .pcard-in { position: relative; padding: 36px 36px 0; }
@@ -481,3 +499,8 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 
 .site-btn { order: 5; }
 .site-btn svg { color: var(--c); }
+@media (max-width: 1080px) { .cards > .pcard:nth-child(3) { display: flex; } .cards > .pcard:nth-child(3) .pcard-shot { margin-top: auto; } }
+
+/* Chinese glyphs sit taller: let the highlight cover the whole character */
+:lang(zh) .hlg::before { inset: -.08em -.06em -.1em; }
+:lang(zh) .hero-title, :lang(zh) .phero-title, :lang(zh) .h1, :lang(zh) .h2, :lang(zh) .h3 { letter-spacing: 0; line-height: 1.18; }

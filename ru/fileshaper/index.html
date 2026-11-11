@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fileshaper: бесплатный офлайн-набор для файлов · Hollowbit Studio</title>
+<meta name="description" content="Сжимайте видео для Discord, конвертируйте фото с iPhone, объединяйте и подписывайте PDF. Один набор инструментов, полностью офлайн. Бесплатно для Mac и Windows, ничего не загружается.">
+<link rel="canonical" href="https://hollowbit.dev/ru/fileshaper/">
+<link rel="alternate" hreflang="en" href="https://hollowbit.dev/fileshaper/">
+<link rel="alternate" hreflang="es" href="https://hollowbit.dev/es/fileshaper/">
+<link rel="alternate" hreflang="fr" href="https://hollowbit.dev/fr/fileshaper/">
+<link rel="alternate" hreflang="de" href="https://hollowbit.dev/de/fileshaper/">
+<link rel="alternate" hreflang="ru" href="https://hollowbit.dev/ru/fileshaper/">
+<link rel="alternate" hreflang="zh-Hans" href="https://hollowbit.dev/zh/fileshaper/">
+<link rel="alternate" hreflang="x-default" href="https://hollowbit.dev/fileshaper/">
+<meta name="theme-color" content="#08080a">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hollowbit.dev/ru/fileshaper/">
+<meta property="og:title" content="Fileshaper: бесплатный офлайн-набор для файлов · Hollowbit Studio">
+<meta property="og:description" content="Сжимайте видео для Discord, конвертируйте фото с iPhone, объединяйте и подписывайте PDF. Один набор инструментов, полностью офлайн. Бесплатно для Mac и Windows, ничего не загружается.">
+<meta property="og:locale" content="ru">
+<meta property="og:image" content="https://hollowbit.dev/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"ezygmanta@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/"]}</script>
+<script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB={"lang":"ru","langs":["en","es","fr","de","ru","zh"],"copied":"Скопировано","osNote":{"mac":"У вас Mac, поэтому загрузка для Mac выделена.","win":"У вас Windows, поэтому загрузка для Windows выделена."}}</script>
+</head>
+<body class="p-fs">
+<a class="skip" href="#main">К содержимому</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></symbol>
+  <symbol id="arrow" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3.5 8h9m0 0L8.5 4m4 4-4 4"/></symbol>
+  <symbol id="out" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 11 11 5m0 0H6m5 0v5"/></symbol>
+  <symbol id="down" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 2.5v8m0 0 3.5-3.5M8 10.5 4.5 7M3 13.5h10"/></symbol>
+  <symbol id="check" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m3.5 8.5 3 3 6-7"/></symbol>
+  <symbol id="copy" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 5.5V3.75c0-.69.56-1.25 1.25-1.25h5.5c.69 0 1.25.56 1.25 1.25v5.5c0 .69-.56 1.25-1.25 1.25H10.5M3.75 5.5h5.5c.69 0 1.25.56 1.25 1.25v5.5c0 .69-.56 1.25-1.25 1.25h-5.5c-.69 0-1.25-.56-1.25-1.25v-5.5c0-.69.56-1.25 1.25-1.25Z"/></symbol>
+  <symbol id="mail" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 4.5h11v7.5h-11zM2.5 4.75 8 9l5.5-4.25"/></symbol>
+  <symbol id="bug" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 5.5a2.5 2.5 0 0 1 5 0M4.5 6.5h7v3.5a3.5 3.5 0 0 1-7 0V6.5ZM2.5 8.5h2m7 0h2M3 5l1.5 1.5M13 5l-1.5 1.5M3 13l1.6-1.4M13 13l-1.6-1.4M8 6.5v7"/></symbol>
+  <symbol id="spark" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 2v3m0 6v3m6-6h-3M5 8H2m10.2-4.2-2.1 2.1M5.9 10.1l-2.1 2.1m8.4 0-2.1-2.1M5.9 5.9 3.8 3.8"/></symbol>
+  <symbol id="heart" viewBox="0 0 16 16"><path fill="currentColor" d="M8 14s-5.5-3.3-5.5-7.3A3.2 3.2 0 0 1 8 4.5a3.2 3.2 0 0 1 5.5 2.2C13.5 10.7 8 14 8 14Z"/></symbol>
+  <symbol id="star" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m8 2 1.8 3.8 4.2.5-3.1 2.9.8 4.1L8 11.3l-3.7 2 .8-4.1L2 6.3l4.2-.5L8 2Z"/></symbol>
+  <symbol id="share" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 10V2.5m0 0L5 5.5m3-3 3 3M3.5 8.5v4a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="cup" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 5.5h8v4a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-4Zm8 1h1a1.75 1.75 0 0 1 0 3.5h-1M5 2.5v1.2m2.5-1.2v1.2"/></symbol>
+  <symbol id="globe" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 1.75a6.25 6.25 0 1 0 0 12.5A6.25 6.25 0 0 0 8 1.75ZM1.75 8h12.5M8 1.75c1.7 1.7 2.5 3.8 2.5 6.25S9.7 12.55 8 14.25C6.3 12.55 5.5 10.45 5.5 8S6.3 3.45 8 1.75Z"/></symbol>
+  <symbol id="gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z"/></symbol>
+  <symbol id="apple" viewBox="0 0 16 16"><path fill="currentColor" d="M11.24 8.5c-.02-1.63 1.33-2.41 1.39-2.45-.76-1.11-1.94-1.26-2.36-1.28-1-.1-1.96.59-2.47.59-.51 0-1.29-.58-2.12-.56-1.09.02-2.1.64-2.66 1.61-1.14 1.97-.29 4.89.82 6.49.54.78 1.19 1.66 2.03 1.63.82-.03 1.13-.53 2.12-.53.99 0 1.27.53 2.13.51.88-.01 1.44-.8 1.98-1.58.62-.9.88-1.78.89-1.83-.02-.01-1.71-.66-1.73-2.6Zm-1.62-4.8c.45-.55.76-1.31.67-2.07-.65.03-1.44.43-1.91.98-.42.48-.79 1.26-.69 2 .73.06 1.47-.37 1.93-.91Z"/></symbol>
+  <symbol id="windows" viewBox="0 0 16 16"><path fill="currentColor" d="M1.5 3.2 6.8 2.5v5H1.5V3.2Zm6.1-.8 6.9-.9v6H7.6V2.4ZM1.5 8.3h5.3v5.2l-5.3-.7V8.3Zm6.1 0h6.9v6.2l-6.9-.9V8.3Z"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M16 21V9m0 0-5 5m5-5 5 5M6 26h20M4 4l24 24"/></symbol>
+  <symbol id="i-ads" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 8h22v16H5zM11 19l2.5-7 2.5 7m-4.2-2h3.4M19 12h2.5a3.5 3.5 0 0 1 0 7H19v-7ZM4 4l24 24"/></symbol>
+  <symbol id="i-account" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M16 16a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm-9 11a9 9 0 0 1 18 0M4 4l24 24"/></symbol>
+  <symbol id="i-track" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Zm13 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 4l24 24"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 13a16 16 0 0 1 22 0M9 17.5a10 10 0 0 1 14 0M13 22a4.5 4.5 0 0 1 6 0M16 26h.01M4 4l24 24"/></symbol>
+  <symbol id="i-code" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m11 10-6 6 6 6m10-12 6 6-6 6M18.5 7l-5 18"/></symbol>
+</svg>
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <a class="brand" href="../../ru/" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
+    <nav class="nav-links" aria-label="Главное"><a href="../../ru/fileshaper/" aria-current="page"><span class="nav-pill"></span><span class="nav-label">Fileshaper</span></a><a href="../../ru/captionshaper/"><span class="nav-label">Captionshaper</span></a><a href="https://hollowbit.dev/diskshaper/ru/"><span class="nav-label">Diskshaper</span></a><a href="../../ru/download/"><span class="nav-label">Скачать</span></a><a href="../../ru/about/"><span class="nav-label">О нас</span></a><a href="../../ru/contact/"><span class="nav-label">Контакты</span></a><a href="../../ru/donate/"><span class="nav-label">Поддержать</span></a></nav>
+    <div class="nav-end">
+      <details class="lang"><summary aria-label="Язык"><svg class="" aria-hidden="true"><use href="#globe"/></svg><span>RU</span></summary><div class="lang-menu"><a href="../../fileshaper/" hreflang="en" lang="en" data-set-lang="en">English</a><a href="../../es/fileshaper/" hreflang="es" lang="es" data-set-lang="es">Español</a><a href="../../fr/fileshaper/" hreflang="fr" lang="fr" data-set-lang="fr">Français</a><a href="../../de/fileshaper/" hreflang="de" lang="de" data-set-lang="de">Deutsch</a><a href="../../ru/fileshaper/" hreflang="ru" lang="ru" data-set-lang="ru" aria-current="true">Русский</a><a href="../../zh/fileshaper/" hreflang="zh-Hans" lang="zh-Hans" data-set-lang="zh">简体中文</a></div></details>
+      <a class="btn btn-primary btn-sm nav-dl" href="../../ru/download/"><svg class="" aria-hidden="true"><use href="#down"/></svg>Скачать</a>
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Открыть меню"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="sheet" id="sheet"><nav aria-label="Мобильное"><a href="../../ru/" style="--i:0">Главная</a><a href="../../ru/fileshaper/" style="--i:1" aria-current="page">Fileshaper</a><a href="../../ru/captionshaper/" style="--i:2">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/ru/" style="--i:3">Diskshaper</a><a href="../../ru/download/" style="--i:4">Скачать</a><a href="../../ru/about/" style="--i:5">О нас</a><a href="../../ru/contact/" style="--i:6">Контакты</a><a href="../../ru/donate/" style="--i:7">Поддержать</a></nav></div>
+</header>
+<main id="main">
+
+<section class="phero wrap" style="--c: var(--fs)">
+  <img class="phero-icon vt-icon-fs" src="../../assets/img/fileshaper-icon.png" width="96" height="96" alt="">
+  <p class="phero-name in-0">Fileshaper</p>
+  <h1 class="phero-title" data-words>Исправьте любой файл. Ничего не покидает ваш компьютер.</h1>
+  <p class="phero-sub in-1">Напишите, что нужно сделать. Fileshaper сжимает, конвертирует, обрезает, объединяет и подписывает файлы прямо на вашем компьютере. Без сайтов для загрузки, очередей и водяных знаков.</p>
+  <div class="in-2"><div class="dl-row"><a class="btn btn-primary btn-lg dl-btn" data-os-btn="mac" href="https://github.com/hollowbit-dev/fileshaper/releases/latest/download/Fileshaper-1.2.0-mac-arm64.dmg"><svg class="" aria-hidden="true"><use href="#apple"/></svg><span>Скачать для Mac</span></a><a class="btn btn-primary btn-lg dl-btn" data-os-btn="win" href="https://github.com/hollowbit-dev/fileshaper/releases/latest/download/Fileshaper-Setup-1.2.0-win-x64.exe"><svg class="" aria-hidden="true"><use href="#windows"/></svg><span>Скачать для Windows</span></a><a class="btn btn-ghost btn-lg site-btn" href="https://fileshaper.app/ru/">Открыть fileshaper.app <svg class="" aria-hidden="true"><use href="#out"/></svg></a></div></div>
+  <p class="phero-meta in-2">Версия 1.2.0 · Бесплатно · <a href="https://github.com/hollowbit-dev/fileshaper">Исходный код</a> · <a href="https://fileshaper.app/ru/changelog.html">Что нового</a></p>
+  <div class="in-3 phero-stage"><div class="stage stage-single" data-stage><div class="stage-frame"><div class="stage-scale"><div class="demo demo-fs" id="demo-fs" role="tabpanel" aria-labelledby="tab-fs">
+  <p class="sr-only">Анимированное демо: Fileshaper сжимает видео с 214 МБ до 9,6 МБ прямо на компьютере.</p>
+  <div class="win" aria-hidden="true">
+    <aside class="fs-side">
+      <div class="tl"><i></i><i></i><i></i></div>
+      <div class="fs-brand"><img src="../../assets/img/fileshaper-icon.png" alt=""><div><b>Fileshaper</b><small>by Hollowbit Studio</small></div></div>
+      <div class="fs-search">Search actions <kbd>⌘K</kbd></div>
+      <div class="fs-nav"><span class="on">Home</span><em>Tools</em><span>Video <small>2</small></span><span>Images <small>4</small></span><span>PDF</span><span>Audio <small>1</small></span></div>
+      <div class="fs-offline"><i></i>Offline. Nothing is uploaded.</div>
+    </aside>
+    <div class="fs-main">
+      <div class="fs-q">What do you want to do?</div>
+      <div class="fs-field"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m10.5 10.5 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="fs-typed"></span><span class="caret"></span><span class="fs-ph">Compress a video, convert a photo, sign a PDF…</span></div>
+      <ul class="fs-list">
+        <li data-k="compress video for discord"><b>Compress a video for Discord</b><span>under 10 MB</span><em>Video</em></li>
+        <li data-k="convert iphone photos to jpg"><b>Convert iPhone photos to JPG</b><span>HEIC to JPG</span><em>Images</em></li>
+        <li data-k="sign a pdf"><b>Sign a PDF</b><span>draw or type a signature</span><em>PDF</em></li>
+        <li data-k="merge pdfs"><b>Merge PDFs</b><span>combine files</span><em>PDF</em></li>
+        <li data-k="make a gif from a video"><b>Make a GIF from a video</b><span>2–6 seconds</span><em>Video</em></li>
+      </ul>
+      <div class="fs-job">
+        <div class="fs-file"><span class="ext">MP4</span><div><b>beach-day.mp4</b><small class="fs-status">Encoding, pass 1 of 2</small></div><span class="fs-size">214 MB</span></div>
+        <div class="fs-bar"><i></i></div>
+        <div class="fs-done"><svg class="" aria-hidden="true"><use href="#check"/></svg><span><b>214 MB → 9.6 MB</b> · fits Discord's 10 MB limit</span></div>
+      </div>
+      <div class="fs-recent">
+        <em>Recent</em>
+        <div class="fs-r"><span class="ext">MP3</span><div><b>Voice memo 12-normalized.mp3</b><small>1.1 MB → 704 KB · −40%</small></div><span>just now</span></div>
+        <div class="fs-r"><span class="ext">JPG</span><div><b>IMG_4822.jpg</b><small>HEIC → JPG · 103 KB</small></div><span>2 min ago</span></div>
+        <div class="fs-r"><span class="ext">PDF</span><div><b>Lease-signed.pdf</b><small>Signed · 3 pages</small></div><span>today</span></div>
+      </div>
+    </div>
+  </div>
+</div></div></div></div></div>
+</section>
+
+<section class="wrap sec rows" style="--c: var(--fs)">
+  <div class="row">
+    <div class="row-copy"><h2 class="h3" data-words="scroll">Видео нужного размера.</h2><p class="reveal">Выберите 8, 10, 25 МБ или свой предел, и Fileshaper уложится чуть ниже благодаря двухпроходному кодированию. Обрезка, отключение звука, конвертация, GIF, извлечение звука.</p></div>
+    <figure class="row-shot" data-wipe><img src="../../assets/img/fileshaper-video.webp" width="1200" height="760" loading="lazy" alt="Экран видео в Fileshaper сжимает два ролика до 10 МБ."></figure>
+  </div>
+  <div class="row row-flip">
+    <div class="row-copy"><h2 class="h3" data-words="scroll">Фото с iPhone, которые открываются везде.</h2><p class="reveal">Превращайте HEIC в JPG или PNG, уменьшайте и сжимайте целые папки или собирайте картинки в один PDF.</p></div>
+    <figure class="row-shot" data-wipe><img src="../../assets/img/fileshaper-images.webp" width="1200" height="760" loading="lazy" alt="Экран изображений в Fileshaper конвертирует фото HEIC."></figure>
+  </div>
+  <div class="row">
+    <div class="row-copy"><h2 class="h3" data-words="scroll">PDF без платного доступа.</h2><p class="reveal">Объединяйте, разделяйте, меняйте порядок и сжимайте. Нарисуйте или напечатайте подпись, поставьте её — готово.</p></div>
+    <figure class="row-shot" data-wipe><img src="../../assets/img/fileshaper-pdf-sign.webp" width="1200" height="760" loading="lazy" alt="Fileshaper ставит подпись на страницу PDF."></figure>
+  </div>
+</section>
+
+<section class="band-color" style="--c: var(--fs)">
+  <div class="wrap band-in">
+    <div class="band-copy">
+      <img src="../../assets/img/fileshaper-icon.png" width="64" height="64" alt="">
+      <h2 class="h2" data-words="scroll">Хватит загружать файлы на сомнительные сайты.</h2>
+      <p class="reveal">Бесплатно для Mac и Windows. Без аккаунта, без водяного знака, ничего не загружается.</p>
+    </div>
+    <div class="band-dl reveal">
+      <div class="dl-row"><a class="btn btn-dark btn-lg dl-btn" data-os-btn="mac" href="https://github.com/hollowbit-dev/fileshaper/releases/latest/download/Fileshaper-1.2.0-mac-arm64.dmg"><svg class="" aria-hidden="true"><use href="#apple"/></svg><span>Скачать для Mac</span></a><a class="btn btn-dark btn-lg dl-btn" data-os-btn="win" href="https://github.com/hollowbit-dev/fileshaper/releases/latest/download/Fileshaper-Setup-1.2.0-win-x64.exe"><svg class="" aria-hidden="true"><use href="#windows"/></svg><span>Скачать для Windows</span></a></div>
+      <div class="band-links"><a href="../../ru/download/#fileshaper">Все загрузки и помощь с установкой</a><a href="https://fileshaper.app/ru/changelog.html">Что нового</a><a href="https://fileshaper.app/ru/">fileshaper.app</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap next-sec">
+  <a class="next reveal" href="../../ru/captionshaper/" style="--c: var(--cs)">
+    <img src="../../assets/img/captionshaper-icon.png" alt="" width="56" height="56">
+    <span><small>Ещё от Hollowbit Studio</small><b>Captionshaper</b><em>Субтитры с точностью до слова для любого видео, написанные речевой моделью на вашем компьютере. SRT, VTT или вшитые в видео.</em></span>
+    <span class="next-go"><svg class="" aria-hidden="true"><use href="#arrow"/></svg></span>
+  </a>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../ru/" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
+        <p>Hollowbit Studio делает бесплатные инструменты, которые никогда не загружают ваши файлы. Сделано Элвисом Зигмантом в Таиланде.</p>
+        <a class="foot-mail" data-email-link href="../../ru/contact/"><svg class="" aria-hidden="true"><use href="#mail"/></svg><span data-email>Контакты</span></a>
+      </div>
+      <nav aria-label="Продукты"><h2>Продукты</h2><a href="../../ru/fileshaper/">Fileshaper</a><a href="../../ru/captionshaper/">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/ru/">Diskshaper</a><a href="../../ru/download/">Скачать</a></nav>
+      <nav aria-label="Студия"><h2>Студия</h2><a href="../../ru/about/">О нас</a><a href="../../ru/contact/">Контакты</a><a href="../../ru/donate/">Поддержать</a><a href="../../ru/privacy/">Конфиденциальность</a></nav>
+      <nav aria-label="В других местах"><h2>В других местах</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="https://fileshaper.app/ru/">fileshaper.app</a><a href="https://captionshaper.app/ru/">captionshaper.app</a></nav>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>Без cookie, без аналитики, ничего не грузится со сторонних сайтов.</span></div>
+  </div>
+  <div class="foot-word" aria-hidden="true"><span>Hollowbit</span></div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

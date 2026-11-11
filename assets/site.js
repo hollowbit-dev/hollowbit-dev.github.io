@@ -19,17 +19,28 @@
   $$('[data-copy-email]').forEach((b) => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(email); } catch { const t = document.createElement('textarea'); t.value = email; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
     const label = $('span', b), old = label.textContent;
-    b.classList.add('copied'); label.textContent = 'Copied';
+    b.classList.add('copied'); label.textContent = (window.HB && HB.copied) || 'Copied';
     b.querySelector('use').setAttribute('href', '#check');
     setTimeout(() => { b.classList.remove('copied'); label.textContent = old; b.querySelector('use').setAttribute('href', '#copy'); }, 1800);
   }));
+
+  /* language: first visit opens the visitor's own language once; a manual choice always wins */
+  const HB = window.HB || { lang: 'en', langs: ['en'] };
+  const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch { /* private mode */ } } };
+  if (!store.get('hb-lang') && HB.lang === 'en') {
+    const pref = (navigator.languages || [navigator.language || 'en']).map((l) => l.toLowerCase().slice(0, 2)).find((l) => HB.langs.includes(l));
+    store.set('hb-lang', pref || 'en');
+    if (pref && pref !== 'en') { location.replace(`/${pref}${location.pathname}${location.hash}`); return; }
+  }
+  $$('[data-set-lang]').forEach((a) => a.addEventListener('click', () => store.set('hb-lang', a.dataset.setLang)));
+  document.addEventListener('click', (e) => { const open = $('details.lang[open]'); if (open && !open.contains(e.target)) open.removeAttribute('open'); });
 
   /* your OS: highlight the matching download */
   const os = html.dataset.os;
   if (os === 'mac' || os === 'win') {
     $$(`.plat[data-plat="${os}"]`).forEach((p) => p.classList.add('is-rec'));
     const note = $('[data-os-note]');
-    if (note) note.textContent = os === 'mac' ? ' Looks like you’re on a Mac.' : ' Looks like you’re on Windows.';
+    if (note) note.textContent = ' ' + ((window.HB && HB.osNote && HB.osNote[os]) || (os === 'mac' ? 'Looks like you’re on a Mac.' : 'Looks like you’re on Windows.'));
   }
 
   /* sticky nav + mobile menu */
@@ -51,12 +62,15 @@
   for (const el of $$('[data-words]')) {
     const text = el.textContent.trim();
     el.setAttribute('aria-label', text);
-    const words = text.split(/\s+/);
-    const hl = (el.dataset.hl || '').split(/\s+/).filter(Boolean);
+    // Chinese has no spaces: animate it character by character.
+    const cjk = /[\u3000-\u9fff]/.test(text) && !/\s/.test(text);
+    const words = cjk ? [...text] : text.split(/\s+/);
+    const hl = cjk ? [...(el.dataset.hl || '')] : (el.dataset.hl || '').split(/\s+/).filter(Boolean);
     const at = hl.length ? words.findIndex((w, i) => hl.every((h, k) => words[i + k] === h)) : -1;
     let out = words.map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>`);
-    if (at >= 0) out = [...out.slice(0, at), `<span class="hlg">${out.slice(at, at + hl.length).join(' ')}</span>`, ...out.slice(at + hl.length)];
-    el.innerHTML = out.join(' ');
+    const gap = cjk ? '' : ' ';
+    if (at >= 0) out = [...out.slice(0, at), `<span class="hlg">${out.slice(at, at + hl.length).join(gap)}</span>`, ...out.slice(at + hl.length)];
+    el.innerHTML = out.join(gap);
     if (el.dataset.words === 'scroll') wordsIO.observe(el); else el.classList.add('go');
   }
 
@@ -108,6 +122,47 @@
   const ease = (p) => 1 - Math.pow(1 - p, 3);
 
   const DEMOS = {
+    'demo-ds': {
+      length: 9200,
+      setup(d) { return d; },
+      reset(d, final) {
+        const rows = $$('.ds-row', d), segs = $$('.ds-bar i', d);
+        rows.forEach((r) => { r.classList.toggle('on', final); r.classList.remove('gone'); $('strong', r).textContent = final ? `${r.dataset.gb} GB` : '0 GB'; });
+        segs.forEach((s) => { s.classList.toggle('on', final); s.classList.remove('gone'); });
+        const total = rows.reduce((a, r) => a + Number(r.dataset.gb), 0), safe = segs.reduce((a, s, i) => a + (s.classList.contains('s') ? Number(rows[i].dataset.gb) : 0), 0);
+        $('.ds-found', d).textContent = final ? total.toFixed(1) : '0';
+        $('.ds-safe', d).textContent = final ? `${safe.toFixed(1)} GB` : '0 GB';
+        $('.ds-sel', d).textContent = final ? `${safe.toFixed(1)} GB` : '0 GB';
+        $('.ds-dock', d).classList.toggle('on', final);
+        $('.ds-done', d).classList.remove('on');
+      },
+      async run(d, sig) {
+        const rows = $$('.ds-row', d), segs = $$('.ds-bar i', d), found = $('.ds-found', d), safeEl = $('.ds-safe', d), sel = $('.ds-sel', d);
+        let total = 0, safe = 0;
+        await sleep(400, sig);
+        for (let i = 0; i < rows.length; i++) {
+          const gb = Number(rows[i].dataset.gb), from = total, sfrom = safe;
+          rows[i].classList.add('on'); segs[i].classList.add('on');
+          total += gb; if (segs[i].classList.contains('s')) safe += gb;
+          const strong = $('strong', rows[i]);
+          await tween(380, (p) => { const e = ease(p); strong.textContent = `${(gb * e).toFixed(1)} GB`; found.textContent = (from + (total - from) * e).toFixed(1); safeEl.textContent = `${(sfrom + (safe - sfrom) * e).toFixed(1)} GB`; }, sig);
+        }
+        await sleep(400, sig);
+        $('.ds-dock', d).classList.add('on'); sel.textContent = `${safe.toFixed(1)} GB`;
+        await sleep(1000, sig);
+        const btn = $('.ds-btn', d); btn.classList.add('press'); await sleep(170, sig); btn.classList.remove('press');
+        for (let i = 0; i < rows.length; i++) {
+          if (!segs[i].classList.contains('s')) continue;
+          rows[i].classList.add('gone'); segs[i].classList.add('gone');
+          total -= Number(rows[i].dataset.gb); found.textContent = total.toFixed(1);
+          await sleep(120, sig);
+        }
+        sel.textContent = '0 GB'; safeEl.textContent = '0 GB';
+        await sleep(350, sig);
+        $('.ds-done', d).classList.add('on');
+        await sleep(2600, sig);
+      },
+    },
     'demo-fs': {
       length: 8200,
       setup(d) { return d; },
@@ -266,7 +321,7 @@
     const show = (i) => {
       cur = i;
       demos.forEach((d, j) => { d.hidden = j !== i; });
-      stage.style.setProperty('--glow', demos[i].id === 'demo-cs' ? 'var(--cs)' : 'var(--fs)');
+      stage.style.setProperty('--glow', `var(--${demos[i].id.slice(5)})`);
       tabs.forEach((t, j) => { t.setAttribute('aria-selected', j === i); t.tabIndex = j === i ? 0 : -1; t.style.setProperty('--p', 0); });
     };
     const stopRun = () => { ctrl?.abort(); ctrl = null; cancelAnimationFrame(barRaf); };

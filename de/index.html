@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hollowbit Studio: kostenlose Werkzeuge, die deine Dateien nie hochladen</title>
+<meta name="description" content="Hollowbit Studio ist ein kleines Software-Studio von Elvis Zygmanta. Kostenlose Open-Source-Apps für Windows und Mac, die komplett auf deinem eigenen Computer laufen.">
+<link rel="canonical" href="https://hollowbit.dev/de/">
+<link rel="alternate" hreflang="en" href="https://hollowbit.dev/">
+<link rel="alternate" hreflang="es" href="https://hollowbit.dev/es/">
+<link rel="alternate" hreflang="fr" href="https://hollowbit.dev/fr/">
+<link rel="alternate" hreflang="de" href="https://hollowbit.dev/de/">
+<link rel="alternate" hreflang="ru" href="https://hollowbit.dev/ru/">
+<link rel="alternate" hreflang="zh-Hans" href="https://hollowbit.dev/zh/">
+<link rel="alternate" hreflang="x-default" href="https://hollowbit.dev/">
+<meta name="theme-color" content="#08080a">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hollowbit.dev/de/">
+<meta property="og:title" content="Hollowbit Studio: kostenlose Werkzeuge, die deine Dateien nie hochladen">
+<meta property="og:description" content="Hollowbit Studio ist ein kleines Software-Studio von Elvis Zygmanta. Kostenlose Open-Source-Apps für Windows und Mac, die komplett auf deinem eigenen Computer laufen.">
+<meta property="og:locale" content="de">
+<meta property="og:image" content="https://hollowbit.dev/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"ezygmanta@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/"]}</script>
+<script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB={"lang":"de","langs":["en","es","fr","de","ru","zh"],"copied":"Kopiert","osNote":{"mac":"Du nutzt einen Mac, deshalb ist der Mac-Download hervorgehoben.","win":"Du nutzt Windows, deshalb ist der Windows-Download hervorgehoben."}}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Zum Inhalt</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></symbol>
+  <symbol id="arrow" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3.5 8h9m0 0L8.5 4m4 4-4 4"/></symbol>
+  <symbol id="out" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 11 11 5m0 0H6m5 0v5"/></symbol>
+  <symbol id="down" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 2.5v8m0 0 3.5-3.5M8 10.5 4.5 7M3 13.5h10"/></symbol>
+  <symbol id="check" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m3.5 8.5 3 3 6-7"/></symbol>
+  <symbol id="copy" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 5.5V3.75c0-.69.56-1.25 1.25-1.25h5.5c.69 0 1.25.56 1.25 1.25v5.5c0 .69-.56 1.25-1.25 1.25H10.5M3.75 5.5h5.5c.69 0 1.25.56 1.25 1.25v5.5c0 .69-.56 1.25-1.25 1.25h-5.5c-.69 0-1.25-.56-1.25-1.25v-5.5c0-.69.56-1.25 1.25-1.25Z"/></symbol>
+  <symbol id="mail" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 4.5h11v7.5h-11zM2.5 4.75 8 9l5.5-4.25"/></symbol>
+  <symbol id="bug" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 5.5a2.5 2.5 0 0 1 5 0M4.5 6.5h7v3.5a3.5 3.5 0 0 1-7 0V6.5ZM2.5 8.5h2m7 0h2M3 5l1.5 1.5M13 5l-1.5 1.5M3 13l1.6-1.4M13 13l-1.6-1.4M8 6.5v7"/></symbol>
+  <symbol id="spark" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 2v3m0 6v3m6-6h-3M5 8H2m10.2-4.2-2.1 2.1M5.9 10.1l-2.1 2.1m8.4 0-2.1-2.1M5.9 5.9 3.8 3.8"/></symbol>
+  <symbol id="heart" viewBox="0 0 16 16"><path fill="currentColor" d="M8 14s-5.5-3.3-5.5-7.3A3.2 3.2 0 0 1 8 4.5a3.2 3.2 0 0 1 5.5 2.2C13.5 10.7 8 14 8 14Z"/></symbol>
+  <symbol id="star" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m8 2 1.8 3.8 4.2.5-3.1 2.9.8 4.1L8 11.3l-3.7 2 .8-4.1L2 6.3l4.2-.5L8 2Z"/></symbol>
+  <symbol id="share" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 10V2.5m0 0L5 5.5m3-3 3 3M3.5 8.5v4a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="cup" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 5.5h8v4a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-4Zm8 1h1a1.75 1.75 0 0 1 0 3.5h-1M5 2.5v1.2m2.5-1.2v1.2"/></symbol>
+  <symbol id="globe" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 1.75a6.25 6.25 0 1 0 0 12.5A6.25 6.25 0 0 0 8 1.75ZM1.75 8h12.5M8 1.75c1.7 1.7 2.5 3.8 2.5 6.25S9.7 12.55 8 14.25C6.3 12.55 5.5 10.45 5.5 8S6.3 3.45 8 1.75Z"/></symbol>
+  <symbol id="gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z"/></symbol>
+  <symbol id="apple" viewBox="0 0 16 16"><path fill="currentColor" d="M11.24 8.5c-.02-1.63 1.33-2.41 1.39-2.45-.76-1.11-1.94-1.26-2.36-1.28-1-.1-1.96.59-2.47.59-.51 0-1.29-.58-2.12-.56-1.09.02-2.1.64-2.66 1.61-1.14 1.97-.29 4.89.82 6.49.54.78 1.19 1.66 2.03 1.63.82-.03 1.13-.53 2.12-.53.99 0 1.27.53 2.13.51.88-.01 1.44-.8 1.98-1.58.62-.9.88-1.78.89-1.83-.02-.01-1.71-.66-1.73-2.6Zm-1.62-4.8c.45-.55.76-1.31.67-2.07-.65.03-1.44.43-1.91.98-.42.48-.79 1.26-.69 2 .73.06 1.47-.37 1.93-.91Z"/></symbol>
+  <symbol id="windows" viewBox="0 0 16 16"><path fill="currentColor" d="M1.5 3.2 6.8 2.5v5H1.5V3.2Zm6.1-.8 6.9-.9v6H7.6V2.4ZM1.5 8.3h5.3v5.2l-5.3-.7V8.3Zm6.1 0h6.9v6.2l-6.9-.9V8.3Z"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M16 21V9m0 0-5 5m5-5 5 5M6 26h20M4 4l24 24"/></symbol>
+  <symbol id="i-ads" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 8h22v16H5zM11 19l2.5-7 2.5 7m-4.2-2h3.4M19 12h2.5a3.5 3.5 0 0 1 0 7H19v-7ZM4 4l24 24"/></symbol>
+  <symbol id="i-account" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M16 16a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm-9 11a9 9 0 0 1 18 0M4 4l24 24"/></symbol>
+  <symbol id="i-track" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Zm13 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 4l24 24"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 13a16 16 0 0 1 22 0M9 17.5a10 10 0 0 1 14 0M13 22a4.5 4.5 0 0 1 6 0M16 26h.01M4 4l24 24"/></symbol>
+  <symbol id="i-code" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m11 10-6 6 6 6m10-12 6 6-6 6M18.5 7l-5 18"/></symbol>
+</svg>
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <a class="brand" href="../de/" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
+    <nav class="nav-links" aria-label="Haupt"><a href="../de/fileshaper/"><span class="nav-label">Fileshaper</span></a><a href="../de/captionshaper/"><span class="nav-label">Captionshaper</span></a><a href="https://hollowbit.dev/diskshaper/de/"><span class="nav-label">Diskshaper</span></a><a href="../de/download/"><span class="nav-label">Download</span></a><a href="../de/about/"><span class="nav-label">Über</span></a><a href="../de/contact/"><span class="nav-label">Kontakt</span></a><a href="../de/donate/"><span class="nav-label">Spenden</span></a></nav>
+    <div class="nav-end">
+      <details class="lang"><summary aria-label="Sprache"><svg class="" aria-hidden="true"><use href="#globe"/></svg><span>DE</span></summary><div class="lang-menu"><a href="../" hreflang="en" lang="en" data-set-lang="en">English</a><a href="../es/" hreflang="es" lang="es" data-set-lang="es">Español</a><a href="../fr/" hreflang="fr" lang="fr" data-set-lang="fr">Français</a><a href="../de/" hreflang="de" lang="de" data-set-lang="de" aria-current="true">Deutsch</a><a href="../ru/" hreflang="ru" lang="ru" data-set-lang="ru">Русский</a><a href="../zh/" hreflang="zh-Hans" lang="zh-Hans" data-set-lang="zh">简体中文</a></div></details>
+      <a class="btn btn-primary btn-sm nav-dl" href="../de/download/"><svg class="" aria-hidden="true"><use href="#down"/></svg>Download</a>
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menü öffnen"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="sheet" id="sheet"><nav aria-label="Mobil"><a href="../de/" style="--i:0" aria-current="page">Start</a><a href="../de/fileshaper/" style="--i:1">Fileshaper</a><a href="../de/captionshaper/" style="--i:2">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/de/" style="--i:3">Diskshaper</a><a href="../de/download/" style="--i:4">Download</a><a href="../de/about/" style="--i:5">Über</a><a href="../de/contact/" style="--i:6">Kontakt</a><a href="../de/donate/" style="--i:7">Spenden</a></nav></div>
+</header>
+<main id="main">
+
+<section class="hero wrap">
+  <a class="hero-badge in-0" href="https://hollowbit.dev/diskshaper/de/"><span class="dot"></span>Neu: Diskshaper 1.0.0, ein kostenloser Speicherreiniger<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  <h1 class="hero-title" data-words data-hl="nie hochladen.">Kostenlose Werkzeuge, die deine Dateien nie hochladen.</h1>
+  <p class="hero-sub in-1">Kleine, ausgefeilte Apps für Windows und Mac, die eine Sache gut machen, komplett auf deinem eigenen Computer. Keine Werbung, keine Konten, keine Wasserzeichen.</p>
+  <div class="hero-cta in-2">
+    <a class="btn btn-primary btn-lg" href="../de/download/"><svg class="" aria-hidden="true"><use href="#down"/></svg>Apps herunterladen</a>
+    <a class="btn btn-ghost btn-lg" href="#tools">Was sie können</a>
+  </div>
+  <div class="in-3"><div class="stage" data-stage><div class="stage-tabs" role="tablist" aria-label="Produkt-Demos"><button class="tab" role="tab" aria-selected="true" aria-controls="demo-fs" id="tab-fs" style="--c: var(--fs)"><img src="../assets/img/fileshaper-icon.png" alt="" width="20" height="20">Fileshaper<span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" aria-controls="demo-cs" id="tab-cs" style="--c: var(--cs)"><img src="../assets/img/captionshaper-icon.png" alt="" width="20" height="20">Captionshaper<span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" aria-controls="demo-ds" id="tab-ds" style="--c: var(--ds)"><img src="../assets/img/diskshaper-icon.png" alt="" width="20" height="20">Diskshaper<span class="tab-bar"><i></i></span></button></div><div class="stage-frame"><div class="stage-scale"><div class="demo demo-fs" id="demo-fs" role="tabpanel" aria-labelledby="tab-fs">
+  <p class="sr-only">Animierte Demo: Fileshaper komprimiert ein 214-MB-Video auf 9,6 MB, direkt auf dem Computer.</p>
+  <div class="win" aria-hidden="true">
+    <aside class="fs-side">
+      <div class="tl"><i></i><i></i><i></i></div>
+      <div class="fs-brand"><img src="../assets/img/fileshaper-icon.png" alt=""><div><b>Fileshaper</b><small>by Hollowbit Studio</small></div></div>
+      <div class="fs-search">Search actions <kbd>⌘K</kbd></div>
+      <div class="fs-nav"><span class="on">Home</span><em>Tools</em><span>Video <small>2</small></span><span>Images <small>4</small></span><span>PDF</span><span>Audio <small>1</small></span></div>
+      <div class="fs-offline"><i></i>Offline. Nothing is uploaded.</div>
+    </aside>
+    <div class="fs-main">
+      <div class="fs-q">What do you want to do?</div>
+      <div class="fs-field"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m10.5 10.5 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="fs-typed"></span><span class="caret"></span><span class="fs-ph">Compress a video, convert a photo, sign a PDF…</span></div>
+      <ul class="fs-list">
+        <li data-k="compress video for discord"><b>Compress a video for Discord</b><span>under 10 MB</span><em>Video</em></li>
+        <li data-k="convert iphone photos to jpg"><b>Convert iPhone photos to JPG</b><span>HEIC to JPG</span><em>Images</em></li>
+        <li data-k="sign a pdf"><b>Sign a PDF</b><span>draw or type a signature</span><em>PDF</em></li>
+        <li data-k="merge pdfs"><b>Merge PDFs</b><span>combine files</span><em>PDF</em></li>
+        <li data-k="make a gif from a video"><b>Make a GIF from a video</b><span>2–6 seconds</span><em>Video</em></li>
+      </ul>
+      <div class="fs-job">
+        <div class="fs-file"><span class="ext">MP4</span><div><b>beach-day.mp4</b><small class="fs-status">Encoding, pass 1 of 2</small></div><span class="fs-size">214 MB</span></div>
+        <div class="fs-bar"><i></i></div>
+        <div class="fs-done"><svg class="" aria-hidden="true"><use href="#check"/></svg><span><b>214 MB → 9.6 MB</b> · fits Discord's 10 MB limit</span></div>
+      </div>
+      <div class="fs-recent">
+        <em>Recent</em>
+        <div class="fs-r"><span class="ext">MP3</span><div><b>Voice memo 12-normalized.mp3</b><small>1.1 MB → 704 KB · −40%</small></div><span>just now</span></div>
+        <div class="fs-r"><span class="ext">JPG</span><div><b>IMG_4822.jpg</b><small>HEIC → JPG · 103 KB</small></div><span>2 min ago</span></div>
+        <div class="fs-r"><span class="ext">PDF</span><div><b>Lease-signed.pdf</b><small>Signed · 3 pages</small></div><span>today</span></div>
+      </div>
+    </div>
+  </div>
+</div><div class="demo demo-cs" id="demo-cs" role="tabpanel" aria-labelledby="tab-cs">
+  <p class="sr-only">Animierte Demo: Captionshaper schreibt wortgenaue Untertitel auf ein Video, offline.</p>
+  <div class="win" aria-hidden="true">
+    <div class="cs-top"><div class="tl"><i></i><i></i><i></i></div><b>beach-day.mp4</b><span>0:38 · English</span><span class="cs-grow"></span><span class="cs-saved">Saved</span><span class="cs-export">Export</span></div>
+    <div class="cs-body">
+      <div class="cs-player"><div class="cs-phone"><div class="cs-video"></div><div class="cs-cap"></div><div class="cs-ui"><i></i><i></i><i></i></div></div></div>
+      <div class="cs-side"><div class="cs-tabs"><span class="on">Captions</span><span>Style</span></div><div class="cs-list"></div></div>
+    </div>
+    <div class="cs-timeline"><span class="cs-play"></span><span class="cs-time">0:12 / 0:38</span><div class="cs-wave"><i class="cs-head"></i></div></div>
+  </div>
+</div><div class="demo demo-ds" id="demo-ds" role="tabpanel" aria-labelledby="tab-ds">
+  <p class="sr-only">Animierte Demo: Diskshaper scannt eine Festplatte, findet 75 GB Ballast und schiebt das Sichere in den Papierkorb.</p>
+  <div class="win" aria-hidden="true">
+    <div class="ds-top"><div class="tl"><i></i><i></i><i></i></div><span class="ds-brand"><img src="../assets/img/diskshaper-icon.png" alt="">Diskshaper</span><span class="ds-tabs"><b>Overview</b><span>Everyone</span><span>Gaming</span><span>Video editing</span></span></div>
+    <div class="ds-body">
+      <div class="ds-head"><div><small>Found</small><div class="ds-big"><span class="ds-found">0</span><em>GB</em></div></div><div class="ds-side"><small>Safe to clean</small><b class="ds-safe">0 GB</b></div></div>
+      <div class="ds-bar"><i class="ds-g s" style="--w:7.6" data-i="0"></i><i class="ds-c s" style="--w:37.1" data-i="1"></i><i class="ds-g s" style="--w:6.1" data-i="2"></i><i class="ds-e s" style="--w:5.2" data-i="3"></i><i class="ds-e s" style="--w:4" data-i="4"></i><i class="ds-e" style="--w:2.4" data-i="5"></i><i class="ds-g" style="--w:41.2" data-i="6"></i></div>
+      <div class="ds-rows"><div class="ds-row" data-i="0" data-gb="7.6"><b class="ds-g"></b><span>Shader caches</span><em class="ok">Safe</em><strong>0 GB</strong></div><div class="ds-row" data-i="1" data-gb="37.1"><b class="ds-c"></b><span>Video editing caches</span><em class="ok">Safe</em><strong>0 GB</strong></div><div class="ds-row" data-i="2" data-gb="6.1"><b class="ds-g"></b><span>Steam leftovers</span><em class="ok">Safe</em><strong>0 GB</strong></div><div class="ds-row" data-i="3" data-gb="5.2"><b class="ds-e"></b><span>App caches</span><em class="ok">Safe</em><strong>0 GB</strong></div><div class="ds-row" data-i="4" data-gb="4"><b class="ds-e"></b><span>Old installers</span><em class="ok">Safe</em><strong>0 GB</strong></div><div class="ds-row" data-i="5" data-gb="2.4"><b class="ds-e"></b><span>Duplicate photos</span><em class="ck">Check first</em><strong>0 GB</strong></div><div class="ds-row" data-i="6" data-gb="41.2"><b class="ds-g"></b><span>Games you stopped playing</span><em class="ck">Check first</em><strong>0 GB</strong></div></div>
+      <div class="ds-dock"><span><b class="ds-sel">0 GB</b> selected</span><span class="ds-btn">Move to Trash</span></div>
+      <div class="ds-done"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-15"/></svg><b>60 GB</b><span>moved to the Trash</span></div>
+    </div>
+  </div>
+</div></div></div></div></div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span style="--c: var(--fs)"><i></i>Video für Discord komprimieren</span><span style="--c: var(--fs)"><i></i>HEIC zu JPG</span><span style="--c: var(--fs)"><i></i>PDF unterschreiben</span><span style="--c: var(--fs)"><i></i>PDFs zusammenfügen</span><span style="--c: var(--fs)"><i></i>GIF erstellen</span><span style="--c: var(--fs)"><i></i>Audio extrahieren</span><span style="--c: var(--fs)"><i></i>Bilder verkleinern</span><span style="--c: var(--fs)"><i></i>Audio normalisieren</span><span style="--c: var(--fs)"><i></i>PDF teilen</span><span style="--c: var(--fs)"><i></i>Video schneiden</span><span style="--c: var(--ds)"><i></i>Shader-Caches leeren</span><span style="--c: var(--ds)"><i></i>Steam-Reste</span><span style="--c: var(--ds)"><i></i>Premiere-Medien-Cache</span><span style="--c: var(--ds)"><i></i>Resolve CacheClip</span><span style="--c: var(--ds)"><i></i>Doppelte Fotos</span><span style="--c: var(--ds)"><i></i>Alte Installer</span><span style="--c: var(--ds)"><i></i>Leere CrossOver-Flaschen</span><span style="--c: var(--ds)"><i></i>Vergessene Riesendateien</span><span style="--c: var(--ds)"><i></i>Ungespielte Spiele</span><span style="--c: var(--ds)"><i></i>Alles in den Papierkorb</span><span style="--c: var(--cs)"><i></i>Automatische Untertitel</span><span style="--c: var(--cs)"><i></i>Wortgenaue Captions</span><span style="--c: var(--cs)"><i></i>TikTok-Wort-Pop</span><span style="--c: var(--cs)"><i></i>SRT exportieren</span><span style="--c: var(--cs)"><i></i>VTT exportieren</span><span style="--c: var(--cs)"><i></i>Untertitel einbrennen</span><span style="--c: var(--cs)"><i></i>Jedes Wort korrigieren</span><span style="--c: var(--cs)"><i></i>Sicherer Bereich für Hochformat</span><span style="--c: var(--cs)"><i></i>Funktioniert offline</span><span style="--c: var(--cs)"><i></i>Wellenform-Zeitleiste</span><span style="--c: var(--fs)"><i></i>Video für Discord komprimieren</span><span style="--c: var(--fs)"><i></i>HEIC zu JPG</span><span style="--c: var(--fs)"><i></i>PDF unterschreiben</span><span style="--c: var(--fs)"><i></i>PDFs zusammenfügen</span><span style="--c: var(--fs)"><i></i>GIF erstellen</span><span style="--c: var(--fs)"><i></i>Audio extrahieren</span><span style="--c: var(--fs)"><i></i>Bilder verkleinern</span><span style="--c: var(--fs)"><i></i>Audio normalisieren</span><span style="--c: var(--fs)"><i></i>PDF teilen</span><span style="--c: var(--fs)"><i></i>Video schneiden</span><span style="--c: var(--ds)"><i></i>Shader-Caches leeren</span><span style="--c: var(--ds)"><i></i>Steam-Reste</span><span style="--c: var(--ds)"><i></i>Premiere-Medien-Cache</span><span style="--c: var(--ds)"><i></i>Resolve CacheClip</span><span style="--c: var(--ds)"><i></i>Doppelte Fotos</span><span style="--c: var(--ds)"><i></i>Alte Installer</span><span style="--c: var(--ds)"><i></i>Leere CrossOver-Flaschen</span><span style="--c: var(--ds)"><i></i>Vergessene Riesendateien</span><span style="--c: var(--ds)"><i></i>Ungespielte Spiele</span><span style="--c: var(--ds)"><i></i>Alles in den Papierkorb</span><span style="--c: var(--cs)"><i></i>Automatische Untertitel</span><span style="--c: var(--cs)"><i></i>Wortgenaue Captions</span><span style="--c: var(--cs)"><i></i>TikTok-Wort-Pop</span><span style="--c: var(--cs)"><i></i>SRT exportieren</span><span style="--c: var(--cs)"><i></i>VTT exportieren</span><span style="--c: var(--cs)"><i></i>Untertitel einbrennen</span><span style="--c: var(--cs)"><i></i>Jedes Wort korrigieren</span><span style="--c: var(--cs)"><i></i>Sicherer Bereich für Hochformat</span><span style="--c: var(--cs)"><i></i>Funktioniert offline</span><span style="--c: var(--cs)"><i></i>Wellenform-Zeitleiste</span></div><div class="ticker-track rev"><span style="--c: var(--cs)"><i></i>Automatische Untertitel</span><span style="--c: var(--cs)"><i></i>Wortgenaue Captions</span><span style="--c: var(--cs)"><i></i>TikTok-Wort-Pop</span><span style="--c: var(--cs)"><i></i>SRT exportieren</span><span style="--c: var(--cs)"><i></i>VTT exportieren</span><span style="--c: var(--cs)"><i></i>Untertitel einbrennen</span><span style="--c: var(--cs)"><i></i>Jedes Wort korrigieren</span><span style="--c: var(--cs)"><i></i>Sicherer Bereich für Hochformat</span><span style="--c: var(--cs)"><i></i>Funktioniert offline</span><span style="--c: var(--cs)"><i></i>Wellenform-Zeitleiste</span><span style="--c: var(--fs)"><i></i>Video für Discord komprimieren</span><span style="--c: var(--fs)"><i></i>HEIC zu JPG</span><span style="--c: var(--fs)"><i></i>PDF unterschreiben</span><span style="--c: var(--fs)"><i></i>PDFs zusammenfügen</span><span style="--c: var(--fs)"><i></i>GIF erstellen</span><span style="--c: var(--fs)"><i></i>Audio extrahieren</span><span style="--c: var(--fs)"><i></i>Bilder verkleinern</span><span style="--c: var(--fs)"><i></i>Audio normalisieren</span><span style="--c: var(--fs)"><i></i>PDF teilen</span><span style="--c: var(--fs)"><i></i>Video schneiden</span><span style="--c: var(--ds)"><i></i>Shader-Caches leeren</span><span style="--c: var(--ds)"><i></i>Steam-Reste</span><span style="--c: var(--ds)"><i></i>Premiere-Medien-Cache</span><span style="--c: var(--ds)"><i></i>Resolve CacheClip</span><span style="--c: var(--ds)"><i></i>Doppelte Fotos</span><span style="--c: var(--ds)"><i></i>Alte Installer</span><span style="--c: var(--ds)"><i></i>Leere CrossOver-Flaschen</span><span style="--c: var(--ds)"><i></i>Vergessene Riesendateien</span><span style="--c: var(--ds)"><i></i>Ungespielte Spiele</span><span style="--c: var(--ds)"><i></i>Alles in den Papierkorb</span><span style="--c: var(--cs)"><i></i>Automatische Untertitel</span><span style="--c: var(--cs)"><i></i>Wortgenaue Captions</span><span style="--c: var(--cs)"><i></i>TikTok-Wort-Pop</span><span style="--c: var(--cs)"><i></i>SRT exportieren</span><span style="--c: var(--cs)"><i></i>VTT exportieren</span><span style="--c: var(--cs)"><i></i>Untertitel einbrennen</span><span style="--c: var(--cs)"><i></i>Jedes Wort korrigieren</span><span style="--c: var(--cs)"><i></i>Sicherer Bereich für Hochformat</span><span style="--c: var(--cs)"><i></i>Funktioniert offline</span><span style="--c: var(--cs)"><i></i>Wellenform-Zeitleiste</span><span style="--c: var(--fs)"><i></i>Video für Discord komprimieren</span><span style="--c: var(--fs)"><i></i>HEIC zu JPG</span><span style="--c: var(--fs)"><i></i>PDF unterschreiben</span><span style="--c: var(--fs)"><i></i>PDFs zusammenfügen</span><span style="--c: var(--fs)"><i></i>GIF erstellen</span><span style="--c: var(--fs)"><i></i>Audio extrahieren</span><span style="--c: var(--fs)"><i></i>Bilder verkleinern</span><span style="--c: var(--fs)"><i></i>Audio normalisieren</span><span style="--c: var(--fs)"><i></i>PDF teilen</span><span style="--c: var(--fs)"><i></i>Video schneiden</span><span style="--c: var(--ds)"><i></i>Shader-Caches leeren</span><span style="--c: var(--ds)"><i></i>Steam-Reste</span><span style="--c: var(--ds)"><i></i>Premiere-Medien-Cache</span><span style="--c: var(--ds)"><i></i>Resolve CacheClip</span><span style="--c: var(--ds)"><i></i>Doppelte Fotos</span><span style="--c: var(--ds)"><i></i>Alte Installer</span><span style="--c: var(--ds)"><i></i>Leere CrossOver-Flaschen</span><span style="--c: var(--ds)"><i></i>Vergessene Riesendateien</span><span style="--c: var(--ds)"><i></i>Ungespielte Spiele</span><span style="--c: var(--ds)"><i></i>Alles in den Papierkorb</span></div></div>
+
+<section class="wrap sec" id="tools">
+  <div class="sec-head">
+    <h2 class="h2" data-words="scroll">Drei Apps. Alle kostenlos, für immer.</h2>
+    <p class="reveal">Jede ersetzt eine Website oder ein Abo, das deine Dateien, deine Zeit oder dein Geld will.</p>
+  </div>
+  <div class="cards">
+    <article class="pcard pcard-fs reveal" style="--d:0ms" data-tilt-card>
+      <div class="pcard-in">
+        <img class="pcard-icon vt-icon-fs" src="../assets/img/fileshaper-icon.png" width="56" height="56" alt="">
+        <h3>Fileshaper</h3>
+        <p>Videos für Discord komprimieren, iPhone-Fotos umwandeln, PDFs zusammenfügen und unterschreiben. Ein Werkzeugkasten, komplett offline.</p>
+        <div class="pcard-cta">
+          <a class="btn btn-dark" href="../de/fileshaper/">Mehr erfahren <svg class="" aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="btn btn-line" href="../de/download/#fileshaper"><svg class="" aria-hidden="true"><use href="#down"/></svg>Download</a>
+          <a class="btn btn-line" href="https://fileshaper.app/de/">Website <svg class="" aria-hidden="true"><use href="#out"/></svg></a>
+        </div>
+        <small class="pcard-meta">v1.2.0 · Mac und Windows · Offizielle Website: fileshaper.app</small>
+      </div>
+      <div class="pcard-shot"><img src="../assets/img/fileshaper-app.webp" width="1600" height="1018" alt="" loading="lazy"></div>
+    </article>
+    <article class="pcard pcard-cs reveal" style="--d:90ms" data-tilt-card>
+      <div class="pcard-in">
+        <img class="pcard-icon vt-icon-cs" src="../assets/img/captionshaper-icon.png" width="56" height="56" alt="">
+        <h3>Captionshaper</h3>
+        <p>Wortgenaue Untertitel für jedes Video, geschrieben von einem Sprachmodell auf deinem eigenen Computer. SRT, VTT oder eingebrannt.</p>
+        <div class="pcard-cta">
+          <a class="btn btn-dark" href="../de/captionshaper/">Mehr erfahren <svg class="" aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="btn btn-line" href="../de/download/#captionshaper"><svg class="" aria-hidden="true"><use href="#down"/></svg>Download</a>
+          <a class="btn btn-line" href="https://captionshaper.app/de/">Website <svg class="" aria-hidden="true"><use href="#out"/></svg></a>
+        </div>
+        <small class="pcard-meta">v1.1.0 · Mac und Windows · Offizielle Website: captionshaper.app</small>
+      </div>
+      <div class="pcard-shot"><img src="../assets/img/captionshaper-app.webp" width="1600" height="1018" alt="" loading="lazy"></div>
+    </article>
+    <article class="pcard pcard-ds reveal" style="--d:180ms" data-tilt-card>
+      <div class="pcard-in">
+        <img class="pcard-icon vt-icon-ds" src="../assets/img/diskshaper-icon.png" width="56" height="56" alt="">
+        <h3>Diskshaper <span class="pcard-new">Neu</span></h3>
+        <p>Sieh, was deinen Speicher auffrisst, von Shader-Caches und Steam-Resten bis zu Premiere-Caches und doppelten Fotos. Räum nur auf, was sicher ist, immer in den Papierkorb.</p>
+        <div class="pcard-cta">
+          <a class="btn btn-dark" href="https://hollowbit.dev/diskshaper/de/">Mehr erfahren <svg class="" aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="btn btn-line" href="../de/download/#diskshaper"><svg class="" aria-hidden="true"><use href="#down"/></svg>Download</a>
+          
+        </div>
+        <small class="pcard-meta">v1.0.0 · Mac und Windows · Offizielle Website: hollowbit.dev/diskshaper</small>
+      </div>
+      <div class="pcard-shot"><img src="../assets/img/diskshaper-app.webp" width="1600" height="1025" alt="" loading="lazy"></div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap sec">
+  <div>
+    <div class="sec-head">
+      <h2 class="h2" data-words="scroll">Kostenlos heißt kostenlos.</h2>
+      <p class="reveal">Keine Testphase, keine „Pro“-Stufe, keine heimlich gesammelten Daten. Diese Regeln gelten für jede Hollowbit-App und diese Website.</p>
+    </div>
+    <div class="princ">
+      <div class="pr reveal" style="--d:0ms; --c: var(--k0)"><span class="pr-tile"><svg class="pr-icon" aria-hidden="true"><use href="#i-upload"/></svg></span><h3>Keine Uploads</h3><p>Dateien werden auf deinem eigenen Computer geöffnet, geändert und gespeichert.</p></div>
+      <div class="pr reveal" style="--d:70ms; --c: var(--k1)"><span class="pr-tile"><svg class="pr-icon" aria-hidden="true"><use href="#i-wifi"/></svg></span><h3>Funktioniert offline</h3><p>Schalt das WLAN aus. Alles funktioniert weiter.</p></div>
+      <div class="pr reveal" style="--d:140ms; --c: var(--k2)"><span class="pr-tile"><svg class="pr-icon" aria-hidden="true"><use href="#i-ads"/></svg></span><h3>Keine Werbung</h3><p>Nicht in den Apps, nicht auf den Websites.</p></div>
+      <div class="pr reveal" style="--d:210ms; --c: var(--k3)"><span class="pr-tile"><svg class="pr-icon" aria-hidden="true"><use href="#i-account"/></svg></span><h3>Keine Konten</h3><p>Du solltest dich nicht anmelden müssen, um eine Datei umzuwandeln.</p></div>
+      <div class="pr reveal" style="--d:280ms; --c: var(--k4)"><span class="pr-tile"><svg class="pr-icon" aria-hidden="true"><use href="#i-track"/></svg></span><h3>Kein Tracking</h3><p>Keine Analysen und keine Cookies, auch nicht auf dieser Website.</p></div>
+      <div class="pr reveal" style="--d:350ms; --c: var(--k5)"><span class="pr-tile"><svg class="pr-icon" aria-hidden="true"><use href="#i-code"/></svg></span><h3>Open Source</h3><p>Jede Zeile steht auf GitHub.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sec">
+  <div class="cta-box reveal">
+    <div class="cta-icons"><img src="../assets/img/fileshaper-icon.png" alt="" width="72" height="72"><img src="../assets/img/captionshaper-icon.png" alt="" width="72" height="72"><img src="../assets/img/diskshaper-icon.png" alt="" width="72" height="72"></div>
+    <h2 class="h2" data-words="scroll">Hol dir alle drei. Zahl nichts.</h2>
+    <p>Installer für Mac und Windows, direkt von GitHub.</p>
+    <div class="hero-cta"><a class="btn btn-primary btn-lg" href="../de/download/"><svg class="" aria-hidden="true"><use href="#down"/></svg>Zu den Downloads</a><a class="btn btn-ghost btn-lg" href="../de/about/">Wer macht die?</a></div>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../de/" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
+        <p>Hollowbit Studio macht kostenlose Werkzeuge, die deine Dateien nie hochladen. Gemacht von Elvis Zygmanta in Thailand.</p>
+        <a class="foot-mail" data-email-link href="../de/contact/"><svg class="" aria-hidden="true"><use href="#mail"/></svg><span data-email>Kontakt</span></a>
+      </div>
+      <nav aria-label="Produkte"><h2>Produkte</h2><a href="../de/fileshaper/">Fileshaper</a><a href="../de/captionshaper/">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/de/">Diskshaper</a><a href="../de/download/">Download</a></nav>
+      <nav aria-label="Studio"><h2>Studio</h2><a href="../de/about/">Über</a><a href="../de/contact/">Kontakt</a><a href="../de/donate/">Spenden</a><a href="../de/privacy/">Datenschutz</a></nav>
+      <nav aria-label="Anderswo"><h2>Anderswo</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="https://fileshaper.app/de/">fileshaper.app</a><a href="https://captionshaper.app/de/">captionshaper.app</a></nav>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>Keine Cookies, keine Analysen, nichts von Dritten geladen.</span></div>
+  </div>
+  <div class="foot-word" aria-hidden="true"><span>Hollowbit</span></div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

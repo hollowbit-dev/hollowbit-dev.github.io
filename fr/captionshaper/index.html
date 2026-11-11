@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Captionshaper: sous-titres automatiques gratuits et hors ligne · Hollowbit Studio</title>
+<meta name="description" content="Des sous-titres calés mot par mot pour n’importe quelle vidéo, écrits par un modèle vocal sur votre propre ordinateur. SRT, VTT ou incrustés. Gratuit pour Mac et Windows, rien n’est envoyé.">
+<link rel="canonical" href="https://hollowbit.dev/fr/captionshaper/">
+<link rel="alternate" hreflang="en" href="https://hollowbit.dev/captionshaper/">
+<link rel="alternate" hreflang="es" href="https://hollowbit.dev/es/captionshaper/">
+<link rel="alternate" hreflang="fr" href="https://hollowbit.dev/fr/captionshaper/">
+<link rel="alternate" hreflang="de" href="https://hollowbit.dev/de/captionshaper/">
+<link rel="alternate" hreflang="ru" href="https://hollowbit.dev/ru/captionshaper/">
+<link rel="alternate" hreflang="zh-Hans" href="https://hollowbit.dev/zh/captionshaper/">
+<link rel="alternate" hreflang="x-default" href="https://hollowbit.dev/captionshaper/">
+<meta name="theme-color" content="#08080a">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hollowbit.dev/fr/captionshaper/">
+<meta property="og:title" content="Captionshaper: sous-titres automatiques gratuits et hors ligne · Hollowbit Studio">
+<meta property="og:description" content="Des sous-titres calés mot par mot pour n’importe quelle vidéo, écrits par un modèle vocal sur votre propre ordinateur. SRT, VTT ou incrustés. Gratuit pour Mac et Windows, rien n’est envoyé.">
+<meta property="og:locale" content="fr">
+<meta property="og:image" content="https://hollowbit.dev/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"ezygmanta@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/"]}</script>
+<script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB={"lang":"fr","langs":["en","es","fr","de","ru","zh"],"copied":"Copié","osNote":{"mac":"Vous êtes sur Mac, le téléchargement Mac est mis en avant.","win":"Vous êtes sur Windows, le téléchargement Windows est mis en avant."}}</script>
+</head>
+<body class="p-cs">
+<a class="skip" href="#main">Aller au contenu</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></symbol>
+  <symbol id="arrow" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3.5 8h9m0 0L8.5 4m4 4-4 4"/></symbol>
+  <symbol id="out" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 11 11 5m0 0H6m5 0v5"/></symbol>
+  <symbol id="down" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 2.5v8m0 0 3.5-3.5M8 10.5 4.5 7M3 13.5h10"/></symbol>
+  <symbol id="check" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m3.5 8.5 3 3 6-7"/></symbol>
+  <symbol id="copy" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 5.5V3.75c0-.69.56-1.25 1.25-1.25h5.5c.69 0 1.25.56 1.25 1.25v5.5c0 .69-.56 1.25-1.25 1.25H10.5M3.75 5.5h5.5c.69 0 1.25.56 1.25 1.25v5.5c0 .69-.56 1.25-1.25 1.25h-5.5c-.69 0-1.25-.56-1.25-1.25v-5.5c0-.69.56-1.25 1.25-1.25Z"/></symbol>
+  <symbol id="mail" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 4.5h11v7.5h-11zM2.5 4.75 8 9l5.5-4.25"/></symbol>
+  <symbol id="bug" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 5.5a2.5 2.5 0 0 1 5 0M4.5 6.5h7v3.5a3.5 3.5 0 0 1-7 0V6.5ZM2.5 8.5h2m7 0h2M3 5l1.5 1.5M13 5l-1.5 1.5M3 13l1.6-1.4M13 13l-1.6-1.4M8 6.5v7"/></symbol>
+  <symbol id="spark" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 2v3m0 6v3m6-6h-3M5 8H2m10.2-4.2-2.1 2.1M5.9 10.1l-2.1 2.1m8.4 0-2.1-2.1M5.9 5.9 3.8 3.8"/></symbol>
+  <symbol id="heart" viewBox="0 0 16 16"><path fill="currentColor" d="M8 14s-5.5-3.3-5.5-7.3A3.2 3.2 0 0 1 8 4.5a3.2 3.2 0 0 1 5.5 2.2C13.5 10.7 8 14 8 14Z"/></symbol>
+  <symbol id="star" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m8 2 1.8 3.8 4.2.5-3.1 2.9.8 4.1L8 11.3l-3.7 2 .8-4.1L2 6.3l4.2-.5L8 2Z"/></symbol>
+  <symbol id="share" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 10V2.5m0 0L5 5.5m3-3 3 3M3.5 8.5v4a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="cup" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 5.5h8v4a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-4Zm8 1h1a1.75 1.75 0 0 1 0 3.5h-1M5 2.5v1.2m2.5-1.2v1.2"/></symbol>
+  <symbol id="globe" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 1.75a6.25 6.25 0 1 0 0 12.5A6.25 6.25 0 0 0 8 1.75ZM1.75 8h12.5M8 1.75c1.7 1.7 2.5 3.8 2.5 6.25S9.7 12.55 8 14.25C6.3 12.55 5.5 10.45 5.5 8S6.3 3.45 8 1.75Z"/></symbol>
+  <symbol id="gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z"/></symbol>
+  <symbol id="apple" viewBox="0 0 16 16"><path fill="currentColor" d="M11.24 8.5c-.02-1.63 1.33-2.41 1.39-2.45-.76-1.11-1.94-1.26-2.36-1.28-1-.1-1.96.59-2.47.59-.51 0-1.29-.58-2.12-.56-1.09.02-2.1.64-2.66 1.61-1.14 1.97-.29 4.89.82 6.49.54.78 1.19 1.66 2.03 1.63.82-.03 1.13-.53 2.12-.53.99 0 1.27.53 2.13.51.88-.01 1.44-.8 1.98-1.58.62-.9.88-1.78.89-1.83-.02-.01-1.71-.66-1.73-2.6Zm-1.62-4.8c.45-.55.76-1.31.67-2.07-.65.03-1.44.43-1.91.98-.42.48-.79 1.26-.69 2 .73.06 1.47-.37 1.93-.91Z"/></symbol>
+  <symbol id="windows" viewBox="0 0 16 16"><path fill="currentColor" d="M1.5 3.2 6.8 2.5v5H1.5V3.2Zm6.1-.8 6.9-.9v6H7.6V2.4ZM1.5 8.3h5.3v5.2l-5.3-.7V8.3Zm6.1 0h6.9v6.2l-6.9-.9V8.3Z"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M16 21V9m0 0-5 5m5-5 5 5M6 26h20M4 4l24 24"/></symbol>
+  <symbol id="i-ads" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 8h22v16H5zM11 19l2.5-7 2.5 7m-4.2-2h3.4M19 12h2.5a3.5 3.5 0 0 1 0 7H19v-7ZM4 4l24 24"/></symbol>
+  <symbol id="i-account" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M16 16a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm-9 11a9 9 0 0 1 18 0M4 4l24 24"/></symbol>
+  <symbol id="i-track" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Zm13 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 4l24 24"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 13a16 16 0 0 1 22 0M9 17.5a10 10 0 0 1 14 0M13 22a4.5 4.5 0 0 1 6 0M16 26h.01M4 4l24 24"/></symbol>
+  <symbol id="i-code" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m11 10-6 6 6 6m10-12 6 6-6 6M18.5 7l-5 18"/></symbol>
+</svg>
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <a class="brand" href="../../fr/" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
+    <nav class="nav-links" aria-label="Principal"><a href="../../fr/fileshaper/"><span class="nav-label">Fileshaper</span></a><a href="../../fr/captionshaper/" aria-current="page"><span class="nav-pill"></span><span class="nav-label">Captionshaper</span></a><a href="https://hollowbit.dev/diskshaper/fr/"><span class="nav-label">Diskshaper</span></a><a href="../../fr/download/"><span class="nav-label">Télécharger</span></a><a href="../../fr/about/"><span class="nav-label">À propos</span></a><a href="../../fr/contact/"><span class="nav-label">Contact</span></a><a href="../../fr/donate/"><span class="nav-label">Faire un don</span></a></nav>
+    <div class="nav-end">
+      <details class="lang"><summary aria-label="Langue"><svg class="" aria-hidden="true"><use href="#globe"/></svg><span>FR</span></summary><div class="lang-menu"><a href="../../captionshaper/" hreflang="en" lang="en" data-set-lang="en">English</a><a href="../../es/captionshaper/" hreflang="es" lang="es" data-set-lang="es">Español</a><a href="../../fr/captionshaper/" hreflang="fr" lang="fr" data-set-lang="fr" aria-current="true">Français</a><a href="../../de/captionshaper/" hreflang="de" lang="de" data-set-lang="de">Deutsch</a><a href="../../ru/captionshaper/" hreflang="ru" lang="ru" data-set-lang="ru">Русский</a><a href="../../zh/captionshaper/" hreflang="zh-Hans" lang="zh-Hans" data-set-lang="zh">简体中文</a></div></details>
+      <a class="btn btn-primary btn-sm nav-dl" href="../../fr/download/"><svg class="" aria-hidden="true"><use href="#down"/></svg>Télécharger</a>
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Ouvrir le menu"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="sheet" id="sheet"><nav aria-label="Mobile"><a href="../../fr/" style="--i:0">Accueil</a><a href="../../fr/fileshaper/" style="--i:1">Fileshaper</a><a href="../../fr/captionshaper/" style="--i:2" aria-current="page">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/fr/" style="--i:3">Diskshaper</a><a href="../../fr/download/" style="--i:4">Télécharger</a><a href="../../fr/about/" style="--i:5">À propos</a><a href="../../fr/contact/" style="--i:6">Contact</a><a href="../../fr/donate/" style="--i:7">Faire un don</a></nav></div>
+</header>
+<main id="main">
+
+<section class="phero wrap" style="--c: var(--cs)">
+  <img class="phero-icon vt-icon-cs" src="../../assets/img/captionshaper-icon.png" width="96" height="96" alt="">
+  <p class="phero-name in-0">Captionshaper</p>
+  <h1 class="phero-title" data-words>Des sous-titres qui suivent votre rythme.</h1>
+  <p class="phero-sub in-1">Déposez une vidéo et obtenez chaque mot avec son timing, transcrit par un modèle vocal sur votre ordinateur. Corrigez, choisissez un style, exportez.</p>
+  <div class="in-2"><div class="dl-row"><a class="btn btn-primary btn-lg dl-btn" data-os-btn="mac" href="https://github.com/hollowbit-dev/captionshaper/releases/latest/download/Captionshaper-1.1.0-mac-arm64.dmg"><svg class="" aria-hidden="true"><use href="#apple"/></svg><span>Télécharger pour Mac</span></a><a class="btn btn-primary btn-lg dl-btn" data-os-btn="win" href="https://github.com/hollowbit-dev/captionshaper/releases/latest/download/Captionshaper-Setup-1.1.0-win-x64.exe"><svg class="" aria-hidden="true"><use href="#windows"/></svg><span>Télécharger pour Windows</span></a><a class="btn btn-ghost btn-lg site-btn" href="https://captionshaper.app/fr/">Visiter captionshaper.app <svg class="" aria-hidden="true"><use href="#out"/></svg></a></div></div>
+  <p class="phero-meta in-2">Version 1.1.0 · Gratuit · <a href="https://github.com/hollowbit-dev/captionshaper">Code source</a> · <a href="https://captionshaper.app/fr/changelog.html">Nouveautés</a></p>
+  <div class="in-3 phero-stage"><div class="stage stage-single" data-stage><div class="stage-frame"><div class="stage-scale"><div class="demo demo-cs" id="demo-cs" role="tabpanel" aria-labelledby="tab-cs">
+  <p class="sr-only">Démo animée : Captionshaper écrit des sous-titres calés mot par mot sur une vidéo, hors ligne.</p>
+  <div class="win" aria-hidden="true">
+    <div class="cs-top"><div class="tl"><i></i><i></i><i></i></div><b>beach-day.mp4</b><span>0:38 · English</span><span class="cs-grow"></span><span class="cs-saved">Saved</span><span class="cs-export">Export</span></div>
+    <div class="cs-body">
+      <div class="cs-player"><div class="cs-phone"><div class="cs-video"></div><div class="cs-cap"></div><div class="cs-ui"><i></i><i></i><i></i></div></div></div>
+      <div class="cs-side"><div class="cs-tabs"><span class="on">Captions</span><span>Style</span></div><div class="cs-list"></div></div>
+    </div>
+    <div class="cs-timeline"><span class="cs-play"></span><span class="cs-time">0:12 / 0:38</span><div class="cs-wave"><i class="cs-head"></i></div></div>
+  </div>
+</div></div></div></div></div>
+</section>
+
+<section class="wrap sec rows" style="--c: var(--cs)">
+  <div class="row">
+    <div class="row-copy"><h2 class="h3" data-words="scroll">Chaque mot, pile à l’heure.</h2><p class="reveal">Whisper tourne sur votre ordinateur et cale chaque mot sur la voix. La musique et les silences sont ignorés, et un clip d’une minute prend une dizaine de secondes sur un Mac à puce M.</p></div>
+    <figure class="row-shot" data-wipe><img src="../../assets/img/captionshaper-app-working.webp" width="1440" height="792" loading="lazy" alt="Captionshaper transcrivant une vidéo, les mots apparaissant en direct."></figure>
+  </div>
+  <div class="row row-flip">
+    <div class="row-copy"><h2 class="h3" data-words="scroll">Des styles que les gens utilisent vraiment.</h2><p class="reveal">Neuf styles, des sous-titres sobres aux mots qui sautent façon TikTok. Ce que vous voyez dans l’aperçu est exactement ce qui est incrusté.</p></div>
+    <figure class="row-shot" data-wipe><img src="../../assets/img/captionshaper-app-style.webp" width="1600" height="1018" loading="lazy" alt="Le panneau de styles de Captionshaper avec neuf préréglages."></figure>
+  </div>
+  <div class="row">
+    <div class="row-copy"><h2 class="h3" data-words="scroll">Corrigez, puis publiez.</h2><p class="reveal">Modifiez n’importe quel mot dans la timeline, puis exportez en SRT ou VTT pour YouTube et les logiciels de montage, ou une vidéo finie avec les sous-titres incrustés. Sans filigrane.</p></div>
+    <figure class="row-shot" data-wipe><img src="../../assets/img/captionshaper-app.webp" width="1600" height="1018" loading="lazy" alt="L’éditeur de Captionshaper avec la liste des sous-titres et la forme d’onde."></figure>
+  </div>
+</section>
+
+<section class="band-color" style="--c: var(--cs)">
+  <div class="wrap band-in">
+    <div class="band-copy">
+      <img src="../../assets/img/captionshaper-icon.png" width="64" height="64" alt="">
+      <h2 class="h2" data-words="scroll">Des sous-titres sans abonnement.</h2>
+      <p class="reveal">Gratuit pour Mac et Windows. Sans compte, sans filigrane, rien n’est envoyé.</p>
+    </div>
+    <div class="band-dl reveal">
+      <div class="dl-row"><a class="btn btn-dark btn-lg dl-btn" data-os-btn="mac" href="https://github.com/hollowbit-dev/captionshaper/releases/latest/download/Captionshaper-1.1.0-mac-arm64.dmg"><svg class="" aria-hidden="true"><use href="#apple"/></svg><span>Télécharger pour Mac</span></a><a class="btn btn-dark btn-lg dl-btn" data-os-btn="win" href="https://github.com/hollowbit-dev/captionshaper/releases/latest/download/Captionshaper-Setup-1.1.0-win-x64.exe"><svg class="" aria-hidden="true"><use href="#windows"/></svg><span>Télécharger pour Windows</span></a></div>
+      <div class="band-links"><a href="../../fr/download/#captionshaper">Tous les téléchargements et l’aide</a><a href="https://captionshaper.app/fr/changelog.html">Nouveautés</a><a href="https://captionshaper.app/fr/">captionshaper.app</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap next-sec">
+  <a class="next reveal" href="https://hollowbit.dev/diskshaper/fr/" style="--c: var(--ds)">
+    <img src="../../assets/img/diskshaper-icon.png" alt="" width="56" height="56">
+    <span><small>Aussi chez Hollowbit Studio</small><b>Diskshaper</b><em>Voyez ce qui dévore votre stockage, des caches de shaders et restes Steam aux caches Premiere et photos en double. Nettoyez seulement ce qui est sûr, toujours vers la Corbeille.</em></span>
+    <span class="next-go"><svg class="" aria-hidden="true"><use href="#arrow"/></svg></span>
+  </a>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../fr/" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
+        <p>Hollowbit Studio fait des outils gratuits qui n’envoient jamais vos fichiers. Fait par Elvis Zygmanta en Thaïlande.</p>
+        <a class="foot-mail" data-email-link href="../../fr/contact/"><svg class="" aria-hidden="true"><use href="#mail"/></svg><span data-email>Contact</span></a>
+      </div>
+      <nav aria-label="Produits"><h2>Produits</h2><a href="../../fr/fileshaper/">Fileshaper</a><a href="../../fr/captionshaper/">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/fr/">Diskshaper</a><a href="../../fr/download/">Télécharger</a></nav>
+      <nav aria-label="Studio"><h2>Studio</h2><a href="../../fr/about/">À propos</a><a href="../../fr/contact/">Contact</a><a href="../../fr/donate/">Faire un don</a><a href="../../fr/privacy/">Confidentialité</a></nav>
+      <nav aria-label="Ailleurs"><h2>Ailleurs</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="https://fileshaper.app/fr/">fileshaper.app</a><a href="https://captionshaper.app/fr/">captionshaper.app</a></nav>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>Pas de cookies, pas de statistiques, rien de chargé ailleurs.</span></div>
+  </div>
+  <div class="foot-word" aria-hidden="true"><span>Hollowbit</span></div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>
