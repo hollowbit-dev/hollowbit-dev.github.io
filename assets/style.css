@@ -561,6 +561,19 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 :lang(zh) .hlg::before { inset: -.08em -.06em -.1em; }
 :lang(zh) .hero-title, :lang(zh) .phero-title, :lang(zh) .h1, :lang(zh) .h2, :lang(zh) .h3 { letter-spacing: 0; line-height: 1.18; }
 
+/* socials */
+.socials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.socials a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; color: var(--text-2); background: rgba(255,255,255,.05); box-shadow: var(--hi); transition: color .2s, background-color .2s, transform .45s var(--spring); }
+.socials a:hover { color: var(--text); background: rgba(255,255,255,.1); transform: translateY(-2px) scale(1.06); }
+.socials svg { width: 18px; height: 18px; }
+.social-card { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 14px; padding: 22px 26px; border-radius: 24px; background: var(--glass); backdrop-filter: blur(28px) saturate(1.6); -webkit-backdrop-filter: blur(28px) saturate(1.6); box-shadow: var(--hi), var(--sh-2); }
+.social-card h2 { font-size: 20px; letter-spacing: -0.025em; }
+.social-card > span { color: var(--text-3); font-size: 15px; }
+.socials.big { margin: 0 0 0 auto; }
+.socials.big a { width: 48px; height: 48px; border-radius: 14px; }
+.socials.big svg { width: 21px; height: 21px; }
+@media (max-width: 640px) { .socials.big { margin: 0; } }
+
 /* ---------- demo stage ---------- */
 .stage { position: relative; margin-top: clamp(48px, 8vh, 80px); --glow: var(--fs); }
 /* coloured light behind the window, in the colour of the demo that's playing */
