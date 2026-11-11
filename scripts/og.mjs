@@ -1,5 +1,5 @@
 // Renders the 1200x630 share cards (Discord, X, iMessage, Slack...) listed in site/og.json.
-// Run after the build: node site/build.mjs && node scripts/og.mjs [filter]
+// Run: node site/build.mjs && node scripts/og.mjs && node site/build.mjs (the 2nd build stamps image hashes into the URLs)
 // Calm and exact: one controlled light in the page's colour, a strict 72px grid, real app screenshots.
 import { createRequire } from 'node:module';
 import { readFileSync, mkdirSync } from 'node:fs';

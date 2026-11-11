@@ -4,6 +4,7 @@
 import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://hollowbit.dev';
@@ -124,6 +125,10 @@ function page(L, { path, key = '', title, desc, body, cls = '', og }) {
   const t = L;
   const ogFile = og ? `assets/img/og/${L.lang}/${og.id}.png` : 'assets/img/og/en/home.png';
   if (og) OG.push({ file: ogFile, lang: L.lang, ...og });
+  // Discord and X cache images by URL, so the address changes whenever the picture does.
+  let ogV = '';
+  try { ogV = '?v=' + createHash('md5').update(readFileSync(resolve(root, ogFile))).digest('hex').slice(0, 8); } catch {}
+  const ogUrl = `${ORIGIN}/${ogFile}${ogV}`;
   const ogAlt = og ? [og.h, og.sub].filter(Boolean).join(' ') : title;
   const NAV = navItems(L);
   const nav = NAV.map(([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(l)}</span></a>`).join('');
@@ -146,7 +151,7 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:locale" content="${L.html.replace('-', '_')}">
-<meta property="og:image" content="${ORIGIN}/${ogFile}">
+<meta property="og:image" content="${ogUrl}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="${esc(ogAlt)}">
@@ -154,7 +159,7 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <meta name="twitter:site" content="@hollowbitstudio">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
-<meta name="twitter:image" content="${ORIGIN}/${ogFile}">
+<meta name="twitter:image" content="${ogUrl}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
