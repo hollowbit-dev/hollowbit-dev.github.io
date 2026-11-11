@@ -97,6 +97,8 @@ const sprite = `<svg width="0" height="0" style="position:absolute" aria-hidden=
 const ic = (id, cls = '') => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
 
 
+// Stylesheet version, so browsers fetch the new CSS after every change.
+const CSSV = (await import('node:crypto')).createHash('md5').update(readFileSync(resolve(root, 'site/main.css'), 'utf8') + readFileSync(resolve(root, 'site/demo.css'), 'utf8')).digest('hex').slice(0, 8);
 /* ---------- socials ---------- */
 const SOCIALS = [
   ['X', 'https://x.com/hollowbitstudio', '<path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/>'],
@@ -105,7 +107,7 @@ const SOCIALS = [
   ['Reddit', 'https://www.reddit.com/user/hollowbitstudio', '<path fill="currentColor" d="M22 12.1a2.2 2.2 0 0 0-3.7-1.6 10.8 10.8 0 0 0-5.8-1.8l1-4.6 3.2.7a1.6 1.6 0 1 0 .2-1l-3.6-.8a.5.5 0 0 0-.6.4l-1.1 5.3a10.8 10.8 0 0 0-5.9 1.8A2.2 2.2 0 1 0 3.3 14a4.3 4.3 0 0 0 0 .7c0 3.4 3.9 6.1 8.7 6.1s8.7-2.7 8.7-6.1a4.3 4.3 0 0 0 0-.7 2.2 2.2 0 0 0 1.3-1.9ZM7 13.7a1.6 1.6 0 1 1 1.6 1.6A1.6 1.6 0 0 1 7 13.7Zm9 4.2a5.8 5.8 0 0 1-4 1.2 5.8 5.8 0 0 1-4-1.2.4.4 0 0 1 .6-.6 5 5 0 0 0 3.4 1 5 5 0 0 0 3.4-1 .4.4 0 1 1 .6.6Zm-.4-2.6a1.6 1.6 0 1 1 1.6-1.6 1.6 1.6 0 0 1-1.6 1.6Z"/>'],
   ['GitHub', 'https://github.com/hollowbit-dev', `<path fill="currentColor" transform="scale(1.5)" d="${GH}"/>`],
 ];
-const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u, d]) => `<a href="${u}" aria-label="${n}" title="${n}" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg></a>`).join('')}</div>`;
+const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u, d]) => `<a href="${u}" aria-label="${n}" title="${n}" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">${d}</svg></a>`).join('')}</div>`;
 /* ---------- shell ---------- */
 // Paths are written root-absolute for the page's language (/es/about/), then made relative at write time.
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
@@ -141,7 +143,7 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=${CSSV}">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note })}</script>
 </head>
