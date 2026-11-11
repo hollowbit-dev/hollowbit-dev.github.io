@@ -309,7 +309,17 @@ const notFound = page({
 });
 
 const out = { 'index.html': home, 'fileshaper/index.html': fileshaper, 'captionshaper/index.html': captionshaper, 'about/index.html': about, '404.html': notFound };
-for (const [f, html] of Object.entries(out)) {
+// Root-relative links become relative, so pages also work opened straight from the folder.
+// 404.html keeps absolute paths: GitHub Pages serves it at any depth.
+const relink = (html, f) => {
+  if (f === '404.html') return html;
+  const up = '../'.repeat(f.split('/').length - 1);
+  return html
+    .replace(/(href|src)="\/(?!\/)([^"]*)"/g, (_, a, p) => `${a}="${up}${p === '' ? (up ? '' : './') : p}"`)
+    .replace(/url\("\/assets/g, `url("${up}assets`);
+};
+for (const [f, raw] of Object.entries(out)) {
+  const html = relink(raw, f);
   const p = resolve(root, f);
   mkdirSync(dirname(p), { recursive: true });
   writeFileSync(p, html);

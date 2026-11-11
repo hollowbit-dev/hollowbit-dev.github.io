@@ -1,4 +1,11 @@
 (() => {
+  // Opened from the folder (file://): folder links need index.html to open the page.
+  if (location.protocol === 'file:') {
+    document.querySelectorAll('a[href]').forEach((a) => {
+      const h = a.getAttribute('href');
+      if (!/^[a-z]+:|^#/.test(h) && (h.endsWith('/') || h === '.' || h === '..')) a.setAttribute('href', h.replace(/\/?$/, '/') + 'index.html');
+    });
+  }
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
