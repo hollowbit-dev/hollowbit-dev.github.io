@@ -737,11 +737,11 @@ const services = () => page(LANGS[0], {
 </section>
 
 <section class="wrap sec">
-  <div class="sec-head"><h2 class="h2" data-words="scroll">Simple, fixed prices</h2><p class="reveal">Half up front, half on launch. No surprise invoices.</p></div>
+  <div class="sec-head"><h2 class="h2" data-words="scroll">Simple, fixed prices</h2><p class="reveal">One-off prices, half up front and half on launch. No monthly fees.</p></div>
   <div class="svc-prices">
-    <div class="svc-price reveal"><h3>Starter</h3><p class="svc-amt">$450</p><p>A one-page site: who you are, what you offer, hours, location and contact.</p><ul><li>Mobile-first design</li><li>Contact links and map</li><li>Launch on your domain</li></ul></div>
-    <div class="svc-price svc-main reveal" style="--d:90ms"><h3>Business</h3><p class="svc-amt">$850</p><p>Up to five pages, with a menu, price list or services, photos and reviews.</p><ul><li>Everything in Starter</li><li>Booking or ordering button linked to your existing provider</li><li>Basic Google setup</li></ul></div>
-    <div class="svc-price reveal" style="--d:180ms"><h3>Care plan</h3><p class="svc-amt">$25<small> / month</small></p><p>Optional. Hosting set-up, small text and photo updates, and checks that everything still works.</p><ul><li>Changes within two working days</li><li>Cancel any time</li></ul></div>
+    <div class="svc-price reveal"><h3>Starter</h3><p class="svc-amt">$350</p><p>A one-page site: who you are, what you offer, hours, location and contact.</p><ul><li>Mobile-first design</li><li>Contact links and map</li><li>Launch on your domain</li></ul></div>
+    <div class="svc-price svc-main reveal" style="--d:90ms"><h3>Business</h3><p class="svc-amt">$750</p><p>Up to five pages, with a menu, price list or services, photos and reviews.</p><ul><li>Everything in Starter</li><li>Smooth scroll and hover animations</li><li>Booking or ordering button linked to your existing provider</li><li>Basic Google setup</li></ul></div>
+    <div class="svc-price reveal" style="--d:180ms"><h3>Signature</h3><p class="svc-amt">$1,400</p><p>Up to ten pages and a homepage designed to stand out from every competitor nearby.</p><ul><li>Everything in Business</li><li>Custom animated hero and page transitions</li><li>Animated menus, galleries or tour cards</li><li>Three rounds of changes</li></ul></div>
   </div>
   <p class="svc-fine reveal">Prices in US dollars; UK clients are quoted in pounds. Payments and bookings use services you already trust, like Square, Stripe, Calendly or your booking system, linked from the site. We don’t handle your customers’ payments.</p>
 </section>
@@ -751,13 +751,13 @@ const services = () => page(LANGS[0], {
   <ol class="wk-decisions">
     <li><b>Free mockup.</b> We design your new homepage first, before you pay anything.</li>
     <li><b>Agree and start.</b> A short written agreement, then 50% to begin.</li>
-    <li><b>Build and review.</b> About two weeks, with two rounds of changes included.</li>
+    <li><b>Build and review.</b> About two weeks (three for Signature), with two rounds of changes included.</li>
     <li><b>Launch.</b> Your site goes live on your domain and you pay the second half.</li>
   </ol>
   <h2>What every site includes</h2>
   <ul class="wk-list">
     <li>Built to the WCAG 2.2 AA accessibility standard: readable contrast, keyboard navigation, image descriptions.</li>
-    <li>Fast on phones, with no heavy page builder.</li>
+    <li>Fast on phones, with no heavy page builder. Animations respect visitors who turn motion off.</li>
     <li>No tracking or cookie banner unless you ask for analytics.</li>
     <li>You own the site and the domain.</li>
   </ul>
