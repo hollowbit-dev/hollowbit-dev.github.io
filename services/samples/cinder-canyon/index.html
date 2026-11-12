@@ -48,6 +48,7 @@ nav a:not(.btn):hover { background: rgba(255,255,255,.14); }
 .facts ul { list-style: none; margin: 0 auto; padding: 22px 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .facts b { display: block; font: 700 30px/1.1 var(--display); color: #fff; }
 .facts span { font-size: 14.5px; }
+.facts b span { font: inherit; }
 section { padding: 96px 0; }
 .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
 h2 { font-size: clamp(38px, 5.4vw, 68px); text-transform: uppercase; }
@@ -104,13 +105,39 @@ footer address { font-style: normal; }
   nav .btn { padding: 10px 16px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+.motion .kb { animation: kb 22s ease-out forwards; transform-origin: 60% 40%; }
+@keyframes kb { from { transform: scale(1.18); } to { transform: scale(1.02); } }
+.motion .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 50% at 80% 20%, rgba(242,160,61,.35), transparent 70%); animation: glow 9s ease-in-out infinite alternate; pointer-events: none; }
+@keyframes glow { to { opacity: .35; transform: translateX(-4%); } }
+.page-top header.top { position: relative; transition: background .4s, backdrop-filter .4s; }
+.motion .tour { position: relative; }
+.motion .tour::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(242,160,61,.18), transparent 50%); }
+.motion .tour:hover::after { opacity: 1; }
+.motion .tour img { transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+.motion .tour:hover img { transform: scale(1.07); }
+.tour > img { overflow: hidden; }
+.pwrap { overflow: hidden; border-radius: 10px; }
+.pwrap img { border-radius: 0 !important; }
+.book { overflow: hidden; }
+.hero { overflow: hidden; }
+.book img[data-parallax] { top: -15%; height: 130%; }
+.motion .quotes figure { transition: transform .4s; }
+.motion .faq details[open] p { animation: drop .45s cubic-bezier(.16,1,.3,1); }
+@keyframes drop { from { opacity: 0; transform: translateY(-6px); } }
+.motion .scroll-cue { position: absolute; left: 50%; bottom: 22px; width: 24px; height: 38px; border: 2px solid rgba(255,255,255,.7); border-radius: 14px; transform: translateX(-50%); }
+.motion .scroll-cue::after { content: ""; position: absolute; left: 50%; top: 7px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: #fff; animation: cue 1.8s ease-in-out infinite; }
+@keyframes cue { 60% { transform: translateY(12px); opacity: 0; } 100% { opacity: 0; } }
+.scroll-cue { display: none; }
+.motion .scroll-cue { display: block; }
 </style>
+<link rel="stylesheet" href="../motion.css">
+<script src="../motion.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <p class="sample">Sample website design by <a href="/services/">Hollowbit Studio</a>. Cinder Canyon Tours is a fictional company; reviews and details are examples.</p>
 <div class="page-top">
-  <header class="top">
+  <header class="top" data-sticky>
     <div class="wrap">
       <a class="logo" href="#main" aria-label="Cinder Canyon Tours, home"><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="22" cy="11" r="5" fill="#f2a03d"/><path fill="#c2471d" d="M2 30 12 12l6 9 4-5 10 14Z"/><path fill="#fff" d="m12 12 3 4.5-3 1.5-2.5-1.5Z" opacity=".85"/></svg>Cinder Canyon</a>
       <nav aria-label="Main"><ul><li><a href="#tours">Tours</a></li><li><a href="#why">Why us</a></li><li><a href="#faq">FAQ</a></li><li><a class="btn btn-clay" href="#book">Book a tour</a></li></ul></nav>
@@ -119,37 +146,38 @@ footer address { font-style: normal; }
 </div>
 <main id="main">
 <div class="hero">
-  <img src="img/hero.jpg" width="1024" height="606" alt="">
+  <img class="kb" src="img/hero.jpg" width="1024" height="606" alt="">
   <div class="hero-body">
     <div class="wrap">
-      <p class="kicker">Guided hikes · Sedona, Arizona</p>
-      <h1>Walk the red rocks with a local.</h1>
-      <p class="lede">Small-group hikes and sunset tours led by guides who grew up here. We know the quiet trails, the best light, and where the ravens nest.</p>
-      <div class="cta"><a class="btn btn-clay" href="#tours">See tours and prices</a><a class="btn btn-ghost" href="#book">Check availability</a></div>
+      <p class="kicker rise" style="--d:.1s">Guided hikes · Sedona, Arizona</p>
+      <h1 data-words>Walk the red rocks with a local.</h1>
+      <p class="lede rise" style="--d:.75s">Small-group hikes and sunset tours led by guides who grew up here. We know the quiet trails, the best light, and where the ravens nest.</p>
+      <div class="cta rise" style="--d:.9s"><a class="btn btn-clay" href="#tours">See tours and prices</a><a class="btn btn-ghost" href="#book">Check availability</a></div>
     </div>
   </div>
+  <span class="scroll-cue" aria-hidden="true"></span>
 </div>
 
 <div class="facts" role="region" aria-label="At a glance">
-  <ul class="wrap">
-    <li><b>8 max</b><span>people per group</span></li>
-    <li><b>12 years</b><span>guiding in Sedona</span></li>
-    <li><b>4.9 ★</b><span>from 1,100 reviews</span></li>
+  <ul class="wrap" data-stagger>
+    <li><b><span data-count="8">8</span> max</b><span>people per group</span></li>
+    <li><b><span data-count="12">12</span> years</b><span>guiding in Sedona</span></li>
+    <li><b><span data-count="4.9">4.9</span> ★</b><span>from <span data-count="1100">1,100</span> reviews</span></li>
     <li><b>Free</b><span>cancellation up to 24 hours</span></li>
   </ul>
 </div>
 
 <section id="tours" aria-labelledby="tours-h">
   <div class="wrap">
-    <div class="sec-head"><h2 id="tours-h">Pick your trail</h2><p>All tours include water, snacks, trekking poles and a certified wilderness first-aid guide. Pickup available from most Sedona hotels.</p></div>
-    <div class="tours">
-      <article class="tour"><img src="img/bell-rock.jpg" width="1024" height="768" alt="Bell Rock rising above green juniper trees under a blue sky." loading="lazy">
+    <div class="sec-head" data-reveal><h2 id="tours-h">Pick your trail</h2><p>All tours include water, snacks, trekking poles and a certified wilderness first-aid guide. Pickup available from most Sedona hotels.</p></div>
+    <div class="tours" data-stagger>
+      <article class="tour" data-tilt><img src="img/bell-rock.jpg" width="1024" height="768" alt="Bell Rock rising above green juniper trees under a blue sky." loading="lazy">
         <div class="tour-body"><h3>Bell Rock Morning Hike</h3><ul class="meta"><li>2.5 hours</li><li>Easy</li><li>Ages 6+</li></ul><p>A gentle loop around Sedona’s most famous butte, with stories about the geology and the people who lived here first.</p>
         <div class="tour-foot"><span><b>$69</b> <small>per person</small></span><a class="btn btn-clay" href="#book" aria-label="Book the Bell Rock Morning Hike">Book</a></div></div></article>
-      <article class="tour"><img src="img/sunset.jpg" width="1024" height="683" alt="A hiker stands on a ridge above red canyons at sunset." loading="lazy">
+      <article class="tour" data-tilt><img src="img/sunset.jpg" width="1024" height="683" alt="A hiker stands on a ridge above red canyons at sunset." loading="lazy">
         <div class="tour-body"><h3>Golden Hour Ridge</h3><ul class="meta"><li>3 hours</li><li>Moderate</li><li>Ages 10+</li></ul><p>Climb to a quiet ridge for sunset, then hike down by headlamp under some of the darkest skies in Arizona.</p>
         <div class="tour-foot"><span><b>$89</b> <small>per person</small></span><a class="btn btn-clay" href="#book" aria-label="Book Golden Hour Ridge">Book</a></div></div></article>
-      <article class="tour"><img src="img/aerial.jpg" width="1024" height="604" alt="An aerial view of red sandstone peaks and green valleys." loading="lazy">
+      <article class="tour" data-tilt><img src="img/aerial.jpg" width="1024" height="604" alt="An aerial view of red sandstone peaks and green valleys." loading="lazy">
         <div class="tour-body"><h3>Hidden Canyons Day Trek</h3><ul class="meta"><li>6 hours</li><li>Challenging</li><li>Lunch included</li></ul><p>Our longest route, through slot canyons and over slickrock to viewpoints most visitors never see.</p>
         <div class="tour-foot"><span><b>$149</b> <small>per person</small></span><a class="btn btn-clay" href="#book" aria-label="Book the Hidden Canyons Day Trek">Book</a></div></div></article>
     </div>
@@ -158,10 +186,10 @@ footer address { font-style: normal; }
 
 <section class="dark" id="why" aria-labelledby="why-h">
   <div class="wrap why">
-    <img src="img/hikers.jpg" width="1300" height="866" alt="Two hikers with backpacks and a dog look out over a valley." loading="lazy">
+    <div class="pwrap" data-reveal><img data-parallax="0.08" src="img/hikers.jpg" width="1300" height="866" alt="Two hikers with backpacks and a dog look out over a valley." loading="lazy"></div>
     <div>
       <h2 id="why-h">Small groups. Real guides.</h2>
-      <ul>
+      <ul data-stagger>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.6 1.3-4.6 4-4.6S22 17 22 20"/></svg><b>Never more than eight</b><span>Small groups mean quieter trails and time for questions.</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="M12 9v6m-3-3h6"/></svg><b>Safety first</b><span>Every guide holds wilderness first-aid certification and carries a satellite messenger.</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20 10 8l4 6 2-3 4 9Z"/><path d="M3 20h18"/></svg><b>Leave no trace</b><span>We stay on trail, pack out everything, and give back to local trail crews.</span></li>
@@ -173,7 +201,7 @@ footer address { font-style: normal; }
 <section aria-labelledby="rev-h">
   <div class="wrap">
     <div class="sec-head"><h2 id="rev-h">From the trail</h2></div>
-    <div class="quotes">
+    <div class="quotes" data-stagger>
       <figure><blockquote>“The sunset hike was the highlight of our whole Arizona trip.”</blockquote><figcaption>Megan, Denver</figcaption></figure>
       <figure><blockquote>“Our guide knew every plant and every story. The kids didn’t complain once.”</blockquote><figcaption>The Alvarez family, San Diego</figcaption></figure>
       <figure><blockquote>“Booked the night before, picked up at our hotel at 7am. Seamless.”</blockquote><figcaption>Tom, Manchester, UK</figcaption></figure>
@@ -185,7 +213,7 @@ footer address { font-style: normal; }
 <section id="faq" style="padding-top:0" aria-labelledby="faq-h">
   <div class="wrap">
     <div class="sec-head"><h2 id="faq-h">Good to know</h2></div>
-    <div class="faq">
+    <div class="faq" data-reveal>
       <details><summary>What should I bring?</summary><p>Closed-toe shoes with grip, sun protection and layers. We bring water, snacks and trekking poles.</p></details>
       <details><summary>What if the weather turns?</summary><p>If it’s unsafe to hike, we’ll move your tour to another day or give you a full refund.</p></details>
       <details><summary>Do you offer private tours?</summary><p>Yes. Private hikes for families, couples and small teams start at $320 for up to four people.</p></details>
@@ -195,9 +223,9 @@ footer address { font-style: normal; }
 </section>
 
 <section class="book" id="book" aria-labelledby="book-h">
-  <img src="img/hero.jpg" width="1024" height="606" alt="" loading="lazy">
+  <img data-parallax="0.18" src="img/sunset.jpg" width="1024" height="606" alt="" loading="lazy">
   <div class="wrap">
-    <h2 id="book-h">Your trail is waiting</h2>
+    <h2 id="book-h" data-reveal>Your trail is waiting</h2>
     <p>Live availability and secure payment through our booking partner. Free cancellation up to 24 hours before your tour.</p>
     <div class="cta"><a class="btn btn-clay" href="#tours">Check availability</a><a class="btn btn-ghost" href="tel:+19285550182">Call (928) 555-0182</a></div>
   </div>

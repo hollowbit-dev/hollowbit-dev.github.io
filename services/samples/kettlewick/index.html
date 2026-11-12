@@ -85,7 +85,17 @@ footer a { color: #ffd2b8; }
   section { padding: 64px 0; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+.motion .gallery img { transition: transform 1.2s cubic-bezier(.16,1,.3,1), filter .4s; }
+.motion .gallery img:hover { transform: scale(1.03); }
+.motion .menu li { transition: background .25s, padding .3s; border-radius: 8px; }
+.motion .menu li:hover { background: rgba(168,70,31,.06); padding-inline: 10px; }
+.motion .card { transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .3s; }
+.motion .card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px -20px rgba(43,29,20,.45); }
+.motion .stamp { animation: bob 4s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-6px); } }
 </style>
+<link rel="stylesheet" href="../motion.css">
+<script src="../motion.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -100,20 +110,20 @@ footer a { color: #ffd2b8; }
   <div class="wrap hero">
     <div>
       <p class="eyebrow">Neighbourhood coffee · Portland, Oregon</p>
-      <h1>Slow coffee, <em>baked</em> at dawn.</h1>
-      <p class="lede">Single-origin espresso, pour-overs brewed to order and pastries from our own oven every morning. Pull up a stool, or grab one for the road.</p>
-      <div class="cta"><a class="btn btn-rust" id="order" href="#visit">Order ahead for pickup</a><a class="btn btn-line" href="#menu">See today’s menu</a></div>
+      <h1 data-words>Slow coffee, <em>baked</em> at dawn.</h1>
+      <p class="lede rise" style="--d:.55s">Single-origin espresso, pour-overs brewed to order and pastries from our own oven every morning. Pull up a stool, or grab one for the road.</p>
+      <div class="cta rise" style="--d:.7s"><a class="btn btn-rust" id="order" href="#visit">Order ahead for pickup</a><a class="btn btn-line" href="#menu">See today’s menu</a></div>
     </div>
-    <div class="hero-img">
+    <div class="hero-img rise" style="--d:.2s">
       <img src="img/hero.jpg" width="1024" height="683" alt="A barista pours hot water from a copper kettle into a pour-over cone.">
-      <p class="stamp"><b>Open today</b>7am – 3pm</p>
+      <p class="stamp steam"><b>Open today</b>7am – 3pm</p>
     </div>
   </div>
 
   <section class="band" id="menu" aria-labelledby="menu-h">
     <div class="wrap">
-      <div class="sec-head"><h2 id="menu-h">Today’s menu</h2><p>Beans roasted in small batches in Portland. Oat, almond and whole milk at no extra cost.</p></div>
-      <div class="menu">
+      <div class="sec-head" data-reveal><h2 id="menu-h">Today’s menu</h2><p>Beans roasted in small batches in Portland. Oat, almond and whole milk at no extra cost.</p></div>
+      <div class="menu" data-stagger>
         <div>
           <h3>Coffee</h3>
           <ul>
@@ -137,7 +147,7 @@ footer a { color: #ffd2b8; }
   </section>
 
   <section aria-label="Photos of the café">
-    <div class="wrap gallery">
+    <div class="wrap gallery" data-stagger>
       <img src="img/window.jpg" width="1024" height="683" alt="Window seats with wooden stools in the morning light." loading="lazy">
       <img src="img/pastries.jpg" width="1024" height="683" alt="Croissants and pains au chocolat on the bakery counter." loading="lazy">
       <img src="img/cortado.jpg" width="960" height="640" alt="A cortado in a glass on a white saucer." loading="lazy">
@@ -146,7 +156,7 @@ footer a { color: #ffd2b8; }
   </section>
 
   <section class="band" id="story" aria-labelledby="story-h">
-    <div class="wrap story">
+    <div class="wrap story" data-reveal>
       <div>
         <p class="eyebrow">Our story</p>
         <h2 id="story-h">A corner café that knows your order.</h2>
@@ -162,7 +172,7 @@ footer a { color: #ffd2b8; }
   <section id="visit" aria-labelledby="visit-h">
     <div class="wrap">
       <div class="sec-head"><h2 id="visit-h">Come say hello</h2><p>Order ahead for pickup and skip the line. Payments are handled securely by Square.</p></div>
-      <div class="visit">
+      <div class="visit" data-stagger>
         <div class="card"><h3>Hours</h3>
           <table class="hours"><caption class="sr" style="position:absolute;left:-9999px">Opening hours</caption>
             <tr><th scope="row">Mon – Fri</th><td>7am – 3pm</td></tr>
