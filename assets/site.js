@@ -408,3 +408,14 @@
     document.addEventListener('visibilitychange', () => { if (document.hidden) stopRun(); else if (visible) loop(); });
   }
 })();
+
+/* promo film: play only while visible; reduced motion = poster + controls */
+(() => {
+  const v = document.querySelector('.film-video');
+  if (!v) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; v.loop = false; return; }
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { if (v.preload !== 'auto') v.preload = 'auto'; v.play().catch(() => { v.controls = true; }); }
+    else v.pause();
+  }, { threshold: 0.35 }).observe(v);
+})();

@@ -666,3 +666,11 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 @media (max-width: 900px) { .svc-teams { grid-template-columns: 1fr; } }
 .hire-sec { display: block; }
 .hire-sec .link-card { max-width: 640px; margin: 0 auto; }
+
+/* ---------- promo film ---------- */
+.film-sec { padding-top: clamp(48px, 7vw, 88px); padding-bottom: 0; }
+.film { position: relative; border-radius: clamp(20px, 2.6vw, 32px); overflow: hidden; isolation: isolate; background: var(--bg-1); box-shadow: var(--hi), var(--sh-3); aspect-ratio: 16 / 9; }
+.film::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; z-index: 1; pointer-events: none;
+  background: linear-gradient(140deg, rgba(255,255,255,.28), rgba(255,255,255,.04) 40%, rgba(255,255,255,.12));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.film-video { display: block; width: 100%; height: 100%; object-fit: cover; }

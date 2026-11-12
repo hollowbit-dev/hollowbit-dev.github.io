@@ -360,6 +360,10 @@ ${ticker(L)}
   </div>
 </section>
 
+<section class="wrap sec film-sec">
+  <div class="film reveal"><video class="film-video" src="/assets/video/promo.mp4?v=1" poster="/assets/video/promo-poster.jpg" width="1920" height="1080" muted loop playsinline preload="none" aria-label="Hollowbit Studio: Fileshaper, Captionshaper, Diskshaper and Writeshaper"></video></div>
+</section>
+
 <section class="wrap sec">
   <div>
     <div class="sec-head">
