@@ -118,6 +118,17 @@ const navItems = (L) => [
   [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'],
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
+const APPS_LABEL = { en: 'Apps', es: 'Apps', fr: 'Apps', de: 'Apps', ru: 'Приложения', zh: '应用' };
+const FILM_LABEL = { en: 'Watch the film', es: 'Ver el vídeo', fr: 'Voir le film', de: 'Film ansehen', ru: 'Смотреть видео', zh: '观看短片' };
+const APP_KEYS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper'];
+const cap1 = (x) => x.charAt(0).toUpperCase() + x.slice(1);
+const topNav = (L, key) => {
+  const apps = navItems(L).slice(0, 4), rest = [[`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/donate/`, L.nav.donate, 'donate']];
+  const onApp = APP_KEYS.includes(key);
+  const link = ([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(l)}</span></a>`;
+  const menu = apps.map(([h, l, k]) => `<a class="apps-item" href="${h}"${k === key ? ' aria-current="page"' : ''}><img src="/assets/img/${k}-icon.png" width="36" height="36" alt=""><span><b>${l}</b><small>${esc(cap1(L.products[k].kind))}</small></span></a>`).join('');
+  return `<div class="apps" data-apps><button class="apps-btn" type="button" aria-expanded="false" aria-haspopup="true"${onApp ? ' aria-current="page"' : ''}>${onApp ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(APPS_LABEL[L.lang] || 'Apps')}</span><svg class="apps-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="apps-menu">${menu}</div></div>` + rest.map(link).join('');
+};
 
 // Share cards: every page gets its own 1200x630 image per language, rendered by scripts/og.mjs from site/og.json.
 const OG = [];
@@ -132,7 +143,7 @@ function page(L, { path, key = '', title, desc, body, cls = '', og, enOnly = fal
   const ogUrl = `${ORIGIN}/${ogFile}${ogV}`;
   const ogAlt = og ? [og.h, og.sub].filter(Boolean).join(' ') : title;
   const NAV = navItems(L);
-  const nav = NAV.map(([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(l)}</span></a>`).join('');
+  const nav = topNav(L, key);
   const sheet = [[`${pre(L)}/`, t.nav.home, 'home'], ...NAV].map(([h, l, k], i) => `<a href="${h}" style="--i:${i}"${k === key ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('');
   const url = (code) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${path}`;
   const alt = enOnly ? '' : path ? `${LANGS.map((l) => `<link rel="alternate" hreflang="${l.html}" href="${url(l.lang)}">`).join('\n')}\n<link rel="alternate" hreflang="x-default" href="${url('en')}">` : '';
@@ -332,6 +343,8 @@ const home = (L) => page(L, {
     <a class="btn btn-primary btn-lg" href="${pre(L)}/download/">${ic('down')}${esc(L.home.cta)}</a>
     <a class="btn btn-ghost btn-lg" href="#tools">${esc(L.home.see)}</a>
   </div>
+  <button class="film-open in-2" type="button" data-film-open><span class="film-play"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5v7l5.5-3.5Z" fill="currentColor"/></svg></span>${esc(FILM_LABEL[L.lang] || FILM_LABEL.en)}<span class="film-len">0:20</span></button>
+  <dialog class="film-dlg" data-film><button class="film-x" type="button" data-film-close aria-label="Close">×</button><video src="/assets/video/promo.mp4?v=1" poster="/assets/video/promo-poster.jpg" width="1920" height="1080" controls playsinline preload="none"></video></dialog>
   <div class="in-3">${stage(L)}</div>
 </section>
 
@@ -358,10 +371,6 @@ ${ticker(L)}
       <div class="pcard-shot"><img src="/assets/img/${p.slug}-app.webp" width="${SHOT[k][0]}" height="${SHOT[k][1]}" alt="" loading="lazy"></div>
     </article>`; }).join('\n    ')}
   </div>
-</section>
-
-<section class="wrap sec film-sec">
-  <div class="film reveal"><video class="film-video" src="/assets/video/promo.mp4?v=1" poster="/assets/video/promo-poster.jpg" width="1920" height="1080" muted loop playsinline preload="none" aria-label="Hollowbit Studio: Fileshaper, Captionshaper, Diskshaper and Writeshaper"></video></div>
 </section>
 
 <section class="wrap sec">

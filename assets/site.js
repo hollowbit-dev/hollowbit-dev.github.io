@@ -409,13 +409,24 @@
   }
 })();
 
-/* promo film: play only while visible; reduced motion = poster + controls */
+/* apps menu (click, hover on mouse, Esc, outside click) + film dialog */
 (() => {
-  const v = document.querySelector('.film-video');
-  if (!v) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; v.loop = false; return; }
-  new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) { if (v.preload !== 'auto') v.preload = 'auto'; v.play().catch(() => { v.controls = true; }); }
-    else v.pause();
-  }, { threshold: 0.35 }).observe(v);
+  document.querySelectorAll('[data-apps]').forEach((el) => {
+    const btn = el.querySelector('.apps-btn');
+    const set = (o) => { el.classList.toggle('open', o); btn.setAttribute('aria-expanded', o); };
+    btn.addEventListener('click', () => set(!el.classList.contains('open')));
+    if (matchMedia('(hover: hover)').matches) {
+      let tm; el.addEventListener('mouseenter', () => { clearTimeout(tm); set(true); }); el.addEventListener('mouseleave', () => { tm = setTimeout(() => set(false), 160); });
+    }
+    document.addEventListener('click', (e) => { if (!el.contains(e.target)) set(false); });
+    el.addEventListener('keydown', (e) => { if (e.key === 'Escape') { set(false); btn.focus(); } });
+    el.addEventListener('focusout', (e) => { if (!el.contains(e.relatedTarget)) set(false); });
+  });
+  const dlg = document.querySelector('[data-film]'), open = document.querySelector('[data-film-open]');
+  if (!dlg || !open) return;
+  const v = dlg.querySelector('video');
+  open.addEventListener('click', () => { dlg.showModal(); v.currentTime = 0; v.play().catch(() => {}); });
+  dlg.querySelector('[data-film-close]').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => v.pause());
 })();

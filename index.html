@@ -32,7 +32,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=3cdac388">
+<link rel="stylesheet" href="assets/style.css?v=17e5ffb2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB={"lang":"en","langs":["en","es","fr","de","ru","zh"],"copied":"Copied","osNote":{"mac":"You’re on a Mac, so the Mac download is highlighted.","win":"You’re on Windows, so the Windows download is highlighted."},"enOnly":false}</script>
 </head>
@@ -67,7 +67,7 @@
 <header class="nav" data-nav>
   <div class="nav-in">
     <a class="brand" href="./" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
-    <nav class="nav-links" aria-label="Main"><a href="fileshaper/"><span class="nav-label">Fileshaper</span></a><a href="captionshaper/"><span class="nav-label">Captionshaper</span></a><a href="https://hollowbit.dev/diskshaper/"><span class="nav-label">Diskshaper</span></a><a href="https://hollowbit.dev/writeshaper/"><span class="nav-label">Writeshaper</span></a><a href="download/"><span class="nav-label">Download</span></a><a href="about/"><span class="nav-label">About</span></a><a href="services/"><span class="nav-label">Services</span></a><a href="contact/"><span class="nav-label">Contact</span></a><a href="donate/"><span class="nav-label">Donate</span></a></nav>
+    <nav class="nav-links" aria-label="Main"><div class="apps" data-apps><button class="apps-btn" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-label">Apps</span><svg class="apps-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="apps-menu"><a class="apps-item" href="fileshaper/"><img src="assets/img/fileshaper-icon.png" width="36" height="36" alt=""><span><b>Fileshaper</b><small>Free offline file toolbox</small></span></a><a class="apps-item" href="captionshaper/"><img src="assets/img/captionshaper-icon.png" width="36" height="36" alt=""><span><b>Captionshaper</b><small>Free offline auto subtitles</small></span></a><a class="apps-item" href="https://hollowbit.dev/diskshaper/"><img src="assets/img/diskshaper-icon.png" width="36" height="36" alt=""><span><b>Diskshaper</b><small>Free storage cleaner</small></span></a><a class="apps-item" href="https://hollowbit.dev/writeshaper/"><img src="assets/img/writeshaper-icon.png" width="36" height="36" alt=""><span><b>Writeshaper</b><small>Private writing assistant</small></span></a></div></div><a href="about/"><span class="nav-label">About</span></a><a href="services/"><span class="nav-label">Services</span></a><a href="donate/"><span class="nav-label">Donate</span></a></nav>
     <div class="nav-end">
       <details class="lang"><summary aria-label="Language"><svg class="" aria-hidden="true"><use href="#globe"/></svg><span>EN</span></summary><div class="lang-menu"><a href="./" hreflang="en" lang="en" data-set-lang="en" aria-current="true">English</a><a href="es/" hreflang="es" lang="es" data-set-lang="es">Español</a><a href="fr/" hreflang="fr" lang="fr" data-set-lang="fr">Français</a><a href="de/" hreflang="de" lang="de" data-set-lang="de">Deutsch</a><a href="ru/" hreflang="ru" lang="ru" data-set-lang="ru">Русский</a><a href="zh/" hreflang="zh-Hans" lang="zh-Hans" data-set-lang="zh">简体中文</a></div></details>
       <a class="btn btn-primary btn-sm nav-dl" href="download/"><svg class="" aria-hidden="true"><use href="#down"/></svg>Download</a>
@@ -86,6 +86,8 @@
     <a class="btn btn-primary btn-lg" href="download/"><svg class="" aria-hidden="true"><use href="#down"/></svg>Download the apps</a>
     <a class="btn btn-ghost btn-lg" href="#tools">See what they do</a>
   </div>
+  <button class="film-open in-2" type="button" data-film-open><span class="film-play"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5v7l5.5-3.5Z" fill="currentColor"/></svg></span>Watch the film<span class="film-len">0:20</span></button>
+  <dialog class="film-dlg" data-film><button class="film-x" type="button" data-film-close aria-label="Close">×</button><video src="assets/video/promo.mp4?v=1" poster="/assets/video/promo-poster.jpg" width="1920" height="1080" controls playsinline preload="none"></video></dialog>
   <div class="in-3"><div class="stage" data-stage><div class="stage-tabs" role="tablist" aria-label="Product demos"><button class="tab" role="tab" aria-selected="true" aria-controls="demo-fs" id="tab-fs" style="--c: var(--fs)"><img src="assets/img/fileshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Fileshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" aria-controls="demo-cs" id="tab-cs" style="--c: var(--cs)"><img src="assets/img/captionshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Captionshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" aria-controls="demo-ds" id="tab-ds" style="--c: var(--ds)"><img src="assets/img/diskshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Diskshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" aria-controls="demo-ws" id="tab-ws" style="--c: var(--ws)"><img src="assets/img/writeshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Writeshaper</span><span class="tab-bar"><i></i></span></button></div><div class="stage-frame"><div class="stage-scale"><div class="demo demo-fs" id="demo-fs" role="tabpanel" aria-labelledby="tab-fs">
   <p class="sr-only">Animated demo: Fileshaper compresses a 214 MB video to 9.6 MB, on the computer.</p>
   <div class="win" aria-hidden="true">
@@ -226,10 +228,6 @@
       <div class="pcard-shot"><img src="assets/img/writeshaper-app.webp" width="1600" height="1085" alt="" loading="lazy"></div>
     </article>
   </div>
-</section>
-
-<section class="wrap sec film-sec">
-  <div class="film reveal"><video class="film-video" src="assets/video/promo.mp4?v=1" poster="/assets/video/promo-poster.jpg" width="1920" height="1080" muted loop playsinline preload="none" aria-label="Hollowbit Studio: Fileshaper, Captionshaper, Diskshaper and Writeshaper"></video></div>
 </section>
 
 <section class="wrap sec">
