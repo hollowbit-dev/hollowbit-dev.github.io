@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kettlewick Coffee · Sample website by Hollowbit Studio</title>
+<meta name="description" content="A sample website design for a fictional neighbourhood coffee shop, made by Hollowbit Studio.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2b1d14">
+<style>
+@font-face { font-family: Fraunces; src: url(../fonts/fraunces-v38-latin-regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Fraunces; src: url(../fonts/fraunces-v38-latin-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+:root { --cream: #f6efe4; --paper: #fffaf2; --bean: #2b1d14; --bean-2: #5a4636; --rust: #a8461f; --rust-2: #8c3815; --line: rgba(43,29,20,.14); --serif: Fraunces, Georgia, serif; --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cream); color: var(--bean); font: 17px/1.6 var(--sans); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--rust); outline-offset: 3px; border-radius: 4px; }
+.skip { position: absolute; left: 12px; top: -60px; background: var(--bean); color: #fff; padding: 10px 14px; border-radius: 8px; z-index: 20; }
+.skip:focus { top: 52px; }
+.sample { background: var(--bean); color: #f6efe4; font-size: 14px; text-align: center; padding: 9px 16px; }
+.sample a { color: #ffd2b8; }
+.wrap { width: min(1120px, 100% - 40px); margin: 0 auto; }
+header.top { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; flex-wrap: wrap; }
+.logo { font: 600 26px/1 var(--serif); letter-spacing: -.01em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.logo svg { width: 30px; height: 30px; }
+nav ul { list-style: none; display: flex; gap: 6px; margin: 0; padding: 0; flex-wrap: wrap; }
+nav a { text-decoration: none; padding: 8px 12px; border-radius: 99px; font-weight: 550; }
+nav a:hover { background: rgba(43,29,20,.07); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 99px; font-weight: 650; text-decoration: none; transition: background .2s, transform .2s; }
+.btn-rust { background: var(--rust); color: #fff; }
+.btn-rust:hover { background: var(--rust-2); }
+.btn-line { border: 2px solid var(--bean); }
+.btn-line:hover { background: var(--bean); color: var(--cream); }
+.hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; padding: 40px 0 90px; }
+.eyebrow { font-weight: 650; color: var(--rust); letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.015em; line-height: 1.05; margin: 0; }
+h1 { font-size: clamp(44px, 6.4vw, 82px); margin: 14px 0 22px; }
+h1 em { font-style: italic; font-weight: 400; color: var(--rust); }
+.lede { font-size: 19px; color: var(--bean-2); max-width: 30em; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.hero-img { position: relative; }
+.hero-img img { border-radius: 220px 220px 24px 24px; aspect-ratio: 4/5; object-fit: cover; width: 100%; box-shadow: 0 30px 60px -30px rgba(43,29,20,.6); }
+.stamp { position: absolute; left: -26px; bottom: 34px; background: var(--paper); border-radius: 18px; padding: 14px 18px; box-shadow: 0 14px 30px -12px rgba(43,29,20,.35); font-size: 14px; }
+.stamp b { display: block; font: 600 20px/1.2 var(--serif); }
+section { padding: 90px 0; }
+.band { background: var(--paper); border-block: 1px solid var(--line); }
+h2 { font-size: clamp(34px, 4.4vw, 54px); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+.sec-head p { max-width: 28em; color: var(--bean-2); margin: 0; }
+.menu { display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; }
+.menu h3 { font-size: 26px; margin: 0 0 6px; padding-bottom: 10px; border-bottom: 2px solid var(--bean); }
+.menu ul { list-style: none; margin: 0 0 36px; padding: 0; }
+.menu li { display: grid; grid-template-columns: 1fr auto; gap: 4px 18px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+.menu li span { grid-column: 1; color: var(--bean-2); font-size: 15px; }
+.menu li b { font-weight: 650; }
+.menu li i { grid-row: 1; grid-column: 2; font-style: normal; font-weight: 650; font-variant-numeric: tabular-nums; }
+.tag { display: inline-block; margin-left: 8px; font-size: 12px; font-weight: 700; color: var(--rust); border: 1.5px solid currentColor; border-radius: 99px; padding: 0 8px; vertical-align: 2px; }
+.gallery { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 16px; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+.gallery img:first-child { grid-row: span 2; }
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.story p { color: var(--bean-2); font-size: 18px; }
+.quote { font: italic 400 26px/1.4 var(--serif); margin: 26px 0 8px; color: var(--bean); }
+.visit { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: 28px; }
+.card h3 { font-size: 24px; margin-bottom: 12px; }
+.hours { width: 100%; border-collapse: collapse; }
+.hours th, .hours td { text-align: left; padding: 6px 0; font-weight: 400; }
+.hours td { text-align: right; font-variant-numeric: tabular-nums; }
+.card address { font-style: normal; }
+footer { background: var(--bean); color: #e9dccb; padding: 50px 0 30px; font-size: 15px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+footer .logo { color: #fff; }
+footer a { color: #ffd2b8; }
+@media (max-width: 860px) {
+  .hero, .story, .menu { grid-template-columns: 1fr; gap: 36px; }
+  .hero-img { order: -1; }
+  .hero-img img { aspect-ratio: 4/3; border-radius: 160px 160px 22px 22px; }
+  .stamp { left: 12px; bottom: 12px; }
+  .visit { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 160px 160px; }
+  .gallery img:first-child { grid-column: span 2; grid-row: auto; }
+  section { padding: 64px 0; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<p class="sample">Sample website design by <a href="/services/">Hollowbit Studio</a>. Kettlewick Coffee is a fictional business.</p>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#main" aria-label="Kettlewick Coffee, home"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#a8461f" d="M6 11h17v8a8 8 0 0 1-8 8h-1a8 8 0 0 1-8-8v-8Z"/><path fill="none" stroke="#2b1d14" stroke-width="2.4" d="M23 13h2.5a3.5 3.5 0 0 1 0 7H23"/><path fill="none" stroke="#2b1d14" stroke-width="2" stroke-linecap="round" d="M11 4c-1.5 2 1.5 3 0 5m5-5c-1.5 2 1.5 3 0 5"/></svg>Kettlewick</a>
+    <nav aria-label="Main"><ul><li><a href="#menu">Menu</a></li><li><a href="#story">Our story</a></li><li><a href="#visit">Visit</a></li><li><a class="btn btn-rust" href="#order">Order ahead</a></li></ul></nav>
+  </header>
+</div>
+<main id="main">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Neighbourhood coffee · Portland, Oregon</p>
+      <h1>Slow coffee, <em>baked</em> at dawn.</h1>
+      <p class="lede">Single-origin espresso, pour-overs brewed to order and pastries from our own oven every morning. Pull up a stool, or grab one for the road.</p>
+      <div class="cta"><a class="btn btn-rust" id="order" href="#visit">Order ahead for pickup</a><a class="btn btn-line" href="#menu">See today’s menu</a></div>
+    </div>
+    <div class="hero-img">
+      <img src="img/hero.jpg" width="1024" height="683" alt="A barista pours hot water from a copper kettle into a pour-over cone.">
+      <p class="stamp"><b>Open today</b>7am – 3pm</p>
+    </div>
+  </div>
+
+  <section class="band" id="menu" aria-labelledby="menu-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="menu-h">Today’s menu</h2><p>Beans roasted in small batches in Portland. Oat, almond and whole milk at no extra cost.</p></div>
+      <div class="menu">
+        <div>
+          <h3>Coffee</h3>
+          <ul>
+            <li><b>Espresso</b><i>$3.25</i><span>Our seasonal house blend, rich and chocolatey.</span></li>
+            <li><b>Cortado</b><i>$4.25</i><span>Equal parts espresso and steamed milk.</span></li>
+            <li><b>Pour-over <span class="tag">Brewed to order</span></b><i>$5.50</i><span>Ask which single origin is on the bar today.</span></li>
+            <li><b>Maple oat latte</b><i>$5.75</i><span>Oregon maple, oat milk, double shot.</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>From the oven</h3>
+          <ul>
+            <li><b>Butter croissant</b><i>$4.00</i><span>Laminated over three days.</span></li>
+            <li><b>Pain au chocolat</b><i>$4.50</i><span>Dark chocolate from a Portland maker.</span></li>
+            <li><b>Blueberry custard danish <span class="tag">Saturdays</span></b><i>$5.25</i><span>Until they’re gone, usually by ten.</span></li>
+            <li><b>Rye cardamom bun</b><i>$4.75</i><span>Our namesake: dark rye and fresh cardamom.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Photos of the café">
+    <div class="wrap gallery">
+      <img src="img/window.jpg" width="1024" height="683" alt="Window seats with wooden stools in the morning light." loading="lazy">
+      <img src="img/pastries.jpg" width="1024" height="683" alt="Croissants and pains au chocolat on the bakery counter." loading="lazy">
+      <img src="img/cortado.jpg" width="960" height="640" alt="A cortado in a glass on a white saucer." loading="lazy">
+      <img src="img/pourover.jpg" width="960" height="640" alt="A barista pouring water over coffee grounds." loading="lazy" style="grid-column: span 2">
+    </div>
+  </section>
+
+  <section class="band" id="story" aria-labelledby="story-h">
+    <div class="wrap story">
+      <div>
+        <p class="eyebrow">Our story</p>
+        <h2 id="story-h">A corner café that knows your order.</h2>
+      </div>
+      <div>
+        <p>Kettlewick started as a weekend coffee cart at the farmers market. Today it’s a small café with eight stools, one very old espresso machine and a baker who starts at 4am.</p>
+        <p class="quote">“The best cortado on the east side, and they remember your name.”</p>
+        <p>— A regular since day one</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" aria-labelledby="visit-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="visit-h">Come say hello</h2><p>Order ahead for pickup and skip the line. Payments are handled securely by Square.</p></div>
+      <div class="visit">
+        <div class="card"><h3>Hours</h3>
+          <table class="hours"><caption class="sr" style="position:absolute;left:-9999px">Opening hours</caption>
+            <tr><th scope="row">Mon – Fri</th><td>7am – 3pm</td></tr>
+            <tr><th scope="row">Saturday</th><td>8am – 4pm</td></tr>
+            <tr><th scope="row">Sunday</th><td>8am – 2pm</td></tr>
+          </table></div>
+        <div class="card"><h3>Find us</h3><address>418 SE Larkin Street<br>Portland, OR 97214</address><p><a href="#visit">Get directions</a></p></div>
+        <div class="card"><h3>Contact</h3><p><a href="tel:+15035550147">(503) 555-0147</a><br><a href="mailto:hello@kettlewick.example">hello@kettlewick.example</a></p><p><a class="btn btn-rust" href="#visit">Order ahead</a></p></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div><a class="logo" href="#main">Kettlewick</a><p>Slow coffee, baked at dawn.</p></div>
+    <p>© 2026 Kettlewick Coffee (fictional).<br>Website design by <a href="/services/">Hollowbit Studio</a>.</p>
+  </div>
+</footer>
+</body>
+</html>

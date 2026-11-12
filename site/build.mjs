@@ -197,7 +197,7 @@ ${body}
         ${socials()}
       </div>
       <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
-      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
+      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Website design</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
     <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>${esc(t.footer.note)}</span></div>
@@ -708,6 +708,64 @@ const workPage = (w) => {
   });
 };
 
+/* ---------- services (English only; footer link only) ---------- */
+const SAMPLES = [
+  ['kettlewick', 'Kettlewick Coffee', 'Neighbourhood café · Portland, US', 'Menu with prices, opening hours, order-ahead button, photo gallery.', 'fs'],
+  ['harbourline', 'Harbourline Dental', 'Family dental practice · Bristol, UK', 'Clear treatment prices, online booking, emergency line, NHS and private info.', 'ds'],
+  ['cinder-canyon', 'Cinder Canyon Tours', 'Guided hiking tours · Sedona, US', 'Tour cards with prices, live booking link, FAQ, strong hero photography.', 'ws'],
+];
+const services = () => page(LANGS[0], {
+  path: '/services/', key: 'services', title: 'Website design for small businesses · Hollowbit Studio', enOnly: true,
+  desc: 'Hollowbit Studio designs and builds fast, accessible websites for small businesses in the US and UK. Fixed prices, launched in about two weeks.',
+  og: { id: 'services', kind: 'plain', h: 'Websites for small businesses.', sub: 'Fast, accessible sites for cafés, clinics, tour companies and more. Fixed prices.' },
+  body: `
+<section class="wrap-narrow doc svc-hero">
+  <p class="svc-note in-0">Hollowbit’s apps are free and always will be. Separately, the studio builds a small number of websites for businesses.</p>
+  <h1 class="h1" data-words>Websites for small businesses.</h1>
+  <p class="lead in-1">Fast, good-looking websites for cafés, clinics, tour companies and other local businesses. Built to accessibility standards, live in about two weeks, at a fixed price.</p>
+  <div class="hero-cta in-2"><a class="btn btn-primary btn-lg" href="/contact/">Ask for a free homepage mockup ${ic('arrow')}</a><a class="btn btn-ghost btn-lg" href="#samples">See sample sites</a></div>
+</section>
+
+<section class="wrap sec" id="samples">
+  <div class="sec-head"><h2 class="h2" data-words="scroll">Sample sites</h2><p class="reveal">Three designs for made-up businesses, so you can see the quality before you talk to us.</p></div>
+  <div class="svc-samples">
+    ${SAMPLES.map(([slug, name, kind, what, v], i) => `<a class="svc-sample reveal" style="--d:${i * 90}ms; --c: var(--${v})" href="/services/samples/${slug}/">
+      <span class="svc-shot"><img src="/services/samples/${slug}/img/${slug === 'harbourline' ? 'room' : 'hero'}.jpg" alt="" loading="lazy"></span>
+      <span class="svc-txt"><b>${esc(name)}</b><small>${esc(kind)}</small><span>${esc(what)}</span><em>View sample ${ic('out')}</em></span>
+    </a>`).join('')}
+  </div>
+</section>
+
+<section class="wrap sec">
+  <div class="sec-head"><h2 class="h2" data-words="scroll">Simple, fixed prices</h2><p class="reveal">Half up front, half on launch. No surprise invoices.</p></div>
+  <div class="svc-prices">
+    <div class="svc-price reveal"><h3>Starter</h3><p class="svc-amt">$450</p><p>A one-page site: who you are, what you offer, hours, location and contact.</p><ul><li>Mobile-first design</li><li>Contact links and map</li><li>Launch on your domain</li></ul></div>
+    <div class="svc-price svc-main reveal" style="--d:90ms"><h3>Business</h3><p class="svc-amt">$850</p><p>Up to five pages, with a menu, price list or services, photos and reviews.</p><ul><li>Everything in Starter</li><li>Booking or ordering button linked to your existing provider</li><li>Basic Google setup</li></ul></div>
+    <div class="svc-price reveal" style="--d:180ms"><h3>Care plan</h3><p class="svc-amt">$25<small> / month</small></p><p>Optional. Hosting set-up, small text and photo updates, and checks that everything still works.</p><ul><li>Changes within two working days</li><li>Cancel any time</li></ul></div>
+  </div>
+  <p class="svc-fine reveal">Prices in US dollars; UK clients are quoted in pounds. Payments and bookings use services you already trust, like Square, Stripe, Calendly or your booking system, linked from the site. We don’t handle your customers’ payments.</p>
+</section>
+
+<section class="wrap-narrow sec doc" style="--c:#f4f3f8">
+  <h2>How it works</h2>
+  <ol class="wk-decisions">
+    <li><b>Free mockup.</b> We design your new homepage first, before you pay anything.</li>
+    <li><b>Agree and start.</b> A short written agreement, then 50% to begin.</li>
+    <li><b>Build and review.</b> About two weeks, with two rounds of changes included.</li>
+    <li><b>Launch.</b> Your site goes live on your domain and you pay the second half.</li>
+  </ol>
+  <h2>What every site includes</h2>
+  <ul class="wk-list">
+    <li>Built to the WCAG 2.2 AA accessibility standard: readable contrast, keyboard navigation, image descriptions.</li>
+    <li>Fast on phones, with no heavy page builder.</li>
+    <li>No tracking or cookie banner unless you ask for analytics.</li>
+    <li>You own the site and the domain.</li>
+  </ul>
+  <p class="svc-fine">You stay responsible for your content and your legal pages, such as a privacy policy. We build to accessibility standards but don’t give legal advice.</p>
+  <div class="hero-cta" style="margin-top:36px"><a class="btn btn-primary btn-lg" href="/contact/">Get in touch ${ic('arrow')}</a></div>
+</section>`,
+});
+
 /* ---------- write ---------- */
 const out = {};
 for (const L of LANGS) {
@@ -725,6 +783,7 @@ for (const L of LANGS) {
 }
 out['404.html'] = notFound(LANGS[0]);
 out['work/index.html'] = workIndex();
+out['services/index.html'] = services();
 for (const w of WORK) out[`work/${w.slug}/index.html`] = workPage(w);
 // Root-relative links become relative, so pages also work opened straight from the folder.
 // 404.html keeps absolute paths: GitHub Pages serves it at any depth.
@@ -741,7 +800,7 @@ for (const [f, raw] of Object.entries(out)) {
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
 const paths = ['/', '/fileshaper/', '/captionshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
-const workPaths = ['/work/', ...WORK.map((w) => `/work/${w.slug}/`)];
+const workPaths = ['/work/', '/services/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

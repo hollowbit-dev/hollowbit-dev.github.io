@@ -626,6 +626,31 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
   .wk-meta div:nth-last-child(2) { border-bottom: 1px solid var(--line); }
 }
 
+/* ---------- services ---------- */
+.svc-note { display: inline-block; margin-bottom: 26px; padding: 8px 14px; border-radius: 12px; background: var(--glass); box-shadow: var(--hi); color: var(--text-2); font-size: 14.5px; }
+.svc-samples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.svc-sample { display: flex; flex-direction: column; border-radius: 26px; overflow: hidden; background: var(--glass); backdrop-filter: blur(28px) saturate(1.6); -webkit-backdrop-filter: blur(28px) saturate(1.6); box-shadow: var(--hi), var(--sh-2); transition: transform .45s var(--spring), box-shadow .3s; }
+.svc-sample:hover { transform: translateY(-3px); box-shadow: var(--hi), inset 0 0 0 1px color-mix(in srgb, var(--c) 35%, transparent), var(--sh-3); }
+.svc-shot { aspect-ratio: 16/10; overflow: hidden; }
+.svc-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.svc-sample:hover .svc-shot img { transform: scale(1.04); }
+.svc-txt { display: grid; gap: 6px; padding: 20px 22px 22px; }
+.svc-txt b { font-size: 19px; }
+.svc-txt small { color: var(--c); font-weight: 600; font-size: 13.5px; }
+.svc-txt > span { color: var(--text-2); font-size: 15px; line-height: 1.5; }
+.svc-txt em { font-style: normal; font-weight: 600; font-size: 14.5px; display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; }
+.svc-txt em svg { width: 14px; height: 14px; }
+.svc-prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.svc-price { padding: 28px; border-radius: 26px; background: var(--glass); backdrop-filter: blur(28px) saturate(1.6); -webkit-backdrop-filter: blur(28px) saturate(1.6); box-shadow: var(--hi), var(--sh-2); }
+.svc-main { box-shadow: var(--hi), inset 0 0 0 1.5px rgba(255,255,255,.22), var(--sh-3); }
+.svc-price h3 { font-size: 18px; color: var(--text-2); font-weight: 600; }
+.svc-amt { font-size: 46px; font-weight: 700; letter-spacing: -.04em; margin: 6px 0 10px !important; }
+.svc-amt small { font-size: 17px; color: var(--text-3); font-weight: 500; letter-spacing: 0; }
+.svc-price > p { color: var(--text-2); }
+.svc-price ul { margin: 16px 0 0; padding-left: 18px; color: #c3c1cf; display: grid; gap: 6px; font-size: 15px; }
+.svc-fine { color: var(--text-3) !important; font-size: 14px !important; margin-top: 20px !important; max-width: 70ch; }
+@media (max-width: 900px) { .svc-samples, .svc-prices { grid-template-columns: 1fr; } }
+
 /* ---------- demo stage ---------- */
 .stage { position: relative; margin-top: clamp(48px, 8vh, 80px); --glow: var(--fs); }
 /* coloured light behind the window, in the colour of the demo that's playing */

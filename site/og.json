@@ -470,6 +470,14 @@
   "sub": "How each app was planned, built and tested. The problem it solves, the decisions that shaped it, and the numbers behind it."
  },
  {
+  "file": "assets/img/og/en/services.png",
+  "lang": "en",
+  "id": "services",
+  "kind": "plain",
+  "h": "Websites for small businesses.",
+  "sub": "Fast, accessible sites for cafés, clinics, tour companies and more. Fixed prices."
+ },
+ {
   "file": "assets/img/og/en/work-fileshaper.png",
   "lang": "en",
   "id": "work-fileshaper",
