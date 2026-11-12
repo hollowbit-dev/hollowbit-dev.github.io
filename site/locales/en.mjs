@@ -88,6 +88,7 @@ export default {
     notes: 'Release notes', older: 'Older versions', note: { mac: 'You’re on a Mac, so the Mac download is highlighted.', win: 'You’re on Windows, so the Windows download is highlighted.' },
   },
   about: {
+    work: 'Case studies', workP: 'How each app was planned, built and tested (in English).',
     title: 'About · Hollowbit Studio', desc: 'Hollowbit Studio is Elvis Zygmanta’s studio for small, free tools that run on your own computer. No ads, no accounts, no tracking, open source.',
     h1: 'Hi, I’m Elvis.',
     lead: 'I’m Elvis Zygmanta, based in Thailand. Hollowbit is my studio for small, free tools that treat the people using them with respect.',
@@ -137,5 +138,5 @@ export default {
     qH: 'Questions', qP: 'Anything unclear? {link}.', qLink: 'Get in touch', updated: 'Last updated 11 November 2026.',
   },
   nf: { title: 'Page not found · Hollowbit Studio', desc: 'This page does not exist.', h1: 'This page doesn’t exist.', home: 'Back home', downloads: 'Downloads' },
-  footer: { about: 'Hollowbit Studio makes free tools that never upload your files. Made by Elvis Zygmanta in Thailand.', contact: 'Contact', products: 'Products', studio: 'Studio', elsewhere: 'Elsewhere', privacy: 'Privacy', note: 'No cookies, no analytics, nothing loaded from anyone else.' },
+  footer: { work: 'Case studies', about: 'Hollowbit Studio makes free tools that never upload your files. Made by Elvis Zygmanta in Thailand.', contact: 'Contact', products: 'Products', studio: 'Studio', elsewhere: 'Elsewhere', privacy: 'Privacy', note: 'No cookies, no analytics, nothing loaded from anyone else.' },
 };

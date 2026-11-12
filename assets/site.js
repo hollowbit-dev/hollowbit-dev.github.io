@@ -27,7 +27,7 @@
   /* language: first visit opens the visitor's own language once; a manual choice always wins */
   const HB = window.HB || { lang: 'en', langs: ['en'] };
   const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch { /* private mode */ } } };
-  if (!store.get('hb-lang') && HB.lang === 'en') {
+  if (!store.get('hb-lang') && HB.lang === 'en' && !HB.enOnly) {
     const pref = (navigator.languages || [navigator.language || 'en']).map((l) => l.toLowerCase().slice(0, 2)).find((l) => HB.langs.includes(l));
     store.set('hb-lang', pref || 'en');
     if (pref && pref !== 'en') { location.replace(`/${pref}${location.pathname}${location.hash}`); return; }

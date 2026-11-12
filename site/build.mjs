@@ -5,6 +5,7 @@ import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { WORK, WORK_INTRO as WI } from './work.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://hollowbit.dev';
@@ -121,7 +122,7 @@ const navItems = (L) => [
 // Share cards: every page gets its own 1200x630 image per language, rendered by scripts/og.mjs from site/og.json.
 const OG = [];
 const OG_COLOR = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', studio: '#a07cff' };
-function page(L, { path, key = '', title, desc, body, cls = '', og }) {
+function page(L, { path, key = '', title, desc, body, cls = '', og, enOnly = false }) {
   const t = L;
   const ogFile = og ? `assets/img/og/${L.lang}/${og.id}.png` : 'assets/img/og/en/home.png';
   if (og) OG.push({ file: ogFile, lang: L.lang, ...og });
@@ -134,8 +135,8 @@ function page(L, { path, key = '', title, desc, body, cls = '', og }) {
   const nav = NAV.map(([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(l)}</span></a>`).join('');
   const sheet = [[`${pre(L)}/`, t.nav.home, 'home'], ...NAV].map(([h, l, k], i) => `<a href="${h}" style="--i:${i}"${k === key ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('');
   const url = (code) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${path}`;
-  const alt = path ? `${LANGS.map((l) => `<link rel="alternate" hreflang="${l.html}" href="${url(l.lang)}">`).join('\n')}\n<link rel="alternate" hreflang="x-default" href="${url('en')}">` : '';
-  const langMenu = `<details class="lang"><summary aria-label="${esc(t.nav.language)}">${ic('globe')}<span>${L.lang.toUpperCase()}</span></summary><div class="lang-menu">${LANGS.map((l) => `<a href="${l.lang === 'en' ? '' : `/${l.lang}`}${path ?? '/'}" hreflang="${l.html}" lang="${l.html}" data-set-lang="${l.lang}"${l.lang === L.lang ? ' aria-current="true"' : ''}>${l.name}</a>`).join('')}</div></details>`;
+  const alt = enOnly ? '' : path ? `${LANGS.map((l) => `<link rel="alternate" hreflang="${l.html}" href="${url(l.lang)}">`).join('\n')}\n<link rel="alternate" hreflang="x-default" href="${url('en')}">` : '';
+  const langMenu = `<details class="lang"><summary aria-label="${esc(t.nav.language)}">${ic('globe')}<span>${L.lang.toUpperCase()}</span></summary><div class="lang-menu">${LANGS.map((l) => `<a href="${l.lang === 'en' ? '' : `/${l.lang}`}${enOnly && l.lang !== 'en' ? '/' : path ?? '/'}" hreflang="${l.html}" lang="${l.html}" data-set-lang="${l.lang}"${l.lang === L.lang ? ' aria-current="true"' : ''}>${l.name}</a>`).join('')}</div></details>`;
   return `<!doctype html>
 <html lang="${L.html}">
 <head>
@@ -165,7 +166,7 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css?v=${CSSV}">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/"]}</script>
-<script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note })}</script>
+<script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note, enOnly })}</script>
 </head>
 <body class="${cls}">
 <div class="wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -196,7 +197,7 @@ ${body}
         ${socials()}
       </div>
       <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
-      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
+      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
     <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>${esc(t.footer.note)}</span></div>
@@ -510,6 +511,7 @@ const about = (L) => {
 </section>
 
 <section class="wrap-narrow sec links-sec">
+  <a class="link-card reveal" href="/work/">${ic('spark', 'lc-icon')}<span><b>${esc(a.work || 'Case studies')}</b><small>${esc(a.workP || 'How each app was planned, built and tested.')}</small></span>${ic('arrow', 'go')}</a>
   <a class="link-card reveal" href="${pre(L)}/contact/">${ic('mail', 'lc-icon')}<span><b>${esc(a.touch)}</b><small>${esc(a.touchP)}</small></span>${ic('arrow', 'go')}</a>
   <a class="link-card reveal" style="--d:90ms" href="${pre(L)}/donate/">${ic('heart', 'lc-icon')}<span><b>${esc(a.donate)}</b><small>${esc(a.donateP)}</small></span>${ic('arrow', 'go')}</a>
 </section>`,
@@ -643,6 +645,69 @@ const notFound = (L) => page(L, {
 </section>`,
 });
 
+/* ---------- case studies (English only) ---------- */
+const workIndex = () => page(LANGS[0], {
+  path: '/work/', key: 'work', title: WI.title, desc: WI.desc, enOnly: true,
+  og: { id: 'work', kind: 'apps', h: WI.h1, sub: WI.lead },
+  body: `
+<section class="wrap-narrow doc work-hero">
+  <h1 class="h1" data-words>${esc(WI.h1)}</h1>
+  <p class="lead in-1">${esc(WI.lead)}</p>
+</section>
+<section class="wrap work-list">
+  ${WORK.map((w, i) => `<a class="work-card reveal" style="--d:${i * 80}ms; --c: var(--${w.v})" href="/work/${w.slug}/">
+    <img src="/assets/img/${w.slug}-icon.png" width="64" height="64" alt="">
+    <span class="work-card-txt"><b>${esc(w.name)}</b><span>${esc(w.tagline)}</span></span>
+    <span class="work-card-stat"><strong>${esc(w.stats[0][0])}</strong><small>${esc(w.stats[0][1])}</small></span>
+    <span class="work-go">${esc(WI.read)} ${ic('arrow')}</span>
+  </a>`).join('\n  ')}
+</section>`,
+});
+
+const workPage = (w) => {
+  const S = WI.sections;
+  const p = P[w.slug];
+  return page(LANGS[0], {
+    path: `/work/${w.slug}/`, key: 'work', cls: `p-${w.v}`, enOnly: true,
+    title: `${w.name} case study · Hollowbit Studio`, desc: `${w.tagline} The problem, the key decisions and how it was tested.`,
+    og: { id: `work-${w.slug}`, kind: 'product', v: w.v, slug: w.slug, name: w.name, h: w.name, sub: w.tagline, kicker: 'Case study', plats: w.platform, domain: 'hollowbit.dev/work' },
+    body: `
+<article class="wrap-narrow doc wk" style="--c: var(--${w.v})">
+  <nav class="wk-crumbs in-0"><a href="/work/">${esc(WI.back)}</a></nav>
+  <div class="wk-head">
+    <img class="wk-icon in-0" src="/assets/img/${w.slug}-icon.png" width="76" height="76" alt="">
+    <h1 class="h1" data-words>${esc(w.name)}</h1>
+    <p class="lead in-1">${esc(w.tagline)}</p>
+    <dl class="wk-meta in-2">
+      <div><dt>${esc(WI.meta.platform)}</dt><dd>${esc(w.platform)}</dd></div>
+      <div><dt>${esc(WI.meta.stack)}</dt><dd>${esc(w.stack)}</dd></div>
+      <div><dt>${esc(WI.meta.released)}</dt><dd>${esc(w.released)}${p?.version ? ` · now v${esc(p.version)}` : ''}</dd></div>
+      <div><dt>${esc(WI.meta.license)}</dt><dd>${esc(w.license)}</dd></div>
+    </dl>
+  </div>
+  <div class="wk-stats">
+    ${w.stats.map(([n, l], i) => `<div class="wk-stat reveal" style="--d:${i * 80}ms"><strong>${esc(n)}</strong><span>${esc(l)}</span></div>`).join('')}
+  </div>
+  <h2>${esc(S.problem)}</h2>
+  ${w.problem.map((t) => `<p>${esc(t)}</p>`).join('')}
+  <h2>${esc(S.what)}</h2>
+  <p>${esc(w.what)}</p>
+  <figure class="wk-shot reveal"><img src="/assets/img/${w.slug}-app.webp" alt="${esc(w.name)} app window" loading="lazy"></figure>
+  <h2>${esc(S.decisions)}</h2>
+  <ol class="wk-decisions">${w.decisions.map(([h, t]) => `<li><b>${esc(h)}</b> ${esc(t)}</li>`).join('')}</ol>
+  <h2>${esc(S.tested)}</h2>
+  <ul class="wk-list">${w.tested.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
+  <h2>${esc(S.next)}</h2>
+  <ul class="wk-list">${w.next.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
+  <div class="wk-links">
+    <a class="btn btn-primary" href="${w.site}">${esc(WI.links.site)} ${ic('out')}</a>
+    <a class="btn btn-ghost" href="https://github.com/${w.repo}">${esc(WI.links.source)} ${ic('out')}</a>
+    <a class="btn btn-line" href="/work/">${esc(WI.back)}</a>
+  </div>
+</article>`,
+  });
+};
+
 /* ---------- write ---------- */
 const out = {};
 for (const L of LANGS) {
@@ -659,6 +724,8 @@ for (const L of LANGS) {
   });
 }
 out['404.html'] = notFound(LANGS[0]);
+out['work/index.html'] = workIndex();
+for (const w of WORK) out[`work/${w.slug}/index.html`] = workPage(w);
 // Root-relative links become relative, so pages also work opened straight from the folder.
 // 404.html keeps absolute paths: GitHub Pages serves it at any depth.
 const relink = (html, f) => {
@@ -674,10 +741,12 @@ for (const [f, raw] of Object.entries(out)) {
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
 const paths = ['/', '/fileshaper/', '/captionshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
+const workPaths = ['/work/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${paths.flatMap((p) => LANGS.map((L) => `  <url><loc>${u(L.lang, p)}</loc><lastmod>2026-11-11</lastmod>${LANGS.map((a) => `<xhtml:link rel="alternate" hreflang="${a.html}" href="${u(a.lang, p)}"/>`).join('')}</url>`)).join('\n')}
+${workPaths.map((p) => `  <url><loc>${u('en', p)}</loc><lastmod>2026-11-12</lastmod></url>`).join('\n')}
 </urlset>
 `);
 console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version);

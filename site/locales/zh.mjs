@@ -88,6 +88,7 @@ export default {
     notes: '更新说明', older: '旧版本', note: { mac: '你在用 Mac，所以 Mac 下载已高亮显示。', win: '你在用 Windows，所以 Windows 下载已高亮显示。' },
   },
   about: {
+    work: '案例研究', workP: '每个应用如何规划、构建和测试（英文）。',
     title: '关于 · Hollowbit Studio', desc: 'Hollowbit Studio 是 Elvis Zygmanta 的工作室，制作在你自己电脑上运行的小型免费工具。没有广告、账号和追踪，开源。',
     h1: '你好，我是 Elvis。',
     lead: '我是 Elvis Zygmanta，住在泰国。Hollowbit 是我的工作室，做一些尊重使用者的小型免费工具。',
@@ -137,5 +138,5 @@ export default {
     qH: '问题', qP: '有不清楚的地方？{link}。', qLink: '联系我', updated: '最后更新于 2026 年 11 月 11 日。',
   },
   nf: { title: '页面不存在 · Hollowbit Studio', desc: '此页面不存在。', h1: '此页面不存在。', home: '返回首页', downloads: '下载' },
-  footer: { about: 'Hollowbit Studio 制作从不上传你文件的免费工具。由 Elvis Zygmanta 在泰国制作。', contact: '联系', products: '产品', studio: '工作室', elsewhere: '其他地方', privacy: '隐私', note: '没有 Cookie，没有统计，不从任何第三方加载内容。' },
+  footer: { work: '案例研究', about: 'Hollowbit Studio 制作从不上传你文件的免费工具。由 Elvis Zygmanta 在泰国制作。', contact: '联系', products: '产品', studio: '工作室', elsewhere: '其他地方', privacy: '隐私', note: '没有 Cookie，没有统计，不从任何第三方加载内容。' },
 };

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fileshaper case study · Hollowbit Studio</title>
+<meta name="description" content="A free file toolbox that never uploads your files. The problem, the key decisions and how it was tested.">
+<link rel="canonical" href="https://hollowbit.dev/work/fileshaper/">
+
+<meta name="theme-color" content="#f26a1b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hollowbit Studio">
+<meta property="og:url" content="https://hollowbit.dev/work/fileshaper/">
+<meta property="og:title" content="Fileshaper case study · Hollowbit Studio">
+<meta property="og:description" content="A free file toolbox that never uploads your files. The problem, the key decisions and how it was tested.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://hollowbit.dev/assets/img/og/en/work-fileshaper.png?v=e27a8560">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fileshaper A free file toolbox that never uploads your files.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@hollowbitstudio">
+<meta name="twitter:title" content="Fileshaper case study · Hollowbit Studio">
+<meta name="twitter:description" content="A free file toolbox that never uploads your files. The problem, the key decisions and how it was tested.">
+<meta name="twitter:image" content="https://hollowbit.dev/assets/img/og/en/work-fileshaper.png?v=e27a8560">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/style.css?v=acaf840b">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/"]}</script>
+<script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB={"lang":"en","langs":["en","es","fr","de","ru","zh"],"copied":"Copied","osNote":{"mac":"You’re on a Mac, so the Mac download is highlighted.","win":"You’re on Windows, so the Windows download is highlighted."},"enOnly":true}</script>
+</head>
+<body class="p-fs">
+<div class="wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></symbol>
+  <symbol id="arrow" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3.5 8h9m0 0L8.5 4m4 4-4 4"/></symbol>
+  <symbol id="out" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 11 11 5m0 0H6m5 0v5"/></symbol>
+  <symbol id="down" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 2.5v8m0 0 3.5-3.5M8 10.5 4.5 7M3 13.5h10"/></symbol>
+  <symbol id="check" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m3.5 8.5 3 3 6-7"/></symbol>
+  <symbol id="copy" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 5.5V3.75c0-.69.56-1.25 1.25-1.25h5.5c.69 0 1.25.56 1.25 1.25v5.5c0 .69-.56 1.25-1.25 1.25H10.5M3.75 5.5h5.5c.69 0 1.25.56 1.25 1.25v5.5c0 .69-.56 1.25-1.25 1.25h-5.5c-.69 0-1.25-.56-1.25-1.25v-5.5c0-.69.56-1.25 1.25-1.25Z"/></symbol>
+  <symbol id="mail" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 4.5h11v7.5h-11zM2.5 4.75 8 9l5.5-4.25"/></symbol>
+  <symbol id="bug" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 5.5a2.5 2.5 0 0 1 5 0M4.5 6.5h7v3.5a3.5 3.5 0 0 1-7 0V6.5ZM2.5 8.5h2m7 0h2M3 5l1.5 1.5M13 5l-1.5 1.5M3 13l1.6-1.4M13 13l-1.6-1.4M8 6.5v7"/></symbol>
+  <symbol id="spark" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 2v3m0 6v3m6-6h-3M5 8H2m10.2-4.2-2.1 2.1M5.9 10.1l-2.1 2.1m8.4 0-2.1-2.1M5.9 5.9 3.8 3.8"/></symbol>
+  <symbol id="heart" viewBox="0 0 16 16"><path fill="currentColor" d="M8 14s-5.5-3.3-5.5-7.3A3.2 3.2 0 0 1 8 4.5a3.2 3.2 0 0 1 5.5 2.2C13.5 10.7 8 14 8 14Z"/></symbol>
+  <symbol id="star" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m8 2 1.8 3.8 4.2.5-3.1 2.9.8 4.1L8 11.3l-3.7 2 .8-4.1L2 6.3l4.2-.5L8 2Z"/></symbol>
+  <symbol id="share" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 10V2.5m0 0L5 5.5m3-3 3 3M3.5 8.5v4a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="cup" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 5.5h8v4a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-4Zm8 1h1a1.75 1.75 0 0 1 0 3.5h-1M5 2.5v1.2m2.5-1.2v1.2"/></symbol>
+  <symbol id="globe" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8 1.75a6.25 6.25 0 1 0 0 12.5A6.25 6.25 0 0 0 8 1.75ZM1.75 8h12.5M8 1.75c1.7 1.7 2.5 3.8 2.5 6.25S9.7 12.55 8 14.25C6.3 12.55 5.5 10.45 5.5 8S6.3 3.45 8 1.75Z"/></symbol>
+  <symbol id="gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z"/></symbol>
+  <symbol id="apple" viewBox="0 0 16 16"><path fill="currentColor" d="M11.24 8.5c-.02-1.63 1.33-2.41 1.39-2.45-.76-1.11-1.94-1.26-2.36-1.28-1-.1-1.96.59-2.47.59-.51 0-1.29-.58-2.12-.56-1.09.02-2.1.64-2.66 1.61-1.14 1.97-.29 4.89.82 6.49.54.78 1.19 1.66 2.03 1.63.82-.03 1.13-.53 2.12-.53.99 0 1.27.53 2.13.51.88-.01 1.44-.8 1.98-1.58.62-.9.88-1.78.89-1.83-.02-.01-1.71-.66-1.73-2.6Zm-1.62-4.8c.45-.55.76-1.31.67-2.07-.65.03-1.44.43-1.91.98-.42.48-.79 1.26-.69 2 .73.06 1.47-.37 1.93-.91Z"/></symbol>
+  <symbol id="windows" viewBox="0 0 16 16"><path fill="currentColor" d="M1.5 3.2 6.8 2.5v5H1.5V3.2Zm6.1-.8 6.9-.9v6H7.6V2.4ZM1.5 8.3h5.3v5.2l-5.3-.7V8.3Zm6.1 0h6.9v6.2l-6.9-.9V8.3Z"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M16 21V9m0 0-5 5m5-5 5 5M6 26h20M4 4l24 24"/></symbol>
+  <symbol id="i-ads" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 8h22v16H5zM11 19l2.5-7 2.5 7m-4.2-2h3.4M19 12h2.5a3.5 3.5 0 0 1 0 7H19v-7ZM4 4l24 24"/></symbol>
+  <symbol id="i-account" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M16 16a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm-9 11a9 9 0 0 1 18 0M4 4l24 24"/></symbol>
+  <symbol id="i-track" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Zm13 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 4l24 24"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 13a16 16 0 0 1 22 0M9 17.5a10 10 0 0 1 14 0M13 22a4.5 4.5 0 0 1 6 0M16 26h.01M4 4l24 24"/></symbol>
+  <symbol id="i-code" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m11 10-6 6 6 6m10-12 6 6-6 6M18.5 7l-5 18"/></symbol>
+</svg>
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <a class="brand" href="../../" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
+    <nav class="nav-links" aria-label="Main"><a href="../../fileshaper/"><span class="nav-label">Fileshaper</span></a><a href="../../captionshaper/"><span class="nav-label">Captionshaper</span></a><a href="https://hollowbit.dev/diskshaper/"><span class="nav-label">Diskshaper</span></a><a href="https://hollowbit.dev/writeshaper/"><span class="nav-label">Writeshaper</span></a><a href="../../download/"><span class="nav-label">Download</span></a><a href="../../about/"><span class="nav-label">About</span></a><a href="../../contact/"><span class="nav-label">Contact</span></a><a href="../../donate/"><span class="nav-label">Donate</span></a></nav>
+    <div class="nav-end">
+      <details class="lang"><summary aria-label="Language"><svg class="" aria-hidden="true"><use href="#globe"/></svg><span>EN</span></summary><div class="lang-menu"><a href="../../work/fileshaper/" hreflang="en" lang="en" data-set-lang="en" aria-current="true">English</a><a href="../../es/" hreflang="es" lang="es" data-set-lang="es">Español</a><a href="../../fr/" hreflang="fr" lang="fr" data-set-lang="fr">Français</a><a href="../../de/" hreflang="de" lang="de" data-set-lang="de">Deutsch</a><a href="../../ru/" hreflang="ru" lang="ru" data-set-lang="ru">Русский</a><a href="../../zh/" hreflang="zh-Hans" lang="zh-Hans" data-set-lang="zh">简体中文</a></div></details>
+      <a class="btn btn-primary btn-sm nav-dl" href="../../download/"><svg class="" aria-hidden="true"><use href="#down"/></svg>Download</a>
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="sheet" id="sheet"><nav aria-label="Mobile"><a href="../../" style="--i:0">Home</a><a href="../../fileshaper/" style="--i:1">Fileshaper</a><a href="../../captionshaper/" style="--i:2">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/" style="--i:3">Diskshaper</a><a href="https://hollowbit.dev/writeshaper/" style="--i:4">Writeshaper</a><a href="../../download/" style="--i:5">Download</a><a href="../../about/" style="--i:6">About</a><a href="../../contact/" style="--i:7">Contact</a><a href="../../donate/" style="--i:8">Donate</a></nav></div>
+</header>
+<main id="main">
+
+<article class="wrap-narrow doc wk" style="--c: var(--fs)">
+  <nav class="wk-crumbs in-0"><a href="../../work/">All case studies</a></nav>
+  <div class="wk-head">
+    <img class="wk-icon in-0" src="../../assets/img/fileshaper-icon.png" width="76" height="76" alt="">
+    <h1 class="h1" data-words>Fileshaper</h1>
+    <p class="lead in-1">A free file toolbox that never uploads your files.</p>
+    <dl class="wk-meta in-2">
+      <div><dt>Platform</dt><dd>Mac and Windows</dd></div>
+      <div><dt>Built with</dt><dd>Electron, FFmpeg, pdf-lib, PDF.js</dd></div>
+      <div><dt>First release</dt><dd>November 2026 · now v1.2.1</dd></div>
+      <div><dt>Licence</dt><dd>GPL-3.0</dd></div>
+    </dl>
+  </div>
+  <div class="wk-stats">
+    <div class="wk-stat reveal" style="--d:0ms"><strong>149 MB → 9.1 MB</strong><span>A 40-second 4K clip, compressed to fit Discord’s 10 MB limit</span></div><div class="wk-stat reveal" style="--d:80ms"><strong>−88%</strong><span>A PNG screenshot saved as a JPG that looks the same</span></div><div class="wk-stat reveal" style="--d:160ms"><strong>21</strong><span>End-to-end checks that drive the real app</span></div>
+  </div>
+  <h2>The problem</h2>
+  <p>Everyday file jobs, like shrinking a video for Discord, opening an iPhone HEIC photo or signing a PDF, usually end up on upload websites. They come with queues, watermarks and paywalls, and the files are often private: ID scans, contracts, personal photos.</p><p>Desktop alternatives exist, but they are either one-job tools or professional software with a learning curve.</p>
+  <h2>What it does</h2>
+  <p>Fileshaper puts the common video, image, PDF and audio jobs in one app that works offline. Compress to a size limit, trim, make GIFs, convert HEIC, resize, merge and split PDFs, sign and fill them, convert and normalise audio. The website also has browser versions of several tools for people who can’t install apps.</p>
+  <figure class="wk-shot reveal"><img src="../../assets/img/fileshaper-app.webp" alt="Fileshaper app window" loading="lazy"></figure>
+  <h2>Key decisions</h2>
+  <ol class="wk-decisions"><li><b>Type the job, not the menu.</b> The home screen is a command field: type “compress for discord” and the right tool opens. Cmd/Ctrl+K reaches every tool from anywhere.</li><li><b>Size targets instead of quality sliders.</b> People know the limit (8, 10, 25 MB), not a bitrate. Fileshaper uses two-pass encoding to land just under the number they pick.</li><li><b>Originals are never changed.</b> Every result is saved as a new file next to the original, so nothing can be lost by accident.</li><li><b>Browser tools that still upload nothing.</b> The website’s tools run on self-hosted ffmpeg.wasm, pdf-lib and PDF.js, so even the web version keeps files on the device.</li><li><b>A name that says what it does.</b> The app launched as “Filesmith”, then was renamed once an older product with a similar name and pitch turned up. Every later name went through a stricter check: domains, GitHub, app stores and a web search.</li></ol>
+  <h2>How it was tested</h2>
+  <ul class="wk-list"><li>21 Playwright end-to-end checks open the real app and run its tools on generated test media: videos, HEIC photos, PDFs and audio.</li><li>Separate checks cover the browser tools, the animations, and screenshots of the website in all 6 languages.</li><li>The compression numbers on this page come from those test files.</li></ul>
+  <h2>What’s next</h2>
+  <ul class="wk-list"><li>Signing the app with Apple and Microsoft certificates, so the first launch shows no warning.</li><li>Testing on more Windows PCs.</li><li>Translating the app itself, not just the website.</li></ul>
+  <div class="wk-links">
+    <a class="btn btn-primary" href="https://fileshaper.app/">Website <svg class="" aria-hidden="true"><use href="#out"/></svg></a>
+    <a class="btn btn-ghost" href="https://github.com/hollowbit-dev/fileshaper">Source code <svg class="" aria-hidden="true"><use href="#out"/></svg></a>
+    <a class="btn btn-line" href="../../work/">All case studies</a>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../" aria-label="Hollowbit"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg><span>Hollowbit</span></a>
+        <p>Hollowbit Studio makes free tools that never upload your files. Made by Elvis Zygmanta in Thailand.</p>
+        <a class="foot-mail" data-email-link href="../../contact/"><svg class="" aria-hidden="true"><use href="#mail"/></svg><span data-email>Contact</span></a>
+        <div class="socials "><a href="https://x.com/hollowbitstudio" aria-label="X" title="X" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a><a href="https://www.youtube.com/@hollowbitstudio" aria-label="YouTube" title="YouTube" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.7 15.1V8.9l5.8 3.1-5.8 3.1Z"/></svg></a><a href="https://www.tiktok.com/@hollowbitstudio" aria-label="TikTok" title="TikTok" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2-2.8V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7Z"/></svg></a><a href="https://www.instagram.com/hollowbitstudio" aria-label="Instagram" title="Instagram" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2Zm0 4.7a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2Zm0 8.4a3.3 3.3 0 1 1 0-6.6 3.3 3.3 0 0 1 0 6.6Zm5.3-9.8a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z"/></svg></a><a href="https://www.reddit.com/user/hollowbitstudio" aria-label="Reddit" title="Reddit" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M22 12.1a2.2 2.2 0 0 0-3.7-1.6 10.8 10.8 0 0 0-5.8-1.8l1-4.6 3.2.7a1.6 1.6 0 1 0 .2-1l-3.6-.8a.5.5 0 0 0-.6.4l-1.1 5.3a10.8 10.8 0 0 0-5.9 1.8A2.2 2.2 0 1 0 3.3 14a4.3 4.3 0 0 0 0 .7c0 3.4 3.9 6.1 8.7 6.1s8.7-2.7 8.7-6.1a4.3 4.3 0 0 0 0-.7 2.2 2.2 0 0 0 1.3-1.9ZM7 13.7a1.6 1.6 0 1 1 1.6 1.6A1.6 1.6 0 0 1 7 13.7Zm9 4.2a5.8 5.8 0 0 1-4 1.2 5.8 5.8 0 0 1-4-1.2.4.4 0 0 1 .6-.6 5 5 0 0 0 3.4 1 5 5 0 0 0 3.4-1 .4.4 0 1 1 .6.6Zm-.4-2.6a1.6 1.6 0 1 1 1.6-1.6 1.6 1.6 0 0 1-1.6 1.6Z"/></svg></a><a href="https://github.com/hollowbit-dev" aria-label="GitHub" title="GitHub" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" transform="scale(1.5)" d="M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z"/></svg></a></div>
+      </div>
+      <nav aria-label="Products"><h2>Products</h2><a href="../../fileshaper/">Fileshaper</a><a href="../../captionshaper/">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/">Diskshaper</a><a href="https://hollowbit.dev/writeshaper/">Writeshaper</a><a href="../../download/">Download</a></nav>
+      <nav aria-label="Studio"><h2>Studio</h2><a href="../../about/">About</a><a href="../../work/">Case studies</a><a href="../../contact/">Contact</a><a href="../../donate/">Donate</a><a href="../../privacy/">Privacy</a></nav>
+      <nav aria-label="Elsewhere"><h2>Elsewhere</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="https://fileshaper.app/">fileshaper.app</a><a href="https://captionshaper.app/">captionshaper.app</a></nav>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>No cookies, no analytics, nothing loaded from anyone else.</span></div>
+  </div>
+  <div class="foot-word" aria-hidden="true"><span>Hollowbit</span></div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

@@ -460,5 +460,69 @@
   "kind": "plain",
   "h": "隐私。",
   "sub": "简单说：Hollowbit 不收集你的任何信息。"
+ },
+ {
+  "file": "assets/img/og/en/work.png",
+  "lang": "en",
+  "id": "work",
+  "kind": "apps",
+  "h": "Case studies",
+  "sub": "How each app was planned, built and tested. The problem it solves, the decisions that shaped it, and the numbers behind it."
+ },
+ {
+  "file": "assets/img/og/en/work-fileshaper.png",
+  "lang": "en",
+  "id": "work-fileshaper",
+  "kind": "product",
+  "v": "fs",
+  "slug": "fileshaper",
+  "name": "Fileshaper",
+  "h": "Fileshaper",
+  "sub": "A free file toolbox that never uploads your files.",
+  "kicker": "Case study",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/work"
+ },
+ {
+  "file": "assets/img/og/en/work-captionshaper.png",
+  "lang": "en",
+  "id": "work-captionshaper",
+  "kind": "product",
+  "v": "cs",
+  "slug": "captionshaper",
+  "name": "Captionshaper",
+  "h": "Captionshaper",
+  "sub": "Word-timed subtitles, written by a speech model on your own computer.",
+  "kicker": "Case study",
+  "plats": "Mac (Apple Silicon) and Windows",
+  "domain": "hollowbit.dev/work"
+ },
+ {
+  "file": "assets/img/og/en/work-diskshaper.png",
+  "lang": "en",
+  "id": "work-diskshaper",
+  "kind": "product",
+  "v": "ds",
+  "slug": "diskshaper",
+  "name": "Diskshaper",
+  "h": "Diskshaper",
+  "sub": "A storage cleaner that tells you what each thing is, and only ever moves it to the Trash.",
+  "kicker": "Case study",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/work"
+ },
+ {
+  "file": "assets/img/og/en/work-writeshaper.png",
+  "lang": "en",
+  "id": "work-writeshaper",
+  "kind": "product",
+  "v": "ws",
+  "slug": "writeshaper",
+  "name": "Writeshaper",
+  "h": "Writeshaper",
+  "sub": "A private writing assistant that works in any app.",
+  "kicker": "Case study",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/work"
  }
 ]
