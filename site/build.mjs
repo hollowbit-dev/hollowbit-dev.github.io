@@ -101,6 +101,7 @@ const ic = (id, cls = '') => `<svg class="${cls}" aria-hidden="true"><use href="
 
 // Stylesheet version, so browsers fetch the new CSS after every change.
 const CSSV = (await import('node:crypto')).createHash('md5').update(readFileSync(resolve(root, 'site/main.css'), 'utf8') + readFileSync(resolve(root, 'site/demo.css'), 'utf8')).digest('hex').slice(0, 8);
+const JSV = (await import('node:crypto')).createHash('md5').update(readFileSync(resolve(root, 'assets/site.js'), 'utf8')).digest('hex').slice(0, 8);
 /* ---------- socials ---------- */
 const SOCIALS = [
   ['X', 'https://x.com/hollowbitstudio', '<path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/>'],
@@ -215,7 +216,7 @@ ${body}
   </div>
   <div class="foot-word" aria-hidden="true"><span>Hollowbit</span></div>
 </footer>
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v=${JSV}" defer></script>
 </body>
 </html>
 `;
