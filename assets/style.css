@@ -650,6 +650,22 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 .svc-price ul { margin: 16px 0 0; padding-left: 18px; color: #c3c1cf; display: grid; gap: 6px; font-size: 15px; }
 .svc-fine { color: var(--text-3) !important; font-size: 14px !important; margin-top: 20px !important; max-width: 70ch; }
 @media (max-width: 900px) { .svc-samples, .svc-prices { grid-template-columns: 1fr; } }
+.svc-jump { display: flex; gap: 8px; flex-wrap: wrap; margin: -10px 0 26px; }
+.svc-jump a { padding: 7px 14px; border-radius: 999px; background: var(--glass); box-shadow: var(--hi); font-size: 14.5px; color: var(--text-2); text-decoration: none !important; }
+.svc-jump a:hover { color: var(--text); }
+.svc-teams { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; }
+.svc-team { position: relative; overflow: hidden; padding: 28px; border-radius: 26px; background: var(--glass); backdrop-filter: blur(28px) saturate(1.6); -webkit-backdrop-filter: blur(28px) saturate(1.6); box-shadow: var(--hi), var(--sh-2); display: flex; flex-direction: column; gap: 10px; }
+.svc-team::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 60% at 0% 0%, color-mix(in srgb, var(--c) 16%, transparent), transparent 70%); }
+.svc-team > * { position: relative; }
+.svc-team img { border-radius: 13px; margin-bottom: 6px; }
+.svc-team h3 { font-size: 21px; letter-spacing: -.02em; }
+.svc-team p { color: var(--text-2); font-size: 15.5px; line-height: 1.55; }
+.svc-team ul { margin: 4px 0 0; padding-left: 18px; color: #c3c1cf; font-size: 15px; display: grid; gap: 6px; }
+.svc-amt-sm { margin-top: auto !important; padding-top: 8px; color: var(--text) !important; font-weight: 600; }
+.hire-sec { padding-top: 56px; }
+@media (max-width: 900px) { .svc-teams { grid-template-columns: 1fr; } }
+.hire-sec { display: block; }
+.hire-sec .link-card { max-width: 640px; margin: 0 auto; }
 
 /* ---------- demo stage ---------- */
 .stage { position: relative; margin-top: clamp(48px, 8vh, 80px); --glow: var(--fs); }

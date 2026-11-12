@@ -63,6 +63,7 @@ export default {
     ['开源', '每一行代码都在 GitHub 上。'],
   ],
   home: {
+    hireH: '与 Hollowbit Studio 合作', hireP: '为小企业制作网站，并为团队定制我们应用的私有版本（英文）。',
     title: 'Hollowbit Studio：从不上传你文件的免费工具',
     desc: 'Hollowbit Studio 是 Elvis Zygmanta 的小型软件工作室。免费、开源的 Windows 和 Mac 应用，完全在你自己的电脑上运行。',
     badge: '新品：Writeshaper {v}，私密的写作助手',

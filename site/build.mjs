@@ -197,7 +197,7 @@ ${body}
         ${socials()}
       </div>
       <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
-      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Website design</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
+      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
     <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>${esc(t.footer.note)}</span></div>
@@ -379,6 +379,10 @@ ${ticker(L)}
     <p>${esc(L.home.ctaP)}</p>
     <div class="hero-cta"><a class="btn btn-primary btn-lg" href="${pre(L)}/download/">${ic('down')}${esc(L.home.ctaGo)}</a><a class="btn btn-ghost btn-lg" href="${pre(L)}/about/">${esc(L.home.ctaWho)}</a></div>
   </div>
+</section>
+
+<section class="wrap-narrow sec links-sec hire-sec">
+  <a class="link-card reveal" href="/services/">${ic('spark', 'lc-icon')}<span><b>${esc(L.home.hireH)}</b><small>${esc(L.home.hireP)}</small></span>${ic('arrow', 'go')}</a>
 </section>`,
 });
 
@@ -715,12 +719,13 @@ const SAMPLES = [
   ['cinder-canyon', 'Cinder Canyon Tours', 'Guided hiking tours · Sedona, US', 'Tour cards with prices, live booking link, FAQ, strong hero photography.', 'ws'],
 ];
 const services = () => page(LANGS[0], {
-  path: '/services/', key: 'services', title: 'Website design for small businesses · Hollowbit Studio', enOnly: true,
-  desc: 'Hollowbit Studio designs and builds fast, accessible websites for small businesses in the US and UK. Fixed prices, launched in about two weeks.',
+  path: '/services/', key: 'services', title: 'Websites and custom software for businesses · Hollowbit Studio', enOnly: true,
+  desc: 'Hollowbit Studio builds fast, accessible websites for small businesses, and private custom versions of its apps for firms and teams. Fixed prices.',
   og: { id: 'services', kind: 'plain', h: 'Websites for small businesses.', sub: 'Fast, accessible sites for cafés, clinics, tour companies and more. Fixed prices.' },
   body: `
 <section class="wrap-narrow doc svc-hero">
-  <p class="svc-note in-0">Hollowbit’s apps are free and always will be. Separately, the studio builds a small number of websites for businesses.</p>
+  <p class="svc-note in-0">Hollowbit’s apps are free and always will be. Separately, the studio takes on a small number of client projects: websites, and custom versions of the apps for teams.</p>
+  <nav class="svc-jump in-0"><a href="#samples">Websites</a><a href="#teams">Custom versions for teams</a></nav>
   <h1 class="h1" data-words>Websites for small businesses.</h1>
   <p class="lead in-1">Fast, good-looking websites for cafés, clinics, tour companies and other local businesses. Built to accessibility standards, live in about two weeks, at a fixed price.</p>
   <div class="hero-cta in-2"><a class="btn btn-primary btn-lg" href="/contact/">Ask for a free homepage mockup ${ic('arrow')}</a><a class="btn btn-ghost btn-lg" href="#samples">See sample sites</a></div>
@@ -744,6 +749,32 @@ const services = () => page(LANGS[0], {
     <div class="svc-price reveal" style="--d:180ms"><h3>Signature</h3><p class="svc-amt">$1,400</p><p>Up to ten pages and a homepage designed to stand out from every competitor nearby.</p><ul><li>Everything in Business</li><li>Custom animated hero and page transitions</li><li>Animated menus, galleries or tour cards</li><li>Three rounds of changes</li></ul></div>
   </div>
   <p class="svc-fine reveal">Prices in US dollars; UK clients are quoted in pounds. Payments and bookings use services you already trust, like Square, Stripe, Calendly or your booking system, linked from the site. We don’t handle your customers’ payments.</p>
+</section>
+
+<section class="wrap sec" id="teams">
+  <div class="sec-head"><h2 class="h2" data-words="scroll">Custom versions for teams</h2><p class="reveal">The apps stay free for everyone. For firms that need more, we build a private version around how your team works.</p></div>
+  <div class="svc-teams">
+    <div class="svc-team svc-team-main reveal" style="--c: var(--ws)">
+      <img src="/assets/img/writeshaper-icon.png" width="56" height="56" alt="">
+      <h3>Your firm’s private writing assistant</h3>
+      <p>Built on Writeshaper. It runs fully offline, so client letters, contracts and patient notes never leave the computer. Made for law firms, accountants, clinics and HR teams that can’t send client text to cloud AI tools.</p>
+      <ul><li>Writes in your house style and tone</li><li>Knows your terms, names and spellings, and never “corrects” them</li><li>Your own buttons, like “Formal letter” or “Client-friendly”</li><li>Your name and logo, with an installer your IT team can roll out</li></ul>
+      <p class="svc-amt-sm">From $500 · optional support from $50/month</p>
+    </div>
+    <div class="svc-team reveal" style="--d:90ms; --c: var(--cs)">
+      <img src="/assets/img/captionshaper-icon.png" width="48" height="48" alt="">
+      <h3>Captionshaper for agencies</h3>
+      <p>Your brand fonts, colours and caption styles as one-click presets, so every editor’s videos match.</p>
+      <p class="svc-amt-sm">From $300</p>
+    </div>
+    <div class="svc-team reveal" style="--d:180ms; --c: var(--fs)">
+      <img src="/assets/img/fileshaper-icon.png" width="48" height="48" alt="">
+      <h3>Fileshaper for offices</h3>
+      <p>One-click buttons for your exact jobs, like “Compress for our email limit” or “Merge and sign contract”.</p>
+      <p class="svc-amt-sm">From $300</p>
+    </div>
+  </div>
+  <div class="hero-cta reveal" style="margin-top:28px"><a class="btn btn-primary btn-lg" href="/contact/">Ask for a free proposal ${ic('arrow')}</a><a class="btn btn-ghost btn-lg" href="${siteIn(WS, 'en')}">Try Writeshaper free</a></div>
 </section>
 
 <section class="wrap-narrow sec doc" style="--c:#f4f3f8">

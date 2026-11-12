@@ -63,6 +63,7 @@ export default {
     ['Open Source', 'Jede Zeile steht auf GitHub.'],
   ],
   home: {
+    hireH: 'Mit Hollowbit Studio arbeiten', hireP: 'Websites für kleine Unternehmen und private Versionen unserer Apps für Teams (auf Englisch).',
     title: 'Hollowbit Studio: kostenlose Werkzeuge, die deine Dateien nie hochladen',
     desc: 'Hollowbit Studio ist ein kleines Software-Studio von Elvis Zygmanta. Kostenlose Open-Source-Apps für Windows und Mac, die komplett auf deinem eigenen Computer laufen.',
     badge: 'Neu: Writeshaper {v}, ein privater Schreibassistent',
