@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fuseduo · Drop one Mac app onto another. Get an automation.</title>
+<meta name="description" content="Fuseduo turns two Mac apps into a working automation. Drag one onto the other, pick an idea, read the plan in plain English, and approve it before anything runs.">
+<link rel="canonical" href="https://hollowbit.dev/fuseduo/">
+<meta name="theme-color" content="#7a63ff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fuseduo by Hollowbit Studio">
+<meta property="og:url" content="https://hollowbit.dev/fuseduo/">
+<meta property="og:title" content="Fuseduo · Drop one Mac app onto another. Get an automation.">
+<meta property="og:description" content="Fuseduo turns two Mac apps into a working automation. Drag one onto the other, pick an idea, read the plan in plain English, and approve it before anything runs.">
+<meta property="og:image" content="https://hollowbit.dev/fuseduo/assets/img/og.png?v=306eae4e">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fuseduo: drop one Mac app onto another, get an automation.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@hollowbitstudio">
+<meta name="twitter:title" content="Fuseduo · Drop one Mac app onto another. Get an automation.">
+<meta name="twitter:description" content="Fuseduo turns two Mac apps into a working automation. Drag one onto the other, pick an idea, read the plan in plain English, and approve it before anything runs.">
+<meta name="twitter:image" content="https://hollowbit.dev/fuseduo/assets/img/og.png?v=306eae4e">
+<link rel="icon" href="/fuseduo/assets/img/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/fuseduo/assets/img/icon-256.png">
+<link rel="preload" href="/assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fuseduo/assets/fd.css?v=3555216a">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Fuseduo","operatingSystem":"macOS","applicationCategory":"UtilitiesApplication","description":"Drop one Mac app onto another and get an automation, written as a real script that you read and approve before it runs.","url":"https://hollowbit.dev/fuseduo/","publisher":{"@type":"Organization","name":"Hollowbit Studio","url":"https://hollowbit.dev/"}}</script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="fd-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b"/><feColorMatrix in="b" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/></filter></svg>
+<header class="nav"><div class="nav-in glass">
+  <a class="logo" href="/fuseduo/"><img src="/fuseduo/assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo <small>by Hollowbit</small></a>
+  <nav class="links" aria-label="Fuseduo"><a href="/fuseduo/how-it-works/">How it works</a><a href="/fuseduo/safety/">Safety</a><a class="btn btn-brand sm" href="/fuseduo/#notify">Get notified</a></nav>
+  <button class="menu-btn" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <a class="soon" href="#notify"><b>Early preview</b>Coming to Mac. Get notified →</a>
+  <h1 class="words"><span class="w" style="--i:0">Drop</span> <span class="w" style="--i:1">one</span> <span class="w" style="--i:2">app</span> <span class="w" style="--i:3">on</span> <span class="w" style="--i:4">another.</span><br><span class="grad-text"><span class="w" style="--i:0">Get</span> <span class="w" style="--i:1">an</span> <span class="w" style="--i:2">automation.</span></span></h1>
+  <p class="lede" data-reveal style="--d:.5s">Fuseduo is a board of every app on your Mac. Fuse two of them and Claude suggests what they could do together, writes it as a real script, and shows you exactly what it does before anything runs.</p>
+  <div class="cta" data-reveal style="--d:.65s"><a class="btn btn-brand big" href="#notify">Get notified</a><a class="btn btn-glass big" href="/fuseduo/how-it-works/">See how it works</a></div>
+</div>
+<div class="demo-wrap" data-reveal style="--d:.8s">
+  <div class="demo-glow"></div>
+  <div class="window">
+    <div class="titlebar"><i></i><i></i><i></i><span>Fuseduo</span><span class="hint" id="hint"></span></div>
+    <div class="stage" id="stage">
+      <div class="board" aria-label="Demo apps"></div>
+      <div class="fx"><div class="goo"><span class="blob a"></span><span class="blob b"></span></div><span class="ring"></span><span class="ring"></span><span class="flash"></span></div>
+      <canvas class="sparks" aria-hidden="true"></canvas>
+      <div class="ghost" hidden><img alt=""></div>
+      <div class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3.5 19 12l-6.2 1.6L9.6 20 5 3.5Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+      <aside class="dpanel" aria-live="polite">
+        <div class="dp-head"><div class="dp-pair"></div><div class="dp-eyebrow"></div><div class="dp-title"></div><div class="dp-stage"></div><div class="dp-steps"><i></i><i></i><i></i><i></i></div></div>
+        <div class="dp-body"></div>
+        <div class="dp-foot"></div>
+      </aside>
+    </div>
+  </div>
+  <p class="demo-note">A live demo with example ideas. In the app, Claude writes ideas for whatever two apps you choose. <button id="replay">Replay</button></p>
+</div></section>
+
+<section class="section tight"><div class="section-head wrap" data-reveal><p class="eyebrow"><span class="pip"></span>Any two apps</p><h2>Small magic, made to order.</h2><p class="lede">Every pair gives three ideas, or describe your own. Here are a few people would make first.</p></div>
+  <div class="marquee" data-reveal><div class="row"><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/music.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"></span><span><b>Listening log</b><span>The song playing now, added to a note</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/safari.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"></span><span><b>Save my open tabs</b><span>Every tab’s title and link in one note</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/mail.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/reminders.png" alt="" width="38" height="38"></span><span><b>Flagged mail to reminders</b><span>Each flagged email becomes a to-do</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/calendar.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"></span><span><b>Today’s agenda</b><span>A note with today’s events, in order</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/photos.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/mail.png" alt="" width="38" height="38"></span><span><b>Share today’s photos</b><span>A draft with today’s photos attached</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/music.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"></span><span><b>Listening log</b><span>The song playing now, added to a note</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/safari.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"></span><span><b>Save my open tabs</b><span>Every tab’s title and link in one note</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/mail.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/reminders.png" alt="" width="38" height="38"></span><span><b>Flagged mail to reminders</b><span>Each flagged email becomes a to-do</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/calendar.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"></span><span><b>Today’s agenda</b><span>A note with today’s events, in order</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/photos.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/mail.png" alt="" width="38" height="38"></span><span><b>Share today’s photos</b><span>A draft with today’s photos attached</span></span></div></div><div class="row rev"><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/calendar.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/music.png" alt="" width="38" height="38"></span><span><b>Focus until the next meeting</b><span>A playlist sized to your free time</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/calendar.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/reminders.png" alt="" width="38" height="38"></span><span><b>Prep before meetings</b><span>A reminder 15 minutes before each one</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/safari.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/reminders.png" alt="" width="38" height="38"></span><span><b>Read it later</b><span>The page you’re on, as a dated reminder</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/mail.png" alt="" width="38" height="38"></span><span><b>Draft from a note</b><span>Your selected note as a new email draft</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/photos.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"></span><span><b>Photo diary</b><span>Today’s photos and places in one note</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/calendar.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/music.png" alt="" width="38" height="38"></span><span><b>Focus until the next meeting</b><span>A playlist sized to your free time</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/calendar.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/reminders.png" alt="" width="38" height="38"></span><span><b>Prep before meetings</b><span>A reminder 15 minutes before each one</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/safari.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/reminders.png" alt="" width="38" height="38"></span><span><b>Read it later</b><span>The page you’re on, as a dated reminder</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/mail.png" alt="" width="38" height="38"></span><span><b>Draft from a note</b><span>Your selected note as a new email draft</span></span></div><div class="fcard"><span class="duo"><img src="/fuseduo/assets/apps/photos.png" alt="" width="38" height="38"><img src="/fuseduo/assets/apps/notes.png" alt="" width="38" height="38"></span><span><b>Photo diary</b><span>Today’s photos and places in one note</span></span></div></div></div>
+</section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The real app</p><h2>Read it. Approve it. Run it.</h2><p class="lede">Every fusion comes with the steps in plain English, a risk rating, the permissions it needs and how to undo it. The script is right there if you want to look.</p></div>
+  <div class="shot"><div class="shot-in"><img src="/fuseduo/assets/img/app-plan.webp" alt="Fuseduo showing a fusion of Music and Notes, with its steps, a low risk rating and the AppleScript it wrote." width="1600" height="1000" loading="lazy"></div></div>
+  <div class="caption-row">
+    <div class="cap" data-reveal><b>Plain English first</b><p>Each step says what it does to your Mac, so you never have to read code to know.</p></div>
+    <div class="cap" data-reveal style="--d:.08s"><b>Checked before you see it</b><p>Scripts are compiled and screened against a safety list before the Run button lights up.</p></div>
+    <div class="cap" data-reveal style="--d:.16s"><b>One click next time</b><p>Save a fusion and it lives on your shelf, with when it last ran and whether it worked.</p></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Why it’s different</p><h2>Automation without the flowchart.</h2></div>
+  <div class="grid3">
+    <div class="card" data-reveal style="--d:0s"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></div><h3>Play, don’t program</h3><p>No blocks, triggers or variables to learn. Pick two apps you already use and see what they can do together.</p></div>
+    <div class="card" data-reveal style="--d:0.08s"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12Zm9.5 2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/></svg></div><h3>Nothing runs unseen</h3><p>You read the plan and press Run yourself. Fuseduo never runs a script you haven’t approved.</p></div>
+    <div class="card" data-reveal style="--d:0.16s"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 7a3 3 0 1 1-3 3m3-3a3 3 0 0 0-3 3m3-3h.01M12 10 4 18v2h3v-2h2v-2h2l1.5-1.5"/></svg></div><h3>Uses your Claude plan</h3><p>If you have Claude Code, it uses your existing plan. No API key or extra subscription needed.</p></div>
+  </div>
+</div></section>
+<section class="section" id="notify"><div class="wrap narrow"><div class="band" data-reveal>
+  <img class="big-icon" src="/fuseduo/assets/img/icon-256.png" alt="" width="108" height="108">
+  <h2>Be first to try it.</h2>
+  <p class="lede">Fuseduo is in early preview on Mac. Send a quick email and you’ll hear the day it’s ready, or follow along as it’s built.</p>
+  <div class="cta"><a class="btn btn-brand big" data-email-link="Fuseduo: tell me when it’s out" href="/contact/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17zM4 7l8 6.5L20 7"/></svg>Email me when it’s out</a></div>
+  <div class="socials"><a href="https://x.com/hollowbitstudio" aria-label="X" title="X" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a><a href="https://www.youtube.com/@hollowbitstudio" aria-label="YouTube" title="YouTube" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.7 15.1V8.9l5.8 3.1-5.8 3.1Z"/></svg></a><a href="https://www.tiktok.com/@hollowbitstudio" aria-label="TikTok" title="TikTok" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2-2.8V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7Z"/></svg></a><a href="https://www.instagram.com/hollowbitstudio" aria-label="Instagram" title="Instagram" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2Zm0 4.7a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2Zm0 8.4a3.3 3.3 0 1 1 0-6.6 3.3 3.3 0 0 1 0 6.6Zm5.3-9.8a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z"/></svg></a><a href="https://www.reddit.com/user/hollowbitstudio" aria-label="Reddit" title="Reddit" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M22 12.1a2.2 2.2 0 0 0-3.7-1.6 10.8 10.8 0 0 0-5.8-1.8l1-4.6 3.2.7a1.6 1.6 0 1 0 .2-1l-3.6-.8a.5.5 0 0 0-.6.4l-1.1 5.3a10.8 10.8 0 0 0-5.9 1.8A2.2 2.2 0 1 0 3.3 14a4.3 4.3 0 0 0 0 .7c0 3.4 3.9 6.1 8.7 6.1s8.7-2.7 8.7-6.1a4.3 4.3 0 0 0 0-.7 2.2 2.2 0 0 0 1.3-1.9ZM7 13.7a1.6 1.6 0 1 1 1.6 1.6A1.6 1.6 0 0 1 7 13.7Zm9 4.2a5.8 5.8 0 0 1-4 1.2 5.8 5.8 0 0 1-4-1.2.4.4 0 0 1 .6-.6 5 5 0 0 0 3.4 1 5 5 0 0 0 3.4-1 .4.4 0 1 1 .6.6Zm-.4-2.6a1.6 1.6 0 1 1 1.6-1.6 1.6 1.6 0 0 1-1.6 1.6Z"/></svg></a></div>
+  <p class="small" style="margin-top:18px">No newsletter, no tracking. One email when it launches.</p>
+</div></div></section>
+</main>
+<footer class="foot"><div class="wrap">
+  <div class="foot-in">
+    <div>
+      <a class="logo" href="/fuseduo/"><img src="/fuseduo/assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo</a>
+      <p>Drop one Mac app onto another. Get an automation. A project by <a href="/">Hollowbit Studio</a>.</p>
+    </div>
+    <nav aria-label="Footer">
+      <div><b>Fuseduo</b><a href="/fuseduo/">Overview</a><a href="/fuseduo/how-it-works/">How it works</a><a href="/fuseduo/safety/">Safety</a><a href="/fuseduo/#notify">Get notified</a></div>
+      <div><b>Hollowbit Studio</b><a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a></div>
+    </nav>
+  </div>
+  <p class="copy">© 2026 Hollowbit Studio. Fuseduo is an independent project and isn’t affiliated with Apple or Anthropic. App names and icons belong to their owners.</p>
+</div></footer>
+<script src="/fuseduo/assets/fd.js?v=8e9600b4" defer></script>
+</body>
+</html>

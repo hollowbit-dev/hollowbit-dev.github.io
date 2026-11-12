@@ -1,0 +1,285 @@
+// Builds Fuseduo's pages at /fuseduo/: node site/fuseduo.mjs
+// English only. Fuseduo is a Hollowbit Studio project but not one of the open-source apps,
+// so it has its own look, nav and footer and is kept out of the main product grid.
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const ORIGIN = 'https://hollowbit.dev';
+const BASE = '/fuseduo/';
+const hash = (f) => createHash('md5').update(readFileSync(resolve(root, f))).digest('hex').slice(0, 8);
+const V = { css: hash('fuseduo/assets/fd.css'), js: hash('fuseduo/assets/fd.js') };
+const OG = (() => { try { return hash('fuseduo/assets/img/og.png'); } catch { return '0'; } })();
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const SOCIALS = [
+  ['X', 'https://x.com/hollowbitstudio', '<path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/>'],
+  ['YouTube', 'https://www.youtube.com/@hollowbitstudio', '<path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.7 15.1V8.9l5.8 3.1-5.8 3.1Z"/>'],
+  ['TikTok', 'https://www.tiktok.com/@hollowbitstudio', '<path fill="currentColor" d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2-2.8V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7Z"/>'],
+  ['Instagram', 'https://www.instagram.com/hollowbitstudio', '<path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2Zm0 4.7a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2Zm0 8.4a3.3 3.3 0 1 1 0-6.6 3.3 3.3 0 0 1 0 6.6Zm5.3-9.8a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z"/>'],
+  ['Reddit', 'https://www.reddit.com/user/hollowbitstudio', '<path fill="currentColor" d="M22 12.1a2.2 2.2 0 0 0-3.7-1.6 10.8 10.8 0 0 0-5.8-1.8l1-4.6 3.2.7a1.6 1.6 0 1 0 .2-1l-3.6-.8a.5.5 0 0 0-.6.4l-1.1 5.3a10.8 10.8 0 0 0-5.9 1.8A2.2 2.2 0 1 0 3.3 14a4.3 4.3 0 0 0 0 .7c0 3.4 3.9 6.1 8.7 6.1s8.7-2.7 8.7-6.1a4.3 4.3 0 0 0 0-.7 2.2 2.2 0 0 0 1.3-1.9ZM7 13.7a1.6 1.6 0 1 1 1.6 1.6A1.6 1.6 0 0 1 7 13.7Zm9 4.2a5.8 5.8 0 0 1-4 1.2 5.8 5.8 0 0 1-4-1.2.4.4 0 0 1 .6-.6 5 5 0 0 0 3.4 1 5 5 0 0 0 3.4-1 .4.4 0 1 1 .6.6Zm-.4-2.6a1.6 1.6 0 1 1 1.6-1.6 1.6 1.6 0 0 1-1.6 1.6Z"/>'],
+];
+const socials = () => `<div class="socials">${SOCIALS.map(([n, u, d]) => `<a href="${u}" aria-label="${n}" title="${n}" rel="me noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">${d}</svg></a>`).join('')}</div>`;
+const I = (d) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg>`;
+const ICONS = {
+  key: 'M15 7a3 3 0 1 1-3 3m3-3a3 3 0 0 0-3 3m3-3h.01M12 10 4 18v2h3v-2h2v-2h2l1.5-1.5',
+  eye: 'M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12Zm9.5 2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z',
+  bolt: 'M13 2.5 4.5 13.5H12l-1 8 8.5-11H12l1-8Z',
+  check: 'M4.5 12.5 9.5 17.5 19.5 6.5',
+  shield: 'M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Zm-3 9 2.2 2.2L15.5 10',
+  undo: 'M9 14 4 9l5-5M4.5 9H14a6 6 0 0 1 0 12h-3',
+  mac: 'M4 5.5h16v10H4zM9 19.5h6M12 15.5v4',
+  list: 'M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01',
+  star: 'm12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z',
+  gauge: 'M4 15a8 8 0 1 1 16 0M12 15l4-5M4 19.5h16',
+};
+const card = (ic, title, body, d = 0) => `<div class="card" data-reveal style="--d:${d}s"><div class="ic">${I(ICONS[ic])}</div><h3>${title}</h3><p>${body}</p></div>`;
+
+const NAV = [['how-it-works/', 'How it works'], ['safety/', 'Safety']];
+function page({ path, title, desc, body, demo }) {
+  const url = ORIGIN + BASE + path;
+  const nav = NAV.map(([p, n]) => `<a href="${BASE}${p}"${p === path ? ' aria-current="page"' : ''}>${n}</a>`).join('');
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<link rel="canonical" href="${url}">
+<meta name="theme-color" content="#7a63ff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fuseduo by Hollowbit Studio">
+<meta property="og:url" content="${url}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:image" content="${ORIGIN}${BASE}assets/img/og.png?v=${OG}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fuseduo: drop one Mac app onto another, get an automation.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@hollowbitstudio">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${ORIGIN}${BASE}assets/img/og.png?v=${OG}">
+<link rel="icon" href="${BASE}assets/img/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="${BASE}assets/img/icon-256.png">
+<link rel="preload" href="/assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="${BASE}assets/fd.css?v=${V.css}">
+<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Fuseduo', operatingSystem: 'macOS', applicationCategory: 'UtilitiesApplication', description: 'Drop one Mac app onto another and get an automation, written as a real script that you read and approve before it runs.', url: ORIGIN + BASE, publisher: { '@type': 'Organization', name: 'Hollowbit Studio', url: ORIGIN + '/' } })}</script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
+${demo ? '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="fd-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b"/><feColorMatrix in="b" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/></filter></svg>' : ''}
+<header class="nav"><div class="nav-in glass">
+  <a class="logo" href="${BASE}"><img src="${BASE}assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo <small>by Hollowbit</small></a>
+  <nav class="links" aria-label="Fuseduo">${nav}<a class="btn btn-brand sm" href="${BASE}#notify">Get notified</a></nav>
+  <button class="menu-btn" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
+</div></header>
+<main>
+${body}
+</main>
+<footer class="foot"><div class="wrap">
+  <div class="foot-in">
+    <div>
+      <a class="logo" href="${BASE}"><img src="${BASE}assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo</a>
+      <p>Drop one Mac app onto another. Get an automation. A project by <a href="/">Hollowbit Studio</a>.</p>
+    </div>
+    <nav aria-label="Footer">
+      <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}#notify">Get notified</a></div>
+      <div><b>Hollowbit Studio</b><a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a></div>
+    </nav>
+  </div>
+  <p class="copy">© ${new Date().getFullYear()} Hollowbit Studio. Fuseduo is an independent project and isn’t affiliated with Apple or Anthropic. App names and icons belong to their owners.</p>
+</div></footer>
+<script src="${BASE}assets/fd.js?v=${V.js}" defer></script>
+</body>
+</html>
+`;
+}
+
+const words = (t) => t.split(' ').map((w, i) => `<span class="w" style="--i:${i}">${w}</span>`).join(' ');
+const notify = `<section class="section" id="notify"><div class="wrap narrow"><div class="band" data-reveal>
+  <img class="big-icon" src="${BASE}assets/img/icon-256.png" alt="" width="108" height="108">
+  <h2>Be first to try it.</h2>
+  <p class="lede">Fuseduo is in early preview on Mac. Send a quick email and you’ll hear the day it’s ready, or follow along as it’s built.</p>
+  <div class="cta"><a class="btn btn-brand big" data-email-link="Fuseduo: tell me when it’s out" href="/contact/">${I('M3.5 6.5h17v11h-17zM4 7l8 6.5L20 7')}Email me when it’s out</a></div>
+  ${socials()}
+  <p class="small" style="margin-top:18px">No newsletter, no tracking. One email when it launches.</p>
+</div></div></section>`;
+
+const FUSIONS = [
+  ['music', 'notes', 'Listening log', 'The song playing now, added to a note'],
+  ['safari', 'notes', 'Save my open tabs', 'Every tab’s title and link in one note'],
+  ['mail', 'reminders', 'Flagged mail to reminders', 'Each flagged email becomes a to-do'],
+  ['calendar', 'notes', 'Today’s agenda', 'A note with today’s events, in order'],
+  ['photos', 'mail', 'Share today’s photos', 'A draft with today’s photos attached'],
+  ['calendar', 'music', 'Focus until the next meeting', 'A playlist sized to your free time'],
+  ['calendar', 'reminders', 'Prep before meetings', 'A reminder 15 minutes before each one'],
+  ['safari', 'reminders', 'Read it later', 'The page you’re on, as a dated reminder'],
+  ['notes', 'mail', 'Draft from a note', 'Your selected note as a new email draft'],
+  ['photos', 'notes', 'Photo diary', 'Today’s photos and places in one note'],
+];
+const fcard = ([a, b, t, d]) => `<div class="fcard"><span class="duo"><img src="${BASE}assets/apps/${a}.png" alt="" width="38" height="38"><img src="${BASE}assets/apps/${b}.png" alt="" width="38" height="38"></span><span><b>${t}</b><span>${d}</span></span></div>`;
+const row = (list, rev) => `<div class="row${rev ? ' rev' : ''}">${[...list, ...list].map(fcard).join('')}</div>`;
+const cursorSvg = '<svg viewBox="0 0 24 24"><path d="M5 3.5 19 12l-6.2 1.6L9.6 20 5 3.5Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></svg>';
+
+/* ---------- home ---------- */
+const home = page({
+  path: '', demo: true,
+  title: 'Fuseduo · Drop one Mac app onto another. Get an automation.',
+  desc: 'Fuseduo turns two Mac apps into a working automation. Drag one onto the other, pick an idea, read the plan in plain English, and approve it before anything runs.',
+  body: `<section class="hero"><div class="wrap">
+  <a class="soon" href="#notify"><b>Early preview</b>Coming to Mac. Get notified →</a>
+  <h1 class="words">${words('Drop one app on another.')}<br><span class="grad-text">${words('Get an automation.')}</span></h1>
+  <p class="lede" data-reveal style="--d:.5s">Fuseduo is a board of every app on your Mac. Fuse two of them and Claude suggests what they could do together, writes it as a real script, and shows you exactly what it does before anything runs.</p>
+  <div class="cta" data-reveal style="--d:.65s"><a class="btn btn-brand big" href="#notify">Get notified</a><a class="btn btn-glass big" href="${BASE}how-it-works/">See how it works</a></div>
+</div>
+<div class="demo-wrap" data-reveal style="--d:.8s">
+  <div class="demo-glow"></div>
+  <div class="window">
+    <div class="titlebar"><i></i><i></i><i></i><span>Fuseduo</span><span class="hint" id="hint"></span></div>
+    <div class="stage" id="stage">
+      <div class="board" aria-label="Demo apps"></div>
+      <div class="fx"><div class="goo"><span class="blob a"></span><span class="blob b"></span></div><span class="ring"></span><span class="ring"></span><span class="flash"></span></div>
+      <canvas class="sparks" aria-hidden="true"></canvas>
+      <div class="ghost" hidden><img alt=""></div>
+      <div class="cursor" aria-hidden="true">${cursorSvg}</div>
+      <aside class="dpanel" aria-live="polite">
+        <div class="dp-head"><div class="dp-pair"></div><div class="dp-eyebrow"></div><div class="dp-title"></div><div class="dp-stage"></div><div class="dp-steps"><i></i><i></i><i></i><i></i></div></div>
+        <div class="dp-body"></div>
+        <div class="dp-foot"></div>
+      </aside>
+    </div>
+  </div>
+  <p class="demo-note">A live demo with example ideas. In the app, Claude writes ideas for whatever two apps you choose. <button id="replay">Replay</button></p>
+</div></section>
+
+<section class="section tight"><div class="section-head wrap" data-reveal><p class="eyebrow"><span class="pip"></span>Any two apps</p><h2>Small magic, made to order.</h2><p class="lede">Every pair gives three ideas, or describe your own. Here are a few people would make first.</p></div>
+  <div class="marquee" data-reveal>${row(FUSIONS.slice(0, 5))}${row(FUSIONS.slice(5), true)}</div>
+</section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The real app</p><h2>Read it. Approve it. Run it.</h2><p class="lede">Every fusion comes with the steps in plain English, a risk rating, the permissions it needs and how to undo it. The script is right there if you want to look.</p></div>
+  <div class="shot"><div class="shot-in"><img src="${BASE}assets/img/app-plan.webp" alt="Fuseduo showing a fusion of Music and Notes, with its steps, a low risk rating and the AppleScript it wrote." width="1600" height="1000" loading="lazy"></div></div>
+  <div class="caption-row">
+    <div class="cap" data-reveal><b>Plain English first</b><p>Each step says what it does to your Mac, so you never have to read code to know.</p></div>
+    <div class="cap" data-reveal style="--d:.08s"><b>Checked before you see it</b><p>Scripts are compiled and screened against a safety list before the Run button lights up.</p></div>
+    <div class="cap" data-reveal style="--d:.16s"><b>One click next time</b><p>Save a fusion and it lives on your shelf, with when it last ran and whether it worked.</p></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Why it’s different</p><h2>Automation without the flowchart.</h2></div>
+  <div class="grid3">
+    ${card('star', 'Play, don’t program', 'No blocks, triggers or variables to learn. Pick two apps you already use and see what they can do together.')}
+    ${card('eye', 'Nothing runs unseen', 'You read the plan and press Run yourself. Fuseduo never runs a script you haven’t approved.', 0.08)}
+    ${card('key', 'Uses your Claude plan', 'If you have Claude Code, it uses your existing plan. No API key or extra subscription needed.', 0.16)}
+  </div>
+</div></section>
+${notify}`,
+});
+
+/* ---------- how it works ---------- */
+const how = page({
+  path: 'how-it-works/',
+  title: 'How Fuseduo works · Fuseduo',
+  desc: 'Drag one Mac app onto another, pick one of three ideas, read the plan and approve it. How Fuseduo turns two apps into a real AppleScript, JavaScript or zsh automation.',
+  body: `<section class="page-head"><div class="wrap narrow">
+  <p class="eyebrow"><span class="pip"></span>How it works</p>
+  <h1 class="words" style="font-size:clamp(40px,6vw,72px)">${words('From two icons to a working automation.')}</h1>
+  <p class="lede" data-reveal style="--d:.4s">Four steps, about half a minute, and you stay in charge of every one.</p>
+</div></section>
+
+<section class="section tight"><div class="wrap steps">
+  <div class="step"><div class="step-text" data-reveal><div class="step-num">1</div><h2>Drag one app onto another.</h2><p>Your apps sit on a glass board, grouped into Favourites, Recent and categories. Pick one up and drop it on another. They melt together.</p><ul><li>Every app installed on your Mac, found automatically</li><li>Star the ones you use most</li><li>Hover a shelf in the sidebar while dragging to switch to it</li></ul></div>
+    <div class="frame crop" data-reveal style="--d:.1s;--pos:0 0"><img src="${BASE}assets/img/app-drag.webp" alt="Dragging the Music icon onto Notes on the Fuseduo board." width="1600" height="1000" loading="lazy"></div></div>
+  <div class="step"><div class="step-text" data-reveal><div class="step-num">2</div><h2>Pick one of three ideas.</h2><p>Claude looks at what the two apps can actually do and suggests three automations, from delightful to practical. Or type exactly what you want.</p><ul><li>Ideas often start loading while you’re still hovering</li><li>Ideas for a pair you’ve fused before come back instantly</li><li>Not quite right? Ask for three more</li></ul></div>
+    <div class="frame crop" data-reveal style="--d:.1s;--pos:100% 0"><img src="${BASE}assets/img/app-ideas.webp" alt="Three fusion ideas for Music and Notes." width="1600" height="1000" loading="lazy"></div></div>
+  <div class="step"><div class="step-text" data-reveal><div class="step-num">3</div><h2>Read the plan.</h2><p>Fuseduo writes the automation as a real script, checks that it compiles, fixes it once if it doesn’t, and explains it step by step.</p>
+<pre class="code"><span class="c">-- Today’s agenda note: Calendar + Notes</span>
+<span class="k">tell</span> application <span class="s">"Calendar"</span>
+  <span class="k">set</span> todays <span class="k">to</span> events <span class="k">whose</span> start date ≥ dayStart
+<span class="k">end tell</span>
+<span class="k">tell</span> application <span class="s">"Notes"</span> <span class="k">to</span> make new note …</pre></div>
+    <div class="frame crop" data-reveal style="--d:.1s;--pos:100% 0"><img src="${BASE}assets/img/app-plan.webp" alt="A fusion plan with steps, a risk rating and the script." width="1600" height="1000" loading="lazy"></div></div>
+  <div class="step"><div class="step-text" data-reveal><div class="step-num">4</div><h2>Run it, then keep it.</h2><p>Press Approve and run. Save the fusions you like and they wait on your shelf, showing when each one last ran and whether it worked. Run them again in one click.</p></div>
+    <div class="frame crop" data-reveal style="--d:.1s;--pos:0 100%"><img src="${BASE}assets/img/app-board.webp" alt="The Fuseduo board with saved fusions on the shelf." width="1600" height="1000" loading="lazy"></div></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Under the hood</p><h2>Real scripts, not a black box.</h2></div>
+  <div class="grid3">
+    ${card('list', 'AppleScript', 'For apps with a scripting dictionary, like Notes, Calendar, Mail, Music, Reminders and Safari.')}
+    ${card('bolt', 'JavaScript for Automation', 'The same app control as AppleScript, written in JavaScript, when that fits better.', 0.08)}
+    ${card('mac', 'zsh', 'For files and command-line tools. New files only go to a Fusions folder on your Desktop.', 0.16)}
+  </div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card" data-reveal><div class="ic">${I(ICONS.key)}</div><h3>Which Claude it uses</h3><p>With Claude Code installed and signed in, Fuseduo runs on your existing Claude plan. Or add an Anthropic API key in Settings; it’s stored with your Mac’s keychain.</p></div>
+    <div class="card" data-reveal style="--d:.08s"><div class="ic">${I(ICONS.gauge)}</div><h3>Best or Fast</h3><p>Choose the model in Settings.</p><div class="models"><div class="model"><b>Best</b><span>Claude Opus 5.5. The most careful.</span></div><div class="model"><b>Fast</b><span>Claude Sonnet 5.5. About three times quicker.</span></div></div></div>
+  </div>
+</div></section>
+${notify}`,
+});
+
+/* ---------- safety ---------- */
+const safety = page({
+  path: 'safety/',
+  title: 'Safety · Fuseduo',
+  desc: 'Fuseduo never runs a script you haven’t approved. Plain-English plans, a risk rating, a compile check and a safety block-list, and what is and isn’t sent to Claude.',
+  body: `<section class="page-head"><div class="wrap narrow">
+  <p class="eyebrow"><span class="pip"></span>Safety</p>
+  <h1 class="words" style="font-size:clamp(40px,6vw,72px)">${words('Nothing runs until you say so.')}</h1>
+  <p class="lede" data-reveal style="--d:.4s">Fuseduo writes code that controls your apps, so it’s built to be careful by default and honest about what it does.</p>
+</div></section>
+
+<section class="section tight"><div class="wrap grid3">
+  ${card('eye', 'You approve every run', 'Scripts only run when you press Run. Nothing runs in the background, on a schedule or by itself.')}
+  ${card('list', 'Plain-English steps', 'Every fusion is explained step by step, so you know what it touches without reading code.', 0.06)}
+  ${card('gauge', 'An honest risk rating', 'Low means it only reads, opens or creates new things. Medium means it changes something, like making a draft. Anything else is high.', 0.12)}
+  ${card('check', 'Compile check', 'Each script is compiled before you see it. If it fails, Claude gets one try to fix it, and a script that still won’t compile can’t be run.', 0.18)}
+  ${card('undo', 'How to undo it', 'Every plan ends with how to reverse what it did. Fusions only create new files, never overwrite yours.', 0.24)}
+  ${card('mac', 'Runs on your Mac', 'Scripts run locally with macOS’s own tools, and macOS asks before an app can be controlled the first time.', 0.3)}
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The block-list</p><h2>Some things it simply won’t run.</h2><p class="lede">On top of Claude’s own rules, every script is screened before the Run button is enabled. If it matches any of these, it’s blocked.</p></div>
+  <div class="blocklist" data-reveal>
+    <span>Deleting files or folders</span><span>Moving things to the Trash</span><span>Emptying the Trash</span><span>Administrator rights (sudo)</span><span>Sending email or messages for you</span><span>Downloading and running code</span><span>Changing system settings</span><span>Erasing disks</span><span>Restarting or shutting down</span><span>Reading the keychain</span><span>Reading browser passwords or cookies</span><span>Changing file permissions</span>
+  </div>
+  <p class="small center" style="margin-top:22px" data-reveal>It’s a safety net, not a sandbox. Reading the plan before you approve is still the main protection.</p>
+</div></section>
+
+<section class="section tight"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Privacy</p><h2>What Claude sees.</h2></div>
+  <div class="sent">
+    <div class="card yes" data-reveal><h3>Sent to Claude</h3><ul><li>The names of the two apps you fused</li><li>The idea you picked, or the one you typed</li><li>If a script fails to compile, the script and the error, so it can be fixed</li></ul></div>
+    <div class="card no" data-reveal style="--d:.08s"><h3>Never sent</h3><ul><li>Your notes, emails, events, photos or files</li><li>What a script reads or makes when it runs</li><li>A list of all your apps</li><li>Analytics or tracking of any kind</li></ul></div>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="wrap narrow">
+  <div class="section-head" data-reveal><h2>Questions</h2></div>
+  <div class="faq" data-reveal>
+    <details><summary>Can a fusion delete my stuff?</summary><p>Fuseduo asks Claude never to delete, overwrite or move your files, and blocks scripts that try to delete things, move them to the Trash or empty it. Fusions create new things instead.</p></details>
+    <details><summary>Can it send emails or messages as me?</summary><p>No. It can open a draft for you to check, but scripts that send email or messages are blocked.</p></details>
+    <details><summary>Why does macOS ask for permission?</summary><p>macOS asks the first time any app wants to control another app, like Notes or Calendar. That prompt comes from macOS itself. You can change it later in System Settings › Privacy &amp; Security › Automation.</p></details>
+    <details><summary>Do I need to pay for an API key?</summary><p>No, if you have Claude Code: Fuseduo uses your existing Claude plan through it. An Anthropic API key is optional.</p></details>
+    <details><summary>Is there a Windows version?</summary><p>Not yet. Fuseduo starts on Mac. Windows (with PowerShell) is planned.</p></details>
+  </div>
+</div></section>
+${notify}`,
+});
+
+const out = (p, html) => { const f = resolve(root, 'fuseduo', p, 'index.html'); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, html); };
+out('', home); out('how-it-works', how); out('safety', safety);
+const today = new Date().toISOString().slice(0, 10);
+writeFileSync(resolve(root, 'fuseduo/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${['', 'how-it-works/', 'safety/'].map((p) => `  <url><loc>${ORIGIN}${BASE}${p}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+</urlset>
+`);
+console.log('fuseduo: 3 pages + sitemap');
