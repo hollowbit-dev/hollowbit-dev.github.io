@@ -116,7 +116,7 @@ const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u,
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
 const navItems = (L) => [
   [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'],
-  [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
+  [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 
 // Share cards: every page gets its own 1200x630 image per language, rendered by scripts/og.mjs from site/og.json.

@@ -1,7 +1,7 @@
 // English. Every locale has the same shape. {placeholders} are filled in by build.mjs.
 export default {
   lang: 'en', html: 'en', name: 'English', locale: 'en-GB',
-  nav: { download: 'Download', about: 'About', contact: 'Contact', donate: 'Donate', home: 'Home', skip: 'Skip to content', menu: 'Open menu', language: 'Language', main: 'Main', mobile: 'Mobile' },
+  nav: { services: 'Services', download: 'Download', about: 'About', contact: 'Contact', donate: 'Donate', home: 'Home', skip: 'Skip to content', menu: 'Open menu', language: 'Language', main: 'Main', mobile: 'Mobile' },
   common: { learn: 'Learn more', download: 'Download', website: 'Website', visit: 'Visit {domain}', dlMac: 'Download for Mac', dlWin: 'Download for Windows', version: 'Version', free: 'Free', source: 'Source code', whatsNew: 'What’s new', official: 'Official site: {domain}' },
   products: {
     fileshaper: {

@@ -1,7 +1,7 @@
 // Deutsch. Same shape as en.mjs.
 export default {
   lang: 'de', html: 'de', name: 'Deutsch', locale: 'de-DE',
-  nav: { download: 'Download', about: 'Über', contact: 'Kontakt', donate: 'Spenden', home: 'Start', skip: 'Zum Inhalt', menu: 'Menü öffnen', language: 'Sprache', main: 'Haupt', mobile: 'Mobil' },
+  nav: { services: 'Leistungen', download: 'Download', about: 'Über', contact: 'Kontakt', donate: 'Spenden', home: 'Start', skip: 'Zum Inhalt', menu: 'Menü öffnen', language: 'Sprache', main: 'Haupt', mobile: 'Mobil' },
   common: { learn: 'Mehr erfahren', download: 'Download', website: 'Website', visit: '{domain} besuchen', dlMac: 'Für Mac laden', dlWin: 'Für Windows laden', version: 'Version', free: 'Kostenlos', source: 'Quellcode', whatsNew: 'Neuigkeiten', official: 'Offizielle Website: {domain}' },
   products: {
     fileshaper: {

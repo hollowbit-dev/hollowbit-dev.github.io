@@ -1,7 +1,7 @@
 // 简体中文. Same shape as en.mjs.
 export default {
   lang: 'zh', html: 'zh-Hans', name: '简体中文', locale: 'zh-CN',
-  nav: { download: '下载', about: '关于', contact: '联系', donate: '捐助', home: '首页', skip: '跳到内容', menu: '打开菜单', language: '语言', main: '主导航', mobile: '移动导航' },
+  nav: { services: '服务', download: '下载', about: '关于', contact: '联系', donate: '捐助', home: '首页', skip: '跳到内容', menu: '打开菜单', language: '语言', main: '主导航', mobile: '移动导航' },
   common: { learn: '了解更多', download: '下载', website: '官网', visit: '访问 {domain}', dlMac: '下载 Mac 版', dlWin: '下载 Windows 版', version: '版本', free: '免费', source: '源代码', whatsNew: '更新内容', official: '官网：{domain}' },
   products: {
     fileshaper: {

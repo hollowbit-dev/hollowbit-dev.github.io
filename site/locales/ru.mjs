@@ -1,7 +1,7 @@
 // Русский. Same shape as en.mjs.
 export default {
   lang: 'ru', html: 'ru', name: 'Русский', locale: 'ru-RU',
-  nav: { download: 'Скачать', about: 'О нас', contact: 'Контакты', donate: 'Поддержать', home: 'Главная', skip: 'К содержимому', menu: 'Открыть меню', language: 'Язык', main: 'Главное', mobile: 'Мобильное' },
+  nav: { services: 'Услуги', download: 'Скачать', about: 'О нас', contact: 'Контакты', donate: 'Поддержать', home: 'Главная', skip: 'К содержимому', menu: 'Открыть меню', language: 'Язык', main: 'Главное', mobile: 'Мобильное' },
   common: { learn: 'Подробнее', download: 'Скачать', website: 'Сайт', visit: 'Открыть {domain}', dlMac: 'Скачать для Mac', dlWin: 'Скачать для Windows', version: 'Версия', free: 'Бесплатно', source: 'Исходный код', whatsNew: 'Что нового', official: 'Официальный сайт: {domain}' },
   products: {
     fileshaper: {
