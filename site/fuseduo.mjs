@@ -89,7 +89,7 @@ function page({ path, title, desc, body, demo }) {
 <div class="wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="dots" aria-hidden="true"></div><div class="dots-lit" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
 ${demo ? '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="fd-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b"/><feColorMatrix in="b" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/></filter></svg>' : ''}
 <header class="nav"><div class="nav-in glass">
-  <a class="logo" href="${BASE}"><img src="${BASE}assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo <small>by Hollowbit</small></a>
+  <a class="logo" href="${BASE}"><img src="${BASE}assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo</a><a class="by-hb" href="${HB}/" title="Fuseduo is made by Hollowbit Studio">by Hollowbit</a>
   <nav class="links" aria-label="Fuseduo">${nav}<a class="btn btn-brand sm" href="${BASE}#download">Download</a></nav>
   <button class="menu-btn" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
 </div></header>
@@ -104,8 +104,7 @@ ${body}
     </div>
     <nav aria-label="Footer">
       <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}support/">Support</a><a href="${BASE}#download">Download</a><a href="${GHURL}">GitHub</a></div>
-      <div><b>More free apps</b><a href="https://fileshaper.app/">Fileshaper</a><a href="https://captionshaper.app/">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/">Diskshaper</a><a href="https://hollowbit.dev/writeshaper/">Writeshaper</a></div>
-      <div><b>Hollowbit Studio</b><a href="${HB}/">Home</a><a href="${HB}/about/">About</a><a href="${HB}/contact/">Contact</a><a href="${HB}/privacy/">Privacy</a></div>
+            <div><b>Hollowbit Studio</b><a href="${HB}/">Home</a><a href="${HB}/about/">About</a><a href="${HB}/contact/">Contact</a><a href="${HB}/privacy/">Privacy</a></div>
     </nav>
   </div>
   <p class="copy">© ${new Date().getFullYear()} Hollowbit Studio. Fuseduo is an independent project and isn’t affiliated with Apple or Anthropic. App names and icons belong to their owners.</p>
@@ -260,10 +259,12 @@ const home = page({
 </div></section>
 
 <section class="section tight"><div class="wrap">
-  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>From the same studio</p><h2>More free apps from <span class="grad-text">Hollowbit.</span></h2><p class="lede">Free, open source, and they never upload your files.</p></div>
-  <div class="grid2 sisters">
-    ${[['Fileshaper', 'https://fileshaper.app/', 'Compress video for Discord, convert iPhone photos, merge and sign PDFs.'], ['Captionshaper', 'https://captionshaper.app/', 'Word-timed subtitles and TikTok-style captions, made on your computer.'], ['Diskshaper', 'https://hollowbit.dev/diskshaper/', 'See what is eating your storage and clean only what is safe.'], ['Writeshaper', 'https://hollowbit.dev/writeshaper/', 'Fix and polish your writing in any app, privately.']].map(([n, u, d], i) => `<a class="card sister" href="${u}" data-reveal style="--d:${i * 0.06}s"><h3>${n} →</h3><p>${d}</p></a>`).join('')}
-  </div>
+  <a class="card studio-card" href="${HB}/" data-reveal>
+    <p class="eyebrow"><span class="pip"></span>Who makes Fuseduo</p>
+    <h2>Made by <span class="grad-text">Hollowbit Studio.</span></h2>
+    <p class="lede">A small independent studio. Fuseduo is its own product with its own home here; the studio lives at hollowbit.dev.</p>
+    <span class="btn btn-glass">Visit hollowbit.dev →</span>
+  </a>
 </div></section>
 
 <section class="finale" id="download">

@@ -698,6 +698,12 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 @keyframes filmIn { from { opacity: 0; transform: scale(.94); } }
 @media (prefers-reduced-motion: reduce) { .film-dlg[open] { animation: none; } }
 
+/* Fuseduo: a separate product from the same studio */
+.hire-sec { display: grid; gap: 14px; }
+.hire-sec .link-card { width: 100%; }
+.fd-card img { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+.fd-card b em { font-style: normal; font-size: 11px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; color: #b9a6ff; margin-left: 8px; padding: 2px 8px; border-radius: 99px; background: rgba(139,123,255,.14); vertical-align: 2px; }
+
 /* ---------- demo stage ---------- */
 .stage { position: relative; margin-top: clamp(48px, 8vh, 80px); --glow: var(--fs); }
 /* coloured light behind the window, in the colour of the demo that's playing */
