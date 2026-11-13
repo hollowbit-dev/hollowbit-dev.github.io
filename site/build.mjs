@@ -55,9 +55,10 @@ const SHOT = { fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper
 for (const p of Object.values(P)) {
   let rel = p.fallback;
   try {
-    const r = await fetch(`https://api.github.com/repos/${p.repo}/releases/latest`, { headers: { 'User-Agent': 'hollowbit-site-build' } });
+    const r = await fetch(`https://api.github.com/repos/${p.repo}/releases/latest`, { headers: { 'User-Agent': 'hollowbit-site-build', ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}) } });
     if (r.ok) { const j = await r.json(); rel = { tag: j.tag_name, assets: j.assets.map((a) => a.name), date: j.published_at }; }
   } catch { /* offline: use fallback */ }
+  if (rel === p.fallback) console.warn(`WARNING: ${p.name}: GitHub API unavailable, using fallback ${p.fallback.tag}. Set GITHUB_TOKEN=$(gh auth token) and rebuild before publishing.`);
   const dl = (name) => `https://github.com/${p.repo}/releases/latest/download/${name}`;
   const find = (re) => rel.assets.find((a) => re.test(a));
   p.version = rel.tag.replace(/^v/, '');
