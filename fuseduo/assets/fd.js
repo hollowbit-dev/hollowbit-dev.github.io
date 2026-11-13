@@ -28,7 +28,8 @@
       const r = shot.getBoundingClientRect(), p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight * 0.8)));
       shot.style.setProperty('--tilt', `${(1 - p) * 16}deg`); shot.style.setProperty('--sc', 0.92 + p * 0.08);
     };
-    addEventListener('scroll', tilt, { passive: true }); tilt();
+    let q = false;
+    addEventListener('scroll', () => { if (!q) { q = true; requestAnimationFrame(() => { q = false; tilt(); }); } }, { passive: true }); tilt();
   }
 
   /* ---------- the demo ---------- */

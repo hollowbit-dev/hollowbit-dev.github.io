@@ -12,17 +12,25 @@
   const visible = (el, cb) => new IntersectionObserver(([e]) => cb(e.isIntersecting), { threshold: 0.15 }).observe(el);
 
   /* cursor-lit grid (and the light on bento tiles) */
+  // A 520px spotlight follows the cursor by transform; its dots stay aligned to the page grid.
   const lit = $('.dots-lit');
+  let lx = 0, ly = 0, litQueued = false;
+  const moveLit = () => { litQueued = false; const x = lx - 260, y = ly - 260; lit.style.transform = `translate3d(${x}px, ${y}px, 0)`; lit.style.backgroundPosition = `${-x}px ${-y}px`; };
+  if (lit && matchMedia('(hover: hover)').matches) lit.classList.add('on');
   addEventListener('pointermove', (e) => {
-    if (lit) { lit.style.setProperty('--mx', `${e.clientX}px`); lit.style.setProperty('--my', `${e.clientY}px`); }
+    if (lit) { lx = e.clientX; ly = e.clientY; if (!litQueued) { litQueued = true; requestAnimationFrame(moveLit); } }
     const t = e.target.closest?.('.tile'); if (!t) return;
     const r = t.getBoundingClientRect(); t.style.setProperty('--mx', `${e.clientX - r.left}px`); t.style.setProperty('--my', `${e.clientY - r.top}px`);
   }, { passive: true });
 
+  /* anything scrolled out of view stops animating */
+  const offIO = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('off', !e.isIntersecting)), { rootMargin: '120px 0px' });
+  $$('.hero2, .bento, .marquee, .finale, .story-vis, .demo-wrap, .band, .page-head').forEach((n) => offIO.observe(n));
+
   /* beams: scatter them along the grid */
   $$('.beams').forEach((b) => {
     const cols = ['#a78bfa', '#22d3ee', '#f472b6', '#fbbf24'];
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 6; i++) {
       const v = document.createElement('i'), h = i % 3 === 2;
       if (h) { v.className = 'h'; v.style.setProperty('--y', `${Math.round(Math.random() * 14 + 2) * 26}px`); }
       else v.style.setProperty('--x', `${Math.round(Math.random() * 60 + 4) * 26}px`);
@@ -51,68 +59,69 @@
     };
   }
 
-  /* ---------- hero: apps orbit the core; pairs fly in and fuse ---------- */
+  /* ---------- hero: apps orbit the core; pairs fly in and fuse ----------
+     The orbit runs on the compositor: each icon has one precomputed elliptical keyframe path, so no
+     JavaScript runs per frame. (The first version moved all 8 icons from JS every frame and used ~19%
+     of a CPU core while idle.) Stacking order only flips front/back, checked 4 times a second. */
   const orbit = $('.orbit');
   if (orbit) {
     const core = $('.core', orbit), burst = sparkLayer($('.hero-sparks', orbit));
     const RESULTS = [['music', 'notes', 'Listening log'], ['safari', 'notes', 'Save my open tabs'], ['mail', 'reminders', 'Flagged mail to reminders'], ['calendar', 'notes', 'Today’s agenda'], ['photos', 'mail', 'Share today’s photos'], ['calendar', 'music', 'Focus until the next meeting'], ['calendar', 'reminders', 'Prep before meetings'], ['messages', 'calendar', 'Who am I meeting?']];
     const ids = Object.keys(APPS);
+    const small = orbit.clientWidth < 720;
+    const RX = [small ? 170 : 430, small ? 110 : 285], RY = [small ? 40 : 96, small ? 26 : 64];
+    const PERIOD = [52000, 36000], STEPS = 48;
+    const pos = (o, turn) => { // turn: 0..1 around the ellipse
+      const a = o.a0 + o.dir * turn * Math.PI * 2, depth = (Math.sin(a) + 1) / 2;
+      return { x: Math.cos(a) * RX[o.ring], y: Math.sin(a) * RY[o.ring], s: 0.66 + depth * 0.46, front: Math.sin(a) > 0 };
+    };
+    const tf = (p) => `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) scale(${p.s.toFixed(3)})`;
     const nodes = ids.map((id, i) => {
       const n = document.createElement('div'); n.className = 'orb-app'; n.style.setProperty('--c', APPS[id]);
       n.innerHTML = `<img src="${icon(id)}" alt="" width="78" height="78">`; orbit.append(n);
-      return { id, n, a: (i / ids.length) * Math.PI * 2, ring: i % 2, fly: null };
+      const o = { id, n, ring: i % 2, a0: (i / ids.length) * Math.PI * 2, dir: i % 2 ? -1 : 1 };
+      const frames = Array.from({ length: STEPS + 1 }, (_, k) => ({ transform: tf(pos(o, k / STEPS)) }));
+      o.anim = reduce ? null : n.animate(frames, { duration: PERIOD[o.ring], iterations: Infinity });
+      if (reduce) n.style.transform = tf(pos(o, 0));
+      return o;
     });
-    let on = true, t0 = performance.now();
-    visible(orbit, (v) => { on = v; if (v) requestAnimationFrame(tick); });
-    const dims = () => { const w = orbit.clientWidth, small = w < 720; return { rx: [small ? 170 : 430, small ? 110 : 285], ry: [small ? 40 : 96, small ? 26 : 64] }; };
-    function place(o, t, D) {
-      const a = o.a + t * (o.ring ? -0.00018 : 0.00012);
-      const x = Math.cos(a) * D.rx[o.ring], y = Math.sin(a) * D.ry[o.ring], depth = (Math.sin(a) + 1) / 2;
-      return { x, y, s: 0.66 + depth * 0.46, z: Math.round(depth * 100), o: 0.7 + depth * 0.3 };
-    }
-    function tick(now) {
-      if (!on) return;
-      const t = now - t0, D = dims();
-      for (const o of nodes) {
-        let p = place(o, t, D);
-        if (o.fly) { // fly towards the core, then come back
-          const k = clamp((now - o.fly.start) / o.fly.dur), e = o.fly.back ? 1 - ease(1 - k) : ease(k);
-          const from = o.fly.back ? { x: 0, y: 0, s: 0.2 } : o.fly.from;
-          const to = o.fly.back ? p : { x: 0, y: 0, s: 0.35 };
-          p = { x: from.x + (to.x - from.x) * e, y: from.y + (to.y - from.y) * e, s: from.s + (to.s - from.s) * e, z: 120, o: o.fly.back ? e : 1 };
-          if (k >= 1) o.fly = o.fly.back ? null : (o.fly.done?.(), { ...o.fly, hold: true, done: null });
-          if (o.fly?.hold) p.o = 0;
-        }
-        o.n.style.transform = `translate(${p.x}px, ${p.y}px) scale(${p.s})`;
-        o.n.style.zIndex = p.z > 50 ? 70 + p.z : p.z; o.n.style.opacity = p.o;
-      }
-      requestAnimationFrame(tick);
-    }
+    const turnOf = (o) => (o.anim ? (o.anim.currentTime % PERIOD[o.ring]) / PERIOD[o.ring] : 0);
+    const layer = () => nodes.forEach((o) => { const z = o.flying ? 120 : pos(o, turnOf(o)).front ? 60 : 10; if (o.z !== z) { o.z = z; o.n.style.zIndex = z; } });
+    layer(); setInterval(layer, 250);
+    visible(orbit, (v) => nodes.forEach((o) => o.anim && (v && !o.flying ? o.anim.play() : o.anim.pause())));
     async function fuseLoop() {
       let k = 0;
       while (true) {
-        await wait(reduce ? 99999 : 2600);
-        if (!on || document.hidden) continue;
+        await wait(reduce ? 1e9 : 2800);
+        if (document.hidden || !orbit.getBoundingClientRect().bottom || orbit.getBoundingClientRect().top > innerHeight) continue;
         const [a, b, name] = RESULTS[k++ % RESULTS.length];
         const pair = [a, b].map((id) => nodes.find((o) => o.id === id));
-        const now = performance.now(), D = dims();
-        let arrived = 0;
-        await new Promise((res) => pair.forEach((o, i) => { const f = place(o, now - t0, D); o.fly = { start: now + i * 120, dur: 750, from: f, done: () => { if (++arrived === 2) res(); } }; }));
-        // impact
+        // freeze each icon where it is, fly it into the core
+        await Promise.all(pair.map(async (o, i) => {
+          o.flying = true; o.anim?.pause(); layer();
+          const here = tf(pos(o, turnOf(o)));
+          await wait(i * 120);
+          o.flight = o.n.animate([{ transform: here, opacity: 1 }, { transform: 'translate3d(0px, 0px, 0) scale(0.3)', opacity: 0 }], { duration: 760, easing: 'cubic-bezier(.5,0,.2,1)', fill: 'forwards' });
+          await o.flight.finished;
+        }));
         core.classList.remove('gulp'); void core.offsetWidth; core.classList.add('gulp');
         const r = orbit.getBoundingClientRect();
-        burst(r.width / 2, r.height / 2, [APPS[a], APPS[b], '#ffffff', '#a78bfa'], 70, 10);
+        burst(r.width / 2, r.height / 2, [APPS[a], APPS[b], '#ffffff', '#a78bfa'], 60, 10);
         const chip = document.createElement('div'); chip.className = 'chip-out';
         chip.innerHTML = `<img src="${icon(a)}" alt=""><img src="${icon(b)}" alt=""><span>${name}<small>Fusion ready · read it, then run it</small></span>`;
         orbit.append(chip);
         const side = k % 2 ? 1 : -1;
         chip.animate([{ transform: 'translate(-50%, -50%) scale(.3)', opacity: 0 }, { transform: `translate(calc(-50% + ${side * 200}px), -150px) scale(1)`, opacity: 1, offset: 0.25 }, { transform: `translate(calc(-50% + ${side * 230}px), -180px) scale(1)`, opacity: 1, offset: 0.8 }, { transform: `translate(calc(-50% + ${side * 250}px), -230px) scale(.9)`, opacity: 0 }], { duration: 2600, easing: 'cubic-bezier(.2,.9,.3,1)' }).finished.then(() => chip.remove());
         await wait(500);
-        const back = performance.now();
-        pair.forEach((o) => { o.fly = { start: back, dur: 900, back: true }; });
+        // fly back out to where each icon left its orbit, then let the orbit carry on
+        await Promise.all(pair.map(async (o) => {
+          const back = o.n.animate([{ transform: 'translate3d(0px, 0px, 0) scale(0.2)', opacity: 0 }, { transform: tf(pos(o, turnOf(o))), opacity: 1 }], { duration: 900, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' });
+          await back.finished;
+          o.flight?.cancel(); back.cancel(); o.flying = false; o.anim?.play(); layer();
+        }));
       }
     }
-    requestAnimationFrame(tick); fuseLoop();
+    fuseLoop();
   }
 
   /* ---------- count-up stats ---------- */
@@ -126,6 +135,7 @@
   /* ---------- scroll story ---------- */
   const story = $('.story');
   if (story) {
+    $$('.sv-blob', story).forEach((bl) => { bl.style.color = bl.style.background; });
     const steps = $$('.story-steps li', story), bar = $('.story-bar', story);
     const A = $('.sv-a', story), B = $('.sv-b', story), ba = $('.sv-blob.a', story), bb = $('.sv-blob.b', story), orb = $('.sv-orb', story);
     const cards = $$('.sv-card', story), plan = $('.sv-plan', story), items = $$('.sv-plan li', story), run = $('.sv-run', story), done = $('.sv-done', story);
@@ -166,7 +176,8 @@
       if (go && !fired) { fired = true; const v = $('.story-vis', story).getBoundingClientRect(), c = run.getBoundingClientRect(); burst(c.left - v.left + c.width / 2, c.top - v.top, ['#4ade80', '#ffffff', '#a78bfa', '#22d3ee', '#f472b6'], 90, 11); }
       if (!go) fired = false;
     };
-    addEventListener('scroll', () => requestAnimationFrame(update), { passive: true }); addEventListener('resize', update); update();
+    let queued = false;
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; update(); }); } }, { passive: true }); addEventListener('resize', update); update();
   }
 
   /* ---------- bento loops ---------- */

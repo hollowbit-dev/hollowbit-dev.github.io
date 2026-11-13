@@ -235,7 +235,7 @@ const home = page({
 
 <section class="section"><div class="wrap">
   <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The real app</p><h2>Read it. Approve it. <span class="grad-text">Run it.</span></h2><p class="lede">Steps in plain English, a risk rating, the permissions it needs and how to undo it. The script is right there if you want to look.</p></div>
-  <div class="shot"><div class="shot-in"><img src="${BASE}assets/img/app-plan.webp" alt="Fuseduo showing a fusion of Music and Notes, with its steps, a low risk rating and the AppleScript it wrote." width="1600" height="1000" loading="lazy"></div></div>
+  <div class="shot"><div class="shot-in"><img src="${BASE}assets/img/app-plan.webp" alt="Fuseduo showing a fusion of Music and Notes, with its steps, a low risk rating and the AppleScript it wrote." width="1600" height="1000" loading="lazy" decoding="async"></div></div>
 </div></section>
 
 <section class="finale" id="notify">
@@ -264,18 +264,18 @@ const how = page({
 
 <section class="section tight"><div class="wrap steps">
   <div class="step"><div class="step-text" data-reveal><div class="step-num">1</div><h2>Drag one app onto another.</h2><p>Your apps sit on a glass board, grouped into Favourites, Recent and categories. Pick one up and drop it on another. They melt together.</p><ul><li>Every app installed on your Mac, found automatically</li><li>Star the ones you use most</li><li>Hover a shelf in the sidebar while dragging to switch to it</li></ul></div>
-    <div class="frame crop" data-reveal style="--d:.1s;--pos:0 0"><img src="${BASE}assets/img/app-drag.webp" alt="Dragging the Music icon onto Notes on the Fuseduo board." width="1600" height="1000" loading="lazy"></div></div>
+    <div class="frame crop" data-reveal style="--d:.1s;--pos:0 0"><img src="${BASE}assets/img/app-drag.webp" alt="Dragging the Music icon onto Notes on the Fuseduo board." width="1600" height="1000" loading="lazy" decoding="async"></div></div>
   <div class="step"><div class="step-text" data-reveal><div class="step-num">2</div><h2>Pick one of three ideas.</h2><p>Claude looks at what the two apps can actually do and suggests three automations, from delightful to practical. Or type exactly what you want.</p><ul><li>Ideas often start loading while you’re still hovering</li><li>Ideas for a pair you’ve fused before come back instantly</li><li>Not quite right? Ask for three more</li></ul></div>
-    <div class="frame crop" data-reveal style="--d:.1s;--pos:100% 0"><img src="${BASE}assets/img/app-ideas.webp" alt="Three fusion ideas for Music and Notes." width="1600" height="1000" loading="lazy"></div></div>
+    <div class="frame crop" data-reveal style="--d:.1s;--pos:100% 0"><img src="${BASE}assets/img/app-ideas.webp" alt="Three fusion ideas for Music and Notes." width="1600" height="1000" loading="lazy" decoding="async"></div></div>
   <div class="step"><div class="step-text" data-reveal><div class="step-num">3</div><h2>Read the plan.</h2><p>Fuseduo writes the automation as a real script, checks that it compiles, fixes it once if it doesn’t, and explains it step by step.</p>
 <pre class="code"><span class="c">-- Today’s agenda note: Calendar + Notes</span>
 <span class="k">tell</span> application <span class="s">"Calendar"</span>
   <span class="k">set</span> todays <span class="k">to</span> events <span class="k">whose</span> start date ≥ dayStart
 <span class="k">end tell</span>
 <span class="k">tell</span> application <span class="s">"Notes"</span> <span class="k">to</span> make new note …</pre></div>
-    <div class="frame crop" data-reveal style="--d:.1s;--pos:100% 0"><img src="${BASE}assets/img/app-plan.webp" alt="A fusion plan with steps, a risk rating and the script." width="1600" height="1000" loading="lazy"></div></div>
+    <div class="frame crop" data-reveal style="--d:.1s;--pos:100% 0"><img src="${BASE}assets/img/app-plan.webp" alt="A fusion plan with steps, a risk rating and the script." width="1600" height="1000" loading="lazy" decoding="async"></div></div>
   <div class="step"><div class="step-text" data-reveal><div class="step-num">4</div><h2>Run it, then keep it.</h2><p>Press Approve and run. Save the fusions you like and they wait on your shelf, showing when each one last ran and whether it worked. Run them again in one click.</p></div>
-    <div class="frame crop" data-reveal style="--d:.1s;--pos:0 100%"><img src="${BASE}assets/img/app-board.webp" alt="The Fuseduo board with saved fusions on the shelf." width="1600" height="1000" loading="lazy"></div></div>
+    <div class="frame crop" data-reveal style="--d:.1s;--pos:0 100%"><img src="${BASE}assets/img/app-board.webp" alt="The Fuseduo board with saved fusions on the shelf." width="1600" height="1000" loading="lazy" decoding="async"></div></div>
 </div></section>
 
 <section class="section"><div class="wrap">
