@@ -217,7 +217,7 @@ const home = page({
 <section class="section"><div class="wrap">
   <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Built in</p><h2>Powerful. <span class="grad-text">Careful.</span> Quick.</h2></div>
   <div class="bento">
-    <div class="tile w2" data-reveal><h3>Runs on your Claude plan</h3><p>Got Claude Code? Fuseduo uses it. No API key, no extra subscription.</p><div class="art"><div class="term"></div></div></div>
+    <div class="tile w2" data-reveal><h3>Your Claude, your choice</h3><p>Use your own Claude Code sign-in and plan, or an Anthropic API key. Switch any time in Settings.</p><div class="art"><div class="term"></div></div></div>
     <div class="tile" data-reveal style="--d:.06s"><h3>Best or Fast</h3><p>Real build times from testing.</p><div class="art"><div class="race">
       <div class="race-row"><div><b>Best · Opus 5.5</b><span>23.8 s</span></div><div class="race-bar best" style="--d:9.5s"><i></i></div></div>
       <div class="race-row"><div><b>Fast · Sonnet 5.5</b><span>8.5 s</span></div><div class="race-bar fast" style="--d:3.4s"><i></i></div></div>
@@ -335,7 +335,7 @@ const safety = page({
     <details><summary>Can a fusion delete my stuff?</summary><p>Fuseduo asks Claude never to delete, overwrite or move your files, and blocks scripts that try to delete things, move them to the Trash or empty it. Fusions create new things instead.</p></details>
     <details><summary>Can it send emails or messages as me?</summary><p>No. It can open a draft for you to check, but scripts that send email or messages are blocked.</p></details>
     <details><summary>Why does macOS ask for permission?</summary><p>macOS asks the first time any app wants to control another app, like Notes or Calendar. That prompt comes from macOS itself. You can change it later in System Settings › Privacy &amp; Security › Automation.</p></details>
-    <details><summary>Do I need to pay for an API key?</summary><p>No, if you have Claude Code: Fuseduo uses your existing Claude plan through it. An Anthropic API key is optional.</p></details>
+    <details><summary>Do I need to pay for an API key?</summary><p>Not if you have Claude Code. Fuseduo can use your own Claude Code sign-in, and requests count towards your plan’s limits. If you’d rather, use an Anthropic API key instead. You choose in Settings, and Fuseduo never sees your Claude login.</p></details>
     <details><summary>Is there a Windows version?</summary><p>Not yet. Fuseduo starts on Mac. Windows (with PowerShell) is planned.</p></details>
   </div>
 </div></section>
