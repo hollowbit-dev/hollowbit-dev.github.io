@@ -104,6 +104,7 @@ ${body}
     </div>
     <nav aria-label="Footer">
       <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}support/">Support</a><a href="${BASE}#download">Download</a><a href="${GHURL}">GitHub</a></div>
+      <div><b>More free apps</b><a href="https://fileshaper.app/">Fileshaper</a><a href="https://captionshaper.app/">Captionshaper</a><a href="https://hollowbit.dev/diskshaper/">Diskshaper</a><a href="https://hollowbit.dev/writeshaper/">Writeshaper</a></div>
       <div><b>Hollowbit Studio</b><a href="${HB}/">Home</a><a href="${HB}/about/">About</a><a href="${HB}/contact/">Contact</a><a href="${HB}/privacy/">Privacy</a></div>
     </nav>
   </div>
@@ -256,6 +257,13 @@ const home = page({
 <section class="section"><div class="wrap">
   <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The real app</p><h2>Read it. Approve it. <span class="grad-text">Run it.</span></h2><p class="lede">Steps in plain English, a risk rating, the permissions it needs and how to undo it. The script is right there if you want to look.</p><div class="cta"><button class="btn btn-glass film-btn" data-film>${PLAY}Watch the 20-second film</button></div></div>
   <div class="shot"><div class="shot-in"><img src="${BASE}assets/img/app-plan.webp" alt="Fuseduo showing a fusion of Music and Notes, with its steps, a low risk rating and the AppleScript it wrote." width="1600" height="1000" loading="lazy" decoding="async"></div></div>
+</div></section>
+
+<section class="section tight"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>From the same studio</p><h2>More free apps from <span class="grad-text">Hollowbit.</span></h2><p class="lede">Free, open source, and they never upload your files.</p></div>
+  <div class="grid2 sisters">
+    ${[['Fileshaper', 'https://fileshaper.app/', 'Compress video for Discord, convert iPhone photos, merge and sign PDFs.'], ['Captionshaper', 'https://captionshaper.app/', 'Word-timed subtitles and TikTok-style captions, made on your computer.'], ['Diskshaper', 'https://hollowbit.dev/diskshaper/', 'See what is eating your storage and clean only what is safe.'], ['Writeshaper', 'https://hollowbit.dev/writeshaper/', 'Fix and polish your writing in any app, privately.']].map(([n, u, d], i) => `<a class="card sister" href="${u}" data-reveal style="--d:${i * 0.06}s"><h3>${n} →</h3><p>${d}</p></a>`).join('')}
+  </div>
 </div></section>
 
 <section class="finale" id="download">
