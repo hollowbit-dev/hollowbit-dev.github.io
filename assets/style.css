@@ -16,6 +16,8 @@
   --cs: #c6ff3d;
   --ds: #5b9dff;
   --ws: #f9457f;
+  --ss: #ff8f4d;
+  --ss-grad: linear-gradient(120deg, #ffb35c, #ff8f4d 50%, #ff5f6d);
   --ws-grad: linear-gradient(120deg, #ff9f4d, #f9457f 52%, #7f54f8);
   --blue: #5b8cff;
   --pink: #ff6aa9;
@@ -210,7 +212,7 @@ button { font: inherit; color: inherit; }
 .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; perspective: 1600px; }
 .pcard { position: relative; overflow: hidden; border-radius: 30px; color: var(--text); display: flex; flex-direction: column; min-height: 600px; transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)); transition: transform .6s var(--ease), box-shadow .4s; isolation: isolate; }
 .js .pcard.reveal { transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease); }
-.pcard-fs { --c: var(--fs); } .pcard-cs { --c: var(--cs); } .pcard-ds { --c: var(--ds); } .pcard-ws { --c: var(--ws); }
+.pcard-fs { --c: var(--fs); } .pcard-cs { --c: var(--cs); } .pcard-ds { --c: var(--ds); } .pcard-ws { --c: var(--ws); } .pcard-ss { --c: var(--ss); }
 /* the product's light, from the top corner */
 .pcard::after { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none;
   background: radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--c) 34%, transparent), transparent 55%), radial-gradient(90% 60% at 100% 100%, color-mix(in srgb, var(--c) 14%, transparent), transparent 60%); }
@@ -232,6 +234,12 @@ button { font: inherit; color: inherit; }
 .pcard::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.10), transparent 45%); opacity: 0; transition: opacity .4s; }
 .pcard:hover::before { opacity: 1; }
 .pcard-in { position: relative; padding: 38px 38px 0; }
+/* An odd card out at the end spans the row: text left, screenshot right. */
+@media (min-width: 981px) {
+  .cards > .pcard:last-child:nth-child(odd) { grid-column: 1 / -1; flex-direction: row; min-height: 480px; }
+  .cards > .pcard:last-child:nth-child(odd) .pcard-in { flex: 0 0 40%; padding-bottom: 38px; display: flex; flex-direction: column; justify-content: center; }
+  .cards > .pcard:last-child:nth-child(odd) .pcard-shot { flex: 1; margin-top: 0; align-self: flex-end; padding-top: 56px; }
+}
 .pcard-icon { width: 60px; height: 60px; border-radius: 15px; box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--c) 70%, #000), inset 0 1px 0 rgba(255,255,255,.3); }
 .pcard h3 { margin-top: 26px; font-size: clamp(30px, 3vw, 40px); letter-spacing: -0.045em; line-height: 1; }
 .pcard p { margin-top: 12px; font-size: 17px; line-height: 1.55; max-width: 40ch; color: var(--text-2); }
@@ -289,6 +297,9 @@ button { font: inherit; color: inherit; }
 .phero-meta a { color: var(--text-2); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; transition: color .2s; }
 .phero-meta a:hover { color: var(--text); }
 .phero-stage .stage { margin-top: clamp(56px, 8vh, 84px); }
+.phero-shot { margin: clamp(56px, 8vh, 84px) auto 0; max-width: 1100px; position: relative; }
+.phero-shot::before { content: ""; position: absolute; inset: 8% 6% -6%; z-index: -1; border-radius: 40px; background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 45%, transparent), transparent); filter: blur(60px); opacity: .55; }
+.phero-shot img { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 0 0 1px var(--line-2), 0 40px 100px -30px rgba(0,0,0,.9); }
 .dl-btn.is-rec { order: -1; }
 html[data-os="mac"] .dl-btn[data-os-btn="win"], html[data-os="win"] .dl-btn[data-os-btn="mac"] { background: rgba(255,255,255,.06); color: inherit; box-shadow: var(--hi); }
 html[data-os="mac"] .dl-btn[data-os-btn="win"]::after, html[data-os="win"] .dl-btn[data-os-btn="mac"]::after { display: none; }

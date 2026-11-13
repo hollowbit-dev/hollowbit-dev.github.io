@@ -34,6 +34,13 @@ const P = {
     site: 'https://hollowbit.dev/diskshaper/', repo: 'hollowbit-dev/diskshaper',
     fallback: { tag: 'v1.0.0', assets: ['Diskshaper-1.0.0-mac-arm64.dmg', 'Diskshaper-1.0.0-mac-x64.dmg', 'Diskshaper-Setup-1.0.0-win-x64.exe'] },
   },
+  // Startshaper's only website is its page here, at /startshaper/ (`own`: no separate product site).
+  startshaper: {
+    slug: 'startshaper', name: 'Startshaper', v: 'ss', domain: 'hollowbit.dev/startshaper', page: true, own: true,
+    site: 'https://hollowbit.dev/startshaper/', repo: 'hollowbit-dev/startshaper',
+    imgs: [['startshaper-app.webp', 2560, 1628], ['startshaper-advice.webp', 2560, 1628], ['startshaper-now.webp', 2560, 1628]],
+    fallback: { tag: 'v1.0.0', assets: ['Startshaper-1.0.0-mac-arm64.dmg', 'Startshaper-1.0.0-mac-x64.dmg', 'Startshaper-Setup-1.0.0-win-x64.exe'] },
+  },
   // Writeshaper's website also lives on this domain, at /writeshaper/.
   writeshaper: {
     slug: 'writeshaper', name: 'Writeshaper', v: 'ws', domain: 'hollowbit.dev/writeshaper', page: false,
@@ -41,9 +48,9 @@ const P = {
     fallback: { tag: 'v1.0.0', assets: ['Writeshaper-1.0.0-mac-arm64.dmg', 'Writeshaper-1.0.0-mac-x64.dmg', 'Writeshaper-Setup-1.0.0-win-x64.exe'] },
   },
 };
-const ORDER = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper'];
+const ORDER = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper'];
 // Screenshot sizes for the home page cards.
-const SHOT = { fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085] };
+const SHOT = { fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018] };
 
 for (const p of Object.values(P)) {
   let rel = p.fallback;
@@ -65,8 +72,8 @@ for (const p of Object.values(P)) {
 }
 // Each product site has the same languages, at /<lang>/ (English at the root).
 const siteIn = (p, lang) => p.site + (lang === 'en' ? '' : `${lang}/`);
-const changelog = (p, lang) => `${siteIn(p, lang)}changelog.html`;
-const FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper;
+const changelog = (p, lang) => (p.own ? p.releases : `${siteIn(p, lang)}changelog.html`);
+const FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper;
 
 /* ---------- icons ---------- */
 const GH = 'M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z';
@@ -116,15 +123,15 @@ const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u,
 // Paths are written root-absolute for the page's language (/es/about/), then made relative at write time.
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
 const navItems = (L) => [
-  [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'],
+  [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'],
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 const APPS_LABEL = { en: 'Apps', es: 'Apps', fr: 'Apps', de: 'Apps', ru: 'Приложения', zh: '应用' };
 const FILM_LABEL = { en: 'Watch the film', es: 'Ver el vídeo', fr: 'Voir le film', de: 'Film ansehen', ru: 'Смотреть видео', zh: '观看短片' };
-const APP_KEYS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper'];
+const APP_KEYS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper'];
 const cap1 = (x) => x.charAt(0).toUpperCase() + x.slice(1);
 const topNav = (L, key) => {
-  const apps = navItems(L).slice(0, 4), rest = [[`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/donate/`, L.nav.donate, 'donate']];
+  const apps = navItems(L).slice(0, 5), rest = [[`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/donate/`, L.nav.donate, 'donate']];
   const onApp = APP_KEYS.includes(key);
   const link = ([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(l)}</span></a>`;
   const menu = apps.map(([h, l, k]) => `<a class="apps-item" href="${h}"${k === key ? ' aria-current="page"' : ''}><img src="/assets/img/${k}-icon.png" width="36" height="36" alt=""><span><b>${l}</b><small>${esc(cap1(L.products[k].kind))}</small></span></a>`).join('');
@@ -177,7 +184,7 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css?v=${CSSV}">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note, enOnly })}</script>
 </head>
 <body class="${cls}">
@@ -208,7 +215,7 @@ ${body}
         <a class="foot-mail" data-email-link href="${pre(L)}/contact/">${ic('mail')}<span data-email>${esc(t.footer.contact)}</span></a>
         ${socials()}
       </div>
-      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
+      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
       <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="https://fuseduo.com/">Fuseduo</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
@@ -325,8 +332,8 @@ function stage(L, only) {
 
 const ticker = (L) => {
   const items = (p) => L.products[p.slug].tasks.map((t) => `<span style="--c: var(--${p.v})"><i></i>${esc(t)}</span>`).join('');
-  const a = items(FS) + items(WS) + items(DS) + items(CS);
-  const b = items(CS) + items(DS) + items(FS) + items(WS);
+  const a = items(FS) + items(WS) + items(SS) + items(DS) + items(CS);
+  const b = items(CS) + items(SS) + items(DS) + items(FS) + items(WS);
   return `<div class="ticker" aria-hidden="true"><div class="ticker-track">${a}${a}</div><div class="ticker-track rev">${b}${b}</div></div>`;
 };
 const PR_ICONS = ['i-upload', 'i-wifi', 'i-ads', 'i-account', 'i-track', 'i-code'];
@@ -365,7 +372,7 @@ ${ticker(L)}
         <div class="pcard-cta">
           <a class="btn btn-dark" href="${p.page ? `${pre(L)}/${p.slug}/` : siteIn(p, L.lang)}">${esc(L.common.learn)} ${ic('arrow')}</a>
           <a class="btn btn-line" href="${pre(L)}/download/#${p.slug}">${ic('down')}${esc(L.common.download)}</a>
-          ${p.page ? `<a class="btn btn-line" href="${siteIn(p, L.lang)}">${esc(L.common.website)} ${ic('out')}</a>` : ''}
+          ${p.page && !p.own ? `<a class="btn btn-line" href="${siteIn(p, L.lang)}">${esc(L.common.website)} ${ic('out')}</a>` : ''}
         </div>
         <small class="pcard-meta">v${p.version} · ${esc(plats(L, p))} · ${esc(fill(L.common.official, { domain: p.domain }))}</small>
       </div>
@@ -414,13 +421,13 @@ function productPage(L, p, next) {
   <p class="phero-name in-0">${p.name}</p>
   <h1 class="phero-title" data-words>${esc(c.line)}</h1>
   <p class="phero-sub in-1">${esc(c.lede)}</p>
-  <div class="in-2">${dlButtons(L, p, { site: true })}</div>
+  <div class="in-2">${dlButtons(L, p, { site: !p.own })}</div>
   <p class="phero-meta in-2">${esc(L.common.version)} ${p.version} · ${esc(L.common.free)} · <a href="${p.source}">${esc(L.common.source)}</a> · <a href="${changelog(p, L.lang)}">${esc(L.common.whatsNew)}</a></p>
-  <div class="in-3 phero-stage">${stage(L, p.v)}</div>
+  <div class="in-3 phero-stage">${p.own ? `<figure class="phero-shot"><img src="/assets/img/${p.imgs[0][0]}" width="${p.imgs[0][1]}" height="${p.imgs[0][2]}" alt="${esc(c.rows[0][2])}"></figure>` : stage(L, p.v)}</div>
 </section>
 
 <section class="wrap sec rows" style="--c: var(--${p.v})">
-  ${c.rows.map(([h, t, alt], i) => { const [img, w, ht] = p.imgs[i]; return `<div class="row${i % 2 ? ' row-flip' : ''}">
+  ${c.rows.map(([h, t, alt], i) => { const [img, w, ht] = p.own ? [['startshaper-after.webp', 2560, 1628], p.imgs[1], p.imgs[2]][i] : p.imgs[i]; return `<div class="row${i % 2 ? ' row-flip' : ''}">
     <div class="row-copy"><h2 class="h3" data-words="scroll">${esc(h)}</h2><p class="reveal">${esc(t)}</p></div>
     <figure class="row-shot" data-wipe><img src="/assets/img/${img}" width="${w}" height="${ht}" loading="lazy" alt="${esc(alt)}"></figure>
   </div>`; }).join('\n  ')}
@@ -435,7 +442,7 @@ function productPage(L, p, next) {
     </div>
     <div class="band-dl reveal">
       ${dlButtons(L, p, { dark: true })}
-      <div class="band-links"><a href="${pre(L)}/download/#${p.slug}">${esc(L.product.allDl)}</a><a href="${changelog(p, L.lang)}">${esc(L.common.whatsNew)}</a><a href="${siteIn(p, L.lang)}">${p.domain}</a></div>
+      <div class="band-links"><a href="${pre(L)}/download/#${p.slug}">${esc(L.product.allDl)}</a><a href="${changelog(p, L.lang)}">${esc(L.common.whatsNew)}</a>${p.own ? `<a href="${p.source}">GitHub</a>` : `<a href="${siteIn(p, L.lang)}">${p.domain}</a>`}</div>
     </div>
   </div>
 </section>
@@ -820,6 +827,7 @@ for (const L of LANGS) {
     [`${d}index.html`]: home(L),
     [`${d}fileshaper/index.html`]: productPage(L, FS, CS),
     [`${d}captionshaper/index.html`]: productPage(L, CS, DS),
+    [`${d}startshaper/index.html`]: productPage(L, SS, DS),
     [`${d}download/index.html`]: download(L),
     [`${d}about/index.html`]: about(L),
     [`${d}contact/index.html`]: contact(L),
@@ -845,7 +853,7 @@ for (const [f, raw] of Object.entries(out)) {
 }
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
-const paths = ['/', '/fileshaper/', '/captionshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
+const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
 const workPaths = ['/work/', '/services/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
@@ -854,6 +862,6 @@ ${paths.flatMap((p) => LANGS.map((L) => `  <url><loc>${u(L.lang, p)}</loc><lastm
 ${workPaths.map((p) => `  <url><loc>${u('en', p)}</loc><lastmod>2026-11-12</lastmod></url>`).join('\n')}
 </urlset>
 `);
-console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version);
+console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version, '| startshaper', SS.version);
 // Fuseduo's own pages (/fuseduo/) are built by their own script.
 await import('./fuseduo.mjs');

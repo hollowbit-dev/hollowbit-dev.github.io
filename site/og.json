@@ -37,6 +37,20 @@
   "domain": "captionshaper.app"
  },
  {
+  "file": "assets/img/og/en/startshaper.png",
+  "lang": "en",
+  "id": "startshaper",
+  "kind": "product",
+  "v": "ss",
+  "slug": "startshaper",
+  "name": "Startshaper",
+  "h": "Startshaper",
+  "sub": "Find out why your computer is slow. See every app that starts by itself, what it is in plain words, and switch off the ones you don’t need. Every change can be undone.",
+  "kicker": "free PC speed-up",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/startshaper"
+ },
+ {
   "file": "assets/img/og/en/download.png",
   "lang": "en",
   "id": "download",
@@ -112,6 +126,20 @@
   "kicker": "subtítulos automáticos gratis y sin conexión",
   "plats": "Mac y Windows",
   "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/es/startshaper.png",
+  "lang": "es",
+  "id": "startshaper",
+  "kind": "product",
+  "v": "ss",
+  "slug": "startshaper",
+  "name": "Startshaper",
+  "h": "Startshaper",
+  "sub": "Descubre por qué tu ordenador va lento. Ve cada app que se abre sola, qué es en palabras claras, y apaga las que no necesitas. Todo cambio se puede deshacer.",
+  "kicker": "acelerador de PC gratis",
+  "plats": "Mac y Windows",
+  "domain": "hollowbit.dev/startshaper"
  },
  {
   "file": "assets/img/og/es/download.png",
@@ -191,6 +219,20 @@
   "domain": "captionshaper.app"
  },
  {
+  "file": "assets/img/og/fr/startshaper.png",
+  "lang": "fr",
+  "id": "startshaper",
+  "kind": "product",
+  "v": "ss",
+  "slug": "startshaper",
+  "name": "Startshaper",
+  "h": "Startshaper",
+  "sub": "Découvrez pourquoi votre ordinateur est lent. Voyez chaque app qui se lance toute seule, ce qu’elle fait en mots simples, et coupez celles dont vous n’avez pas besoin. Tout se peut annuler.",
+  "kicker": "accélérateur de PC gratuit",
+  "plats": "Mac et Windows",
+  "domain": "hollowbit.dev/startshaper"
+ },
+ {
   "file": "assets/img/og/fr/download.png",
   "lang": "fr",
   "id": "download",
@@ -266,6 +308,20 @@
   "kicker": "kostenlose Offline-Untertitel",
   "plats": "Mac und Windows",
   "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/de/startshaper.png",
+  "lang": "de",
+  "id": "startshaper",
+  "kind": "product",
+  "v": "ss",
+  "slug": "startshaper",
+  "name": "Startshaper",
+  "h": "Startshaper",
+  "sub": "Finde heraus, warum dein Computer langsam ist. Sieh jede App, die von selbst startet, was sie ist – in einfachen Worten – und schalte ab, was du nicht brauchst. Alles lässt sich rückgängig machen.",
+  "kicker": "kostenloser PC-Beschleuniger",
+  "plats": "Mac und Windows",
+  "domain": "hollowbit.dev/startshaper"
  },
  {
   "file": "assets/img/og/de/download.png",
@@ -345,6 +401,20 @@
   "domain": "captionshaper.app"
  },
  {
+  "file": "assets/img/og/ru/startshaper.png",
+  "lang": "ru",
+  "id": "startshaper",
+  "kind": "product",
+  "v": "ss",
+  "slug": "startshaper",
+  "name": "Startshaper",
+  "h": "Startshaper",
+  "sub": "Узнайте, почему компьютер тормозит. Посмотрите все приложения, которые запускаются сами, что каждое из них делает простыми словами, и отключите лишние. Любое изменение можно отменить.",
+  "kicker": "бесплатное ускорение ПК",
+  "plats": "Mac и Windows",
+  "domain": "hollowbit.dev/startshaper"
+ },
+ {
   "file": "assets/img/og/ru/download.png",
   "lang": "ru",
   "id": "download",
@@ -420,6 +490,20 @@
   "kicker": "免费离线自动字幕",
   "plats": "Mac 和 Windows",
   "domain": "captionshaper.app"
+ },
+ {
+  "file": "assets/img/og/zh/startshaper.png",
+  "lang": "zh",
+  "id": "startshaper",
+  "kind": "product",
+  "v": "ss",
+  "slug": "startshaper",
+  "name": "Startshaper",
+  "h": "Startshaper",
+  "sub": "找出电脑变慢的原因。查看每个自动启动的应用，用大白话说明它是什么，关掉不需要的。每项更改都能撤销。",
+  "kicker": "免费电脑加速工具",
+  "plats": "Mac 和 Windows",
+  "domain": "hollowbit.dev/startshaper"
  },
  {
   "file": "assets/img/og/zh/download.png",
