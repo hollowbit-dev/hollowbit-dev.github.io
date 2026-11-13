@@ -397,7 +397,9 @@ const support = page({
 </div></section>`,
 });
 
-const out = (p, html) => { const f = resolve(OUTDIR, p, 'index.html'); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, html); };
+// The site lives at fuseduo.com; the old hollowbit.dev/fuseduo/ pages just send people there.
+const redirect = (p) => `<!doctype html><meta charset="utf-8"><title>Fuseduo</title><link rel="canonical" href="https://fuseduo.com/${p}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=https://fuseduo.com/${p}"><script>location.replace('https://fuseduo.com/${p}' + location.hash)</script><a href="https://fuseduo.com/${p}">Fuseduo has moved to fuseduo.com</a>`;
+const out = (p, html) => { const f = resolve(OUTDIR, p, 'index.html'); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, DOMAIN ? html : redirect(p ? p + '/' : '')); };
 out('', home); out('how-it-works', how); out('safety', safety); out('support', support);
 const today = new Date().toISOString().slice(0, 10);
 writeFileSync(resolve(OUTDIR, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
