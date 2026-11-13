@@ -16,7 +16,7 @@ const HB = DOMAIN ? 'https://hollowbit.dev' : '';            // links back to th
 const OUTDIR = DOMAIN ? resolve(process.env.HOME, 'Desktop/Fuseduo/docs') : resolve(root, 'fuseduo');
 const REPO = 'hollowbit-dev/fuseduo', GHURL = `https://github.com/${REPO}`;
 // Download links come from the latest GitHub release, so they always point at real files.
-let REL = { tag: 'v1.0.0', assets: ['Fuseduo-1.0.0-mac-arm64.dmg', 'Fuseduo-1.0.0-mac-x64.dmg'] };
+let REL = { tag: 'v1.1.0', assets: ['Fuseduo-1.1.0-mac-arm64.dmg', 'Fuseduo-1.1.0-mac-x64.dmg'] };
 try {
   const r = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { 'User-Agent': 'hollowbit-site-build' } });
   if (r.ok) { const j = await r.json(); REL = { tag: j.tag_name, assets: j.assets.map((a) => a.name) }; }
