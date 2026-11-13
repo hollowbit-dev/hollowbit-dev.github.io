@@ -193,7 +193,7 @@ button { font: inherit; color: inherit; }
 .hlg::before { content: ""; position: absolute; inset: .1em 0 .02em; z-index: -1; border-radius: .2em; background: var(--fs); transform: scaleX(0); transform-origin: left; box-shadow: inset 0 .04em 0 rgba(255,255,255,.45), 0 .2em .6em -.2em currentColor; animation: hl-in 1s var(--spring-soft) .75s forwards, hl-cycle 12s linear 1.8s infinite; }
 .no-js .hlg, html:not(.js) .hlg { color: inherit; }
 @keyframes hl-in { to { transform: none; } }
-@keyframes hl-cycle { 0%, 18% { background: var(--fs); } 25%, 43% { background: var(--cs); } 50%, 68% { background: var(--ds); } 75%, 93% { background: var(--ws); } 100% { background: var(--fs); } }
+@keyframes hl-cycle { 0%, 15% { background: var(--fs); } 20%, 35% { background: var(--cs); } 40%, 55% { background: var(--ds); } 60%, 75% { background: var(--ws); } 80%, 95% { background: var(--ss); } 100% { background: var(--fs); } }
 
 /* ---------- ticker ---------- */
 .ticker { margin-top: clamp(72px, 11vh, 120px); display: grid; gap: 12px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
@@ -273,9 +273,9 @@ button { font: inherit; color: inherit; }
 @property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 .cta-box { position: relative; text-align: center; padding: clamp(52px, 7vw, 92px) 24px; border-radius: 32px; overflow: hidden; isolation: isolate; }
 .cta-box::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; z-index: 1; pointer-events: none;
-  background: conic-gradient(from var(--a), var(--fs), var(--yellow), var(--cs), var(--teal), var(--ds), var(--violet), var(--ws), var(--fs));
+  background: conic-gradient(from var(--a), var(--fs), var(--yellow), var(--cs), var(--teal), var(--ds), var(--violet), var(--ws), var(--ss), var(--fs));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: spin 8s linear infinite; }
-.cta-box::after { content: ""; position: absolute; z-index: -1; inset: 30% 10% -40%; border-radius: 50%; background: conic-gradient(from var(--a), var(--fs), var(--cs), var(--ds), var(--ws), var(--fs)); filter: blur(80px); opacity: .22; animation: spin 8s linear infinite; }
+.cta-box::after { content: ""; position: absolute; z-index: -1; inset: 30% 10% -40%; border-radius: 50%; background: conic-gradient(from var(--a), var(--fs), var(--cs), var(--ds), var(--ws), var(--ss), var(--fs)); filter: blur(80px); opacity: .22; animation: spin 8s linear infinite; }
 @keyframes spin { to { --a: 360deg; } }
 .cta-icons { display: flex; justify-content: center; margin-bottom: 30px; }
 .cta-icons img { width: 76px; height: 76px; border-radius: 19px; box-shadow: 0 22px 44px -16px #000; animation: float 6s ease-in-out infinite; }

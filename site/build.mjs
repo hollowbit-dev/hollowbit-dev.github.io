@@ -323,10 +323,27 @@ const wsDemo = (L) => `<div class="demo demo-ws" id="demo-ws" role="tabpanel" ar
   </div>
 </div>`;
 
+// Startshaper demo: startup apps land with their seconds, the bar fills to 94 s, the safe ones are switched off.
+const SS_ROWS = [['Steam', 'Opens Steam when you log in.', 11.2, 1, 190], ['Epic Games Launcher', 'Opens the Epic launcher when you log in.', 9.1, 1, 170], ['Discord', 'Opens your chat app so messages arrive.', 8.4, 0, 265], ['Battle.net', 'Opens a game launcher when you log in.', 7.6, 1, 205], ['Spotify', 'Opens Spotify when you log in.', 6.4, 1, 105], ['Google updater', 'Checks for Chrome updates.', 2.3, 1, 330]];
+const ssDemo = (L) => `<div class="demo demo-ss" id="demo-ss" role="tabpanel" aria-labelledby="tab-ss">
+  <p class="sr-only">${esc(L.home.srSs)}</p>
+  <div class="win" aria-hidden="true">
+    <div class="ss-top"><div class="tl"><i></i><i></i><i></i></div><span class="ss-brand"><img src="/assets/img/startshaper-icon.png" alt="">Startshaper</span><span class="ss-tabs"><b>Startup</b><span>Right now</span><span>Changes</span></span></div>
+    <div class="ss-body">
+      <div class="ss-h"><span class="ss-was">Your PC takes </span><span class="ss-now">Next time it starts in </span><em><span class="ss-secs">94</span> s</em><span class="ss-was"> to start.</span><span class="ss-now">.</span></div>
+      <div class="ss-sub"><span class="ss-was">These <b>5 apps</b> add about <b>37 s</b>, and they’re safe to switch off.</span><span class="ss-now">5 apps switched off: <b>about 37 s faster</b> from the next start.</span></div>
+      <div class="ss-bar">${SS_ROWS.map(([n, , sec, safe], i) => `<i class="${safe ? 's' : 'c'}" style="--w:${sec}" data-i="${i}"></i>`).join('')}<span>Windows itself</span></div>
+      <div class="ss-scale"><span>Power on</span><span class="ss-after">About 57 s next time</span><span>94 s</span></div>
+      <div class="ss-cta"><span class="ss-btn">Turn off the 5 safe ones</span><span class="ss-hint">Each app still opens when you click it.</span></div>
+      <div class="ss-list">${SS_ROWS.map(([n, what, sec, safe, h], i) => `<div class="ss-row" data-i="${i}" data-safe="${safe}"><span class="ss-ic" style="--h:${h}">${n[0]}</span><span class="ss-name"><b>${n}</b><small>${what}</small></span><em>+${sec} s at startup</em><span class="ss-sw on"></span></div>`).join('')}</div>
+    </div>
+  </div>
+</div>`;
+
 function stage(L, only) {
   const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'fs'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
-  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}</div>`;
-  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L);
+  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}</div>`;
+  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L);
   return `<div class="stage${only ? ' stage-single' : ''}" data-stage>${tabs}<div class="stage-frame"><div class="stage-scale">${demos}</div></div></div>`;
 }
 
@@ -344,7 +361,7 @@ const home = (L) => page(L, {
   og: { id: 'home', kind: 'home', h: L.home.h1, hl: L.home.hl, sub: L.home.sub },
   body: `
 <section class="hero wrap">
-  <a class="hero-badge in-0" href="${siteIn(WS, L.lang)}"><span class="dot"></span>${esc(fill(L.home.badge, { v: WS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  <a class="hero-badge in-0" href="${pre(L)}/startshaper/"><span class="dot"></span>${esc(fill(L.home.badge, { v: SS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
   <h1 class="hero-title" data-words data-hl="${esc(L.home.hl)}">${esc(L.home.h1)}</h1>
   <p class="hero-sub in-1">${esc(L.home.sub)}</p>
   <div class="hero-cta in-2">
@@ -423,7 +440,7 @@ function productPage(L, p, next) {
   <p class="phero-sub in-1">${esc(c.lede)}</p>
   <div class="in-2">${dlButtons(L, p, { site: !p.own })}</div>
   <p class="phero-meta in-2">${esc(L.common.version)} ${p.version} · ${esc(L.common.free)} · <a href="${p.source}">${esc(L.common.source)}</a> · <a href="${changelog(p, L.lang)}">${esc(L.common.whatsNew)}</a></p>
-  <div class="in-3 phero-stage">${p.own ? `<figure class="phero-shot"><img src="/assets/img/${p.imgs[0][0]}" width="${p.imgs[0][1]}" height="${p.imgs[0][2]}" alt="${esc(c.rows[0][2])}"></figure>` : stage(L, p.v)}</div>
+  <div class="in-3 phero-stage">${stage(L, p.v)}</div>
 </section>
 
 <section class="wrap sec rows" style="--c: var(--${p.v})">

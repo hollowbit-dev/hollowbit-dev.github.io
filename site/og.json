@@ -616,5 +616,19 @@
   "kicker": "Case study",
   "plats": "Mac and Windows",
   "domain": "hollowbit.dev/work"
+ },
+ {
+  "file": "assets/img/og/en/work-startshaper.png",
+  "lang": "en",
+  "id": "work-startshaper",
+  "kind": "product",
+  "v": "ss",
+  "slug": "startshaper",
+  "name": "Startshaper",
+  "h": "Startshaper",
+  "sub": "Why is my PC slow? Every app that starts by itself, explained in plain words, with one switch each.",
+  "kicker": "Case study",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/work"
  }
 ]

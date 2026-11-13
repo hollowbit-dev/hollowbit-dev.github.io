@@ -122,6 +122,37 @@
   const ease = (p) => 1 - Math.pow(1 - p, 3);
 
   const DEMOS = {
+    'demo-ss': {
+      length: 8600,
+      setup(d) { return d; },
+      reset(d, final) {
+        $$('.ss-row', d).forEach((r) => { r.classList.toggle('on', final); r.classList.remove('off'); $('.ss-sw', r).classList.add('on'); });
+        $$('.ss-bar i', d).forEach((s) => { s.classList.toggle('on', final); s.classList.remove('gone'); });
+        $('.ss-secs', d).textContent = '94';
+        $('.ss-after', d).classList.remove('on');
+        $('.ss-btn', d).classList.remove('done', 'press');
+        d.classList.remove('done');
+      },
+      async run(d, sig) {
+        const rows = $$('.ss-row', d), segs = $$('.ss-bar i', d), secs = $('.ss-secs', d);
+        await sleep(350, sig);
+        for (let i = 0; i < rows.length; i++) { rows[i].classList.add('on'); segs[i].classList.add('on'); await sleep(230, sig); }
+        await sleep(1100, sig);
+        const btn = $('.ss-btn', d); btn.classList.add('press'); await sleep(170, sig); btn.classList.remove('press');
+        let left = 94;
+        for (let i = 0; i < rows.length; i++) {
+          if (rows[i].dataset.safe !== '1') continue;
+          const sec = Number(segs[i].style.getPropertyValue('--w')), from = left;
+          left -= sec;
+          $('.ss-sw', rows[i]).classList.remove('on'); rows[i].classList.add('off'); segs[i].classList.add('gone');
+          await tween(300, (p) => { secs.textContent = Math.round(from - (from - left) * ease(p)); }, sig);
+          await sleep(90, sig);
+        }
+        btn.classList.add('done'); d.classList.add('done');
+        $('.ss-after', d).classList.add('on');
+        await sleep(2700, sig);
+      },
+    },
     'demo-ds': {
       length: 9200,
       setup(d) { return d; },
