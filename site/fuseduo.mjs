@@ -37,7 +37,7 @@ const ICONS = {
 };
 const card = (ic, title, body, d = 0) => `<div class="card" data-reveal style="--d:${d}s"><div class="ic">${I(ICONS[ic])}</div><h3>${title}</h3><p>${body}</p></div>`;
 
-const NAV = [['how-it-works/', 'How it works'], ['safety/', 'Safety']];
+const NAV = [['how-it-works/', 'How it works'], ['safety/', 'Safety'], ['support/', 'Support']];
 function page({ path, title, desc, body, demo }) {
   const url = ORIGIN + BASE + path;
   const nav = NAV.map(([p, n]) => `<a href="${BASE}${p}"${p === path ? ' aria-current="page"' : ''}>${n}</a>`).join('');
@@ -89,7 +89,7 @@ ${body}
       <p>Drop one Mac app onto another. Get an automation. A project by <a href="/">Hollowbit Studio</a>.</p>
     </div>
     <nav aria-label="Footer">
-      <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}#notify">Get notified</a></div>
+      <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}support/">Support</a><a href="${BASE}#notify">Get notified</a></div>
       <div><b>Hollowbit Studio</b><a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a></div>
     </nav>
   </div>
@@ -145,7 +145,7 @@ const home = page({
   body: `<section class="hero2">
   <div class="beams" aria-hidden="true"></div>
   <div class="wrap">
-    <a class="soon" href="#notify"><b>Early preview</b>Coming to Mac. Get notified →</a>
+    <a class="soon" href="#notify"><b>Coming soon</b>Fuseduo for Mac. Get notified →</a>
     <h1 class="words">${words('Drop one app on another.')}<br><span class="grad-text">${words('Get an automation.')}</span></h1>
     <p class="lede" data-reveal style="--d:.5s">Every app on your Mac, on one board. Fuse any two and Claude invents what they could do together, writes it as a real script, and shows you exactly what it does before anything runs.</p>
     <div class="cta" data-reveal style="--d:.65s"><a class="btn btn-brand big" href="#notify">Get notified</a><a class="btn btn-glass big" href="#try">Try the demo</a></div>
@@ -342,12 +342,47 @@ const safety = page({
 ${notify}`,
 });
 
+/* ---------- support (Ko-fi) ---------- */
+const KOFI = 'https://ko-fi.com/hollowbit';
+const kofiIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M4 6.5h12.5v6.2a5.3 5.3 0 0 1-5.3 5.3H9.3A5.3 5.3 0 0 1 4 12.7V6.5Zm12.5 1.5h1.3a3 3 0 0 1 0 6h-1.5c.1-.4.2-.9.2-1.3V8Zm0 2v2.5h1.3a1.25 1.25 0 0 0 0-2.5h-1.3Zm-6.4 6.1 2.9-2.8a1.7 1.7 0 0 0-2.3-2.5l-.6.5-.6-.5a1.7 1.7 0 0 0-2.3 2.5l2.9 2.8Z"/></svg>';
+const support = page({
+  path: 'support/',
+  title: 'Support Fuseduo · Ko-fi',
+  desc: 'Fuseduo is an independent project by Hollowbit Studio. A one-off tip on Ko-fi helps get it signed, polished and out the door.',
+  body: `<section class="page-head"><div class="wrap narrow">
+  <p class="eyebrow"><span class="pip"></span>Support</p>
+  <h1 class="words" style="font-size:clamp(40px,6vw,72px)">${words('Help Fuseduo')} <span class="grad-text">${words('ship.')}</span></h1>
+  <p class="lede" data-reveal style="--d:.4s">Fuseduo is an independent project from Hollowbit Studio, with no investors and no ads. If you’d like it to exist, a one-off tip on Ko-fi goes straight into getting it finished.</p>
+</div></section>
+
+<section class="section tight"><div class="wrap narrow">
+  <div class="kofi-card" data-reveal>
+    <div class="core kofi-core"><span class="halo"></span><span class="pulse"></span><span class="pulse p2"></span><img src="${BASE}assets/img/icon-256.png" alt="" width="150" height="150"></div>
+    <h2>Buy the build a coffee.</h2>
+    <p class="lede">Any amount, once. Ko-fi handles the payment and you don’t need an account.</p>
+    <div class="cta"><a class="btn btn-kofi big" href="${KOFI}" target="_blank" rel="noopener">${kofiIcon}Support on Ko-fi</a></div>
+    <p class="small" style="margin-top:16px">Opens ko-fi.com/hollowbit in a new tab.</p>
+  </div>
+</div></section>
+
+<section class="section tight"><div class="wrap">
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>Where it goes</p><h2>What your tip pays for.</h2></div>
+  <div class="grid3">
+    ${card('shield', 'A signed, notarised app', 'An Apple Developer membership, so Fuseduo opens without macOS warning you it’s from an unknown developer.')}
+    ${card('bolt', 'Testing with Claude', 'Every idea and script is tested against real Claude calls, across lots of app pairs, before it ships.', 0.08)}
+    ${card('mac', 'Windows next', 'Time to bring fusions to Windows with PowerShell, after the Mac version is out.', 0.16)}
+  </div>
+  <p class="small center" style="margin-top:26px" data-reveal>Can’t tip? Sharing Fuseduo with one person who’d love it helps just as much.</p>
+  <div class="cta" data-reveal><a class="btn btn-glass" href="${BASE}#notify">Get notified instead</a><a class="btn btn-glass" href="/donate/">Support all Hollowbit tools</a></div>
+</div></section>`,
+});
+
 const out = (p, html) => { const f = resolve(root, 'fuseduo', p, 'index.html'); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, html); };
-out('', home); out('how-it-works', how); out('safety', safety);
+out('', home); out('how-it-works', how); out('safety', safety); out('support', support);
 const today = new Date().toISOString().slice(0, 10);
 writeFileSync(resolve(root, 'fuseduo/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${['', 'how-it-works/', 'safety/'].map((p) => `  <url><loc>${ORIGIN}${BASE}${p}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+${['', 'how-it-works/', 'safety/', 'support/'].map((p) => `  <url><loc>${ORIGIN}${BASE}${p}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
 </urlset>
 `);
-console.log('fuseduo: 3 pages + sitemap');
+console.log('fuseduo: 4 pages + sitemap');
