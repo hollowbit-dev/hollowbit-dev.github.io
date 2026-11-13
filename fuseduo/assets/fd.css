@@ -1,6 +1,6 @@
 /* Fuseduo site: dark liquid glass (the Hollowbit glass system), violet → aqua. */
-@font-face { font-family: Geist; src: url(/assets/fonts/Geist-Variable.woff2) format('woff2'); font-weight: 100 900; font-display: swap; }
-@font-face { font-family: Geist Mono; src: url(/assets/fonts/GeistMono-Variable.woff2) format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: Geist; src: url(fonts/Geist-Variable.woff2) format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: Geist Mono; src: url(fonts/GeistMono-Variable.woff2) format('woff2'); font-weight: 100 900; font-display: swap; }
 @view-transition { navigation: auto; }
 :root {
   --font: Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
@@ -524,3 +524,19 @@ h3 { font-size: 20px; letter-spacing: -.02em; line-height: 1.25; }
 .btn-kofi:hover { transform: translateY(-2px) scale(1.02); box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 16px 40px rgba(255,94,91,.55); }
 .btn-kofi svg { width: 22px; height: 22px; fill: currentColor; stroke: none; animation: steam 2.4s ease-in-out infinite; }
 @keyframes steam { 50% { transform: translateY(-2px) rotate(-6deg); } }
+
+/* downloads + the film */
+.dl-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+.dl-sub { margin-top: 14px; font-size: 14px; color: var(--text-3); }
+.dl-sub a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--line-2); }
+.dl-sub a:hover { color: var(--text); }
+.btn svg.fill { fill: currentColor; stroke: none; }
+.film-btn .dur { font-size: 13px; color: var(--text-3); font-weight: 600; }
+dialog.film { padding: 0; border: 0; background: transparent; width: min(1100px, 92vw); max-width: none; overflow: visible; }
+dialog.film::backdrop { background: rgba(5,4,10,.82); }
+dialog.film video { display: block; width: 100%; border-radius: 18px; box-shadow: 0 0 0 1px var(--line-2), var(--sh-3); background: #000; }
+dialog.film .close { position: absolute; top: -48px; right: 0; width: 38px; height: 38px; border-radius: 12px; background: var(--chip-2); color: var(--text); font-size: 20px; display: grid; place-items: center; }
+dialog.film[open] { animation: filmIn .5s var(--spring-soft); }
+@keyframes filmIn { from { opacity: 0; transform: scale(.94) translateY(12px); } }
+.first-run { margin: 18px auto 0; max-width: 560px; font-size: 14px; color: var(--text-3); line-height: 1.55; }
+.first-run b { color: var(--text-2); }

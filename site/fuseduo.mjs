@@ -1,14 +1,28 @@
 // Builds Fuseduo's pages at /fuseduo/: node site/fuseduo.mjs
 // English only. Fuseduo is a Hollowbit Studio project but not one of the open-source apps,
 // so it has its own look, nav and footer and is kept out of the main product grid.
-import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync, cpSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const ORIGIN = 'https://hollowbit.dev';
-const BASE = '/fuseduo/';
+// Two targets: FD_TARGET=hollowbit (default) builds hollowbit.dev/fuseduo/ into this repo;
+// FD_TARGET=domain builds the same site for fuseduo.com into the Fuseduo repo's docs/ (GitHub Pages).
+const DOMAIN = process.env.FD_TARGET === 'domain';
+const ORIGIN = DOMAIN ? 'https://fuseduo.com' : 'https://hollowbit.dev';
+const BASE = DOMAIN ? '/' : '/fuseduo/';
+const HB = DOMAIN ? 'https://hollowbit.dev' : '';            // links back to the studio site
+const OUTDIR = DOMAIN ? resolve(process.env.HOME, 'Desktop/Fuseduo/docs') : resolve(root, 'fuseduo');
+const REPO = 'hollowbit-dev/fuseduo', GHURL = `https://github.com/${REPO}`;
+// Download links come from the latest GitHub release, so they always point at real files.
+let REL = { tag: 'v1.0.0', assets: ['Fuseduo-1.0.0-mac-arm64.dmg', 'Fuseduo-1.0.0-mac-x64.dmg'] };
+try {
+  const r = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { 'User-Agent': 'hollowbit-site-build' } });
+  if (r.ok) { const j = await r.json(); REL = { tag: j.tag_name, assets: j.assets.map((a) => a.name) }; }
+} catch { /* offline: fallback */ }
+const dlLink = (re) => { const n = REL.assets.find((a) => re.test(a)); return n ? `${GHURL}/releases/latest/download/${n}` : `${GHURL}/releases/latest`; };
+const DL = { arm: dlLink(/mac-arm64\.dmg$/), intel: dlLink(/mac-x64\.dmg$/), version: REL.tag.replace(/^v/, '') };
 const hash = (f) => createHash('md5').update(readFileSync(resolve(root, f))).digest('hex').slice(0, 8);
 const V = { css: hash('fuseduo/assets/fd.css'), js: hash('fuseduo/assets/fd.js'), fx: hash('fuseduo/assets/fx.js') };
 const OG = (() => { try { return hash('fuseduo/assets/img/og.png'); } catch { return '0'; } })();
@@ -66,9 +80,9 @@ function page({ path, title, desc, body, demo }) {
 <meta name="twitter:image" content="${ORIGIN}${BASE}assets/img/og.png?v=${OG}">
 <link rel="icon" href="${BASE}assets/img/icon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="${BASE}assets/img/icon-256.png">
-<link rel="preload" href="/assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${BASE}assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${BASE}assets/fd.css?v=${V.css}">
-<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Fuseduo', operatingSystem: 'macOS', applicationCategory: 'UtilitiesApplication', description: 'Drop one Mac app onto another and get an automation, written as a real script that you read and approve before it runs.', url: ORIGIN + BASE, publisher: { '@type': 'Organization', name: 'Hollowbit Studio', url: ORIGIN + '/' } })}</script>
+<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Fuseduo', operatingSystem: 'macOS', applicationCategory: 'UtilitiesApplication', softwareVersion: DL.version, downloadUrl: DL.arm, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, description: 'Drop one Mac app onto another and get an automation, written as a real script that you read and approve before it runs.', url: ORIGIN + BASE, publisher: { '@type': 'Organization', name: 'Hollowbit Studio', url: ORIGIN + '/' } })}</script>
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -76,7 +90,7 @@ function page({ path, title, desc, body, demo }) {
 ${demo ? '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="fd-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b"/><feColorMatrix in="b" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/></filter></svg>' : ''}
 <header class="nav"><div class="nav-in glass">
   <a class="logo" href="${BASE}"><img src="${BASE}assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo <small>by Hollowbit</small></a>
-  <nav class="links" aria-label="Fuseduo">${nav}<a class="btn btn-brand sm" href="${BASE}#notify">Get notified</a></nav>
+  <nav class="links" aria-label="Fuseduo">${nav}<a class="btn btn-brand sm" href="${BASE}#download">Download</a></nav>
   <button class="menu-btn" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
 </div></header>
 <main>
@@ -86,15 +100,16 @@ ${body}
   <div class="foot-in">
     <div>
       <a class="logo" href="${BASE}"><img src="${BASE}assets/img/icon-64.png" alt="" width="30" height="30">Fuseduo</a>
-      <p>Drop one Mac app onto another. Get an automation. A project by <a href="/">Hollowbit Studio</a>.</p>
+      <p>Drop one Mac app onto another. Get an automation. Free and open source. A project by <a href="${HB}/">Hollowbit Studio</a>.</p>
     </div>
     <nav aria-label="Footer">
-      <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}support/">Support</a><a href="${BASE}#notify">Get notified</a></div>
-      <div><b>Hollowbit Studio</b><a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a></div>
+      <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}support/">Support</a><a href="${BASE}#download">Download</a><a href="${GHURL}">GitHub</a></div>
+      <div><b>Hollowbit Studio</b><a href="${HB}/">Home</a><a href="${HB}/about/">About</a><a href="${HB}/contact/">Contact</a><a href="${HB}/privacy/">Privacy</a></div>
     </nav>
   </div>
   <p class="copy">© ${new Date().getFullYear()} Hollowbit Studio. Fuseduo is an independent project and isn’t affiliated with Apple or Anthropic. App names and icons belong to their owners.</p>
 </div></footer>
+${demo ? `<dialog class="film" id="film" aria-label="The Fuseduo film"><button class="close" aria-label="Close">×</button><video controls playsinline preload="none" poster="${BASE}assets/video/fuseduo-film-poster.jpg" data-src="${BASE}assets/video/fuseduo-film.mp4"></video></dialog>` : ''}
 <script src="${BASE}assets/fd.js?v=${V.js}" defer></script>
 <script src="${BASE}assets/fx.js?v=${V.fx}" defer></script>
 </body>
@@ -103,13 +118,17 @@ ${body}
 }
 
 const words = (t) => t.split(' ').map((w, i) => `<span class="w" style="--i:${i}">${w}</span>`).join(' ');
-const notify = `<section class="section" id="notify"><div class="wrap narrow"><div class="band" data-reveal>
+const DLI = I('M12 4v11m0 0 4-4m-4 4-4-4M5 19.5h14'), PLAY = I('M8 5.5v13l10-6.5z');
+const dlButtons = (size = 'big') => `<div class="dl-row"><a class="btn btn-brand ${size}" href="${DL.arm}">${DLI}Download for Mac</a><a class="btn btn-glass ${size}" href="${DL.intel}">Intel Mac</a></div>
+  <p class="dl-sub">Version ${DL.version} · Free and open source · <a href="${GHURL}">View on GitHub</a> · <a href="${GHURL}/releases/latest">All downloads</a></p>`;
+const firstRun = `<p class="first-run"><b>First launch:</b> right-click Fuseduo in Applications and choose <b>Open</b> (it isn’t signed with a paid Apple certificate). You’ll need <a href="https://claude.com/code">Claude Code</a> or an Anthropic API key.</p>`;
+const notify = `<section class="section" id="download"><div class="wrap narrow"><div class="band" data-reveal>
   <img class="big-icon" src="${BASE}assets/img/icon-256.png" alt="" width="108" height="108">
-  <h2>Be first to try it.</h2>
-  <p class="lede">Fuseduo is in early preview on Mac. Send a quick email and you’ll hear the day it’s ready, or follow along as it’s built.</p>
-  <div class="cta"><a class="btn btn-brand big" data-email-link="Fuseduo: tell me when it’s out" href="/contact/">${I('M3.5 6.5h17v11h-17zM4 7l8 6.5L20 7')}Email me when it’s out</a></div>
+  <h2>Get Fuseduo.</h2>
+  <p class="lede">Free for Mac. Drop one app on another and see what they can do together.</p>
+  ${dlButtons()}
+  ${firstRun}
   ${socials()}
-  <p class="small" style="margin-top:18px">No newsletter, no tracking. One email when it launches.</p>
 </div></div></section>`;
 
 const FUSIONS = [
@@ -145,10 +164,11 @@ const home = page({
   body: `<section class="hero2">
   <div class="beams" aria-hidden="true"></div>
   <div class="wrap">
-    <a class="soon" href="#notify"><b>Coming soon</b>Fuseduo for Mac. Get notified →</a>
+    <a class="soon" href="${GHURL}/releases/latest"><b>New</b>Fuseduo ${DL.version} is out. Free for Mac →</a>
     <h1 class="words">${words('Drop one app on another.')}<br><span class="grad-text">${words('Get an automation.')}</span></h1>
     <p class="lede" data-reveal style="--d:.5s">Every app on your Mac, on one board. Fuse any two and Claude invents what they could do together, writes it as a real script, and shows you exactly what it does before anything runs.</p>
-    <div class="cta" data-reveal style="--d:.65s"><a class="btn btn-brand big" href="#notify">Get notified</a><a class="btn btn-glass big" href="#try">Try the demo</a></div>
+    <div class="cta" data-reveal style="--d:.65s"><a class="btn btn-brand big" href="${DL.arm}">${DLI}Download for Mac</a><button class="btn btn-glass big film-btn" data-film>${PLAY}Watch the film <span class="dur">0:20</span></button></div>
+    <p class="dl-sub" data-reveal style="--d:.75s">Apple Silicon · <a href="${DL.intel}">Intel</a> · <a href="${GHURL}">GitHub</a> · free and open source</p>
   </div>
   <div class="orbit" aria-hidden="true">
     <div class="orbit-ring r1"></div><div class="orbit-ring r2"></div>
@@ -234,19 +254,19 @@ const home = page({
 </section>
 
 <section class="section"><div class="wrap">
-  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The real app</p><h2>Read it. Approve it. <span class="grad-text">Run it.</span></h2><p class="lede">Steps in plain English, a risk rating, the permissions it needs and how to undo it. The script is right there if you want to look.</p></div>
+  <div class="section-head" data-reveal><p class="eyebrow"><span class="pip"></span>The real app</p><h2>Read it. Approve it. <span class="grad-text">Run it.</span></h2><p class="lede">Steps in plain English, a risk rating, the permissions it needs and how to undo it. The script is right there if you want to look.</p><div class="cta"><button class="btn btn-glass film-btn" data-film>${PLAY}Watch the 20-second film</button></div></div>
   <div class="shot"><div class="shot-in"><img src="${BASE}assets/img/app-plan.webp" alt="Fuseduo showing a fusion of Music and Notes, with its steps, a low risk rating and the AppleScript it wrote." width="1600" height="1000" loading="lazy" decoding="async"></div></div>
 </div></section>
 
-<section class="finale" id="notify">
+<section class="finale" id="download">
   <div class="beams" aria-hidden="true"></div>
   <div class="wrap narrow" data-reveal>
     <div class="core"><span class="halo"></span><span class="pulse"></span><span class="pulse p2"></span><img src="${BASE}assets/img/icon-256.png" alt="" width="150" height="150"></div>
     <h2>Fuse <span class="grad-text">anything.</span></h2>
-    <p class="lede">Fuseduo is in early preview on Mac. Send a quick email and you’ll hear the day it’s ready, or follow along as it’s built.</p>
-    <div class="cta"><a class="btn btn-brand big" data-email-link="Fuseduo: tell me when it’s out" href="/contact/">${I('M3.5 6.5h17v11h-17zM4 7l8 6.5L20 7')}Email me when it’s out</a></div>
+    <p class="lede">Free for Mac, open source, and yours to remix.</p>
+    ${dlButtons()}
+    ${firstRun}
     ${socials()}
-    <p class="small" style="margin-top:18px">No newsletter, no tracking. One email when it launches.</p>
   </div>
 </section>`,
 });
@@ -373,16 +393,24 @@ const support = page({
     ${card('mac', 'Windows next', 'Time to bring fusions to Windows with PowerShell, after the Mac version is out.', 0.16)}
   </div>
   <p class="small center" style="margin-top:26px" data-reveal>Can’t tip? Sharing Fuseduo with one person who’d love it helps just as much.</p>
-  <div class="cta" data-reveal><a class="btn btn-glass" href="${BASE}#notify">Get notified instead</a><a class="btn btn-glass" href="/donate/">Support all Hollowbit tools</a></div>
+  <div class="cta" data-reveal><a class="btn btn-glass" href="${BASE}#download">Download Fuseduo</a><a class="btn btn-glass" href="${HB}/donate/">Support all Hollowbit tools</a></div>
 </div></section>`,
 });
 
-const out = (p, html) => { const f = resolve(root, 'fuseduo', p, 'index.html'); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, html); };
+const out = (p, html) => { const f = resolve(OUTDIR, p, 'index.html'); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, html); };
 out('', home); out('how-it-works', how); out('safety', safety); out('support', support);
 const today = new Date().toISOString().slice(0, 10);
-writeFileSync(resolve(root, 'fuseduo/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+writeFileSync(resolve(OUTDIR, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${['', 'how-it-works/', 'safety/', 'support/'].map((p) => `  <url><loc>${ORIGIN}${BASE}${p}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
 </urlset>
 `);
-console.log('fuseduo: 4 pages + sitemap');
+if (DOMAIN) { // a standalone site: its own copy of the assets, the domain, robots and a 404
+  rmSync(resolve(OUTDIR, 'assets'), { recursive: true, force: true });
+  cpSync(resolve(root, 'fuseduo/assets'), resolve(OUTDIR, 'assets'), { recursive: true });
+  writeFileSync(resolve(OUTDIR, 'CNAME'), 'fuseduo.com\n');
+  writeFileSync(resolve(OUTDIR, '.nojekyll'), '');
+  writeFileSync(resolve(OUTDIR, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://fuseduo.com/sitemap.xml\n');
+  writeFileSync(resolve(OUTDIR, '404.html'), page({ path: '', title: 'Not found · Fuseduo', desc: 'This page doesn’t exist.', body: `<section class="page-head"><div class="wrap narrow"><h1 style="font-size:64px">Nothing here.</h1><p class="lede">That page doesn’t exist. <a href="/">Go to Fuseduo</a>.</p></div></section>` }));
+}
+console.log(`fuseduo (${DOMAIN ? 'fuseduo.com' : 'hollowbit.dev/fuseduo'}): 4 pages + sitemap | downloads ${DL.version}`);

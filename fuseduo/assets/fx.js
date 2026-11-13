@@ -1,10 +1,12 @@
 // Fuseduo site v2 motion: cursor-lit dot grid, orbiting hero, scroll story, bento loops.
 (() => {
+  // asset paths follow wherever this script is served from (hollowbit.dev/fuseduo/ or fuseduo.com/)
+  const ASSETS = new URL('.', document.currentScript.src).href;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-  const icon = (id) => `/fuseduo/assets/apps/${id}.png`;
+  const icon = (id) => `${ASSETS}apps/${id}.png`;
   const APPS = { notes: '#f6c945', calendar: '#ff5a5f', reminders: '#5aa7ff', mail: '#3b8bff', safari: '#33b5ff', music: '#ff4f6d', photos: '#ffaa3c', messages: '#3ddc6a' };
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const seg = (p, a, b) => clamp((p - a) / (b - a)); // progress inside [a, b]

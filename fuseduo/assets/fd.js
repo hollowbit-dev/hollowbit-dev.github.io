@@ -1,5 +1,7 @@
 // Fuseduo site: the live drag-and-fuse demo, scroll reveals and small touches.
 (() => {
+  // asset paths follow wherever this script is served from (hollowbit.dev/fuseduo/ or fuseduo.com/)
+  const ASSETS = new URL('.', document.currentScript.src).href;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
@@ -10,6 +12,15 @@
   const email = ['hollowbitstudio', 'gmail.com'].join('@');
   $$('[data-email-link]').forEach((a) => { a.href = `mailto:${email}?subject=${encodeURIComponent(a.dataset.emailLink || 'Fuseduo')}`; });
   $$('[data-email]').forEach((n) => { n.textContent = email; });
+  // the film: opens in a dialog, plays with sound, stops when closed
+  const film = $('#film');
+  if (film) {
+    const v = $('video', film);
+    $$('[data-film]').forEach((b) => b.addEventListener('click', () => { if (!v.src) v.src = v.dataset.src; film.showModal(); v.currentTime = 0; v.play().catch(() => {}); }));
+    $('.close', film).addEventListener('click', () => film.close());
+    film.addEventListener('click', (e) => { if (e.target === film) film.close(); });
+    film.addEventListener('close', () => v.pause());
+  }
   const menu = $('.menu-btn');
   if (menu) menu.addEventListener('click', () => { const l = $('.links'); l.classList.toggle('open'); menu.setAttribute('aria-expanded', l.classList.contains('open')); });
   // scroll reveals
@@ -39,7 +50,7 @@
     notes: ['Notes', '#f6c945'], calendar: ['Calendar', '#ff5a5f'], reminders: ['Reminders', '#5aa7ff'], mail: ['Mail', '#3b8bff'],
     safari: ['Safari', '#33b5ff'], music: ['Music', '#ff4f6d'], photos: ['Photos', '#ffaa3c'], messages: ['Messages', '#3ddc6a'],
   };
-  const icon = (id) => `/fuseduo/assets/apps/${id}.png`;
+  const icon = (id) => `${ASSETS}apps/${id}.png`;
   // Example ideas, written by hand for the demo. In the app, Claude writes these for whatever pair you drop.
   const L = 'low', M = 'medium';
   const IDEAS = {

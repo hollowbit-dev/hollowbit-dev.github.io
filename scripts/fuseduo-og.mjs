@@ -33,7 +33,7 @@ p { margin-top: 26px; font-size: 22px; color: #b1aec2; line-height: 1.4; }
 <div class="l"><div class="brand"><img src="data:image/png;base64,${b64('fuseduo/assets/img/icon-256.png')}">Fuseduo <small>by Hollowbit</small></div>
 <h1>Drop one app on another. <span>Get an automation.</span></h1>
 <p>Claude writes it, you read it, nothing runs until you approve.</p></div>
-<div class="pill">Coming to Mac · hollowbit.dev/fuseduo</div>
+<div class="pill">Free for Mac · Open source · v1.0</div>
 <div class="shot"><img src="data:image/webp;base64,${b64('fuseduo/assets/img/app-plan.webp')}"></div>
 </body></html>`;
 const b = await chromium.launch();
