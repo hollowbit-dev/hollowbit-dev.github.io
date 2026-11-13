@@ -183,7 +183,7 @@
   /* ---------- bento loops ---------- */
   const term = $('.term');
   if (term) {
-    const LINES = [['m', '$ '], ['', 'Fuseduo is looking for Claude…'], ['g', '✓ Found Claude Code, signed in'], ['v', '→ Using your Claude plan'], ['m', '  no API key, no extra subscription'], ['g', '✓ Ready to fuse']];
+    const LINES = [['m', '$ '], ['', 'Fuseduo is looking for Claude…'], ['g', '✓ Found Claude Code, signed in'], ['v', '→ Using your own Claude plan'], ['m', '  (or an API key: your choice in Settings)'], ['g', '✓ Ready to fuse']];
     let running = false;
     visible(term, async (v) => {
       if (!v || running) return; running = true;
