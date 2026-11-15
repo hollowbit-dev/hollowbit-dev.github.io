@@ -13,10 +13,10 @@ const only = process.argv[2]; // optional filter, e.g. "en/" or "fileshaper"
 
 const b64 = (f) => readFileSync(resolve(root, f)).toString('base64');
 const font = `data:font/woff2;base64,${b64('assets/fonts/Geist-Variable.woff2')}`;
-const APPS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper'];
+const APPS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
 const icon = Object.fromEntries(APPS.map((s) => [s, `data:image/png;base64,${b64(`assets/img/${s}-icon.png`)}`]));
 const shot = Object.fromEntries(APPS.map((s) => [s, `data:image/webp;base64,${b64(`assets/img/${s}-app.webp`)}`]));
-const C = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', ss: '#ff8f4d', violet: '#a07cff' };
+const C = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', ss: '#ff8f4d', ls: '#a98bff', violet: '#a07cff' };
 const LOGO = '<svg viewBox="0 0 24 24" width="34" height="34"><path fill="#f4f4f5" fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></svg>';
 // Fine grain so the gradients don't band in Discord's JPEG re-encode.
 const GRAIN = `url("data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>')}")`;

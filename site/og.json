@@ -51,6 +51,20 @@
   "domain": "hollowbit.dev/startshaper"
  },
  {
+  "file": "assets/img/og/en/lightshaper.png",
+  "lang": "en",
+  "id": "lightshaper",
+  "kind": "product",
+  "v": "ls",
+  "slug": "lightshaper",
+  "name": "Lightshaper",
+  "h": "Lightshaper",
+  "sub": "Edit your photos, camera RAW included, with sliders, masks and looks. Batch-edit a whole folder and export. Your originals are never changed.",
+  "kicker": "free photo editor",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/lightshaper"
+ },
+ {
   "file": "assets/img/og/en/download.png",
   "lang": "en",
   "id": "download",
@@ -140,6 +154,20 @@
   "kicker": "acelerador de PC gratis",
   "plats": "Mac y Windows",
   "domain": "hollowbit.dev/startshaper"
+ },
+ {
+  "file": "assets/img/og/es/lightshaper.png",
+  "lang": "es",
+  "id": "lightshaper",
+  "kind": "product",
+  "v": "ls",
+  "slug": "lightshaper",
+  "name": "Lightshaper",
+  "h": "Lightshaper",
+  "sub": "Edita tus fotos, también RAW de cámara, con deslizadores, máscaras y estilos. Edita una carpeta entera de una vez y exporta. Tus originales nunca se modifican.",
+  "kicker": "editor de fotos gratis",
+  "plats": "Mac y Windows",
+  "domain": "hollowbit.dev/lightshaper"
  },
  {
   "file": "assets/img/og/es/download.png",
@@ -233,6 +261,20 @@
   "domain": "hollowbit.dev/startshaper"
  },
  {
+  "file": "assets/img/og/fr/lightshaper.png",
+  "lang": "fr",
+  "id": "lightshaper",
+  "kind": "product",
+  "v": "ls",
+  "slug": "lightshaper",
+  "name": "Lightshaper",
+  "h": "Lightshaper",
+  "sub": "Retouchez vos photos, RAW compris, avec des curseurs, des masques et des styles. Retouchez tout un dossier d’un coup et exportez. Vos originaux ne sont jamais modifiés.",
+  "kicker": "éditeur photo gratuit",
+  "plats": "Mac et Windows",
+  "domain": "hollowbit.dev/lightshaper"
+ },
+ {
   "file": "assets/img/og/fr/download.png",
   "lang": "fr",
   "id": "download",
@@ -322,6 +364,20 @@
   "kicker": "kostenloser PC-Beschleuniger",
   "plats": "Mac und Windows",
   "domain": "hollowbit.dev/startshaper"
+ },
+ {
+  "file": "assets/img/og/de/lightshaper.png",
+  "lang": "de",
+  "id": "lightshaper",
+  "kind": "product",
+  "v": "ls",
+  "slug": "lightshaper",
+  "name": "Lightshaper",
+  "h": "Lightshaper",
+  "sub": "Bearbeite deine Fotos, auch Kamera-RAW, mit Reglern, Masken und Looks. Bearbeite einen ganzen Ordner auf einmal und exportiere. Deine Originale bleiben unverändert.",
+  "kicker": "kostenloser Fotoeditor",
+  "plats": "Mac und Windows",
+  "domain": "hollowbit.dev/lightshaper"
  },
  {
   "file": "assets/img/og/de/download.png",
@@ -415,6 +471,20 @@
   "domain": "hollowbit.dev/startshaper"
  },
  {
+  "file": "assets/img/og/ru/lightshaper.png",
+  "lang": "ru",
+  "id": "lightshaper",
+  "kind": "product",
+  "v": "ls",
+  "slug": "lightshaper",
+  "name": "Lightshaper",
+  "h": "Lightshaper",
+  "sub": "Редактируйте фото, включая RAW с камеры, ползунками, масками и стилями. Обработайте целую папку сразу и экспортируйте. Оригиналы никогда не меняются.",
+  "kicker": "бесплатный фоторедактор",
+  "plats": "Mac и Windows",
+  "domain": "hollowbit.dev/lightshaper"
+ },
+ {
   "file": "assets/img/og/ru/download.png",
   "lang": "ru",
   "id": "download",
@@ -504,6 +574,20 @@
   "kicker": "免费电脑加速工具",
   "plats": "Mac 和 Windows",
   "domain": "hollowbit.dev/startshaper"
+ },
+ {
+  "file": "assets/img/og/zh/lightshaper.png",
+  "lang": "zh",
+  "id": "lightshaper",
+  "kind": "product",
+  "v": "ls",
+  "slug": "lightshaper",
+  "name": "Lightshaper",
+  "h": "Lightshaper",
+  "sub": "用滑块、蒙版和风格编辑你的照片，包括相机 RAW。一次处理整个文件夹并导出。原图永远不会被改动。",
+  "kicker": "免费照片编辑器",
+  "plats": "Mac 和 Windows",
+  "domain": "hollowbit.dev/lightshaper"
  },
  {
   "file": "assets/img/og/zh/download.png",
@@ -627,6 +711,20 @@
   "name": "Startshaper",
   "h": "Startshaper",
   "sub": "Why is my PC slow? Every app that starts by itself, explained in plain words, with one switch each.",
+  "kicker": "Case study",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/work"
+ },
+ {
+  "file": "assets/img/og/en/work-lightshaper.png",
+  "lang": "en",
+  "id": "work-lightshaper",
+  "kind": "product",
+  "v": "ls",
+  "slug": "lightshaper",
+  "name": "Lightshaper",
+  "h": "Lightshaper",
+  "sub": "A free photo editor in the spirit of Lightroom: sliders, masks, looks and RAW files, without the subscription.",
   "kicker": "Case study",
   "plats": "Mac and Windows",
   "domain": "hollowbit.dev/work"

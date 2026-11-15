@@ -122,6 +122,47 @@
   const ease = (p) => 1 - Math.pow(1 - p, 3);
 
   const DEMOS = {
+    'demo-ls': {
+      length: 9000,
+      setup(d) { return d; },
+      reset(d, final) {
+        const sl = $$('.ls-sl', d);
+        sl.forEach((r) => { r.classList.toggle('on', final); $('em', r).textContent = final ? $('em', r).dataset.v : '0'; $('b', r).style.setProperty('--p', final ? r.dataset.to : 50); });
+        const after = $('.ls-after', d); after.style.opacity = final ? 1 : 0; after.style.clipPath = 'inset(0 0 0 0)';
+        d.classList.toggle('lit', final); d.classList.remove('wiping');
+      },
+      async run(d, sig) {
+        const sl = $$('.ls-sl', d), after = $('.ls-after', d), photo = $('.ls-photo', d), wipe = $('.ls-wipe', d);
+        await sleep(500, sig);
+        let shown = 0;
+        for (let i = 0; i < sl.length; i++) {
+          const r = sl[i], to = Number(r.dataset.to), em = $('em', r), target = em.dataset.v, num = parseFloat(target.replace('−', '-'));
+          r.classList.add('on');
+          const from = shown, goal = (i + 1) / sl.length;
+          await tween(620, (p) => {
+            const e = ease(p);
+            $('b', r).style.setProperty('--p', 50 + (to - 50) * e);
+            em.textContent = (num > 0 ? '+' : num < 0 ? '−' : '') + (Math.abs(num) * e).toFixed(target.includes('.') ? 2 : 0);
+            after.style.opacity = from + (goal - from) * e;
+          }, sig);
+          em.textContent = target; shown = goal;
+          if (i === 1) d.classList.add('lit');
+          await sleep(160, sig);
+        }
+        await sleep(700, sig);
+        // Wipe: before on the left, after on the right.
+        d.classList.add('wiping');
+        const W = photo.clientWidth;
+        const set = (f) => { after.style.clipPath = `inset(0 0 0 ${f * 100}%)`; wipe.style.setProperty('--x', `${f * W}px`); };
+        await tween(900, (p) => set(.5 * ease(p)), sig);
+        await sleep(500, sig);
+        await tween(700, (p) => set(.5 + .25 * ease(p)), sig);
+        await tween(1100, (p) => set(.75 - .5 * ease(p)), sig);
+        await tween(700, (p) => set(.25 * (1 - ease(p))), sig);
+        d.classList.remove('wiping');
+        await sleep(1200, sig);
+      },
+    },
     'demo-ss': {
       length: 8600,
       setup(d) { return d; },

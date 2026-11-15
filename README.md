@@ -1,6 +1,6 @@
 # hollowbit.dev
 
-The website of Hollowbit, a small studio making free, offline, open-source tools: [Fileshaper](https://fileshaper.app), [Captionshaper](https://captionshaper.app), [Diskshaper](https://hollowbit.dev/diskshaper/), [Writeshaper](https://hollowbit.dev/writeshaper/) and [Startshaper](https://hollowbit.dev/startshaper/).
+The website of Hollowbit, a small studio making free, offline, open-source tools: [Fileshaper](https://fileshaper.app), [Captionshaper](https://captionshaper.app), [Diskshaper](https://hollowbit.dev/diskshaper/), [Writeshaper](https://hollowbit.dev/writeshaper/), [Startshaper](https://hollowbit.dev/startshaper/) and [Lightshaper](https://hollowbit.dev/lightshaper/).
 
 Plain static HTML, CSS and JavaScript. No build step, no trackers, no third-party requests. Served by GitHub Pages at https://hollowbit.dev.
 

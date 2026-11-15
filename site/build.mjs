@@ -39,7 +39,15 @@ const P = {
     slug: 'startshaper', name: 'Startshaper', v: 'ss', domain: 'hollowbit.dev/startshaper', page: true, own: true,
     site: 'https://hollowbit.dev/startshaper/', repo: 'hollowbit-dev/startshaper',
     imgs: [['startshaper-app.webp', 2560, 1628], ['startshaper-advice.webp', 2560, 1628], ['startshaper-now.webp', 2560, 1628]],
+    rowImgs: [['startshaper-after.webp', 2560, 1628], ['startshaper-advice.webp', 2560, 1628], ['startshaper-now.webp', 2560, 1628]],
     fallback: { tag: 'v1.0.0', assets: ['Startshaper-1.0.0-mac-arm64.dmg', 'Startshaper-1.0.0-mac-x64.dmg', 'Startshaper-Setup-1.0.0-win-x64.exe'] },
+  },
+  // Lightshaper's only website is its page here, at /lightshaper/, like Startshaper.
+  lightshaper: {
+    slug: 'lightshaper', name: 'Lightshaper', v: 'ls', domain: 'hollowbit.dev/lightshaper', page: true, own: true,
+    site: 'https://hollowbit.dev/lightshaper/', repo: 'hollowbit-dev/lightshaper',
+    imgs: [['lightshaper-masks.webp', 2560, 1628], ['lightshaper-match.webp', 2560, 1628], ['lightshaper-library.webp', 2560, 1628]],
+    fallback: { tag: 'v1.0.0', assets: ['Lightshaper-1.0.0-mac-arm64.dmg', 'Lightshaper-1.0.0-mac-x64.dmg', 'Lightshaper-Setup-1.0.0-win-x64.exe'] },
   },
   // Writeshaper's website also lives on this domain, at /writeshaper/.
   writeshaper: {
@@ -48,9 +56,9 @@ const P = {
     fallback: { tag: 'v1.0.0', assets: ['Writeshaper-1.0.0-mac-arm64.dmg', 'Writeshaper-1.0.0-mac-x64.dmg', 'Writeshaper-Setup-1.0.0-win-x64.exe'] },
   },
 };
-const ORDER = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper'];
+const ORDER = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
 // Screenshot sizes for the home page cards.
-const SHOT = { fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018] };
+const SHOT = { fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018], lightshaper: [2560, 1628] };
 
 for (const p of Object.values(P)) {
   let rel = p.fallback;
@@ -74,7 +82,7 @@ for (const p of Object.values(P)) {
 // Each product site has the same languages, at /<lang>/ (English at the root).
 const siteIn = (p, lang) => p.site + (lang === 'en' ? '' : `${lang}/`);
 const changelog = (p, lang) => (p.own ? p.releases : `${siteIn(p, lang)}changelog.html`);
-const FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper;
+const FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper, LS = P.lightshaper;
 
 /* ---------- icons ---------- */
 const GH = 'M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z';
@@ -124,15 +132,15 @@ const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u,
 // Paths are written root-absolute for the page's language (/es/about/), then made relative at write time.
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
 const navItems = (L) => [
-  [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'],
+  [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'],
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 const APPS_LABEL = { en: 'Apps', es: 'Apps', fr: 'Apps', de: 'Apps', ru: 'Приложения', zh: '应用' };
 const FILM_LABEL = { en: 'Watch the film', es: 'Ver el vídeo', fr: 'Voir le film', de: 'Film ansehen', ru: 'Смотреть видео', zh: '观看短片' };
-const APP_KEYS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper'];
+const APP_KEYS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
 const cap1 = (x) => x.charAt(0).toUpperCase() + x.slice(1);
 const topNav = (L, key) => {
-  const apps = navItems(L).slice(0, 5), rest = [[`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/donate/`, L.nav.donate, 'donate']];
+  const apps = navItems(L).slice(0, APP_KEYS.length), rest = [[`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/donate/`, L.nav.donate, 'donate']];
   const onApp = APP_KEYS.includes(key);
   const link = ([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(l)}</span></a>`;
   const menu = apps.map(([h, l, k]) => `<a class="apps-item" href="${h}"${k === key ? ' aria-current="page"' : ''}><img src="/assets/img/${k}-icon.png" width="36" height="36" alt=""><span><b>${l}</b><small>${esc(cap1(L.products[k].kind))}</small></span></a>`).join('');
@@ -141,7 +149,7 @@ const topNav = (L, key) => {
 
 // Share cards: every page gets its own 1200x630 image per language, rendered by scripts/og.mjs from site/og.json.
 const OG = [];
-const OG_COLOR = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', studio: '#a07cff' };
+const OG_COLOR = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', ss: '#ff8f4d', ls: '#a98bff', studio: '#a07cff' };
 function page(L, { path, key = '', title, desc, body, cls = '', og, enOnly = false }) {
   const t = L;
   const ogFile = og ? `assets/img/og/${L.lang}/${og.id}.png` : 'assets/img/og/en/home.png';
@@ -185,7 +193,7 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css?v=${CSSV}">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/","https://hollowbit.dev/lightshaper/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note, enOnly })}</script>
 </head>
 <body class="${cls}">
@@ -216,7 +224,7 @@ ${body}
         <a class="foot-mail" data-email-link href="${pre(L)}/contact/">${ic('mail')}<span data-email>${esc(t.footer.contact)}</span></a>
         ${socials()}
       </div>
-      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
+      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/lightshaper/">Lightshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
       <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="https://fuseduo.com/">Fuseduo</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
@@ -341,17 +349,39 @@ const ssDemo = (L) => `<div class="demo demo-ss" id="demo-ss" role="tabpanel" ar
   </div>
 </div>`;
 
+// Lightshaper demo: a flat RAW of a field comes alive as the sliders move, then a before / after wipe.
+const LS_SLIDERS = [['Exposure', '+0.45', 62], ['Contrast', '+20', 60], ['Shadows', '+35', 67], ['Vibrance', '+30', 65], ['Sky (gradient mask)', '−0.60', 35]];
+const lsDemo = (L) => `<div class="demo demo-ls" id="demo-ls" role="tabpanel" aria-labelledby="tab-ls">
+  <p class="sr-only">${esc(L.home.srLs)}</p>
+  <div class="win" aria-hidden="true">
+    <div class="ls-top"><div class="tl"><i></i><i></i><i></i></div><span class="ls-brand"><img src="/assets/img/lightshaper-icon.png" alt="">Lightshaper</span><span class="ls-tabs"><span>Library</span><b>Edit</b></span><span class="ls-exp">Export</span></div>
+    <div class="ls-body">
+      <div class="ls-photo">
+        <img class="ls-before" src="/assets/img/lightshaper-before.webp" width="1400" height="932" alt="">
+        <div class="ls-after"><img src="/assets/img/lightshaper-after.webp" width="1400" height="932" alt=""></div>
+        <span class="ls-wipe"></span>
+        <span class="ls-tag ls-tag-b">Before</span><span class="ls-tag ls-tag-a">After</span>
+      </div>
+      <aside class="ls-panel">
+        <div class="ls-hist"><i style="--h:.25"></i><i style="--h:.45"></i><i style="--h:.7"></i><i style="--h:.55"></i><i style="--h:.85"></i><i style="--h:.6"></i><i style="--h:.4"></i><i style="--h:.5"></i><i style="--h:.3"></i><i style="--h:.2"></i></div>
+        <div class="ls-h">Light</div>
+        ${LS_SLIDERS.map(([n, v, to], i) => `<div class="ls-sl${i === 4 ? ' ls-mask' : ''}" data-to="${to}"><span>${n}</span><em data-v="${v}">0</em><b><i></i></b></div>`).join('')}
+      </aside>
+    </div>
+  </div>
+</div>`;
+
 function stage(L, only) {
   const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'fs'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
-  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}</div>`;
-  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L);
+  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}</div>`;
+  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L);
   return `<div class="stage${only ? ' stage-single' : ''}" data-stage>${tabs}<div class="stage-frame"><div class="stage-scale">${demos}</div></div></div>`;
 }
 
 const ticker = (L) => {
   const items = (p) => L.products[p.slug].tasks.map((t) => `<span style="--c: var(--${p.v})"><i></i>${esc(t)}</span>`).join('');
-  const a = items(FS) + items(WS) + items(SS) + items(DS) + items(CS);
-  const b = items(CS) + items(SS) + items(DS) + items(FS) + items(WS);
+  const a = items(FS) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
+  const b = items(CS) + items(SS) + items(LS) + items(DS) + items(FS) + items(WS);
   return `<div class="ticker" aria-hidden="true"><div class="ticker-track">${a}${a}</div><div class="ticker-track rev">${b}${b}</div></div>`;
 };
 const PR_ICONS = ['i-upload', 'i-wifi', 'i-ads', 'i-account', 'i-track', 'i-code'];
@@ -362,7 +392,7 @@ const home = (L) => page(L, {
   og: { id: 'home', kind: 'home', h: L.home.h1, hl: L.home.hl, sub: L.home.sub },
   body: `
 <section class="hero wrap">
-  <a class="hero-badge in-0" href="${pre(L)}/startshaper/"><span class="dot"></span>${esc(fill(L.home.badge, { v: SS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  <a class="hero-badge in-0" href="${pre(L)}/lightshaper/"><span class="dot"></span>${esc(fill(L.home.badge, { v: LS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
   <h1 class="hero-title" data-words data-hl="${esc(L.home.hl)}">${esc(L.home.h1)}</h1>
   <p class="hero-sub in-1">${esc(L.home.sub)}</p>
   <div class="hero-cta in-2">
@@ -445,7 +475,7 @@ function productPage(L, p, next) {
 </section>
 
 <section class="wrap sec rows" style="--c: var(--${p.v})">
-  ${c.rows.map(([h, t, alt], i) => { const [img, w, ht] = p.own ? [['startshaper-after.webp', 2560, 1628], p.imgs[1], p.imgs[2]][i] : p.imgs[i]; return `<div class="row${i % 2 ? ' row-flip' : ''}">
+  ${c.rows.map(([h, t, alt], i) => { const [img, w, ht] = (p.rowImgs || p.imgs)[i]; return `<div class="row${i % 2 ? ' row-flip' : ''}">
     <div class="row-copy"><h2 class="h3" data-words="scroll">${esc(h)}</h2><p class="reveal">${esc(t)}</p></div>
     <figure class="row-shot" data-wipe><img src="/assets/img/${img}" width="${w}" height="${ht}" loading="lazy" alt="${esc(alt)}"></figure>
   </div>`; }).join('\n  ')}
@@ -845,7 +875,8 @@ for (const L of LANGS) {
     [`${d}index.html`]: home(L),
     [`${d}fileshaper/index.html`]: productPage(L, FS, CS),
     [`${d}captionshaper/index.html`]: productPage(L, CS, DS),
-    [`${d}startshaper/index.html`]: productPage(L, SS, DS),
+    [`${d}startshaper/index.html`]: productPage(L, SS, LS),
+    [`${d}lightshaper/index.html`]: productPage(L, LS, FS),
     [`${d}download/index.html`]: download(L),
     [`${d}about/index.html`]: about(L),
     [`${d}contact/index.html`]: contact(L),
@@ -871,7 +902,7 @@ for (const [f, raw] of Object.entries(out)) {
 }
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
-const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
+const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/lightshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
 const workPaths = ['/work/', '/services/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
@@ -880,6 +911,6 @@ ${paths.flatMap((p) => LANGS.map((L) => `  <url><loc>${u(L.lang, p)}</loc><lastm
 ${workPaths.map((p) => `  <url><loc>${u('en', p)}</loc><lastmod>2026-11-12</lastmod></url>`).join('\n')}
 </urlset>
 `);
-console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version, '| startshaper', SS.version);
+console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version, '| startshaper', SS.version, '| lightshaper', LS.version);
 // Fuseduo's own pages (/fuseduo/) are built by their own script.
 await import('./fuseduo.mjs');
