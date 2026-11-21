@@ -773,11 +773,21 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 
 /* App icons inside the hero headline */
 .h-icons { display: inline-flex; vertical-align: -0.08em; margin: 0 .08em 0 .18em; }
-.h-icons img { width: .78em; height: .78em; border-radius: .2em; box-shadow: 0 .04em .12em rgba(0,0,0,.45), 0 0 0 .02em rgba(255,255,255,.08); margin-left: -.14em; transform: rotate(var(--r)) scale(.6); opacity: 0; animation: hIcon .7s var(--spring, cubic-bezier(.34,1.42,.64,1)) forwards; animation-delay: calc(var(--k) * 90ms + 520ms); }
+.h-icons img { width: .74em; height: .74em; border-radius: .19em; box-shadow: 0 .03em .1em rgba(0,0,0,.4); margin-left: .06em; transform: translateY(.08em); opacity: 0; animation: hIcon .6s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--k) * 70ms + 500ms); }
 .h-icons img:first-child { margin-left: 0; }
-.h-icons img:nth-child(1) { --r: -8deg; --k: 0; } .h-icons img:nth-child(2) { --r: 5deg; --k: 1; } .h-icons img:nth-child(3) { --r: -4deg; --k: 2; } .h-icons img:nth-child(4) { --r: 7deg; --k: 3; }
-@keyframes hIcon { to { opacity: 1; transform: rotate(var(--r)) scale(1); } }
-@media (prefers-reduced-motion: reduce) { .h-icons img { animation: none; opacity: 1; transform: rotate(var(--r)); } }
+.h-icons img:nth-child(1) { --k: 0; } .h-icons img:nth-child(2) { --k: 1; } .h-icons img:nth-child(3) { --k: 2; } .h-icons img:nth-child(4) { --k: 3; }
+@keyframes hIcon { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .h-icons img { animation: none; opacity: 1; transform: none; } }
+@media (max-width: 640px) { .h-icons { display: none; } .h-icons + br { display: none; } }
+
+/* Tighter hero, so the app list shows on first load */
+.hero { padding-top: clamp(36px, 7vh, 84px); }
+.hero-badge { margin-bottom: 20px; }
+.hero-title { font-size: clamp(38px, 5.2vw, 68px); }
+.hero-sub { margin-top: 16px; }
+.hero-cta { margin-top: 24px; }
+.hero .film-open { margin-top: 12px; }
+.coll-sec { padding-top: 36px; }
 
 /* ---------- demo stage ---------- */
 .stage { position: relative; margin-top: clamp(48px, 8vh, 80px); --glow: var(--fs); }
