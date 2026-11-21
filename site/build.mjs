@@ -316,6 +316,27 @@ const csDemo = (L) => `<div class="demo demo-cs" id="demo-cs" role="tabpanel" ar
   </div>
 </div>`;
 
+// Clipshaper demo: a long podcast's timeline is scanned, moments light up with scores and land in the
+// clip list, then the 9:16 window slides onto the speaker and becomes a phone with word-by-word captions.
+const CL_SR = {"en": "Animated demo: Clipshaper scans a 48-minute podcast, picks its best moments with scores, then turns one into a vertical clip that follows the speaker, with captions.", "es": "Demo animada: Clipshaper analiza un pódcast de 48 minutos, elige sus mejores momentos con puntuación y convierte uno en un clip vertical que sigue a quien habla, con subtítulos.", "fr": "Démo animée : Clipshaper parcourt un podcast de 48 minutes, choisit ses meilleurs moments avec une note, puis en fait un clip vertical qui suit la personne qui parle, sous-titré.", "de": "Animierte Demo: Clipshaper durchsucht einen 48-minütigen Podcast, wählt die besten Momente mit Bewertung und macht daraus einen Hochformat-Clip, der der sprechenden Person folgt, mit Untertiteln.", "ru": "Анимированное демо: Clipshaper просматривает 48-минутный подкаст, выбирает лучшие моменты с оценкой и делает из одного вертикальный клип, который следит за говорящим, с субтитрами.", "zh": "动画演示：Clipshaper 浏览一期 48 分钟的播客，挑出带评分的精彩片段，再把其中一段变成镜头跟随说话人、带字幕的竖屏短片。"};
+const CL_CLIPS = [['Nobody tells you this part', 10, 17], ['I quit on a Tuesday', 9, 44], ['The one rule I wish I knew', 9, 70], ['Why the first year is hardest', 8, 30]];
+const clPerson = (cls, head, body) => `<div class="cl-p ${cls}"><i style="background:${head}"></i><b style="background:${body}"></b></div>`;
+const clScene = () => `<div class="cl-scene"><div class="cl-room"></div><div class="cl-lamp"></div>${clPerson('a', '#e9b48a', '#3b5bdb')}${clPerson('b', '#b67a5c', '#2f9e44')}<div class="cl-mic"></div></div>`;
+const clDemo = (L) => `<div class="demo demo-cl" id="demo-cl" role="tabpanel" aria-labelledby="tab-cl">
+  <p class="sr-only">${esc(CL_SR[L.lang] || CL_SR.en)}</p>
+  <div class="win" aria-hidden="true">
+    <div class="cl-top"><div class="tl"><i></i><i></i><i></i></div><b>podcast-episode-42.mp4</b><span>48:12</span><span class="cl-grow"></span><span class="cl-status"><i></i><em>Finding moments…</em></span><span class="cl-export">Export all</span></div>
+    <div class="cl-body">
+      <div class="cl-list">${CL_CLIPS.map(([t, s], i) => `<div class="cl-card" data-i="${i}"><div class="cl-th">${clScene()}</div><div><small>#${i + 1}</small><b>${t}</b><span class="cl-sc${s >= 10 ? ' hot' : ''}">${s}/10</span></div></div>`).join('')}</div>
+      <div class="cl-main">
+        <div class="cl-wide">${clScene()}<div class="cl-crop"><span class="cl-face"></span></div></div>
+        <div class="cl-phone"><div class="cl-pv">${clScene()}</div><div class="cl-cap"></div><div class="cl-ui"><i></i><i></i><i></i></div></div>
+        <div class="cl-tl"><div class="cl-wave"></div>${CL_CLIPS.map(([, s, at], i) => `<span class="cl-seg" data-i="${i}" style="left:${at}%"><b>${s}</b></span>`).join('')}<i class="cl-head"></i></div>
+      </div>
+    </div>
+  </div>
+</div>`;
+
 // Diskshaper demo: categories land, the bar fills, safe ones are moved to the Trash.
 const DS_CATS = [['g', 'Shader caches', 7.6, 1], ['c', 'Video editing caches', 37.1, 1], ['g', 'Steam leftovers', 6.1, 1], ['e', 'App caches', 5.2, 1], ['e', 'Old installers', 4.0, 1], ['e', 'Duplicate photos', 2.4, 0], ['g', 'Games you stopped playing', 41.2, 0]];
 const dsDemo = (L) => `<div class="demo demo-ds" id="demo-ds" role="tabpanel" aria-labelledby="tab-ds">
@@ -392,9 +413,9 @@ const lsDemo = (L) => `<div class="demo demo-ls" id="demo-ls" role="tabpanel" ar
 </div>`;
 
 function stage(L, only) {
-  const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'fs'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
-  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}</div>`;
-  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L);
+  const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'cl'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
+  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('cl', CL)}${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}</div>`;
+  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : clDemo(L) + fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L);
   return `<div class="stage${only ? ' stage-single' : ''}" data-stage>${tabs}<div class="stage-frame"><div class="stage-scale">${demos}</div></div></div>`;
 }
 

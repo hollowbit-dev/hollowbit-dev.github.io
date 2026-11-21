@@ -4,9 +4,9 @@
   "lang": "en",
   "id": "home",
   "kind": "home",
-  "h": "Free tools that never upload your files.",
-  "hl": "never upload",
-  "sub": "Small, polished apps for Windows and Mac that do one job well, entirely on your own computer. No ads, no accounts, no watermarks."
+  "h": "Simple apps. Completely free.",
+  "hl": "Completely free.",
+  "sub": "For Mac and Windows. Your files never leave your computer."
  },
  {
   "file": "assets/img/og/en/fileshaper.png",
@@ -109,9 +109,9 @@
   "lang": "es",
   "id": "home",
   "kind": "home",
-  "h": "Herramientas gratis que nunca suben tus archivos.",
-  "hl": "nunca suben",
-  "sub": "Apps pequeñas y cuidadas para Windows y Mac que hacen bien una sola cosa, por completo en tu ordenador. Sin anuncios, sin cuentas, sin marcas de agua."
+  "h": "Apps sencillas. Totalmente gratis.",
+  "hl": "Totalmente gratis.",
+  "sub": "Para Mac y Windows. Tus archivos nunca salen de tu ordenador."
  },
  {
   "file": "assets/img/og/es/fileshaper.png",
@@ -214,9 +214,9 @@
   "lang": "fr",
   "id": "home",
   "kind": "home",
-  "h": "Des outils gratuits qui n’envoient jamais vos fichiers.",
-  "hl": "n’envoient jamais",
-  "sub": "De petites applis soignées pour Windows et Mac qui font bien une seule chose, entièrement sur votre ordinateur. Pas de pub, pas de compte, pas de filigrane."
+  "h": "Des applis simples. Entièrement gratuites.",
+  "hl": "Entièrement gratuites.",
+  "sub": "Pour Mac et Windows. Vos fichiers ne quittent jamais votre ordinateur."
  },
  {
   "file": "assets/img/og/fr/fileshaper.png",
@@ -319,9 +319,9 @@
   "lang": "de",
   "id": "home",
   "kind": "home",
-  "h": "Kostenlose Werkzeuge, die deine Dateien nie hochladen.",
-  "hl": "nie hochladen.",
-  "sub": "Kleine, ausgefeilte Apps für Windows und Mac, die eine Sache gut machen, komplett auf deinem eigenen Computer. Keine Werbung, keine Konten, keine Wasserzeichen."
+  "h": "Einfache Apps. Komplett kostenlos.",
+  "hl": "Komplett kostenlos.",
+  "sub": "Für Mac und Windows. Deine Dateien verlassen nie deinen Computer."
  },
  {
   "file": "assets/img/og/de/fileshaper.png",
@@ -424,9 +424,9 @@
   "lang": "ru",
   "id": "home",
   "kind": "home",
-  "h": "Бесплатные инструменты без загрузки файлов.",
-  "hl": "без загрузки",
-  "sub": "Небольшие продуманные приложения для Windows и Mac, которые хорошо делают одно дело и полностью работают на вашем компьютере. Без рекламы, аккаунтов и водяных знаков."
+  "h": "Простые приложения. Совсем бесплатно.",
+  "hl": "Совсем бесплатно.",
+  "sub": "Для Mac и Windows. Ваши файлы не покидают ваш компьютер."
  },
  {
   "file": "assets/img/og/ru/fileshaper.png",
@@ -529,9 +529,9 @@
   "lang": "zh",
   "id": "home",
   "kind": "home",
-  "h": "从不上传你文件的免费工具。",
-  "hl": "从不上传",
-  "sub": "小而精致的 Windows 和 Mac 应用，每个只把一件事做好，完全在你自己的电脑上运行。没有广告，没有账号，没有水印。"
+  "h": "简单好用的应用。完全免费。",
+  "hl": "完全免费。",
+  "sub": "支持 Mac 和 Windows。你的文件从不离开你的电脑。"
  },
  {
   "file": "assets/img/og/zh/fileshaper.png",

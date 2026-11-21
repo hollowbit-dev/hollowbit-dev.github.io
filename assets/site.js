@@ -122,6 +122,68 @@
   const ease = (p) => 1 - Math.pow(1 - p, 3);
 
   const DEMOS = {
+
+    'demo-cl': {
+      length: 9400,
+      words: ['Nobody', 'tells', 'you', 'this', 'part.', 'The', 'first', 'year', 'is', 'the', 'hardest.'],
+      groups: [[0, 3], [3, 5], [5, 8], [8, 11]],
+      setup(d) {
+        const wave = $('.cl-wave', d);
+        let seed = 11;
+        const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+        for (let i = 0; i < 90; i++) { const b = document.createElement('b'); b.style.setProperty('--h', `${20 + rnd() * 75}%`); wave.appendChild(b); }
+      },
+      reset(d, final) {
+        d.classList.remove('scanning', 'cropping', 'phoned', 'done');
+        $$('.cl-card', d).forEach((c) => c.classList.toggle('on', final));
+        $$('.cl-card', d).forEach((c, i) => c.classList.toggle('sel', final && i === 0));
+        $$('.cl-seg', d).forEach((s) => s.classList.toggle('on', final));
+        $('.cl-status em', d).textContent = final ? '4 clips found' : 'Finding moments…';
+        $('.cl-crop', d).style.setProperty('--cx', '0px');
+        $('.cl-head', d).style.setProperty('--x', '0px');
+        const cap = $('.cl-cap', d);
+        cap.innerHTML = final ? this.words.slice(0, 3).map((w, i) => `<span class="${i === 1 ? 'now' : ''}">${w}</span>`).join(' ') : '';
+        if (final) d.classList.add('phoned');
+      },
+      async run(d, sig) {
+        const segs = $$('.cl-seg', d), cards = $$('.cl-card', d), head = $('.cl-head', d), tl = $('.cl-tl', d);
+        await sleep(300, sig);
+        // 1. scan the timeline; moments light up and land in the list
+        d.classList.add('scanning');
+        const W = tl.clientWidth;
+        const marks = segs.map((s) => parseFloat(s.style.left) / 100);
+        let next = 0;
+        await tween(3000, (p) => {
+          head.style.setProperty('--x', `${p * W}px`);
+          while (next < marks.length && p >= marks.slice().sort((a, b) => a - b)[next]) {
+            const at = marks.slice().sort((a, b) => a - b)[next];
+            const i = marks.indexOf(at);
+            segs[i].classList.add('on'); cards[i].classList.add('on');
+            next++;
+          }
+        }, sig);
+        d.classList.remove('scanning');
+        $('.cl-status em', d).textContent = '4 clips found';
+        cards[0].classList.add('sel');
+        await sleep(500, sig);
+        // 2. the 9:16 window finds the speaker
+        d.classList.add('cropping');
+        await sleep(450, sig);
+        $('.cl-crop', d).style.setProperty('--cx', '-132px');
+        await sleep(1200, sig);
+        // 3. it becomes a phone with word-by-word captions
+        d.classList.add('phoned');
+        await sleep(400, sig);
+        const cap = $('.cl-cap', d);
+        for (const [a, b] of this.groups) {
+          cap.innerHTML = this.words.slice(a, b).map((w) => `<span>${w}</span>`).join(' ');
+          const spans = $$('span', cap);
+          for (let i = 0; i < spans.length; i++) { spans.forEach((s, j) => s.classList.toggle('now', j === i)); await sleep(330, sig); }
+        }
+        d.classList.add('done');
+        await sleep(900, sig);
+      },
+    },
     'demo-ls': {
       length: 9000,
       setup(d) { return d; },

@@ -732,7 +732,11 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 .hero-title { font-size: clamp(40px, 5.8vw, 76px); line-height: 1.02; letter-spacing: -0.045em; max-width: 15ch; font-weight: 680; }
 .hero-title .hlg { background: none !important; box-shadow: none !important; padding: 0 !important; color: inherit; }
 .hero-title .hlg::before, .hero-title .hlg::after { display: none !important; }
-.hero-title .hlg .w, .hero-title .hlg ~ .w { color: #8c8a9b; }
+.hero-title .hlg .w { color: transparent; -webkit-background-clip: text; background-clip: text; padding-bottom: .06em; }
+.hero-title .hlg .w:first-child { background-image: linear-gradient(90deg, #22d3ee, #6f9bff 55%, #a98bff); }
+.hero-title .hlg .w:last-child { background-image: linear-gradient(90deg, #a98bff, #f9457f 50%, #ff8f4d); }
+.hero-title .hlg .w:only-child { background-image: linear-gradient(90deg, #22d3ee, #a98bff 35%, #f9457f 70%, #ff8f4d); }
+:lang(zh) .hero-title .hlg .w { background-image: linear-gradient(90deg, #22d3ee, #a98bff 50%, #f9457f); }
 .hero-sub { margin-top: 22px; font-size: clamp(16px, 1.4vw, 18.5px); max-width: 52ch; }
 .hero-cta { margin-top: 30px; }
 .hero .film-open { background: none; box-shadow: none; padding: 4px 6px; margin-top: 18px; font-size: 14px; color: var(--text-3); }
