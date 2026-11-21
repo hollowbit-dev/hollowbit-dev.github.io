@@ -351,7 +351,7 @@ kbd { font: 500 10.5px var(--sans); padding: 1px 5px; border-radius: 4px; box-sh
 .cl-sc { justify-self: start; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 5px; color: #22d3ee; background: rgba(34,211,238,.12); }
 .cl-sc.hot { color: #ff8a6b; background: rgba(255,107,74,.14); }
 .cl-th { position: relative; height: 88px; border-radius: 7px; overflow: hidden; background: #000; }
-.cl-th .cl-scene { left: -38.5%; right: auto; width: 316%; }
+.cl-th img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cl-main { position: relative; display: grid; place-items: center; background: radial-gradient(55% 60% at 50% 45%, rgba(34,211,238,.08), transparent 70%); }
 /* the scene: a simple two-person podcast set */
 .cl-scene { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(160deg, #263046, #121722); }
@@ -362,6 +362,7 @@ kbd { font: 500 10.5px var(--sans); padding: 1px 5px; border-radius: 4px; box-sh
 .cl-p b { position: absolute; left: 0; right: 0; bottom: 0; top: 37%; border-radius: 48% 48% 0 0; }
 .cl-p.a { left: 15%; } .cl-p.b { left: 61%; width: 24%; }
 .cl-mic { position: absolute; left: 37%; bottom: 22%; width: 3%; height: 18%; border-radius: 4px; background: #0b0d10; box-shadow: 0 -8px 0 4px #2b313b; }
+.cl-wide video, .cl-phone video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #000; }
 .cl-wide { position: absolute; top: 56px; width: 560px; height: 315px; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px #1f242b, 0 30px 60px -24px #000; transition: opacity .5s var(--ease), transform .7s var(--ease); }
 .demo-cl.phoned .cl-wide { opacity: 0; transform: scale(.96); }
 .cl-crop { position: absolute; top: 0; bottom: 0; left: 50%; width: 177px; margin-left: -88px; box-shadow: 0 0 0 2px #22d3ee, 0 0 0 999px rgba(5,8,12,.55); border-radius: 4px; opacity: 0; transform: translateX(var(--cx, 0px)); transition: opacity .35s, transform 1s cubic-bezier(.22,1,.36,1); }
@@ -390,3 +391,5 @@ kbd { font: 500 10.5px var(--sans); padding: 1px 5px; border-radius: 4px; box-sh
 .stage.compact .cl-list, .stage.compact .cl-top > span:not(.cl-grow):not(.cl-export):not(.cl-status) { display: none; }
 .stage.compact .cl-wide { width: 500px; height: 281px; }
 .stage.compact .cl-crop { width: 158px; margin-left: -79px; }
+
+.cl-crop { transition: opacity .35s; }

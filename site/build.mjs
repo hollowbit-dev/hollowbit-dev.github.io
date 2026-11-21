@@ -317,20 +317,20 @@ const csDemo = (L) => `<div class="demo demo-cs" id="demo-cs" role="tabpanel" ar
 </div>`;
 
 // Clipshaper demo: a long podcast's timeline is scanned, moments light up with scores and land in the
-// clip list, then the 9:16 window slides onto the speaker and becomes a phone with word-by-word captions.
+// clip list, then the 9:16 window follows the speaker and becomes a phone with word-by-word captions.
+// The footage is a free Mixkit stock clip (Mixkit Stock Video Free License). The vertical clip and the
+// crop path are real Clipshaper output: its face finder and reframing ran on that clip.
 const CL_SR = {"en": "Animated demo: Clipshaper scans a 48-minute podcast, picks its best moments with scores, then turns one into a vertical clip that follows the speaker, with captions.", "es": "Demo animada: Clipshaper analiza un pódcast de 48 minutos, elige sus mejores momentos con puntuación y convierte uno en un clip vertical que sigue a quien habla, con subtítulos.", "fr": "Démo animée : Clipshaper parcourt un podcast de 48 minutes, choisit ses meilleurs moments avec une note, puis en fait un clip vertical qui suit la personne qui parle, sous-titré.", "de": "Animierte Demo: Clipshaper durchsucht einen 48-minütigen Podcast, wählt die besten Momente mit Bewertung und macht daraus einen Hochformat-Clip, der der sprechenden Person folgt, mit Untertiteln.", "ru": "Анимированное демо: Clipshaper просматривает 48-минутный подкаст, выбирает лучшие моменты с оценкой и делает из одного вертикальный клип, который следит за говорящим, с субтитрами.", "zh": "动画演示：Clipshaper 浏览一期 48 分钟的播客，挑出带评分的精彩片段，再把其中一段变成镜头跟随说话人、带字幕的竖屏短片。"};
 const CL_CLIPS = [['Nobody tells you this part', 10, 17], ['I quit on a Tuesday', 9, 44], ['The one rule I wish I knew', 9, 70], ['Why the first year is hardest', 8, 30]];
-const clPerson = (cls, head, body) => `<div class="cl-p ${cls}"><i style="background:${head}"></i><b style="background:${body}"></b></div>`;
-const clScene = () => `<div class="cl-scene"><div class="cl-room"></div><div class="cl-lamp"></div>${clPerson('a', '#e9b48a', '#3b5bdb')}${clPerson('b', '#b67a5c', '#2f9e44')}<div class="cl-mic"></div></div>`;
 const clDemo = (L) => `<div class="demo demo-cl" id="demo-cl" role="tabpanel" aria-labelledby="tab-cl">
   <p class="sr-only">${esc(CL_SR[L.lang] || CL_SR.en)}</p>
   <div class="win" aria-hidden="true">
     <div class="cl-top"><div class="tl"><i></i><i></i><i></i></div><b>podcast-episode-42.mp4</b><span>48:12</span><span class="cl-grow"></span><span class="cl-status"><i></i><em>Finding moments…</em></span><span class="cl-export">Export all</span></div>
     <div class="cl-body">
-      <div class="cl-list">${CL_CLIPS.map(([t, s], i) => `<div class="cl-card" data-i="${i}"><div class="cl-th">${clScene()}</div><div><small>#${i + 1}</small><b>${t}</b><span class="cl-sc${s >= 10 ? ' hot' : ''}">${s}/10</span></div></div>`).join('')}</div>
+      <div class="cl-list">${CL_CLIPS.map(([t, s], i) => `<div class="cl-card" data-i="${i}"><div class="cl-th"><img src="/assets/img/cl-t${i + 1}.jpg" width="100" height="178" alt="" loading="lazy"></div><div><small>#${i + 1}</small><b>${t}</b><span class="cl-sc${s >= 10 ? ' hot' : ''}">${s}/10</span></div></div>`).join('')}</div>
       <div class="cl-main">
-        <div class="cl-wide">${clScene()}<div class="cl-crop"><span class="cl-face"></span></div></div>
-        <div class="cl-phone"><div class="cl-pv">${clScene()}</div><div class="cl-cap"></div><div class="cl-ui"><i></i><i></i><i></i></div></div>
+        <div class="cl-wide" data-keys='[{"t": 0, "cx": 0.2433}, {"t": 0.33, "cx": 0.2431}, {"t": 0.67, "cx": 0.2428}, {"t": 1, "cx": 0.2424}, {"t": 1.33, "cx": 0.2419}, {"t": 1.67, "cx": 0.2411}, {"t": 2, "cx": 0.2401}, {"t": 2.33, "cx": 0.2387}, {"t": 2.67, "cx": 0.2368}, {"t": 3, "cx": 0.2342}, {"t": 3.33, "cx": 0.231}, {"t": 3.67, "cx": 0.227}, {"t": 4, "cx": 0.2223}, {"t": 4.33, "cx": 0.2176}, {"t": 4.67, "cx": 0.2128}, {"t": 5, "cx": 0.2081}, {"t": 5.33, "cx": 0.2037}, {"t": 5.67, "cx": 0.1999}, {"t": 6, "cx": 0.1968}, {"t": 6.33, "cx": 0.1944}, {"t": 6.67, "cx": 0.1925}, {"t": 7, "cx": 0.1912}, {"t": 7.33, "cx": 0.1902}, {"t": 7.67, "cx": 0.1895}, {"t": 8, "cx": 0.189}, {"t": 8.33, "cx": 0.1886}, {"t": 8.67, "cx": 0.1884}, {"t": 9, "cx": 0.1882}, {"t": 9.33, "cx": 0.1881}, {"t": 9.67, "cx": 0.188}, {"t": 10, "cx": 0.188}, {"t": 10.18, "cx": 0.188}]'><video src="/assets/video/cl-wide.mp4" poster="/assets/video/cl-wide.jpg" muted playsinline preload="none"></video><div class="cl-crop"></div></div>
+        <div class="cl-phone"><video src="/assets/video/cl-phone.mp4" poster="/assets/video/cl-phone.jpg" muted playsinline preload="none"></video><div class="cl-cap"></div><div class="cl-ui"><i></i><i></i><i></i></div></div>
         <div class="cl-tl"><div class="cl-wave"></div>${CL_CLIPS.map(([, s, at], i) => `<span class="cl-seg" data-i="${i}" style="left:${at}%"><b>${s}</b></span>`).join('')}<i class="cl-head"></i></div>
       </div>
     </div>
@@ -459,7 +459,7 @@ const home = (L) => page(L, {
   body: `
 <section class="hero wrap">
   <a class="hero-badge in-0" href="${siteIn(CL, L.lang)}"><span class="dot"></span>${esc(fill(L.home.badge, { v: LS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
-  <h1 class="hero-title" data-words data-hl="${esc(L.home.hl)}">${esc(L.home.h1)}</h1>
+  <h1 class="hero-title" data-words data-icons="${['clipshaper', 'captionshaper', 'lightshaper', 'writeshaper'].join(' ')}">${esc(L.home.h1)}</h1>
   <p class="hero-sub in-1">${esc(L.home.sub)}</p>
   <div class="hero-cta in-2">
     <a class="btn btn-primary btn-lg" href="${pre(L)}/download/">${ic('down')}${esc(L.home.cta)}</a>

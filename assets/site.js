@@ -70,6 +70,11 @@
     let out = words.map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>`);
     const gap = cjk ? '' : ' ';
     if (at >= 0) out = [...out.slice(0, at), `<span class="hlg">${out.slice(at, at + hl.length).join(gap)}</span>`, ...out.slice(at + hl.length)];
+    // App icons after the first sentence ("Simple apps. ▢▢▢▢ Completely free.")
+    if (el.dataset.icons) {
+      const end = words.findIndex((w) => /[.。!]$/.test(w));
+      if (end >= 0) out.splice(end + 1, 0, `<span class="h-icons" aria-hidden="true">${el.dataset.icons.split(' ').map((k) => `<img src="/assets/img/${k}-icon.png" alt="" width="64" height="64">`).join('')}</span>${cjk ? '' : '<br>'}`);
+    }
     el.innerHTML = out.join(gap);
     if (el.dataset.words === 'scroll') wordsIO.observe(el); else el.classList.add('go');
   }
@@ -124,7 +129,7 @@
   const DEMOS = {
 
     'demo-cl': {
-      length: 9400,
+      length: 10200,
       words: ['Nobody', 'tells', 'you', 'this', 'part.', 'The', 'first', 'year', 'is', 'the', 'hardest.'],
       groups: [[0, 3], [3, 5], [5, 8], [8, 11]],
       setup(d) {
@@ -143,7 +148,15 @@
         $('.cl-head', d).style.setProperty('--x', '0px');
         const cap = $('.cl-cap', d);
         cap.innerHTML = final ? this.words.slice(0, 3).map((w, i) => `<span class="${i === 1 ? 'now' : ''}">${w}</span>`).join(' ') : '';
-        if (final) d.classList.add('phoned');
+        const [wv, pv] = $$('video', d);
+        wv.pause(); pv.pause();
+        if (final) { d.classList.add('phoned'); }
+      },
+      // Crop centre (0..1 of the wide frame) at time t, from Clipshaper's real path.
+      cx(keys, t) {
+        if (t <= keys[0].t) return keys[0].cx;
+        for (let i = 1; i < keys.length; i++) if (t < keys[i].t) { const a = keys[i - 1], b = keys[i], u = (t - a.t) / (b.t - a.t); return a.cx + (b.cx - a.cx) * u; }
+        return keys[keys.length - 1].cx;
       },
       async run(d, sig) {
         const segs = $$('.cl-seg', d), cards = $$('.cl-card', d), head = $('.cl-head', d), tl = $('.cl-tl', d);
@@ -166,13 +179,19 @@
         $('.cl-status em', d).textContent = '4 clips found';
         cards[0].classList.add('sel');
         await sleep(500, sig);
-        // 2. the 9:16 window finds the speaker
+        // 2. the 9:16 window follows the speaker as the video plays (Clipshaper's real crop path)
+        const wide = $('.cl-wide', d), [wv, pv] = $$('video', d), keys = JSON.parse(wide.dataset.keys);
+        try { wv.currentTime = 0; await wv.play(); } catch { /* autoplay blocked: the poster stays */ }
         d.classList.add('cropping');
-        await sleep(450, sig);
-        $('.cl-crop', d).style.setProperty('--cx', '-132px');
-        await sleep(1200, sig);
-        // 3. it becomes a phone with word-by-word captions
+        let follow = true;
+        const step = () => { if (!follow) return; $('.cl-crop', d).style.setProperty('--cx', `${(this.cx(keys, wv.currentTime) - 0.5) * wide.clientWidth}px`); requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+        sig.addEventListener('abort', () => { follow = false; wv.pause(); pv.pause(); }, { once: true });
+        await sleep(2300, sig);
+        // 3. it becomes a phone: the real vertical clip, with word-by-word captions
+        try { pv.currentTime = wv.currentTime; await pv.play(); } catch { /* poster */ }
         d.classList.add('phoned');
+        follow = false;
         await sleep(400, sig);
         const cap = $('.cl-cap', d);
         for (const [a, b] of this.groups) {
@@ -182,6 +201,7 @@
         }
         d.classList.add('done');
         await sleep(900, sig);
+        wv.pause(); pv.pause();
       },
     },
     'demo-ls': {
