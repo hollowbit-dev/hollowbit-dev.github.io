@@ -32,7 +32,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/style.css?v=840a183e">
+<link rel="stylesheet" href="../assets/style.css?v=2adb9395">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/","https://hollowbit.dev/lightshaper/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB={"lang":"de","langs":["en","es","fr","de","ru","zh"],"copied":"Kopiert","osNote":{"mac":"Du nutzt einen Mac, deshalb ist der Mac-Download hervorgehoben.","win":"Du nutzt Windows, deshalb ist der Windows-Download hervorgehoben."},"enOnly":false}</script>
 </head>
@@ -91,54 +91,40 @@
 </section>
 
 <section class="wrap sec coll-sec" id="tools">
-  <div class="coll-head">
-    <div><h2 class="h2" data-words="scroll">Die Sammlung</h2><p class="reveal">Sieben kostenlose Apps für Mac und Windows. Nimm die, die du brauchst, oder alle.</p></div>
-    <div class="coll-filter reveal" role="group" aria-label="Die Sammlung">
+  <div class="coll-head reveal">
+    <h2>Apps</h2>
+    <div class="coll-filter" role="group" aria-label="Apps">
       <button type="button" data-filter="all" aria-pressed="true">Alle</button><button type="button" data-filter="create" aria-pressed="false">Erstellen</button><button type="button" data-filter="work" aria-pressed="false">Arbeit</button><button type="button" data-filter="care" aria-pressed="false">PC-Pflege</button>
     </div>
   </div>
-  <div class="coll-grid" data-coll><a class="app-tile feat reveal" href="https://hollowbit.dev/clipshaper/" data-cat="create" style="--c: var(--cl); --d:0ms">
-      <span class="at-top"><img src="../assets/img/clipshaper-icon.png" width="52" height="52" alt=""><em class="at-new">Neu</em></span>
-      <b class="at-name">Clipshaper</b>
-      <span class="at-kind">Kostenloser KI-Clip-Maker</span>
-      <span class="at-blurb">Mach aus einem langen Video kurze Hochformat-Clips mit Untertiteln. Findet die besten Momente, folgt der sprechenden Person und exportiert für TikTok, Reels und Shorts. Ohne Wasserzeichen.</span>
-      <span class="at-foot"><span>Mac und Windows · Auch im Browser</span><svg class="at-go" aria-hidden="true"><use href="#arrow"/></svg></span>
-    </a><a class="app-tile reveal" href="../de/captionshaper/" data-cat="create" style="--c: var(--cs); --d:50ms">
-      <span class="at-top"><img src="../assets/img/captionshaper-icon.png" width="52" height="52" alt=""></span>
-      <b class="at-name">Captionshaper</b>
-      <span class="at-kind">Kostenlose Offline-Untertitel</span>
-      <span class="at-blurb">Wortgenaue Untertitel für jedes Video, geschrieben von einem Sprachmodell auf deinem eigenen Computer. SRT, VTT oder eingebrannt.</span>
-      <span class="at-foot"><span>Mac und Windows</span><svg class="at-go" aria-hidden="true"><use href="#arrow"/></svg></span>
-    </a><a class="app-tile reveal" href="../de/lightshaper/" data-cat="create" style="--c: var(--ls); --d:100ms">
-      <span class="at-top"><img src="../assets/img/lightshaper-icon.png" width="52" height="52" alt=""></span>
-      <b class="at-name">Lightshaper</b>
-      <span class="at-kind">Kostenloser Fotoeditor</span>
-      <span class="at-blurb">Bearbeite deine Fotos, auch Kamera-RAW, mit Reglern, Masken und Looks. Bearbeite einen ganzen Ordner auf einmal und exportiere. Deine Originale bleiben unverändert.</span>
-      <span class="at-foot"><span>Mac und Windows</span><svg class="at-go" aria-hidden="true"><use href="#arrow"/></svg></span>
-    </a><a class="app-tile reveal" href="https://hollowbit.dev/writeshaper/de/" data-cat="work" style="--c: var(--ws); --d:150ms">
-      <span class="at-top"><img src="../assets/img/writeshaper-icon.png" width="52" height="52" alt=""></span>
-      <b class="at-name">Writeshaper</b>
-      <span class="at-kind">Privater Schreibassistent</span>
-      <span class="at-blurb">Text in einer beliebigen App markieren, Tastenkürzel drücken: korrigiert, oder klarer, kürzer, freundlicher oder professioneller. Das Modell läuft auf deinem Computer.</span>
-      <span class="at-foot"><span>Mac und Windows</span><svg class="at-go" aria-hidden="true"><use href="#arrow"/></svg></span>
-    </a><a class="app-tile reveal" href="../de/fileshaper/" data-cat="work" style="--c: var(--fs); --d:200ms">
-      <span class="at-top"><img src="../assets/img/fileshaper-icon.png" width="52" height="52" alt=""></span>
-      <b class="at-name">Fileshaper</b>
-      <span class="at-kind">Kostenlose Offline-Dateiwerkzeuge</span>
-      <span class="at-blurb">Videos für Discord komprimieren, iPhone-Fotos umwandeln, PDFs zusammenfügen und unterschreiben. Ein Werkzeugkasten, komplett offline.</span>
-      <span class="at-foot"><span>Mac und Windows</span><svg class="at-go" aria-hidden="true"><use href="#arrow"/></svg></span>
-    </a><a class="app-tile reveal" href="https://hollowbit.dev/diskshaper/de/" data-cat="care" style="--c: var(--ds); --d:250ms">
-      <span class="at-top"><img src="../assets/img/diskshaper-icon.png" width="52" height="52" alt=""></span>
-      <b class="at-name">Diskshaper</b>
-      <span class="at-kind">Kostenloser Speicherreiniger</span>
-      <span class="at-blurb">Sieh, was deinen Speicher auffrisst, von Shader-Caches und Steam-Resten bis zu Premiere-Caches und doppelten Fotos. Räum nur auf, was sicher ist, immer in den Papierkorb.</span>
-      <span class="at-foot"><span>Mac und Windows</span><svg class="at-go" aria-hidden="true"><use href="#arrow"/></svg></span>
-    </a><a class="app-tile reveal" href="../de/startshaper/" data-cat="care" style="--c: var(--ss); --d:300ms">
-      <span class="at-top"><img src="../assets/img/startshaper-icon.png" width="52" height="52" alt=""></span>
-      <b class="at-name">Startshaper</b>
-      <span class="at-kind">Kostenloser PC-Beschleuniger</span>
-      <span class="at-blurb">Finde heraus, warum dein Computer langsam ist. Sieh jede App, die von selbst startet, was sie ist – in einfachen Worten – und schalte ab, was du nicht brauchst. Alles lässt sich rückgängig machen.</span>
-      <span class="at-foot"><span>Mac und Windows</span><svg class="at-go" aria-hidden="true"><use href="#arrow"/></svg></span>
+  <div class="coll-grid reveal" data-coll><a class="app-row" href="https://hollowbit.dev/clipshaper/" data-cat="create" style="--c: var(--cl); --d:0ms">
+      <img src="../assets/img/clipshaper-icon.png" width="56" height="56" alt="">
+      <span class="ar-txt"><span class="ar-name">Clipshaper<em>Neu</em></span><span class="ar-kind">Kostenloser KI-Clip-Maker</span><span class="ar-blurb">Mach aus einem langen Video kurze Hochformat-Clips mit Untertiteln. Findet die besten Momente, folgt der sprechenden Person und exportiert für TikTok, Reels und Shorts. Ohne Wasserzeichen.</span></span>
+      <svg class="ar-go" aria-hidden="true"><use href="#arrow"/></svg>
+    </a><a class="app-row" href="../de/captionshaper/" data-cat="create" style="--c: var(--cs); --d:40ms">
+      <img src="../assets/img/captionshaper-icon.png" width="56" height="56" alt="">
+      <span class="ar-txt"><span class="ar-name">Captionshaper</span><span class="ar-kind">Kostenlose Offline-Untertitel</span><span class="ar-blurb">Wortgenaue Untertitel für jedes Video, geschrieben von einem Sprachmodell auf deinem eigenen Computer. SRT, VTT oder eingebrannt.</span></span>
+      <svg class="ar-go" aria-hidden="true"><use href="#arrow"/></svg>
+    </a><a class="app-row" href="../de/lightshaper/" data-cat="create" style="--c: var(--ls); --d:80ms">
+      <img src="../assets/img/lightshaper-icon.png" width="56" height="56" alt="">
+      <span class="ar-txt"><span class="ar-name">Lightshaper</span><span class="ar-kind">Kostenloser Fotoeditor</span><span class="ar-blurb">Bearbeite deine Fotos, auch Kamera-RAW, mit Reglern, Masken und Looks. Bearbeite einen ganzen Ordner auf einmal und exportiere. Deine Originale bleiben unverändert.</span></span>
+      <svg class="ar-go" aria-hidden="true"><use href="#arrow"/></svg>
+    </a><a class="app-row" href="https://hollowbit.dev/writeshaper/de/" data-cat="work" style="--c: var(--ws); --d:120ms">
+      <img src="../assets/img/writeshaper-icon.png" width="56" height="56" alt="">
+      <span class="ar-txt"><span class="ar-name">Writeshaper</span><span class="ar-kind">Privater Schreibassistent</span><span class="ar-blurb">Text in einer beliebigen App markieren, Tastenkürzel drücken: korrigiert, oder klarer, kürzer, freundlicher oder professioneller. Das Modell läuft auf deinem Computer.</span></span>
+      <svg class="ar-go" aria-hidden="true"><use href="#arrow"/></svg>
+    </a><a class="app-row" href="../de/fileshaper/" data-cat="work" style="--c: var(--fs); --d:160ms">
+      <img src="../assets/img/fileshaper-icon.png" width="56" height="56" alt="">
+      <span class="ar-txt"><span class="ar-name">Fileshaper</span><span class="ar-kind">Kostenlose Offline-Dateiwerkzeuge</span><span class="ar-blurb">Videos für Discord komprimieren, iPhone-Fotos umwandeln, PDFs zusammenfügen und unterschreiben. Ein Werkzeugkasten, komplett offline.</span></span>
+      <svg class="ar-go" aria-hidden="true"><use href="#arrow"/></svg>
+    </a><a class="app-row" href="https://hollowbit.dev/diskshaper/de/" data-cat="care" style="--c: var(--ds); --d:200ms">
+      <img src="../assets/img/diskshaper-icon.png" width="56" height="56" alt="">
+      <span class="ar-txt"><span class="ar-name">Diskshaper</span><span class="ar-kind">Kostenloser Speicherreiniger</span><span class="ar-blurb">Sieh, was deinen Speicher auffrisst, von Shader-Caches und Steam-Resten bis zu Premiere-Caches und doppelten Fotos. Räum nur auf, was sicher ist, immer in den Papierkorb.</span></span>
+      <svg class="ar-go" aria-hidden="true"><use href="#arrow"/></svg>
+    </a><a class="app-row" href="../de/startshaper/" data-cat="care" style="--c: var(--ss); --d:240ms">
+      <img src="../assets/img/startshaper-icon.png" width="56" height="56" alt="">
+      <span class="ar-txt"><span class="ar-name">Startshaper</span><span class="ar-kind">Kostenloser PC-Beschleuniger</span><span class="ar-blurb">Finde heraus, warum dein Computer langsam ist. Sieh jede App, die von selbst startet, was sie ist – in einfachen Worten – und schalte ab, was du nicht brauchst. Alles lässt sich rückgängig machen.</span></span>
+      <svg class="ar-go" aria-hidden="true"><use href="#arrow"/></svg>
     </a></div>
 </section>
 
@@ -303,6 +289,6 @@
   </div>
   <div class="foot-word" aria-hidden="true"><span>Hollowbit</span></div>
 </footer>
-<script src="../assets/site.js?v=67364253" defer></script>
+<script src="../assets/site.js?v=19c7620e" defer></script>
 </body>
 </html>

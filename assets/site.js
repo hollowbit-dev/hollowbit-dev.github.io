@@ -513,10 +513,10 @@
     btns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     grid.classList.remove('filtering'); void grid.offsetWidth; grid.classList.add('filtering');
     let n = 0;
-    grid.querySelectorAll('.app-tile').forEach((t) => {
+    grid.querySelectorAll('.app-row').forEach((t) => {
       const on = f === 'all' || t.dataset.cat === f;
       t.classList.toggle('off', !on);
-      if (on) { t.style.setProperty('--fd', `${n++ * 45}ms`); t.classList.add('in'); }
+      if (on) t.style.setProperty('--fd', `${n++ * 35}ms`);
     });
   }));
 })();

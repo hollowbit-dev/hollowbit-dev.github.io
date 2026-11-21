@@ -67,12 +67,12 @@ const ORDER = ['clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'write
 const GROUPS = [['create', ['clipshaper', 'captionshaper', 'lightshaper']], ['work', ['writeshaper', 'fileshaper']], ['care', ['diskshaper', 'startshaper']]];
 const GROUP_OF = Object.fromEntries(GROUPS.flatMap(([g, ks]) => ks.map((k) => [k, g])));
 const COLL = {
-  en: { all: 'All', create: 'Create', work: 'Work', care: 'Computer care', h: 'The collection', p: 'Seven free apps for Mac and Windows. Pick the one you need, or get them all.', open: 'Open', web: 'Also in your browser', demosH: 'See them work', demosP: 'Live demos of the real apps. Pick one.' },
-  es: { all: 'Todas', create: 'Crear', work: 'Trabajo', care: 'Cuidado del equipo', h: 'La colección', p: 'Siete apps gratis para Mac y Windows. Elige la que necesites, o llévatelas todas.', open: 'Abrir', web: 'También en el navegador', demosH: 'Míralas en acción', demosP: 'Demos en vivo de las apps reales. Elige una.' },
-  fr: { all: 'Toutes', create: 'Créer', work: 'Travail', care: 'Entretien du PC', h: 'La collection', p: 'Sept applis gratuites pour Mac et Windows. Prenez celle qu’il vous faut, ou toutes.', open: 'Ouvrir', web: 'Aussi dans le navigateur', demosH: 'Voyez-les à l’œuvre', demosP: 'Démos en direct des vraies applis. Choisissez-en une.' },
-  de: { all: 'Alle', create: 'Erstellen', work: 'Arbeit', care: 'PC-Pflege', h: 'Die Sammlung', p: 'Sieben kostenlose Apps für Mac und Windows. Nimm die, die du brauchst, oder alle.', open: 'Öffnen', web: 'Auch im Browser', demosH: 'So arbeiten sie', demosP: 'Live-Demos der echten Apps. Wähl eine aus.' },
-  ru: { all: 'Все', create: 'Создание', work: 'Работа', care: 'Уход за ПК', h: 'Коллекция', p: 'Семь бесплатных приложений для Mac и Windows. Возьмите нужное — или все сразу.', open: 'Открыть', web: 'Есть и в браузере', demosH: 'Посмотрите в деле', demosP: 'Живые демо настоящих приложений. Выберите любое.' },
-  zh: { all: '全部', create: '创作', work: '工作', care: '电脑维护', h: '应用合集', p: '七款适用于 Mac 和 Windows 的免费应用。按需挑选，或者全部拿走。', open: '打开', web: '也能在浏览器中使用', demosH: '看看它们怎么工作', demosP: '真实应用的实时演示，任选一个。' },
+  en: { all: 'All', create: 'Create', work: 'Work', care: 'Computer care', h: 'Apps', p: 'Seven free apps for Mac and Windows. Pick the one you need, or get them all.', open: 'Open', web: 'Also in your browser', demosH: 'See them work', demosP: 'Live demos of the real apps. Pick one.' },
+  es: { all: 'Todas', create: 'Crear', work: 'Trabajo', care: 'Cuidado del equipo', h: 'Apps', p: 'Siete apps gratis para Mac y Windows. Elige la que necesites, o llévatelas todas.', open: 'Abrir', web: 'También en el navegador', demosH: 'Míralas en acción', demosP: 'Demos en vivo de las apps reales. Elige una.' },
+  fr: { all: 'Toutes', create: 'Créer', work: 'Travail', care: 'Entretien du PC', h: 'Applis', p: 'Sept applis gratuites pour Mac et Windows. Prenez celle qu’il vous faut, ou toutes.', open: 'Ouvrir', web: 'Aussi dans le navigateur', demosH: 'Voyez-les à l’œuvre', demosP: 'Démos en direct des vraies applis. Choisissez-en une.' },
+  de: { all: 'Alle', create: 'Erstellen', work: 'Arbeit', care: 'PC-Pflege', h: 'Apps', p: 'Sieben kostenlose Apps für Mac und Windows. Nimm die, die du brauchst, oder alle.', open: 'Öffnen', web: 'Auch im Browser', demosH: 'So arbeiten sie', demosP: 'Live-Demos der echten Apps. Wähl eine aus.' },
+  ru: { all: 'Все', create: 'Создание', work: 'Работа', care: 'Уход за ПК', h: 'Приложения', p: 'Семь бесплатных приложений для Mac и Windows. Возьмите нужное — или все сразу.', open: 'Открыть', web: 'Есть и в браузере', demosH: 'Посмотрите в деле', demosP: 'Живые демо настоящих приложений. Выберите любое.' },
+  zh: { all: '全部', create: '创作', work: '工作', care: '电脑维护', h: '应用', p: '七款适用于 Mac 和 Windows 的免费应用。按需挑选，或者全部拿走。', open: '打开', web: '也能在浏览器中使用', demosH: '看看它们怎么工作', demosP: '真实应用的实时演示，任选一个。' },
 };
 const coll = (L) => COLL[L.lang] || COLL.en;
 // Screenshot sizes for the home page cards.
@@ -410,26 +410,24 @@ const PR_ICONS = ['i-upload', 'i-wifi', 'i-ads', 'i-account', 'i-track', 'i-code
 // ---------- The collection: every app as a compact tile, filterable by what it's for ----------
 function collection(L) {
   const C = coll(L);
-  const tile = (k, i) => {
+  const row = (k, i) => {
     const p = P[k], c = L.products[k];
     const href = p.page ? `${pre(L)}/${p.slug}/` : siteIn(p, L.lang);
     const isNew = k === 'clipshaper';
-    return `<a class="app-tile${isNew ? ' feat' : ''} reveal" href="${href}" data-cat="${GROUP_OF[k]}" style="--c: var(--${p.v}); --d:${i * 50}ms">
-      <span class="at-top"><img src="/assets/img/${p.slug}-icon.png" width="52" height="52" alt="">${isNew && c.newTag ? `<em class="at-new">${esc(c.newTag)}</em>` : ''}</span>
-      <b class="at-name">${p.name}</b>
-      <span class="at-kind">${esc(cap1(c.kind))}</span>
-      <span class="at-blurb">${esc(c.blurb)}</span>
-      <span class="at-foot"><span>${esc(plats(L, p))}${p.web ? ` · ${esc(C.web)}` : ''}</span>${ic('arrow', 'at-go')}</span>
+    return `<a class="app-row" href="${href}" data-cat="${GROUP_OF[k]}" style="--c: var(--${p.v}); --d:${i * 40}ms">
+      <img src="/assets/img/${p.slug}-icon.png" width="56" height="56" alt="">
+      <span class="ar-txt"><span class="ar-name">${p.name}${isNew && c.newTag ? `<em>${esc(c.newTag)}</em>` : ''}</span><span class="ar-kind">${esc(cap1(c.kind))}</span><span class="ar-blurb">${esc(c.blurb)}</span></span>
+      ${ic('arrow', 'ar-go')}
     </a>`;
   };
   return `<section class="wrap sec coll-sec" id="tools">
-  <div class="coll-head">
-    <div><h2 class="h2" data-words="scroll">${esc(C.h)}</h2><p class="reveal">${esc(C.p)}</p></div>
-    <div class="coll-filter reveal" role="group" aria-label="${esc(C.h)}">
+  <div class="coll-head reveal">
+    <h2>${esc(C.h)}</h2>
+    <div class="coll-filter" role="group" aria-label="${esc(C.h)}">
       <button type="button" data-filter="all" aria-pressed="true">${esc(C.all)}</button>${GROUPS.map(([g]) => `<button type="button" data-filter="${g}" aria-pressed="false">${esc(C[g])}</button>`).join('')}
     </div>
   </div>
-  <div class="coll-grid" data-coll>${GROUPS.flatMap(([, ks]) => ks).map(tile).join('')}</div>
+  <div class="coll-grid reveal" data-coll>${GROUPS.flatMap(([, ks]) => ks).map(row).join('')}</div>
 </section>`;
 }
 
