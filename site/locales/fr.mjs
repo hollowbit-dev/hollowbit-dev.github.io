@@ -4,6 +4,7 @@ export default {
   nav: { services: 'Services', download: 'Télécharger', about: 'À propos', contact: 'Contact', donate: 'Faire un don', home: 'Accueil', skip: 'Aller au contenu', menu: 'Ouvrir le menu', language: 'Langue', main: 'Principal', mobile: 'Mobile' },
   common: { learn: 'En savoir plus', download: 'Télécharger', website: 'Site web', visit: 'Visiter {domain}', dlMac: 'Télécharger pour Mac', dlWin: 'Télécharger pour Windows', version: 'Version', free: 'Gratuit', source: 'Code source', whatsNew: 'Nouveautés', official: 'Site officiel : {domain}' },
   products: {
+    clipshaper: {"kind": "créateur de clips IA gratuit", "blurb": "Transformez une longue vidéo en clips verticaux courts avec sous-titres. Il trouve les meilleurs moments, suit la personne qui parle et exporte pour TikTok, Reels et Shorts. Sans filigrane.", "tasks": ["Podcast en Shorts", "Les meilleurs moments", "Recadrage en 9:16", "Suit la personne qui parle", "Sous-titres mot à mot", "Clips depuis un lien YouTube", "Temps forts Twitch", "Sans filigrane"], "req": {"mac": "macOS 12 ou plus récent, Apple silicon", "win": "Windows 10 ou 11, 64 bits", "extra": ["Téléchargements uniques : modèle vocal 574 Mo, détecteur de moments 1,9 Go", "Votre vidéo ne quitte jamais votre ordinateur", "Ou essayez-le dans le navigateur, rien à installer"]}, "firstMac": ["Ouvrez le .dmg et glissez Clipshaper dans Applications.", "Clic droit sur Clipshaper, choisissez Ouvrir, puis Ouvrir.", "Téléchargez les deux modèles quand il le demande, puis déposez une vidéo ou collez un lien."], "firstWin": ["Lancez l’installateur. Si SmartScreen apparaît, cliquez sur Informations complémentaires, puis Exécuter quand même.", "Ouvrez Clipshaper, téléchargez les deux modèles, puis déposez une vidéo ou collez un lien."], "newTag": "Nouveau"},
     fileshaper: {
       kind: 'boîte à outils de fichiers gratuite et hors ligne',
       blurb: 'Compressez des vidéos pour Discord, convertissez les photos d’iPhone, fusionnez et signez des PDF. Une seule boîte à outils, entièrement hors ligne.',
@@ -90,7 +91,7 @@ export default {
     hireH: 'Travailler avec Hollowbit Studio', hireP: 'Sites web pour petites entreprises et versions privées de nos apps pour les équipes (en anglais).',
     title: 'Hollowbit Studio : des outils gratuits qui n’envoient jamais vos fichiers',
     desc: 'Hollowbit Studio est un petit studio de logiciels d’Elvis Zygmanta. Des applis gratuites et open source pour Windows et Mac qui tournent entièrement sur votre ordinateur.',
-    badge: 'Nouveau : Lightshaper {v}, un éditeur photo gratuit',
+    badge: 'Nouveau : Clipshaper, des clips IA gratuits sans filigrane',
     h1: 'Des outils gratuits qui n’envoient jamais vos fichiers.', hl: 'n’envoient jamais',
     sub: 'De petites applis soignées pour Windows et Mac qui font bien une seule chose, entièrement sur votre ordinateur. Pas de pub, pas de compte, pas de filigrane.',
     cta: 'Télécharger les applis', see: 'Voir ce qu’elles font', demos: 'Démos des produits',
@@ -100,11 +101,11 @@ export default {
     srWs: 'Démo animée : Writeshaper corrige les fautes d’un e-mail sélectionné, sur l’ordinateur, puis le recolle.',
     srSs: 'Démo animée : Startshaper montre un PC qui met 94 secondes à démarrer, puis coupe cinq apps qui se lancent seules.',
     srLs: "Démo animée : Lightshaper transforme la photo RAW terne d’un champ en une image riche à mesure que les curseurs bougent, puis compare avant et après.",
-    toolsH: 'Six applis. Toutes gratuites, pour de bon.',
+    toolsH: 'Sept applis. Toutes gratuites, pour de bon.',
     toolsP: 'Chacune remplace un site web ou un abonnement qui veut vos fichiers, votre temps ou votre argent.',
     freeH: 'Gratuit veut dire gratuit.',
     freeP: 'Pas d’essai, pas de version « pro », pas de données récoltées en douce. Ces règles valent pour chaque appli Hollowbit et pour ce site.',
-    ctaH: 'Prenez les six. Ne payez rien.', ctaP: 'Des installeurs pour Mac et Windows, directement depuis GitHub.', ctaGo: 'Aller aux téléchargements', ctaWho: 'Qui les fait ?',
+    ctaH: 'Prenez les sept. Ne payez rien.', ctaP: 'Des installeurs pour Mac et Windows, directement depuis GitHub.', ctaGo: 'Aller aux téléchargements', ctaWho: 'Qui les fait ?',
   },
   product: { titleSuffix: '· Hollowbit Studio', desc: '{blurb} Gratuit pour {plats}, rien n’est envoyé.', bandP: 'Gratuit pour {plats}. Sans compte, sans filigrane, rien n’est envoyé.', allDl: 'Tous les téléchargements et l’aide', also: 'Aussi chez Hollowbit Studio', plats: { both: 'Mac et Windows', mac: 'Mac', win: 'Windows' } },
   download: {
@@ -130,7 +131,7 @@ export default {
       ['Pas de filigrane.', 'Pas d’essai et pas de version « pro ». La version gratuite, c’est tout.'],
       ['Open source.', 'Chaque ligne est sur GitHub.'],
     ],
-    appsH: 'Les applis à ce jour', appsP: 'Six publiées, toutes gratuites, toutes open source.',
+    appsH: 'Les applis à ce jour', appsP: 'Sept publiées, toutes gratuites, toutes open source.',
     touch: 'Me contacter', touchP: 'E-mail, bugs et idées', donate: 'Faire un don', donateP: 'Aidez à garder les applis gratuites',
   },
   contact: {
@@ -157,9 +158,9 @@ export default {
   privacy: {
     title: 'Confidentialité · Hollowbit Studio', desc: 'Politique de confidentialité de Hollowbit Studio : pas de cookies, pas de statistiques, et des applis qui n’envoient jamais vos fichiers.',
     h1: 'Confidentialité.', lead: 'En bref : Hollowbit ne collecte rien sur vous.',
-    siteH: 'Ce site', siteP: 'hollowbit.dev ne pose aucun cookie, n’a aucune statistique et ne charge rien d’autres entreprises. Polices et images sont servies par ce site. Il est hébergé sur GitHub Pages, et GitHub peut conserver des journaux serveur standard (comme les adresses IP) pour la sécurité, comme décrit dans la {link}.', siteLink: 'déclaration de confidentialité de GitHub',
-    appsH: 'Les applis', appsP: 'Fileshaper, Captionshaper, Diskshaper, Writeshaper, Startshaper et Lightshaper fonctionnent sur votre ordinateur. Vos fichiers ne sont jamais envoyés. Aucune appli n’a de compte, de pub ou de statistiques.',
-    appsP2: 'Les applis ne se connectent que pour des choses visibles : chaque appli peut chercher une nouvelle version sur GitHub une fois par jour (désactivable), et Captionshaper télécharge ses modèles vocaux la première fois que vous en choisissez un, et Writeshaper télécharge son modèle d’écriture une seule fois. Rien sur vous ni vos fichiers n’est envoyé.',
+    siteH: 'Ce site', siteP: 'hollowbit.dev ne pose aucun cookie, n’a aucune statistique et ne charge rien d’autres entreprises. Seule exception : Clipshaper Web (/clipshaper/try/), qui, quand vous l’utilisez, récupère ses modèles d’IA sur Hugging Face et deux bibliothèques de code sur jsDelivr. Votre vidéo ne quitte jamais votre navigateur. Polices et images sont servies par ce site. Il est hébergé sur GitHub Pages, et GitHub peut conserver des journaux serveur standard (comme les adresses IP) pour la sécurité, comme décrit dans la {link}.', siteLink: 'déclaration de confidentialité de GitHub',
+    appsH: 'Les applis', appsP: 'Fileshaper, Captionshaper, Diskshaper, Writeshaper, Startshaper, Lightshaper et Clipshaper fonctionnent sur votre ordinateur. Vos fichiers ne sont jamais envoyés. Aucune appli n’a de compte, de pub ou de statistiques.',
+    appsP2: 'Les applis ne se connectent que pour des choses visibles : chaque appli peut chercher une nouvelle version sur GitHub une fois par jour (désactivable), et Captionshaper télécharge ses modèles vocaux la première fois que vous en choisissez un, Writeshaper télécharge son modèle d’écriture une seule fois, et Clipshaper télécharge ses deux modèles une fois et, si vous collez un lien, la vidéo de ce lien. Rien sur vous ni vos fichiers n’est envoyé.',
     dlH: 'Téléchargements', dlP: 'Les installeurs sont servis par GitHub Releases, selon la déclaration de confidentialité de GitHub.',
     mailH: 'E-mail', mailP: 'Si vous m’écrivez, j’utilise votre adresse seulement pour répondre. Personne n’est ajouté à une liste de diffusion.',
     qH: 'Questions', qP: 'Quelque chose n’est pas clair ? {link}.', qLink: 'Contactez-moi', updated: 'Dernière mise à jour : 15 novembre 2026.',

@@ -502,3 +502,21 @@
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener('close', () => v.pause());
 })();
+
+// The collection: filter chips show one group of apps at a time.
+(() => {
+  const grid = document.querySelector('[data-coll]');
+  if (!grid) return;
+  const btns = [...document.querySelectorAll('.coll-filter [data-filter]')];
+  btns.forEach((b) => b.addEventListener('click', () => {
+    const f = b.dataset.filter;
+    btns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    grid.classList.remove('filtering'); void grid.offsetWidth; grid.classList.add('filtering');
+    let n = 0;
+    grid.querySelectorAll('.app-tile').forEach((t) => {
+      const on = f === 'all' || t.dataset.cat === f;
+      t.classList.toggle('off', !on);
+      if (on) { t.style.setProperty('--fd', `${n++ * 45}ms`); t.classList.add('in'); }
+    });
+  }));
+})();

@@ -4,6 +4,7 @@ export default {
   nav: { services: 'Leistungen', download: 'Download', about: 'Über', contact: 'Kontakt', donate: 'Spenden', home: 'Start', skip: 'Zum Inhalt', menu: 'Menü öffnen', language: 'Sprache', main: 'Haupt', mobile: 'Mobil' },
   common: { learn: 'Mehr erfahren', download: 'Download', website: 'Website', visit: '{domain} besuchen', dlMac: 'Für Mac laden', dlWin: 'Für Windows laden', version: 'Version', free: 'Kostenlos', source: 'Quellcode', whatsNew: 'Neuigkeiten', official: 'Offizielle Website: {domain}' },
   products: {
+    clipshaper: {"kind": "kostenloser KI-Clip-Maker", "blurb": "Mach aus einem langen Video kurze Hochformat-Clips mit Untertiteln. Findet die besten Momente, folgt der sprechenden Person und exportiert für TikTok, Reels und Shorts. Ohne Wasserzeichen.", "tasks": ["Podcast zu Shorts", "Die besten Momente", "Automatisch auf 9:16", "Folgt der sprechenden Person", "Untertitel Wort für Wort", "Clips aus einem YouTube-Link", "Twitch-Highlights", "Ohne Wasserzeichen"], "req": {"mac": "macOS 12 oder neuer, Apple Silicon", "win": "Windows 10 oder 11, 64 Bit", "extra": ["Einmalige Downloads: Sprachmodell 574 MB, Momentfinder 1,9 GB", "Dein Video verlässt nie deinen Computer", "Oder im Browser ausprobieren, ohne Installation"]}, "firstMac": ["Öffne die .dmg und zieh Clipshaper in Programme.", "Rechtsklick auf Clipshaper, Öffnen wählen, dann Öffnen.", "Lade die zwei Modelle, wenn gefragt, und zieh ein Video hinein oder füge einen Link ein."], "firstWin": ["Starte das Installationsprogramm. Erscheint SmartScreen, klick auf Weitere Informationen und dann Trotzdem ausführen.", "Öffne Clipshaper, lade die zwei Modelle und zieh ein Video hinein oder füge einen Link ein."], "newTag": "Neu"},
     fileshaper: {
       kind: 'kostenlose Offline-Dateiwerkzeuge',
       blurb: 'Videos für Discord komprimieren, iPhone-Fotos umwandeln, PDFs zusammenfügen und unterschreiben. Ein Werkzeugkasten, komplett offline.',
@@ -90,7 +91,7 @@ export default {
     hireH: 'Mit Hollowbit Studio arbeiten', hireP: 'Websites für kleine Unternehmen und private Versionen unserer Apps für Teams (auf Englisch).',
     title: 'Hollowbit Studio: kostenlose Werkzeuge, die deine Dateien nie hochladen',
     desc: 'Hollowbit Studio ist ein kleines Software-Studio von Elvis Zygmanta. Kostenlose Open-Source-Apps für Windows und Mac, die komplett auf deinem eigenen Computer laufen.',
-    badge: 'Neu: Lightshaper {v}, ein kostenloser Fotoeditor',
+    badge: 'Neu: Clipshaper, kostenlose KI-Clips ohne Wasserzeichen',
     h1: 'Kostenlose Werkzeuge, die deine Dateien nie hochladen.', hl: 'nie hochladen.',
     sub: 'Kleine, ausgefeilte Apps für Windows und Mac, die eine Sache gut machen, komplett auf deinem eigenen Computer. Keine Werbung, keine Konten, keine Wasserzeichen.',
     cta: 'Apps herunterladen', see: 'Was sie können', demos: 'Produkt-Demos',
@@ -100,11 +101,11 @@ export default {
     srWs: 'Animierte Demo: Writeshaper korrigiert die Fehler in einer markierten E-Mail, auf dem Computer, und fügt sie wieder ein.',
     srSs: 'Animierte Demo: Startshaper zeigt einen PC, der 94 Sekunden zum Starten braucht, und schaltet fünf Apps ab, die von selbst starten.',
     srLs: "Animierte Demo: Lightshaper macht aus einem flauen RAW-Foto eines Feldes ein kräftiges Bild, während sich die Regler bewegen, und vergleicht dann vorher und nachher.",
-    toolsH: 'Sechs Apps. Alle kostenlos, für immer.',
+    toolsH: 'Sieben Apps. Alle kostenlos, für immer.',
     toolsP: 'Jede ersetzt eine Website oder ein Abo, das deine Dateien, deine Zeit oder dein Geld will.',
     freeH: 'Kostenlos heißt kostenlos.',
     freeP: 'Keine Testphase, keine „Pro“-Stufe, keine heimlich gesammelten Daten. Diese Regeln gelten für jede Hollowbit-App und diese Website.',
-    ctaH: 'Hol dir alle sechs. Zahl nichts.', ctaP: 'Installer für Mac und Windows, direkt von GitHub.', ctaGo: 'Zu den Downloads', ctaWho: 'Wer macht die?',
+    ctaH: 'Hol dir alle sieben. Zahl nichts.', ctaP: 'Installer für Mac und Windows, direkt von GitHub.', ctaGo: 'Zu den Downloads', ctaWho: 'Wer macht die?',
   },
   product: { titleSuffix: '· Hollowbit Studio', desc: '{blurb} Kostenlos für {plats}, kein Upload.', bandP: 'Kostenlos für {plats}. Kein Konto, kein Wasserzeichen, kein Upload.', allDl: 'Alle Downloads und Einrichtungshilfe', also: 'Auch von Hollowbit Studio', plats: { both: 'Mac und Windows', mac: 'Mac', win: 'Windows' } },
   download: {
@@ -130,7 +131,7 @@ export default {
       ['Keine Wasserzeichen.', 'Keine Testphase und keine „Pro“-Stufe. Die kostenlose Version ist alles.'],
       ['Open Source.', 'Jede Zeile steht auf GitHub.'],
     ],
-    appsH: 'Die Apps bisher', appsP: 'Sechs veröffentlicht, alle kostenlos, alle Open Source.',
+    appsH: 'Die Apps bisher', appsP: 'Sieben veröffentlicht, alle kostenlos, alle Open Source.',
     touch: 'Schreib mir', touchP: 'E-Mail, Fehlerberichte und Ideen', donate: 'Spenden', donateP: 'Hilf, die Apps kostenlos zu halten',
   },
   contact: {
@@ -157,9 +158,9 @@ export default {
   privacy: {
     title: 'Datenschutz · Hollowbit Studio', desc: 'Datenschutzerklärung von Hollowbit Studio: keine Cookies, keine Analysen und Apps, die deine Dateien nie hochladen.',
     h1: 'Datenschutz.', lead: 'Kurz gesagt: Hollowbit sammelt nichts über dich.',
-    siteH: 'Diese Website', siteP: 'hollowbit.dev setzt keine Cookies, nutzt keine Analysen und lädt nichts von anderen Firmen. Schriften und Bilder kommen von dieser Website. Sie wird auf GitHub Pages gehostet, und GitHub kann aus Sicherheitsgründen übliche Server-Logs (etwa IP-Adressen) führen, wie in der {link} beschrieben.', siteLink: 'Datenschutzerklärung von GitHub',
-    appsH: 'Die Apps', appsP: 'Fileshaper, Captionshaper, Diskshaper, Writeshaper, Startshaper und Lightshaper arbeiten auf deinem eigenen Computer. Deine Dateien werden nie hochgeladen. Keine der Apps hat Konten, Werbung oder Analysen.',
-    appsP2: 'Die Apps gehen nur für Dinge online, die du siehst: jede App kann einmal am Tag auf GitHub nach einer neuen Version suchen (abschaltbar), und Captionshaper lädt seine Sprachmodelle, wenn du zum ersten Mal eines wählst, und Writeshaper lädt sein Schreibmodell einmal herunter. Nichts über dich oder deine Dateien wird verschickt.',
+    siteH: 'Diese Website', siteP: 'hollowbit.dev setzt keine Cookies, nutzt keine Analysen und lädt nichts von anderen Firmen. Einzige Ausnahme ist Clipshaper Web (/clipshaper/try/): Wenn du es nutzt, lädt es seine KI-Modelle von Hugging Face und zwei Code-Bibliotheken von jsDelivr. Dein Video verlässt nie deinen Browser. Schriften und Bilder kommen von dieser Website. Sie wird auf GitHub Pages gehostet, und GitHub kann aus Sicherheitsgründen übliche Server-Logs (etwa IP-Adressen) führen, wie in der {link} beschrieben.', siteLink: 'Datenschutzerklärung von GitHub',
+    appsH: 'Die Apps', appsP: 'Fileshaper, Captionshaper, Diskshaper, Writeshaper, Startshaper, Lightshaper und Clipshaper arbeiten auf deinem eigenen Computer. Deine Dateien werden nie hochgeladen. Keine der Apps hat Konten, Werbung oder Analysen.',
+    appsP2: 'Die Apps gehen nur für Dinge online, die du siehst: jede App kann einmal am Tag auf GitHub nach einer neuen Version suchen (abschaltbar), und Captionshaper lädt seine Sprachmodelle, wenn du zum ersten Mal eines wählst, Writeshaper lädt sein Schreibmodell einmal herunter, und Clipshaper lädt seine zwei Modelle einmal und, wenn du einen Link einfügst, das Video von diesem Link. Nichts über dich oder deine Dateien wird verschickt.',
     dlH: 'Downloads', dlP: 'Installer werden über GitHub Releases ausgeliefert, nach GitHubs eigener Datenschutzerklärung.',
     mailH: 'E-Mail', mailP: 'Wenn du mir schreibst, nutze ich deine Adresse nur zum Antworten. Niemand landet auf einer Mailingliste.',
     qH: 'Fragen', qP: 'Etwas unklar? {link}.', qLink: 'Schreib mir', updated: 'Zuletzt aktualisiert am 15. November 2026.',

@@ -4,6 +4,7 @@ export default {
   nav: { services: '服务', download: '下载', about: '关于', contact: '联系', donate: '捐助', home: '首页', skip: '跳到内容', menu: '打开菜单', language: '语言', main: '主导航', mobile: '移动导航' },
   common: { learn: '了解更多', download: '下载', website: '官网', visit: '访问 {domain}', dlMac: '下载 Mac 版', dlWin: '下载 Windows 版', version: '版本', free: '免费', source: '源代码', whatsNew: '更新内容', official: '官网：{domain}' },
   products: {
+    clipshaper: {"kind": "免费 AI 短视频剪辑", "blurb": "把长视频变成带字幕的竖屏短片。自动找出最精彩的片段，镜头跟随说话的人，导出适合抖音、Reels 和 Shorts 的视频。无水印。", "tasks": ["播客剪成短视频", "找出精彩片段", "自动裁成 9:16", "镜头跟随说话人", "逐字字幕", "用 YouTube 链接剪辑", "Twitch 直播精彩", "无水印"], "req": {"mac": "macOS 12 或更高版本，Apple 芯片", "win": "Windows 10 或 11，64 位", "extra": ["一次性下载：语音模型 574 MB，片段识别模型 1.9 GB", "你的视频从不离开你的电脑", "也可以在浏览器里直接试用，无需安装"]}, "firstMac": ["打开 .dmg，把 Clipshaper 拖到“应用程序”。", "右键点按 Clipshaper，选择“打开”，再点“打开”。", "按提示下载两个模型，然后拖入视频或粘贴链接。"], "firstWin": ["运行安装程序。如果出现 SmartScreen，点“更多信息”，再点“仍要运行”。", "打开 Clipshaper，下载两个模型，然后拖入视频或粘贴链接。"], "newTag": "新"},
     fileshaper: {
       kind: '免费离线文件工具箱',
       blurb: '为 Discord 压缩视频、转换 iPhone 照片、合并和签署 PDF。一个工具箱，完全离线。',
@@ -90,7 +91,7 @@ export default {
     hireH: '与 Hollowbit Studio 合作', hireP: '为小企业制作网站，并为团队定制我们应用的私有版本（英文）。',
     title: 'Hollowbit Studio：从不上传你文件的免费工具',
     desc: 'Hollowbit Studio 是 Elvis Zygmanta 的小型软件工作室。免费、开源的 Windows 和 Mac 应用，完全在你自己的电脑上运行。',
-    badge: '新品：Lightshaper {v}，免费照片编辑器',
+    badge: '新品：Clipshaper，免费无水印的 AI 短视频剪辑',
     h1: '从不上传你文件的免费工具。', hl: '从不上传',
     sub: '小而精致的 Windows 和 Mac 应用，每个只把一件事做好，完全在你自己的电脑上运行。没有广告，没有账号，没有水印。',
     cta: '下载应用', see: '看看它们能做什么', demos: '产品演示',
@@ -100,11 +101,11 @@ export default {
     srWs: '动画演示：Writeshaper 在电脑上修正所选邮件中的错误，然后粘贴回去。',
     srSs: '动画演示：Startshaper 显示一台开机需要 94 秒的电脑，然后关掉五个自动启动的应用。',
     srLs: "动画演示：随着滑块移动，Lightshaper 把一张平淡的田野 RAW 照片变得浓郁，然后对比前后效果。",
-    toolsH: '六款应用。全部免费，永远免费。',
+    toolsH: '七款应用。全部免费，永远免费。',
     toolsP: '每一款都替代了一个想要你的文件、时间或钱的网站或订阅。',
     freeH: '免费就是免费。',
     freeP: '没有试用期，没有“专业版”，不偷偷收集数据。这些原则适用于每一款 Hollowbit 应用和本网站。',
-    ctaH: '六款都拿走，一分不花。', ctaP: 'Mac 和 Windows 安装包，直接来自 GitHub。', ctaGo: '前往下载', ctaWho: '是谁做的？',
+    ctaH: '七款都拿走，一分不花。', ctaP: 'Mac 和 Windows 安装包，直接来自 GitHub。', ctaGo: '前往下载', ctaWho: '是谁做的？',
   },
   product: { titleSuffix: '· Hollowbit Studio', desc: '{blurb} {plats} 免费使用，不上传任何内容。', bandP: '{plats} 免费使用。无需账号，没有水印，不上传任何内容。', allDl: '全部下载和安装帮助', also: 'Hollowbit Studio 的其他作品', plats: { both: 'Mac 和 Windows', mac: 'Mac', win: 'Windows' } },
   download: {
@@ -130,7 +131,7 @@ export default {
       ['没有水印。', '没有试用期，也没有“专业版”。免费版就是完整版。'],
       ['开源。', '每一行代码都在 GitHub 上。'],
     ],
-    appsH: '目前的应用', appsP: '已发布六款，全部免费，全部开源。',
+    appsH: '目前的应用', appsP: '已发布七款，全部免费，全部开源。',
     touch: '联系我', touchP: '邮件、错误报告和想法', donate: '捐助', donateP: '帮助应用保持免费',
   },
   contact: {
@@ -157,9 +158,9 @@ export default {
   privacy: {
     title: '隐私 · Hollowbit Studio', desc: 'Hollowbit Studio 的隐私政策：没有 Cookie，没有统计，应用从不上传你的文件。',
     h1: '隐私。', lead: '简单说：Hollowbit 不收集你的任何信息。',
-    siteH: '本网站', siteP: 'hollowbit.dev 不设置 Cookie，不做统计，也不从其他公司加载任何内容。字体和图片都来自本网站。网站托管在 GitHub Pages 上，GitHub 可能出于安全原因保留标准服务器日志（如 IP 地址），详见{link}。', siteLink: 'GitHub 隐私声明',
-    appsH: '应用', appsP: 'Fileshaper、Captionshaper、Diskshaper、Writeshaper、Startshaper 和 Lightshaper 都在你自己的电脑上工作。你的文件从不上传。所有应用都没有账号、广告或统计。',
-    appsP2: '应用只会为你看得见的事情联网：每个应用每天可以在 GitHub 上检查一次新版本（可以关闭），Captionshaper 会在你第一次选择语音模型时下载它，Writeshaper 会一次性下载写作模型。不会发送任何关于你或你文件的信息。',
+    siteH: '本网站', siteP: 'hollowbit.dev 不设置 Cookie，不做统计，也不从其他公司加载任何内容。唯一的例外是 Clipshaper Web（/clipshaper/try/）：使用时它会从 Hugging Face 获取 AI 模型，并从 jsDelivr 获取两个代码库。你的视频始终不会离开浏览器。字体和图片都来自本网站。网站托管在 GitHub Pages 上，GitHub 可能出于安全原因保留标准服务器日志（如 IP 地址），详见{link}。', siteLink: 'GitHub 隐私声明',
+    appsH: '应用', appsP: 'Fileshaper、Captionshaper、Diskshaper、Writeshaper、Startshaper、Lightshaper 和 Clipshaper 都在你自己的电脑上工作。你的文件从不上传。所有应用都没有账号、广告或统计。',
+    appsP2: '应用只会为你看得见的事情联网：每个应用每天可以在 GitHub 上检查一次新版本（可以关闭），Captionshaper 会在你第一次选择语音模型时下载它，Writeshaper 会一次性下载写作模型，Clipshaper 会一次性下载两个模型，并在你粘贴链接时下载该链接的视频。不会发送任何关于你或你文件的信息。',
     dlH: '下载', dlP: '安装包由 GitHub Releases 提供，适用 GitHub 自己的隐私声明。',
     mailH: '邮件', mailP: '如果你给我发邮件，我只会用你的地址回复。不会把任何人加入邮件列表。',
     qH: '问题', qP: '有不清楚的地方？{link}。', qLink: '联系我', updated: '最后更新于 2026 年 11 月 15 日。',

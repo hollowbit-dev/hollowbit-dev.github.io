@@ -49,6 +49,12 @@ const P = {
     imgs: [['lightshaper-masks.webp', 2560, 1628], ['lightshaper-match.webp', 2560, 1628], ['lightshaper-library.webp', 2560, 1628]],
     fallback: { tag: 'v1.0.0', assets: ['Lightshaper-1.0.0-mac-arm64.dmg', 'Lightshaper-1.0.0-mac-x64.dmg', 'Lightshaper-Setup-1.0.0-win-x64.exe'] },
   },
+  // Clipshaper's website lives on this domain at /clipshaper/ (English only for now), with a web version at /clipshaper/try/.
+  clipshaper: {
+    slug: 'clipshaper', name: 'Clipshaper', v: 'cl', domain: 'hollowbit.dev/clipshaper', page: false, enOnly: true,
+    site: 'https://hollowbit.dev/clipshaper/', repo: 'hollowbit-dev/clipshaper', web: 'https://hollowbit.dev/clipshaper/try/',
+    fallback: { tag: 'v1.0.0', assets: ['Clipshaper-1.0.0-mac-arm64.dmg', 'Clipshaper-Setup-1.0.0-win-x64.exe'] },
+  },
   // Writeshaper's website also lives on this domain, at /writeshaper/.
   writeshaper: {
     slug: 'writeshaper', name: 'Writeshaper', v: 'ws', domain: 'hollowbit.dev/writeshaper', page: false,
@@ -56,9 +62,21 @@ const P = {
     fallback: { tag: 'v1.0.0', assets: ['Writeshaper-1.0.0-mac-arm64.dmg', 'Writeshaper-1.0.0-mac-x64.dmg', 'Writeshaper-Setup-1.0.0-win-x64.exe'] },
   },
 };
-const ORDER = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
+const ORDER = ['clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
+// The collection on the home page and the Apps menu group the apps by what they're for.
+const GROUPS = [['create', ['clipshaper', 'captionshaper', 'lightshaper']], ['work', ['writeshaper', 'fileshaper']], ['care', ['diskshaper', 'startshaper']]];
+const GROUP_OF = Object.fromEntries(GROUPS.flatMap(([g, ks]) => ks.map((k) => [k, g])));
+const COLL = {
+  en: { all: 'All', create: 'Create', work: 'Work', care: 'Computer care', h: 'The collection', p: 'Seven free apps for Mac and Windows. Pick the one you need, or get them all.', open: 'Open', web: 'Also in your browser', demosH: 'See them work', demosP: 'Live demos of the real apps. Pick one.' },
+  es: { all: 'Todas', create: 'Crear', work: 'Trabajo', care: 'Cuidado del equipo', h: 'La colección', p: 'Siete apps gratis para Mac y Windows. Elige la que necesites, o llévatelas todas.', open: 'Abrir', web: 'También en el navegador', demosH: 'Míralas en acción', demosP: 'Demos en vivo de las apps reales. Elige una.' },
+  fr: { all: 'Toutes', create: 'Créer', work: 'Travail', care: 'Entretien du PC', h: 'La collection', p: 'Sept applis gratuites pour Mac et Windows. Prenez celle qu’il vous faut, ou toutes.', open: 'Ouvrir', web: 'Aussi dans le navigateur', demosH: 'Voyez-les à l’œuvre', demosP: 'Démos en direct des vraies applis. Choisissez-en une.' },
+  de: { all: 'Alle', create: 'Erstellen', work: 'Arbeit', care: 'PC-Pflege', h: 'Die Sammlung', p: 'Sieben kostenlose Apps für Mac und Windows. Nimm die, die du brauchst, oder alle.', open: 'Öffnen', web: 'Auch im Browser', demosH: 'So arbeiten sie', demosP: 'Live-Demos der echten Apps. Wähl eine aus.' },
+  ru: { all: 'Все', create: 'Создание', work: 'Работа', care: 'Уход за ПК', h: 'Коллекция', p: 'Семь бесплатных приложений для Mac и Windows. Возьмите нужное — или все сразу.', open: 'Открыть', web: 'Есть и в браузере', demosH: 'Посмотрите в деле', demosP: 'Живые демо настоящих приложений. Выберите любое.' },
+  zh: { all: '全部', create: '创作', work: '工作', care: '电脑维护', h: '应用合集', p: '七款适用于 Mac 和 Windows 的免费应用。按需挑选，或者全部拿走。', open: '打开', web: '也能在浏览器中使用', demosH: '看看它们怎么工作', demosP: '真实应用的实时演示，任选一个。' },
+};
+const coll = (L) => COLL[L.lang] || COLL.en;
 // Screenshot sizes for the home page cards.
-const SHOT = { fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018], lightshaper: [2560, 1628] };
+const SHOT = { clipshaper: [1600, 1018], fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018], lightshaper: [2560, 1628] };
 
 for (const p of Object.values(P)) {
   let rel = p.fallback;
@@ -80,9 +98,9 @@ for (const p of Object.values(P)) {
   p.plat = p.mac && p.win ? 'both' : p.mac ? 'mac' : 'win';
 }
 // Each product site has the same languages, at /<lang>/ (English at the root).
-const siteIn = (p, lang) => p.site + (lang === 'en' ? '' : `${lang}/`);
+const siteIn = (p, lang) => p.site + (lang === 'en' || p.enOnly ? '' : `${lang}/`);
 const changelog = (p, lang) => (p.own ? p.releases : `${siteIn(p, lang)}changelog.html`);
-const FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper, LS = P.lightshaper;
+const CL = P.clipshaper, FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper, LS = P.lightshaper;
 
 /* ---------- icons ---------- */
 const GH = 'M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z';
@@ -132,18 +150,20 @@ const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u,
 // Paths are written root-absolute for the page's language (/es/about/), then made relative at write time.
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
 const navItems = (L) => [
-  [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'],
+  [siteIn(CL, L.lang), 'Clipshaper', 'clipshaper'], [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'],
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 const APPS_LABEL = { en: 'Apps', es: 'Apps', fr: 'Apps', de: 'Apps', ru: 'Приложения', zh: '应用' };
 const FILM_LABEL = { en: 'Watch the film', es: 'Ver el vídeo', fr: 'Voir le film', de: 'Film ansehen', ru: 'Смотреть видео', zh: '观看短片' };
-const APP_KEYS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
+const APP_KEYS = ['clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
 const cap1 = (x) => x.charAt(0).toUpperCase() + x.slice(1);
 const topNav = (L, key) => {
   const apps = navItems(L).slice(0, APP_KEYS.length), rest = [[`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/donate/`, L.nav.donate, 'donate']];
   const onApp = APP_KEYS.includes(key);
   const link = ([h, l, k]) => `<a href="${h}"${k === key ? ' aria-current="page"' : ''}>${k === key ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(l)}</span></a>`;
-  const menu = apps.map(([h, l, k]) => `<a class="apps-item" href="${h}"${k === key ? ' aria-current="page"' : ''}><img src="/assets/img/${k}-icon.png" width="36" height="36" alt=""><span><b>${l}</b><small>${esc(cap1(L.products[k].kind))}</small></span></a>`).join('');
+  const item = ([h, l, k]) => `<a class="apps-item" href="${h}"${k === key ? ' aria-current="page"' : ''}><img src="/assets/img/${k}-icon.png" width="36" height="36" alt=""><span><b>${l}</b><small>${esc(cap1(L.products[k].kind))}</small></span></a>`;
+  const byKey = Object.fromEntries(apps.map((a) => [a[2], a]));
+  const menu = GROUPS.map(([g, ks]) => `<div class="apps-group"><span class="apps-gh">${esc(coll(L)[g])}</span>${ks.map((k) => item(byKey[k])).join('')}</div>`).join('');
   return `<div class="apps" data-apps><button class="apps-btn" type="button" aria-expanded="false" aria-haspopup="true"${onApp ? ' aria-current="page"' : ''}>${onApp ? '<span class="nav-pill"></span>' : ''}<span class="nav-label">${esc(APPS_LABEL[L.lang] || 'Apps')}</span><svg class="apps-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="apps-menu">${menu}</div></div>` + rest.map(link).join('');
 };
 
@@ -380,11 +400,38 @@ function stage(L, only) {
 
 const ticker = (L) => {
   const items = (p) => L.products[p.slug].tasks.map((t) => `<span style="--c: var(--${p.v})"><i></i>${esc(t)}</span>`).join('');
-  const a = items(FS) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
-  const b = items(CS) + items(SS) + items(LS) + items(DS) + items(FS) + items(WS);
+  const a = items(CL) + items(FS) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
+  const b = items(CS) + items(SS) + items(CL) + items(LS) + items(DS) + items(FS) + items(WS);
   return `<div class="ticker" aria-hidden="true"><div class="ticker-track">${a}${a}</div><div class="ticker-track rev">${b}${b}</div></div>`;
 };
 const PR_ICONS = ['i-upload', 'i-wifi', 'i-ads', 'i-account', 'i-track', 'i-code'];
+
+
+// ---------- The collection: every app as a compact tile, filterable by what it's for ----------
+function collection(L) {
+  const C = coll(L);
+  const tile = (k, i) => {
+    const p = P[k], c = L.products[k];
+    const href = p.page ? `${pre(L)}/${p.slug}/` : siteIn(p, L.lang);
+    const isNew = k === 'clipshaper';
+    return `<a class="app-tile${isNew ? ' feat' : ''} reveal" href="${href}" data-cat="${GROUP_OF[k]}" style="--c: var(--${p.v}); --d:${i * 50}ms">
+      <span class="at-top"><img src="/assets/img/${p.slug}-icon.png" width="52" height="52" alt="">${isNew && c.newTag ? `<em class="at-new">${esc(c.newTag)}</em>` : ''}</span>
+      <b class="at-name">${p.name}</b>
+      <span class="at-kind">${esc(cap1(c.kind))}</span>
+      <span class="at-blurb">${esc(c.blurb)}</span>
+      <span class="at-foot"><span>${esc(plats(L, p))}${p.web ? ` · ${esc(C.web)}` : ''}</span>${ic('arrow', 'at-go')}</span>
+    </a>`;
+  };
+  return `<section class="wrap sec coll-sec" id="tools">
+  <div class="coll-head">
+    <div><h2 class="h2" data-words="scroll">${esc(C.h)}</h2><p class="reveal">${esc(C.p)}</p></div>
+    <div class="coll-filter reveal" role="group" aria-label="${esc(C.h)}">
+      <button type="button" data-filter="all" aria-pressed="true">${esc(C.all)}</button>${GROUPS.map(([g]) => `<button type="button" data-filter="${g}" aria-pressed="false">${esc(C[g])}</button>`).join('')}
+    </div>
+  </div>
+  <div class="coll-grid" data-coll>${GROUPS.flatMap(([, ks]) => ks).map(tile).join('')}</div>
+</section>`;
+}
 
 /* ---------- pages ---------- */
 const home = (L) => page(L, {
@@ -392,7 +439,7 @@ const home = (L) => page(L, {
   og: { id: 'home', kind: 'home', h: L.home.h1, hl: L.home.hl, sub: L.home.sub },
   body: `
 <section class="hero wrap">
-  <a class="hero-badge in-0" href="${pre(L)}/lightshaper/"><span class="dot"></span>${esc(fill(L.home.badge, { v: LS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  <a class="hero-badge in-0" href="${siteIn(CL, L.lang)}"><span class="dot"></span>${esc(fill(L.home.badge, { v: LS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
   <h1 class="hero-title" data-words data-hl="${esc(L.home.hl)}">${esc(L.home.h1)}</h1>
   <p class="hero-sub in-1">${esc(L.home.sub)}</p>
   <div class="hero-cta in-2">
@@ -401,33 +448,19 @@ const home = (L) => page(L, {
   </div>
   <button class="film-open in-2" type="button" data-film-open><span class="film-play"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5v7l5.5-3.5Z" fill="currentColor"/></svg></span>${esc(FILM_LABEL[L.lang] || FILM_LABEL.en)}<span class="film-len">0:20</span></button>
   <dialog class="film-dlg" data-film><button class="film-x" type="button" data-film-close aria-label="Close">×</button><video src="/assets/video/promo.mp4?v=1" poster="/assets/video/promo-poster.jpg" width="1920" height="1080" controls playsinline preload="none"></video></dialog>
-  <div class="in-3">${stage(L)}</div>
+</section>
+
+${collection(L)}
+
+<section class="wrap sec demos-sec">
+  <div class="sec-head">
+    <h2 class="h2" data-words="scroll">${esc(coll(L).demosH)}</h2>
+    <p class="reveal">${esc(coll(L).demosP)}</p>
+  </div>
+  <div class="reveal">${stage(L)}</div>
 </section>
 
 ${ticker(L)}
-
-<section class="wrap sec" id="tools">
-  <div class="sec-head">
-    <h2 class="h2" data-words="scroll">${esc(L.home.toolsH)}</h2>
-    <p class="reveal">${esc(L.home.toolsP)}</p>
-  </div>
-  <div class="cards">
-    ${ORDER.map((k, i) => { const p = P[k], c = L.products[k]; return `<article class="pcard pcard-${p.v} reveal" style="--d:${i * 90}ms" data-tilt-card>
-      <div class="pcard-in">
-        <img class="pcard-icon vt-icon-${p.v}" src="/assets/img/${p.slug}-icon.png" width="56" height="56" alt="">
-        <h3>${p.name}${c.newTag ? ` <span class="pcard-new">${esc(c.newTag)}</span>` : ''}</h3>
-        <p>${esc(c.blurb)}</p>
-        <div class="pcard-cta">
-          <a class="btn btn-dark" href="${p.page ? `${pre(L)}/${p.slug}/` : siteIn(p, L.lang)}">${esc(L.common.learn)} ${ic('arrow')}</a>
-          <a class="btn btn-line" href="${pre(L)}/download/#${p.slug}">${ic('down')}${esc(L.common.download)}</a>
-          ${p.page && !p.own ? `<a class="btn btn-line" href="${siteIn(p, L.lang)}">${esc(L.common.website)} ${ic('out')}</a>` : ''}
-        </div>
-        <small class="pcard-meta">v${p.version} · ${esc(plats(L, p))} · ${esc(fill(L.common.official, { domain: p.domain }))}</small>
-      </div>
-      <div class="pcard-shot"><img src="/assets/img/${p.slug}-app.webp" width="${SHOT[k][0]}" height="${SHOT[k][1]}" alt="" loading="lazy"></div>
-    </article>`; }).join('\n    ')}
-  </div>
-</section>
 
 <section class="wrap sec">
   <div>
