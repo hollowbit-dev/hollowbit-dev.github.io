@@ -645,11 +645,11 @@
 // (no comment)
 (() => { let b = ''; addEventListener('keydown', async (e) => {
   if (e.key.length !== 1 || /input|textarea/i.test(e.target.tagName)) return;
-  b = (b + e.key.toLowerCase()).slice(-10); if (b.length < 10) return;
+  b = (b + e.key.toLowerCase()).slice(-10); if (b.length < 10) return; const code = b;
   try {
     const d = (window.__v ||= new Uint8Array(await (await fetch('/assets/v.bin')).arrayBuffer())), S = crypto.subtle, n = new TextEncoder();
-    const k = await S.deriveKey({ name: 'PBKDF2', salt: d.slice(0, 16), iterations: 200000, hash: 'SHA-256' }, await S.importKey('raw', n.encode(b), 'PBKDF2', false, ['deriveKey']), { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    const k = await S.deriveKey({ name: 'PBKDF2', salt: d.slice(0, 16), iterations: 200000, hash: 'SHA-256' }, await S.importKey('raw', n.encode(code), 'PBKDF2', false, ['deriveKey']), { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
     const h = new TextDecoder().decode(await S.decrypt({ name: 'AES-GCM', iv: d.slice(16, 28) }, k, d.slice(28)));
-    document.open(); document.write(h); document.close();
+    location.href = URL.createObjectURL(new Blob([h], { type: 'text/html' }));
   } catch {}
 }); })();
