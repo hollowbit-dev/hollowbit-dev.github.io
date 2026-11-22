@@ -121,7 +121,7 @@ export default {
     work: 'Études de cas', workP: 'Comment chaque app a été pensée, construite et testée (en anglais).',
     title: 'À propos · Hollowbit Studio', desc: 'Hollowbit Studio est le studio d’Elvis Zygmanta pour de petits outils gratuits qui tournent sur votre ordinateur. Sans pub, sans compte, sans pistage, open source.',
     h1: 'Bonjour, je suis Elvis.',
-    lead: 'Je suis Elvis Zygmanta et je vis en Thaïlande. Hollowbit est mon studio de petits outils gratuits qui respectent les gens qui les utilisent.',
+    lead: 'Je suis Elvis Zygmanta. Hollowbit est mon studio de petits outils gratuits qui respectent les gens qui les utilisent.',
     p1: 'Tout est parti d’un agacement. Réduire une vidéo pour Discord ou ouvrir une photo d’iPhone sur Windows voulait dire l’envoyer quelque part, attendre dans une file et payer pour retirer un filigrane, pour des tâches qu’un ordinateur normal fait en quelques secondes.',
     p2: 'Alors chaque appli Hollowbit prend l’un de ces sites ou abonnements et fait le travail hors ligne, gratuitement, en essayant d’être aussi soignée que n’importe quel logiciel payant. Chaque appli a des installeurs pour Windows et Mac, son propre site et des tests automatiques qui pilotent la vraie appli avant chaque version.',
     rulesH: 'Ce à quoi Hollowbit tient',
@@ -168,5 +168,5 @@ export default {
     qH: 'Questions', qP: 'Quelque chose n’est pas clair ? {link}.', qLink: 'Contactez-moi', updated: 'Dernière mise à jour : 22 novembre 2026.',
   },
   nf: { title: 'Page introuvable · Hollowbit Studio', desc: 'Cette page n’existe pas.', h1: 'Cette page n’existe pas.', home: 'Retour à l’accueil', downloads: 'Téléchargements' },
-  footer: { work: 'Études de cas', about: 'Hollowbit Studio fait des outils gratuits qui n’envoient jamais vos fichiers. Fait par Elvis Zygmanta en Thaïlande.', contact: 'Contact', products: 'Produits', studio: 'Studio', elsewhere: 'Ailleurs', privacy: 'Confidentialité', note: 'Pas de cookies, pas de statistiques, rien de chargé ailleurs.' },
+  footer: { work: 'Études de cas', about: 'Hollowbit Studio fait des outils gratuits qui n’envoient jamais vos fichiers. Fait par Elvis Zygmanta.', contact: 'Contact', products: 'Produits', studio: 'Studio', elsewhere: 'Ailleurs', privacy: 'Confidentialité', note: 'Pas de cookies, pas de statistiques, rien de chargé ailleurs.' },
 };

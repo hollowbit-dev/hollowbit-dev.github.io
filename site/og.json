@@ -730,6 +730,14 @@
   "sub": "Fast, accessible sites for cafés, clinics, tour companies and more. Fixed prices."
  },
  {
+  "file": "assets/img/og/en/press.png",
+  "lang": "en",
+  "id": "press",
+  "kind": "plain",
+  "h": "Press kit.",
+  "sub": "Logos, icons, screenshots and facts about Hollowbit Studio."
+ },
+ {
   "file": "assets/img/og/en/work-fileshaper.png",
   "lang": "en",
   "id": "work-fileshaper",

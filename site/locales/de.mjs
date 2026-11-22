@@ -121,7 +121,7 @@ export default {
     work: 'Fallstudien', workP: 'Wie jede App geplant, gebaut und getestet wurde (auf Englisch).',
     title: 'Über · Hollowbit Studio', desc: 'Hollowbit Studio ist das Studio von Elvis Zygmanta für kleine, kostenlose Werkzeuge, die auf deinem eigenen Computer laufen. Keine Werbung, keine Konten, kein Tracking, Open Source.',
     h1: 'Hi, ich bin Elvis.',
-    lead: 'Ich bin Elvis Zygmanta und lebe in Thailand. Hollowbit ist mein Studio für kleine, kostenlose Werkzeuge, die die Menschen, die sie nutzen, mit Respekt behandeln.',
+    lead: 'Ich bin Elvis Zygmanta. Hollowbit ist mein Studio für kleine, kostenlose Werkzeuge, die die Menschen, die sie nutzen, mit Respekt behandeln.',
     p1: 'Es fing mit einem Ärgernis an. Ein Video für Discord verkleinern oder ein iPhone-Foto unter Windows öffnen hieß: irgendwo hochladen, in einer Warteschlange warten und zahlen, um ein Wasserzeichen loszuwerden – für Aufgaben, die ein normaler Computer in Sekunden erledigt.',
     p2: 'Also nimmt sich jede Hollowbit-App eine dieser Websites oder eines dieser Abos vor und erledigt die Arbeit offline, kostenlos, und versucht so ausgefeilt zu sein wie alles, wofür man zahlen würde. Jede App kommt mit Installern für Windows und Mac, einer eigenen Website und automatischen Tests, die vor jeder Version die echte App bedienen.',
     rulesH: 'Woran sich Hollowbit hält',
@@ -168,5 +168,5 @@ export default {
     qH: 'Fragen', qP: 'Etwas unklar? {link}.', qLink: 'Schreib mir', updated: 'Zuletzt aktualisiert am 22. November 2026.',
   },
   nf: { title: 'Seite nicht gefunden · Hollowbit Studio', desc: 'Diese Seite gibt es nicht.', h1: 'Diese Seite gibt es nicht.', home: 'Zur Startseite', downloads: 'Downloads' },
-  footer: { work: 'Fallstudien', about: 'Hollowbit Studio macht kostenlose Werkzeuge, die deine Dateien nie hochladen. Gemacht von Elvis Zygmanta in Thailand.', contact: 'Kontakt', products: 'Produkte', studio: 'Studio', elsewhere: 'Anderswo', privacy: 'Datenschutz', note: 'Keine Cookies, keine Analysen, nichts von Dritten geladen.' },
+  footer: { work: 'Fallstudien', about: 'Hollowbit Studio macht kostenlose Werkzeuge, die deine Dateien nie hochladen. Gemacht von Elvis Zygmanta.', contact: 'Kontakt', products: 'Produkte', studio: 'Studio', elsewhere: 'Anderswo', privacy: 'Datenschutz', note: 'Keine Cookies, keine Analysen, nichts von Dritten geladen.' },
 };

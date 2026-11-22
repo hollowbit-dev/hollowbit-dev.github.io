@@ -254,7 +254,7 @@ ${body}
         ${socials()}
       </div>
       <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/lightshaper/">Lightshaper</a><a href="${pre(L)}/moveshaper/">Moveshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
-      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="https://fuseduo.com/">Fuseduo</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
+      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="/press/">Press kit</a><a href="https://fuseduo.com/">Fuseduo</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://discord.gg/ENSTjVpJj8">Discord</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
     <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>${esc(t.footer.note)}</span></div>
@@ -953,6 +953,104 @@ const services = () => page(LANGS[0], {
 </section>`,
 });
 
+/* ---------- press kit (English only; footer link) ---------- */
+const PRESS_APPS = [
+  ['fileshaper', 'Fileshaper', 'https://fileshaper.app/', '/assets/img/fileshaper-app.webp'],
+  ['captionshaper', 'Captionshaper', 'https://captionshaper.app/', '/assets/img/captionshaper-app.webp'],
+  ['diskshaper', 'Diskshaper', 'https://hollowbit.dev/diskshaper/', '/assets/img/diskshaper-app.webp'],
+  ['writeshaper', 'Writeshaper', 'https://hollowbit.dev/writeshaper/', '/assets/img/writeshaper-app.webp'],
+  ['startshaper', 'Startshaper', 'https://hollowbit.dev/startshaper/', '/assets/img/startshaper-app.webp'],
+  ['lightshaper', 'Lightshaper', 'https://hollowbit.dev/lightshaper/', '/assets/img/lightshaper-app.webp'],
+  ['clipshaper', 'Clipshaper', 'https://hollowbit.dev/clipshaper/', '/press/screenshots/clipshaper-app.png'],
+  ['moveshaper', 'Moveshaper', 'https://hollowbit.dev/moveshaper/', '/assets/img/moveshaper-app.webp'],
+  ['fuseduo', 'Fuseduo', 'https://fuseduo.com/', '/fuseduo/assets/img/app-board.webp'],
+];
+const PRESS_BLURB = { fuseduo: 'Drop one Mac app onto another and get a working automation between them, explained in plain English before anything runs.' };
+const PRESS_FACTS = [
+  ['Studio', 'Hollowbit Studio'], ['Founder', 'Elvis Zygmanta'], ['Started', 'November 2026'], ['Languages', 'Sites in 6 languages'],
+  ['Apps', '9, all free'], ['Platforms', 'Mac and Windows'], ['Price', 'Free. No ads, accounts or tiers'], ['Source', 'Open source on GitHub'],
+];
+// Press assets are gathered from each app's repo on every build, so new icons and screenshots show up by themselves.
+// A new app only needs a line in PRESS_APPS above (and its folder next to this one on the Desktop).
+{
+  const { execFileSync } = await import('node:child_process');
+  const { existsSync, statSync, copyFileSync, rmSync } = await import('node:fs');
+  const desk = resolve(root, '..'), pk = resolve(root, 'press');
+  for (const d of ['logos', 'icons', 'screenshots']) mkdirSync(resolve(pk, d), { recursive: true });
+  const fresh = (src, dst) => existsSync(src) && (!existsSync(dst) || statSync(src).mtimeMs > statSync(dst).mtimeMs);
+  let changed = false;
+  for (const f of ['hollowbit-logo-color.png', 'hollowbit-logo-dark.png', 'hollowbit-logo-light.png', 'hollowbit-mark-white.png', 'hollowbit-mark-black.png', 'hollowbit-mark.svg'])
+    if (fresh(resolve(root, 'brand', f), resolve(pk, 'logos', f))) { copyFileSync(resolve(root, 'brand', f), resolve(pk, 'logos', f)); changed = true; }
+  for (const [slug, name, , shot] of PRESS_APPS) {
+    const icon = resolve(desk, name, 'assets/icon.png'), iconOut = resolve(pk, 'icons', `${slug}-icon.png`);
+    if (fresh(icon, iconOut)) { try { execFileSync('sips', ['-Z', '1024', icon, '--out', iconOut], { stdio: 'ignore' }); changed = true; } catch {} }
+    const src = shot.startsWith('/press/') ? null : resolve(root, shot.slice(1)), shotOut = resolve(pk, 'screenshots', `${slug}-app.png`);
+    if (src && fresh(src, shotOut)) { try { execFileSync('sips', ['-s', 'format', 'png', src, '--out', shotOut], { stdio: 'ignore' }); changed = true; } catch {} }
+  }
+  const zip = resolve(pk, 'hollowbit-press-kit.zip');
+  if (changed || !existsSync(zip)) {
+    try { rmSync(zip, { force: true }); execFileSync('zip', ['-qr', 'hollowbit-press-kit.zip', 'README.txt', 'logos', 'icons', 'screenshots'], { cwd: pk }); } catch (e) { console.warn('press zip failed:', e.message); }
+  }
+}
+const press = () => page(LANGS[0], {
+  path: '/press/', key: 'press', title: 'Press kit · Hollowbit Studio', enOnly: true,
+  desc: 'Logos, app icons, screenshots, facts and descriptions for writing about Hollowbit Studio and its free apps.',
+  og: { id: 'press', kind: 'plain', h: 'Press kit.', sub: 'Logos, icons, screenshots and facts about Hollowbit Studio.' },
+  body: `
+<section class="wrap-narrow doc svc-hero">
+  <h1 class="h1" data-words>Press kit.</h1>
+  <p class="lead in-1">Everything you need to write about Hollowbit Studio and its apps. Use anything on this page freely, no need to ask.</p>
+  <div class="hero-cta in-2"><a class="btn btn-primary btn-lg" href="/press/hollowbit-press-kit.zip" download>Download everything (.zip) ${ic('arrow')}</a><a class="btn btn-ghost btn-lg" data-email-link href="/contact/">Contact</a></div>
+</section>
+
+<section class="wrap sec">
+  <div class="sec-head"><h2 class="h2" data-words="scroll">Fact sheet</h2></div>
+  <dl class="pk-facts reveal">${PRESS_FACTS.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+</section>
+
+<section class="wrap-narrow sec doc">
+  <h2>Short description</h2>
+  <p class="pk-copy">Hollowbit Studio makes free apps for Mac and Windows that never upload your files. Each one replaces a website or subscription with an app that does the job on your own computer, with no ads, no accounts and no watermarks.</p>
+  <h2>Long description</h2>
+  <p class="pk-copy">Hollowbit Studio is an independent studio run by Elvis Zygmanta. It started with a simple annoyance: everyday jobs like shrinking a video, converting a photo or adding subtitles meant uploading files to a website, waiting in a queue and paying to remove a watermark.</p>
+  <p class="pk-copy">Each Hollowbit app takes one of those jobs and does it offline, for free. The line-up covers file conversion (Fileshaper), subtitles (Captionshaper), storage cleaning (Diskshaper), writing help (Writeshaper), PC speed-ups (Startshaper), photo editing (Lightshaper), short clips from long videos (Clipshaper), moving to a new computer (Moveshaper) and app automations (Fuseduo).</p>
+  <p class="pk-copy">Every app is open source, works with the Wi-Fi off and has no paid tier. There is no tracking in the apps or on the websites.</p>
+  <h2>About the founder</h2>
+  <p class="pk-copy">Elvis Zygmanta is the founder of Hollowbit Studio. Elvis designs and releases the studio’s apps, websites and videos, and runs its community on Discord.</p>
+</section>
+
+<section class="wrap sec">
+  <div class="sec-head"><h2 class="h2" data-words="scroll">Logos</h2><p class="reveal">PNG at 2048 px, plus the mark as SVG. Please don’t stretch, recolour or add effects.</p></div>
+  <div class="pk-logos">
+    ${[['hollowbit-logo-color.png', 'Colour', 'pk-dark'], ['hollowbit-logo-dark.png', 'Dark', 'pk-dark'], ['hollowbit-logo-light.png', 'Light', 'pk-light'], ['hollowbit-mark-white.png', 'Mark, white', 'pk-dark'], ['hollowbit-mark-black.png', 'Mark, black', 'pk-light'], ['hollowbit-mark.svg', 'Mark, SVG', 'pk-light']].map(([f, n, bg], i) => `<a class="pk-logo reveal ${bg}" style="--d:${i * 60}ms" href="/press/logos/${f}" download><span class="pk-swatch"><img src="/press/logos/${f}" alt="Hollowbit ${esc(n)} logo" loading="lazy"></span><span>${esc(n)}</span></a>`).join('')}
+  </div>
+</section>
+
+<section class="wrap sec">
+  <div class="sec-head"><h2 class="h2" data-words="scroll">The apps</h2><p class="reveal">Icons at 1024 px and a screenshot for each app.</p></div>
+  <div class="pk-apps">
+    ${PRESS_APPS.map(([slug, name, url, shot], i) => {
+      const blurb = PRESS_BLURB[slug] || LANGS[0].products?.[slug]?.blurb || '';
+      return `<article class="pk-app reveal" style="--d:${(i % 3) * 70}ms">
+      <a class="pk-shot" href="/press/screenshots/${slug}-app.png" download><img src="${shot}" alt="${esc(name)} screenshot" loading="lazy"></a>
+      <div class="pk-app-txt"><img class="pk-icon" src="/press/icons/${slug}-icon.png" alt="" width="44" height="44" loading="lazy"><div><h3>${esc(name)}</h3><p>${esc(blurb)}</p>
+      <p class="pk-links"><a href="${url}">Website</a><a href="https://github.com/hollowbit-dev/${slug}">GitHub</a><a href="/press/icons/${slug}-icon.png" download>Icon</a><a href="/press/screenshots/${slug}-app.png" download>Screenshot</a></p></div></div>
+    </article>`; }).join('')}
+  </div>
+</section>
+
+<section class="wrap-narrow sec doc">
+  <h2>Links</h2>
+  <ul class="wk-list">
+    <li>Website: <a href="https://hollowbit.dev/">hollowbit.dev</a></li>
+    <li>GitHub: <a href="https://github.com/hollowbit-dev">github.com/hollowbit-dev</a></li>
+    <li>Discord: <a href="https://discord.gg/ENSTjVpJj8">discord.gg/ENSTjVpJj8</a></li>
+    <li>Social: @hollowbitstudio on X, YouTube, TikTok, Instagram and Reddit</li>
+  </ul>
+  <div class="hero-cta" style="margin-top:32px"><a class="btn btn-primary btn-lg" data-email-link href="/contact/"><span data-email>Get in touch</span> ${ic('arrow')}</a></div>
+</section>`,
+});
+
 /* ---------- write ---------- */
 const out = {};
 for (const L of LANGS) {
@@ -974,6 +1072,7 @@ for (const L of LANGS) {
 out['404.html'] = notFound(LANGS[0]);
 out['work/index.html'] = workIndex();
 out['services/index.html'] = services();
+out['press/index.html'] = press();
 for (const w of WORK) out[`work/${w.slug}/index.html`] = workPage(w);
 // Root-relative links become relative, so pages also work opened straight from the folder.
 // 404.html keeps absolute paths: GitHub Pages serves it at any depth.
@@ -990,7 +1089,7 @@ for (const [f, raw] of Object.entries(out)) {
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
 const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/lightshaper/', '/moveshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
-const workPaths = ['/work/', '/services/', ...WORK.map((w) => `/work/${w.slug}/`)];
+const workPaths = ['/work/', '/services/', '/press/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

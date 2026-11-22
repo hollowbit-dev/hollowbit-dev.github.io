@@ -121,7 +121,7 @@ export default {
     work: 'Case studies', workP: 'How each app was planned, built and tested (in English).',
     title: 'About · Hollowbit Studio', desc: 'Hollowbit Studio is Elvis Zygmanta’s studio for small, free tools that run on your own computer. No ads, no accounts, no tracking, open source.',
     h1: 'Hi, I’m Elvis.',
-    lead: 'I’m Elvis Zygmanta, based in Thailand. Hollowbit is my studio for small, free tools that treat the people using them with respect.',
+    lead: 'I’m Elvis Zygmanta. Hollowbit is my studio for small, free tools that treat the people using them with respect.',
     p1: 'It started with an annoyance. Shrinking a video for Discord or opening an iPhone photo on Windows meant uploading it somewhere, waiting in a queue and paying to remove a watermark, for jobs a normal computer can do in seconds.',
     p2: 'So each Hollowbit app takes one of those websites or subscriptions and does the job offline, for free, and tries to be as polished as anything you’d pay for. Every app ships with installers for Windows and Mac, its own website, and automated tests that drive the real app before each release.',
     rulesH: 'What Hollowbit sticks to',
@@ -168,5 +168,5 @@ export default {
     qH: 'Questions', qP: 'Anything unclear? {link}.', qLink: 'Get in touch', updated: 'Last updated 22 November 2026.',
   },
   nf: { title: 'Page not found · Hollowbit Studio', desc: 'This page does not exist.', h1: 'This page doesn’t exist.', home: 'Back home', downloads: 'Downloads' },
-  footer: { work: 'Case studies', about: 'Hollowbit Studio makes free tools that never upload your files. Made by Elvis Zygmanta in Thailand.', contact: 'Contact', products: 'Products', studio: 'Studio', elsewhere: 'Elsewhere', privacy: 'Privacy', note: 'No cookies, no analytics, nothing loaded from anyone else.' },
+  footer: { work: 'Case studies', about: 'Hollowbit Studio makes free tools that never upload your files. Made by Elvis Zygmanta.', contact: 'Contact', products: 'Products', studio: 'Studio', elsewhere: 'Elsewhere', privacy: 'Privacy', note: 'No cookies, no analytics, nothing loaded from anyone else.' },
 };

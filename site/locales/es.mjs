@@ -121,7 +121,7 @@ export default {
     work: 'Casos de estudio', workP: 'Cómo se planificó, construyó y probó cada app (en inglés).',
     title: 'Acerca de · Hollowbit Studio', desc: 'Hollowbit Studio es el estudio de Elvis Zygmanta para herramientas pequeñas y gratuitas que funcionan en tu ordenador. Sin anuncios, sin cuentas, sin rastreo, de código abierto.',
     h1: 'Hola, soy Elvis.',
-    lead: 'Soy Elvis Zygmanta y vivo en Tailandia. Hollowbit es mi estudio de herramientas pequeñas y gratuitas que tratan con respeto a quien las usa.',
+    lead: 'Soy Elvis Zygmanta. Hollowbit es mi estudio de herramientas pequeñas y gratuitas que tratan con respeto a quien las usa.',
     p1: 'Empezó por una molestia. Reducir un vídeo para Discord o abrir una foto del iPhone en Windows suponía subirlo a algún sitio, esperar en una cola y pagar para quitar una marca de agua, para tareas que un ordenador normal hace en segundos.',
     p2: 'Así que cada app de Hollowbit toma una de esas webs o suscripciones y hace el trabajo sin conexión, gratis, intentando estar tan cuidada como cualquier cosa de pago. Cada app tiene instaladores para Windows y Mac, su propia web y pruebas automáticas que manejan la app real antes de cada versión.',
     rulesH: 'Lo que Hollowbit respeta',
@@ -168,5 +168,5 @@ export default {
     qH: 'Preguntas', qP: '¿Algo no está claro? {link}.', qLink: 'Escríbeme', updated: 'Última actualización: 22 de noviembre de 2026.',
   },
   nf: { title: 'Página no encontrada · Hollowbit Studio', desc: 'Esta página no existe.', h1: 'Esta página no existe.', home: 'Volver al inicio', downloads: 'Descargas' },
-  footer: { work: 'Casos de estudio', about: 'Hollowbit Studio hace herramientas gratis que nunca suben tus archivos. Hecho por Elvis Zygmanta en Tailandia.', contact: 'Contacto', products: 'Productos', studio: 'Estudio', elsewhere: 'En otros sitios', privacy: 'Privacidad', note: 'Sin cookies, sin analíticas, nada cargado de terceros.' },
+  footer: { work: 'Casos de estudio', about: 'Hollowbit Studio hace herramientas gratis que nunca suben tus archivos. Hecho por Elvis Zygmanta.', contact: 'Contacto', products: 'Productos', studio: 'Estudio', elsewhere: 'En otros sitios', privacy: 'Privacidad', note: 'Sin cookies, sin analíticas, nada cargado de terceros.' },
 };

@@ -121,7 +121,7 @@ export default {
     work: '案例研究', workP: '每个应用如何规划、构建和测试（英文）。',
     title: '关于 · Hollowbit Studio', desc: 'Hollowbit Studio 是 Elvis Zygmanta 的工作室，制作在你自己电脑上运行的小型免费工具。没有广告、账号和追踪，开源。',
     h1: '你好，我是 Elvis。',
-    lead: '我是 Elvis Zygmanta，住在泰国。Hollowbit 是我的工作室，做一些尊重使用者的小型免费工具。',
+    lead: '我是 Elvis Zygmanta。Hollowbit 是我的工作室，做一些尊重使用者的小型免费工具。',
     p1: '一切始于一件烦心事。为 Discord 缩小一个视频，或在 Windows 上打开一张 iPhone 照片，都得先上传到某个网站、排队等待、再付钱去水印，而这些事普通电脑几秒钟就能做完。',
     p2: '所以每一款 Hollowbit 应用都替代了一个这样的网站或订阅，免费离线完成工作，并努力做到和付费软件一样精致。每款应用都提供 Windows 和 Mac 安装包、独立网站，以及每次发布前驱动真实应用的自动化测试。',
     rulesH: 'Hollowbit 的原则',
@@ -168,5 +168,5 @@ export default {
     qH: '问题', qP: '有不清楚的地方？{link}。', qLink: '联系我', updated: '最后更新于 2026 年 11 月 22 日。',
   },
   nf: { title: '页面不存在 · Hollowbit Studio', desc: '此页面不存在。', h1: '此页面不存在。', home: '返回首页', downloads: '下载' },
-  footer: { work: '案例研究', about: 'Hollowbit Studio 制作从不上传你文件的免费工具。由 Elvis Zygmanta 在泰国制作。', contact: '联系', products: '产品', studio: '工作室', elsewhere: '其他地方', privacy: '隐私', note: '没有 Cookie，没有统计，不从任何第三方加载内容。' },
+  footer: { work: '案例研究', about: 'Hollowbit Studio 制作从不上传你文件的免费工具。由 Elvis Zygmanta 制作。', contact: '联系', products: '产品', studio: '工作室', elsewhere: '其他地方', privacy: '隐私', note: '没有 Cookie，没有统计，不从任何第三方加载内容。' },
 };

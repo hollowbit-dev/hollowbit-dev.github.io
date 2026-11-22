@@ -790,3 +790,29 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 .hero-cta { margin-top: 24px; }
 .hero .film-open { margin-top: 12px; }
 .coll-sec { padding-top: 36px; }
+
+/* ---------- press kit ---------- */
+.pk-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 0; border-radius: 22px; overflow: hidden; background: var(--line); box-shadow: var(--hi); }
+.pk-facts div { background: var(--bg-1); padding: 20px 22px; }
+.pk-facts dt { color: var(--text-3); font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+.pk-facts dd { margin: 6px 0 0; font-size: 17px; font-weight: 600; color: var(--text); }
+.pk-copy { user-select: all; -webkit-user-select: all; }
+.pk-logos { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.pk-logo { display: grid; gap: 10px; padding: 14px; border-radius: 22px; background: var(--bg-1); box-shadow: var(--hi); color: var(--text-2); font-size: 14px; font-weight: 600; text-decoration: none; transition: transform .45s var(--spring); }
+.pk-logo:hover { transform: translateY(-3px); color: var(--text); }
+.pk-swatch { display: grid; place-items: center; aspect-ratio: 1 / 1; padding: 14%; border-radius: 14px; overflow: hidden; }
+.pk-swatch img { width: 100%; height: 100%; max-width: none; object-fit: contain; }
+.pk-dark .pk-swatch { background: #0b0a10; }
+.pk-light .pk-swatch { background: #f4f3f8; }
+.pk-apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.pk-app { display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: var(--bg-1); box-shadow: var(--hi), var(--sh-2); }
+.pk-shot { display: block; background: var(--bg-2); }
+.pk-shot img { width: 100%; height: auto; }
+.pk-app-txt { display: flex; gap: 14px; padding: 18px 20px 20px; }
+.pk-icon { flex: none; width: 44px; height: 44px; border-radius: 11px; }
+.pk-app h3 { margin: 0 0 4px; font-size: 18px; }
+.pk-app p { margin: 0; color: var(--text-2); font-size: 14.5px; line-height: 1.5; }
+.pk-links { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 10px !important; }
+.pk-links a { color: var(--text); font-weight: 600; font-size: 13.5px; }
+@media (max-width: 900px) { .pk-facts { grid-template-columns: repeat(2, 1fr); } .pk-apps { grid-template-columns: repeat(2, 1fr); } .pk-logos { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .pk-apps { grid-template-columns: 1fr; } .pk-logos { grid-template-columns: repeat(2, 1fr); } }
