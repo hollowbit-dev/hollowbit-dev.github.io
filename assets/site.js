@@ -245,6 +245,45 @@
         await sleep(1200, sig);
       },
     },
+    'demo-mv': {
+      length: 10400,
+      setup(d) { return d; },
+      reset(d, final) {
+        d.dataset.step = final ? '3' : '1';
+        $$('.mv-code i', d).forEach((i) => i.classList.toggle('on', final));
+        $$('.mv-row', d).forEach((r) => r.classList.toggle('on', final));
+        $$('.mv-apps span', d).forEach((a) => { a.classList.remove('run'); a.classList.toggle('ok', final); });
+        const b = $('.mv-btn', d); b.classList.toggle('ready', final); b.classList.toggle('done', final); b.classList.remove('press');
+        $('.mv-ring', d).style.setProperty('--p', final ? 100 : 0);
+        $('.mv-pct', d).textContent = final ? '100%' : '0%';
+        d.classList.toggle('linked', final); d.classList.remove('flow'); d.classList.toggle('done', final);
+      },
+      async run(d, sig) {
+        await sleep(400, sig);
+        // 1. type the code shown on the new computer
+        for (const i of $$('.mv-code i', d)) { i.classList.add('on'); await sleep(130, sig); }
+        await sleep(250, sig);
+        d.classList.add('linked'); d.dataset.step = '2';
+        // 2. everything is ticked
+        for (const r of $$('.mv-row', d)) { r.classList.add('on'); await sleep(170, sig); }
+        const b = $('.mv-btn', d); b.classList.add('ready');
+        await sleep(700, sig);
+        b.classList.add('press'); await sleep(170, sig); b.classList.remove('press'); b.classList.add('done');
+        // 3. files stream across while apps install one by one
+        d.dataset.step = '3'; d.classList.add('flow');
+        const ring = $('.mv-ring', d), pct = $('.mv-pct', d), apps = $$('.mv-apps span', d);
+        let shown = -1;
+        await tween(4600, (p) => {
+          ring.style.setProperty('--p', p * 100); pct.textContent = Math.floor(p * 100) + '%';
+          const k = Math.floor(p * apps.length * 1.05);
+          while (shown < k && shown < apps.length - 1) { if (shown >= 0) { apps[shown].classList.remove('run'); apps[shown].classList.add('ok'); } shown++; apps[shown].classList.add('run'); }
+        }, sig);
+        apps.forEach((a) => { a.classList.remove('run'); a.classList.add('ok'); });
+        pct.textContent = '100%';
+        d.classList.remove('flow'); d.classList.add('done');
+        await sleep(2300, sig);
+      },
+    },
     'demo-ss': {
       length: 8600,
       setup(d) { return d; },

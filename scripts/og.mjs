@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 import { readFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-const require = createRequire(resolve(process.env.HOME, 'Desktop/Fileshaper/package.json'));
+const require = createRequire(resolve(process.env.HOME, 'Desktop/Moveshaper/package.json'));
 const { chromium } = require('playwright');
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const list = JSON.parse(readFileSync(resolve(root, 'site/og.json'), 'utf8'));
@@ -13,10 +13,13 @@ const only = process.argv[2]; // optional filter, e.g. "en/" or "fileshaper"
 
 const b64 = (f) => readFileSync(resolve(root, f)).toString('base64');
 const font = `data:font/woff2;base64,${b64('assets/fonts/Geist-Variable.woff2')}`;
-const APPS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
+const APPS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper', 'moveshaper'];
 const icon = Object.fromEntries(APPS.map((s) => [s, `data:image/png;base64,${b64(`assets/img/${s}-icon.png`)}`]));
+// Every app's icon on the studio cards (Clipshaper has its own site, so no product card here).
+const ALL = ['clipshaper', ...APPS];
+icon.clipshaper = `data:image/png;base64,${b64('assets/img/clipshaper-icon.png')}`;
 const shot = Object.fromEntries(APPS.map((s) => [s, `data:image/webp;base64,${b64(`assets/img/${s}-app.webp`)}`]));
-const C = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', ss: '#ff8f4d', ls: '#a98bff', violet: '#a07cff' };
+const C = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', ss: '#ff8f4d', ls: '#a98bff', mv: '#2dd4bf', violet: '#a07cff' };
 const LOGO = '<svg viewBox="0 0 24 24" width="34" height="34"><path fill="#f4f4f5" fill-rule="evenodd" d="M6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Zm9 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/></svg>';
 // Fine grain so the gradients don't band in Discord's JPEG re-encode.
 const GRAIN = `url("data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>')}")`;
@@ -41,7 +44,7 @@ function card(o) {
     <figure class="win"><img src="${shot[o.slug]}" alt=""></figure>`;
   }
   const big = o.kind === 'home' || o.kind === 'apps';
-  const icons = `<div class="icons${big ? ' grid' : ''}">${APPS.map((s) => `<img src="${icon[s]}" alt="">`).join('')}</div>`;
+  const icons = `<div class="icons${big ? ' grid' : ''}">${ALL.map((s) => `<img src="${icon[s]}" alt="">`).join('')}</div>`;
   return `<div class="light studio"></div>${top(o)}
     <section class="stext${big ? ' narrow' : ''}">
       <h1 class="fit">${headline(o)}</h1>
@@ -83,9 +86,9 @@ h1 b { font-weight: inherit; color: ${C.fs}; }
 .stext h1 { font-size: 80px; }
 .stext .sub { max-width: 640px; }
 .icons { position: absolute; right: 72px; bottom: 72px; display: flex; gap: 14px; }
-.icons img { width: 60px; height: 60px; filter: drop-shadow(0 8px 14px rgba(0,0,0,.55)); }
-.icons.grid { top: 170px; bottom: auto; display: grid; grid-template-columns: repeat(3, 118px); gap: 10px; }
-.icons.grid img { width: 118px; height: 118px; filter: drop-shadow(0 22px 30px rgba(0,0,0,.6)); }
+.icons img { width: 52px; height: 52px; filter: drop-shadow(0 8px 14px rgba(0,0,0,.55)); }
+.icons.grid { top: 190px; bottom: auto; display: grid; grid-template-columns: repeat(4, 100px); gap: 12px; }
+.icons.grid img { width: 100px; height: 100px; filter: drop-shadow(0 22px 30px rgba(0,0,0,.6)); }
 
 /* product pages: text left, the real app window bleeding off the right and bottom edge */
 .ptext { position: absolute; left: 72px; top: 136px; bottom: 72px; width: 470px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
@@ -109,7 +112,8 @@ const fitJs = `(() => {
 })()`;
 
 const br = await chromium.launch({ channel: 'chrome' });
-const pg = await br.newPage({ viewport: { width: 1200, height: 630 } });
+// Newer headless Chrome only paints ~540px of a 630px-tall viewport (and repeats it), so use a taller one and crop.
+const pg = await br.newPage({ viewport: { width: 1200, height: 900 } });
 let count = 0;
 for (const o of list) {
   if (only && !o.file.includes(only)) continue;
@@ -119,7 +123,7 @@ for (const o of list) {
   await pg.evaluate(fitJs);
   const out = resolve(root, o.file);
   mkdirSync(dirname(out), { recursive: true });
-  await pg.screenshot({ path: out, type: 'png' });
+  await pg.screenshot({ path: out, type: 'png', clip: { x: 0, y: 0, width: 1200, height: 630 } });
   count++;
 }
 await br.close();

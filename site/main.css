@@ -20,6 +20,8 @@
   --ss-grad: linear-gradient(120deg, #ffb35c, #ff8f4d 50%, #ff5f6d);
   --ls: #a98bff;
   --cl: #22d3ee;
+  --mv: #2dd4bf;
+  --mv-grad: linear-gradient(120deg, #7cf0dc, #2dd4bf 48%, #38bdf8);
   --ls-grad: linear-gradient(120deg, #d2c4ff, #a98bff 45%, #7a5cff);
   --ws-grad: linear-gradient(120deg, #ff9f4d, #f9457f 52%, #7f54f8);
   --blue: #5b8cff;
@@ -215,7 +217,7 @@ button { font: inherit; color: inherit; }
 .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; perspective: 1600px; }
 .pcard { position: relative; overflow: hidden; border-radius: 30px; color: var(--text); display: flex; flex-direction: column; min-height: 600px; transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)); transition: transform .6s var(--ease), box-shadow .4s; isolation: isolate; }
 .js .pcard.reveal { transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease); }
-.pcard-fs { --c: var(--fs); } .pcard-cs { --c: var(--cs); } .pcard-ds { --c: var(--ds); } .pcard-ws { --c: var(--ws); } .pcard-ss { --c: var(--ss); } .pcard-ls { --c: var(--ls); }
+.pcard-fs { --c: var(--fs); } .pcard-cs { --c: var(--cs); } .pcard-ds { --c: var(--ds); } .pcard-ws { --c: var(--ws); } .pcard-ss { --c: var(--ss); } .pcard-ls { --c: var(--ls); } .pcard-mv { --c: var(--mv); }
 /* the product's light, from the top corner */
 .pcard::after { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none;
   background: radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--c) 34%, transparent), transparent 55%), radial-gradient(90% 60% at 100% 100%, color-mix(in srgb, var(--c) 14%, transparent), transparent 60%); }

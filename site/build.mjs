@@ -49,6 +49,14 @@ const P = {
     imgs: [['lightshaper-masks.webp', 2560, 1628], ['lightshaper-match.webp', 2560, 1628], ['lightshaper-library.webp', 2560, 1628]],
     fallback: { tag: 'v1.0.0', assets: ['Lightshaper-1.0.0-mac-arm64.dmg', 'Lightshaper-1.0.0-mac-x64.dmg', 'Lightshaper-Setup-1.0.0-win-x64.exe'] },
   },
+  // Moveshaper's only website is its page here, at /moveshaper/, like Startshaper.
+  moveshaper: {
+    slug: 'moveshaper', name: 'Moveshaper', v: 'mv', domain: 'hollowbit.dev/moveshaper', page: true, own: true,
+    site: 'https://hollowbit.dev/moveshaper/', repo: 'hollowbit-dev/moveshaper',
+    imgs: [['moveshaper-moving.webp', 2560, 1628], ['moveshaper-apps.webp', 2560, 1628], ['moveshaper-done.webp', 2560, 1628]],
+    rowImgs: [['moveshaper-pick.webp', 2560, 1628], ['moveshaper-apps.webp', 2560, 1628], ['moveshaper-done.webp', 2560, 1628]],
+    fallback: { tag: 'v1.0.0', assets: ['Moveshaper-1.0.0-mac-arm64.dmg', 'Moveshaper-1.0.0-mac-x64.dmg', 'Moveshaper-Setup-1.0.0-win-x64.exe'] },
+  },
   // Clipshaper's website lives on this domain at /clipshaper/ (English only for now), with a web version at /clipshaper/try/.
   clipshaper: {
     slug: 'clipshaper', name: 'Clipshaper', v: 'cl', domain: 'hollowbit.dev/clipshaper', page: false, enOnly: true,
@@ -62,21 +70,21 @@ const P = {
     fallback: { tag: 'v1.0.0', assets: ['Writeshaper-1.0.0-mac-arm64.dmg', 'Writeshaper-1.0.0-mac-x64.dmg', 'Writeshaper-Setup-1.0.0-win-x64.exe'] },
   },
 };
-const ORDER = ['clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
+const ORDER = ['moveshaper', 'clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
 // The collection on the home page and the Apps menu group the apps by what they're for.
-const GROUPS = [['create', ['clipshaper', 'captionshaper', 'lightshaper']], ['work', ['writeshaper', 'fileshaper']], ['care', ['diskshaper', 'startshaper']]];
+const GROUPS = [['create', ['clipshaper', 'captionshaper', 'lightshaper']], ['work', ['writeshaper', 'fileshaper']], ['care', ['moveshaper', 'diskshaper', 'startshaper']]];
 const GROUP_OF = Object.fromEntries(GROUPS.flatMap(([g, ks]) => ks.map((k) => [k, g])));
 const COLL = {
-  en: { all: 'All', create: 'Create', work: 'Work', care: 'Computer care', h: 'Apps', p: 'Seven free apps for Mac and Windows. Pick the one you need, or get them all.', open: 'Open', web: 'Also in your browser', demosH: 'See them work', demosP: 'Live demos of the real apps. Pick one.' },
-  es: { all: 'Todas', create: 'Crear', work: 'Trabajo', care: 'Cuidado del equipo', h: 'Apps', p: 'Siete apps gratis para Mac y Windows. Elige la que necesites, o llévatelas todas.', open: 'Abrir', web: 'También en el navegador', demosH: 'Míralas en acción', demosP: 'Demos en vivo de las apps reales. Elige una.' },
-  fr: { all: 'Toutes', create: 'Créer', work: 'Travail', care: 'Entretien du PC', h: 'Applis', p: 'Sept applis gratuites pour Mac et Windows. Prenez celle qu’il vous faut, ou toutes.', open: 'Ouvrir', web: 'Aussi dans le navigateur', demosH: 'Voyez-les à l’œuvre', demosP: 'Démos en direct des vraies applis. Choisissez-en une.' },
-  de: { all: 'Alle', create: 'Erstellen', work: 'Arbeit', care: 'PC-Pflege', h: 'Apps', p: 'Sieben kostenlose Apps für Mac und Windows. Nimm die, die du brauchst, oder alle.', open: 'Öffnen', web: 'Auch im Browser', demosH: 'So arbeiten sie', demosP: 'Live-Demos der echten Apps. Wähl eine aus.' },
-  ru: { all: 'Все', create: 'Создание', work: 'Работа', care: 'Уход за ПК', h: 'Приложения', p: 'Семь бесплатных приложений для Mac и Windows. Возьмите нужное — или все сразу.', open: 'Открыть', web: 'Есть и в браузере', demosH: 'Посмотрите в деле', demosP: 'Живые демо настоящих приложений. Выберите любое.' },
-  zh: { all: '全部', create: '创作', work: '工作', care: '电脑维护', h: '应用', p: '七款适用于 Mac 和 Windows 的免费应用。按需挑选，或者全部拿走。', open: '打开', web: '也能在浏览器中使用', demosH: '看看它们怎么工作', demosP: '真实应用的实时演示，任选一个。' },
+  en: { all: 'All', create: 'Create', work: 'Work', care: 'Computer care', h: 'Apps', p: 'Eight free apps for Mac and Windows. Pick the one you need, or get them all.', open: 'Open', web: 'Also in your browser', demosH: 'See them work', demosP: 'Live demos of the real apps. Pick one.' },
+  es: { all: 'Todas', create: 'Crear', work: 'Trabajo', care: 'Cuidado del equipo', h: 'Apps', p: 'Ocho apps gratis para Mac y Windows. Elige la que necesites, o llévatelas todas.', open: 'Abrir', web: 'También en el navegador', demosH: 'Míralas en acción', demosP: 'Demos en vivo de las apps reales. Elige una.' },
+  fr: { all: 'Toutes', create: 'Créer', work: 'Travail', care: 'Entretien du PC', h: 'Applis', p: 'Huit applis gratuites pour Mac et Windows. Prenez celle qu’il vous faut, ou toutes.', open: 'Ouvrir', web: 'Aussi dans le navigateur', demosH: 'Voyez-les à l’œuvre', demosP: 'Démos en direct des vraies applis. Choisissez-en une.' },
+  de: { all: 'Alle', create: 'Erstellen', work: 'Arbeit', care: 'PC-Pflege', h: 'Apps', p: 'Acht kostenlose Apps für Mac und Windows. Nimm die, die du brauchst, oder alle.', open: 'Öffnen', web: 'Auch im Browser', demosH: 'So arbeiten sie', demosP: 'Live-Demos der echten Apps. Wähl eine aus.' },
+  ru: { all: 'Все', create: 'Создание', work: 'Работа', care: 'Уход за ПК', h: 'Приложения', p: 'Восемь бесплатных приложений для Mac и Windows. Возьмите нужное — или все сразу.', open: 'Открыть', web: 'Есть и в браузере', demosH: 'Посмотрите в деле', demosP: 'Живые демо настоящих приложений. Выберите любое.' },
+  zh: { all: '全部', create: '创作', work: '工作', care: '电脑维护', h: '应用', p: '八款适用于 Mac 和 Windows 的免费应用。按需挑选，或者全部拿走。', open: '打开', web: '也能在浏览器中使用', demosH: '看看它们怎么工作', demosP: '真实应用的实时演示，任选一个。' },
 };
 const coll = (L) => COLL[L.lang] || COLL.en;
 // Screenshot sizes for the home page cards.
-const SHOT = { clipshaper: [1600, 1018], fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018], lightshaper: [2560, 1628] };
+const SHOT = { clipshaper: [1600, 1018], fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018], lightshaper: [2560, 1628], moveshaper: [2560, 1628] };
 
 for (const p of Object.values(P)) {
   let rel = p.fallback;
@@ -100,7 +108,7 @@ for (const p of Object.values(P)) {
 // Each product site has the same languages, at /<lang>/ (English at the root).
 const siteIn = (p, lang) => p.site + (lang === 'en' || p.enOnly ? '' : `${lang}/`);
 const changelog = (p, lang) => (p.own ? p.releases : `${siteIn(p, lang)}changelog.html`);
-const CL = P.clipshaper, FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper, LS = P.lightshaper;
+const CL = P.clipshaper, FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper, LS = P.lightshaper, MV = P.moveshaper;
 
 /* ---------- icons ---------- */
 const GH = 'M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z';
@@ -150,12 +158,12 @@ const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u,
 // Paths are written root-absolute for the page's language (/es/about/), then made relative at write time.
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
 const navItems = (L) => [
-  [siteIn(CL, L.lang), 'Clipshaper', 'clipshaper'], [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'],
+  [siteIn(CL, L.lang), 'Clipshaper', 'clipshaper'], [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'], [`${pre(L)}/moveshaper/`, 'Moveshaper', 'moveshaper'],
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 const APPS_LABEL = { en: 'Apps', es: 'Apps', fr: 'Apps', de: 'Apps', ru: 'Приложения', zh: '应用' };
 const FILM_LABEL = { en: 'Watch the film', es: 'Ver el vídeo', fr: 'Voir le film', de: 'Film ansehen', ru: 'Смотреть видео', zh: '观看短片' };
-const APP_KEYS = ['clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
+const APP_KEYS = ['clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper', 'moveshaper'];
 const cap1 = (x) => x.charAt(0).toUpperCase() + x.slice(1);
 const topNav = (L, key) => {
   const apps = navItems(L).slice(0, APP_KEYS.length), rest = [[`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/donate/`, L.nav.donate, 'donate']];
@@ -169,7 +177,7 @@ const topNav = (L, key) => {
 
 // Share cards: every page gets its own 1200x630 image per language, rendered by scripts/og.mjs from site/og.json.
 const OG = [];
-const OG_COLOR = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', ss: '#ff8f4d', ls: '#a98bff', studio: '#a07cff' };
+const OG_COLOR = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', ss: '#ff8f4d', ls: '#a98bff', mv: '#2dd4bf', studio: '#a07cff' };
 function page(L, { path, key = '', title, desc, body, cls = '', og, enOnly = false }) {
   const t = L;
   const ogFile = og ? `assets/img/og/${L.lang}/${og.id}.png` : 'assets/img/og/en/home.png';
@@ -244,7 +252,7 @@ ${body}
         <a class="foot-mail" data-email-link href="${pre(L)}/contact/">${ic('mail')}<span data-email>${esc(t.footer.contact)}</span></a>
         ${socials()}
       </div>
-      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/lightshaper/">Lightshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
+      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/lightshaper/">Lightshaper</a><a href="${pre(L)}/moveshaper/">Moveshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
       <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="https://fuseduo.com/">Fuseduo</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
@@ -412,17 +420,42 @@ const lsDemo = (L) => `<div class="demo demo-ls" id="demo-ls" role="tabpanel" ar
   </div>
 </div>`;
 
+// Moveshaper demo: the code connects two computers, everything ticked streams across, apps install one by one.
+const MV_ROWS = [['Desktop', '3.4 GB'], ['Documents', '18.7 GB'], ['Pictures', '52.9 GB'], ['Music', '6.1 GB'], ['Videos', '31.5 GB']];
+const MV_APPS = ['Chrome', 'Spotify', 'Discord', 'Steam', 'VS Code', 'Zoom', 'VLC', 'OBS'];
+const mvDemo = (L) => `<div class="demo demo-mv" id="demo-mv" role="tabpanel" aria-labelledby="tab-mv">
+  <p class="sr-only">${esc(L.home.srMv)}</p>
+  <div class="win" aria-hidden="true">
+    <div class="mv-top"><div class="tl"><i></i><i></i><i></i></div><span class="mv-brand"><img src="/assets/img/moveshaper-icon.png" alt="">Moveshaper</span><span class="mv-steps"><span class="mv-s1">Connect</span><i></i><span class="mv-s2">Choose</span><i></i><span class="mv-s3">Move</span></span></div>
+    <div class="mv-body">
+      <div class="mv-pc mv-old">
+        <div class="mv-pch"><span class="mv-pci"></span><b>Old PC</b><small>Windows</small></div>
+        <div class="mv-code"><span>Code from the new Mac</span><div>${'482913'.split('').map((d) => `<i data-d="${d}"></i>`).join('')}</div></div>
+        <div class="mv-list">${MV_ROWS.map(([n, sz]) => `<div class="mv-row"><span class="mv-tick"></span><span class="mv-n">${n}</span><em>${sz}</em></div>`).join('')}<div class="mv-row"><span class="mv-tick"></span><span class="mv-n">8 apps · bookmarks · Wi-Fi</span><em></em></div></div>
+        <span class="mv-btn">Move to MacBook Pro</span>
+      </div>
+      <div class="mv-mid"><div class="mv-link"><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="mv-lock">Encrypted · your Wi-Fi</span></div>
+      <div class="mv-pc mv-new">
+        <div class="mv-pch"><span class="mv-pci"></span><b>MacBook Pro</b><small>New</small></div>
+        <div class="mv-ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="mv-rt"/><circle cx="60" cy="60" r="50" class="mv-rf" pathLength="100"/></svg><div><b class="mv-pct">0%</b><small class="mv-sp">41.6 MB/s</small></div></div>
+        <div class="mv-apps">${MV_APPS.map((a) => `<span>${a}</span>`).join('')}</div>
+        <div class="mv-done"><span>✓</span>Your new computer is ready</div>
+      </div>
+    </div>
+  </div>
+</div>`;
+
 function stage(L, only) {
   const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'cl'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
-  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('cl', CL)}${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}</div>`;
-  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : clDemo(L) + fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L);
+  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('cl', CL)}${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}${tab('mv', MV)}</div>`;
+  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : only === 'mv' ? mvDemo(L) : clDemo(L) + fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L) + mvDemo(L);
   return `<div class="stage${only ? ' stage-single' : ''}" data-stage>${tabs}<div class="stage-frame"><div class="stage-scale">${demos}</div></div></div>`;
 }
 
 const ticker = (L) => {
   const items = (p) => L.products[p.slug].tasks.map((t) => `<span style="--c: var(--${p.v})"><i></i>${esc(t)}</span>`).join('');
-  const a = items(CL) + items(FS) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
-  const b = items(CS) + items(SS) + items(CL) + items(LS) + items(DS) + items(FS) + items(WS);
+  const a = items(CL) + items(FS) + items(MV) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
+  const b = items(CS) + items(SS) + items(CL) + items(MV) + items(LS) + items(DS) + items(FS) + items(WS);
   return `<div class="ticker" aria-hidden="true"><div class="ticker-track">${a}${a}</div><div class="ticker-track rev">${b}${b}</div></div>`;
 };
 const PR_ICONS = ['i-upload', 'i-wifi', 'i-ads', 'i-account', 'i-track', 'i-code'];
@@ -434,7 +467,7 @@ function collection(L) {
   const row = (k, i) => {
     const p = P[k], c = L.products[k];
     const href = p.page ? `${pre(L)}/${p.slug}/` : siteIn(p, L.lang);
-    const isNew = k === 'clipshaper';
+    const isNew = k === 'moveshaper';
     return `<a class="app-row" href="${href}" data-cat="${GROUP_OF[k]}" style="--c: var(--${p.v}); --d:${i * 40}ms">
       <img src="/assets/img/${p.slug}-icon.png" width="56" height="56" alt="">
       <span class="ar-txt"><span class="ar-name">${p.name}${isNew && c.newTag ? `<em>${esc(c.newTag)}</em>` : ''}</span><span class="ar-kind">${esc(cap1(c.kind))}</span><span class="ar-blurb">${esc(c.blurb)}</span></span>
@@ -458,7 +491,7 @@ const home = (L) => page(L, {
   og: { id: 'home', kind: 'home', h: L.home.h1, hl: L.home.hl, sub: L.home.sub },
   body: `
 <section class="hero wrap">
-  <a class="hero-badge in-0" href="${siteIn(CL, L.lang)}"><span class="dot"></span>${esc(fill(L.home.badge, { v: LS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  <a class="hero-badge in-0" href="${pre(L)}/moveshaper/"><span class="dot"></span>${esc(fill(L.home.badge, { v: MV.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
   <h1 class="hero-title" data-words data-icons="${['clipshaper', 'captionshaper', 'lightshaper', 'writeshaper'].join(' ')}">${esc(L.home.h1)}</h1>
   <p class="hero-sub in-1">${esc(L.home.sub)}</p>
   <div class="hero-cta in-2">
@@ -928,7 +961,8 @@ for (const L of LANGS) {
     [`${d}fileshaper/index.html`]: productPage(L, FS, CS),
     [`${d}captionshaper/index.html`]: productPage(L, CS, DS),
     [`${d}startshaper/index.html`]: productPage(L, SS, LS),
-    [`${d}lightshaper/index.html`]: productPage(L, LS, FS),
+    [`${d}lightshaper/index.html`]: productPage(L, LS, MV),
+    [`${d}moveshaper/index.html`]: productPage(L, MV, DS),
     [`${d}download/index.html`]: download(L),
     [`${d}about/index.html`]: about(L),
     [`${d}contact/index.html`]: contact(L),
@@ -954,7 +988,7 @@ for (const [f, raw] of Object.entries(out)) {
 }
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
-const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/lightshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
+const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/lightshaper/', '/moveshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
 const workPaths = ['/work/', '/services/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
@@ -963,6 +997,6 @@ ${paths.flatMap((p) => LANGS.map((L) => `  <url><loc>${u(L.lang, p)}</loc><lastm
 ${workPaths.map((p) => `  <url><loc>${u('en', p)}</loc><lastmod>2026-11-12</lastmod></url>`).join('\n')}
 </urlset>
 `);
-console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version, '| startshaper', SS.version, '| lightshaper', LS.version);
+console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version, '| startshaper', SS.version, '| lightshaper', LS.version, '| moveshaper', MV.version);
 // Fuseduo's own pages (/fuseduo/) are built by their own script.
 await import('./fuseduo.mjs');
