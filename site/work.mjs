@@ -161,4 +161,52 @@ export const WORK = [
     ],
     next: ['Testing on more Windows PCs.', 'Brush masks and spot healing.'],
   },
+  {
+    slug: 'clipshaper', v: 'cl', name: 'Clipshaper', site: 'https://hollowbit.dev/clipshaper/', repo: 'hollowbit-dev/clipshaper',
+    tagline: 'A free AI clip maker: long video in, short vertical clips with captions out. Nothing uploaded, no watermark.',
+    released: 'November 2026', platform: 'Mac, Windows and the browser', license: 'GPL-3.0',
+    stack: 'Electron, whisper speech recognition, a small local language model (llama.cpp), MediaPipe face detection, ffmpeg',
+    stats: [['14', 'Clips picked from a 22-minute test video'], ['9', 'Caption styles, applied to every clip at once'], ['0', 'Watermarks, uploads or accounts']],
+    problem: [
+      'Turning a podcast or stream into Shorts, Reels and TikToks is slow by hand, so creators pay for clip tools by the month.',
+      'Those tools upload your whole video to their servers, cap your minutes, and put a watermark on the free plan.',
+    ],
+    what: 'Clipshaper transcribes the video, finds the moments worth posting, cuts each one into a 9:16 clip that follows the speaker, and adds word-by-word captions. You can trim each clip to the word, pick a framing and a caption style, then export them all. It also takes a YouTube or Twitch link, and a version runs right in the browser at hollowbit.dev/clipshaper/try.',
+    decisions: [
+      ['Read the words, then pick.', 'The transcript is split into sentences and read in windows of a few minutes by a small language model running on the computer. Its picks are snapped to sentence edges and kept between 15 and 75 seconds, so a clip never starts mid-word.'],
+      ['Follow the face, calmly.', 'Faces are found a few times a second. If the speaker stays in frame for a whole shot, the crop holds still; otherwise it moves only past a dead zone and at a capped speed, and jumps cleanly on cuts.'],
+      ['Share what’s already there.', 'If Captionshaper or Writeshaper is installed, Clipshaper reuses their speech and language models instead of downloading them again.'],
+      ['One codebase, two places.', 'The browser version runs the same interface code, with browser-based speech and language models in place of the desktop engines. The video still never leaves the computer.'],
+    ],
+    tested: [
+      'An end-to-end test drives the real app from dropping a video to exported clips, using saved transcripts so it runs in minutes.',
+      'The packaged Mac app was tested end to end on a fresh run, and the browser version has its own end-to-end test.',
+      'The website’s animated demo is checked under a 4x CPU slowdown.',
+    ],
+    next: ['Testing on more Windows PCs.', 'A streamer mode for long Twitch VODs.'],
+  },
+  {
+    slug: 'moveshaper', v: 'mv', name: 'Moveshaper', site: 'https://hollowbit.dev/moveshaper/', repo: 'hollowbit-dev/moveshaper',
+    tagline: 'Move everything from your old computer to your new one: files, apps, bookmarks, Wi-Fi and wallpaper. Windows and Mac, both ways.',
+    released: 'November 2026', platform: 'Mac and Windows', license: 'MIT',
+    stack: 'Electron, an encrypted direct link over your own network, winget on Windows, Homebrew’s app catalogue on macOS',
+    stats: [['6', 'Digits in the pairing code, the only thing you type'], ['~95', 'Popular apps it can reinstall on the new computer'], ['0', 'Files ever overwritten on the new computer']],
+    problem: [
+      'Moving to a new computer means hunting down files, reinstalling apps and re-entering Wi-Fi passwords. Apple’s Migration Assistant only goes Mac to Mac.',
+      'The paid movers charge around $60, and the free versions cap how much you can move.',
+    ],
+    what: 'Open Moveshaper on both computers. The new one shows a six-digit code; type it on the old one and they connect straight across your network. Pick what to bring, and Moveshaper copies your files, reinstalls your apps from their official sources, merges your bookmarks and brings over Wi-Fi and wallpaper.',
+    decisions: [
+      ['Straight across, encrypted.', 'The two computers find each other on the local network and pair with the six-digit code, using a password-based key exchange (SPAKE2). Everything after that is encrypted. Nothing goes through a server.'],
+      ['Reinstall, don’t copy.', 'Copying program files between computers breaks apps. Moveshaper reinstalls them from the real source instead: winget on Windows, and the same download links and checksums Homebrew uses on a Mac.'],
+      ['Never overwrite.', 'If a file already exists on the new computer, the incoming one is saved next to it with “(old computer)” in the name.'],
+      ['Pick up where it left off.', 'Files are sent in batches and checked by size and date, so a dropped connection resumes instead of starting over.'],
+    ],
+    tested: [
+      'Pairing and the transfer engine have their own tests, including wrong codes and interrupted transfers.',
+      'An end-to-end test runs two copies of the app on one Mac and moves files, bookmarks and apps between them.',
+      'App installs were tested with real apps such as VLC, Spotify, Obsidian and Steam into a test folder.',
+    ],
+    next: ['Testing on real Windows PCs.', 'A real-world Wi-Fi speed check.'],
+  },
 ];

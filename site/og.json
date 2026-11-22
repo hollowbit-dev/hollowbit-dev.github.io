@@ -820,5 +820,33 @@
   "kicker": "Case study",
   "plats": "Mac and Windows",
   "domain": "hollowbit.dev/work"
+ },
+ {
+  "file": "assets/img/og/en/work-clipshaper.png",
+  "lang": "en",
+  "id": "work-clipshaper",
+  "kind": "product",
+  "v": "cl",
+  "slug": "clipshaper",
+  "name": "Clipshaper",
+  "h": "Clipshaper",
+  "sub": "A free AI clip maker: long video in, short vertical clips with captions out. Nothing uploaded, no watermark.",
+  "kicker": "Case study",
+  "plats": "Mac, Windows and the browser",
+  "domain": "hollowbit.dev/work"
+ },
+ {
+  "file": "assets/img/og/en/work-moveshaper.png",
+  "lang": "en",
+  "id": "work-moveshaper",
+  "kind": "product",
+  "v": "mv",
+  "slug": "moveshaper",
+  "name": "Moveshaper",
+  "h": "Moveshaper",
+  "sub": "Move everything from your old computer to your new one: files, apps, bookmarks, Wi-Fi and wallpaper. Windows and Mac, both ways.",
+  "kicker": "Case study",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/work"
  }
 ]
