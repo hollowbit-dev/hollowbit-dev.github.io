@@ -103,7 +103,7 @@ ${body}
       <p>Drop one Mac app onto another. Get an automation. Free and open source. A project by <a href="${HB}/">Hollowbit Studio</a>.</p>
     </div>
     <nav aria-label="Footer">
-      <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}support/">Support</a><a href="${BASE}#download">Download</a><a href="${GHURL}">GitHub</a></div>
+      <div><b>Fuseduo</b><a href="${BASE}">Overview</a><a href="${BASE}how-it-works/">How it works</a><a href="${BASE}safety/">Safety</a><a href="${BASE}support/">Support</a><a href="${BASE}#download">Download</a><a href="${GHURL}">GitHub</a><a href="https://discord.gg/ENSTjVpJj8">Discord</a></div>
             <div><b>Hollowbit Studio</b><a href="${HB}/">Home</a><a href="${HB}/about/">About</a><a href="${HB}/contact/">Contact</a><a href="${HB}/privacy/">Privacy</a></div>
     </nav>
   </div>
