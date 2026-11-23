@@ -459,3 +459,46 @@ kbd { font: 500 10.5px var(--sans); padding: 1px 5px; border-radius: 4px; box-sh
 .stage.compact .mv-ring { width: 130px; height: 130px; }
 @keyframes mvflowc { 0% { transform: translateX(0); opacity: 0; } 15%, 85% { opacity: 1; } 100% { transform: translateX(50px); opacity: 0; } }
 .stage.compact .demo-mv.flow .mv-link i { animation-name: mvflowc; }
+
+/* ---------- Melodyshaper demo ---------- */
+.demo-ms .win { display: grid; grid-template-rows: 48px 1fr; background: radial-gradient(70% 60% at 85% -10%, rgba(255,122,182,.13), transparent 60%), radial-gradient(60% 60% at 0% 110%, rgba(167,139,250,.09), transparent 60%), #111017; }
+.ms-top { display: flex; align-items: center; gap: 18px; padding: 0 16px; }
+.ms-brand { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13.5px; }
+.ms-brand img { width: 20px; height: 20px; border-radius: 5px; }
+.ms-status { margin-left: auto; color: #a5a2b4; font-size: 12.5px; font-weight: 500; }
+.ms-body { min-height: 0; display: grid; grid-template-columns: 1fr 248px; gap: 12px; padding: 4px 16px 16px; }
+.ms-roll { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: #15141b; }
+.ms-bar { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,.04); }
+.ms-bar:nth-child(4n + 1) { background: rgba(255,255,255,.15); }
+.ms-n, .ms-c { position: absolute; display: block; border: 2px solid #15141b; border-radius: 6px; opacity: 0; transform: scaleX(.6); transform-origin: left; transition: opacity .18s, transform .22s cubic-bezier(.2,.9,.3,1.2); }
+.ms-n { background: #ff7ab6; }
+.ms-c { background: #a78bfa; }
+.ms-n.on, .ms-c.on { opacity: 1; transform: none; }
+.ms-head { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .2s; will-change: transform; }
+.ms-head b { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #fff; }
+.demo-ms.moving .ms-head { opacity: .9; }
+.ms-side { min-width: 0; display: flex; flex-direction: column; gap: 10px; padding: 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(38,36,50,.55); }
+.ms-side small { margin-top: 6px; color: #75728a; font-size: 11px; font-weight: 620; letter-spacing: .04em; text-transform: uppercase; }
+.ms-hum { display: flex; align-items: center; justify-content: center; gap: 8px; height: 38px; color: #1b1020; font-size: 13.5px; font-weight: 660; border-radius: 10px; background: var(--ms-grad); }
+.ms-dot { width: 8px; height: 8px; border-radius: 50%; background: #1b1020; }
+.demo-ms.listen .ms-dot { animation: msdot .8s ease-in-out infinite; }
+@keyframes msdot { 50% { opacity: .25; } }
+.ms-wave { height: 54px; display: flex; align-items: center; justify-content: space-between; }
+.ms-wave i { width: 4px; height: 100%; border-radius: 2px; background: rgba(255,255,255,.14); transform: scaleY(.08); }
+.demo-ms.listen .ms-wave i { background: #ff7ab6; animation: mswave .62s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes mswave { from { transform: scaleY(.14); } to { transform: scaleY(.92); } }
+.ms-opts { display: flex; flex-direction: column; gap: 6px; }
+.ms-opt { display: flex; align-items: center; justify-content: space-between; height: 36px; padding: 0 11px; font-size: 13px; white-space: pre; border: 1px solid rgba(255,255,255,.07); border-radius: 8px; background: #211f2a; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s, background-color .18s, color .18s; }
+.ms-opt b { font-weight: 600; }
+.ms-opt em { color: #75728a; font-size: 11.5px; font-style: normal; }
+.ms-opt.on { opacity: 1; transform: none; }
+.ms-opt.pick { color: #17151f; background: #f3f1f8; }
+.ms-opt.pick em { color: rgba(23,21,31,.65); }
+.ms-opt.press { transform: scale(.97); }
+.stage.compact .ms-body { grid-template-columns: 1fr 176px; gap: 8px; padding: 2px 10px 12px; }
+.stage.compact .ms-status { display: none; }
+.stage.compact .ms-side { padding: 9px; gap: 7px; }
+.stage.compact .ms-hum { height: 32px; font-size: 12px; }
+.stage.compact .ms-wave { height: 34px; }
+.stage.compact .ms-wave i { width: 3px; }
+.stage.compact .ms-opt { height: 30px; padding: 0 7px; font-size: 11.5px; }

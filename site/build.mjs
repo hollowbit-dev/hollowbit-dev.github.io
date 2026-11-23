@@ -57,6 +57,13 @@ const P = {
     rowImgs: [['moveshaper-pick.webp', 2560, 1628], ['moveshaper-apps.webp', 2560, 1628], ['moveshaper-done.webp', 2560, 1628]],
     fallback: { tag: 'v1.0.0', assets: ['Moveshaper-1.0.0-mac-arm64.dmg', 'Moveshaper-1.0.0-mac-x64.dmg', 'Moveshaper-Setup-1.0.0-win-x64.exe'] },
   },
+  // Melodyshaper's only website is its page here, at /melodyshaper/, like Startshaper.
+  melodyshaper: {
+    slug: 'melodyshaper', name: 'Melodyshaper', v: 'ms', domain: 'hollowbit.dev/melodyshaper', page: true, own: true,
+    site: 'https://hollowbit.dev/melodyshaper/', repo: 'hollowbit-dev/melodyshaper',
+    imgs: [['melodyshaper-app.webp', 2560, 1628], ['melodyshaper-chords.webp', 2560, 1628], ['melodyshaper-song.webp', 2560, 1628]],
+    fallback: { tag: 'v1.0.0', assets: ['Melodyshaper-1.0.0-mac-arm64.dmg', 'Melodyshaper-1.0.0-mac-x64.dmg', 'Melodyshaper-Setup-1.0.0-win-x64.exe'] },
+  },
   // Clipshaper's website lives on this domain at /clipshaper/ (English only for now), with a web version at /clipshaper/try/.
   clipshaper: {
     slug: 'clipshaper', name: 'Clipshaper', v: 'cl', domain: 'hollowbit.dev/clipshaper', page: false, enOnly: true,
@@ -70,21 +77,21 @@ const P = {
     fallback: { tag: 'v1.0.0', assets: ['Writeshaper-1.0.0-mac-arm64.dmg', 'Writeshaper-1.0.0-mac-x64.dmg', 'Writeshaper-Setup-1.0.0-win-x64.exe'] },
   },
 };
-const ORDER = ['moveshaper', 'clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
+const ORDER = ['melodyshaper', 'moveshaper', 'clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper'];
 // The collection on the home page and the Apps menu group the apps by what they're for.
-const GROUPS = [['create', ['clipshaper', 'captionshaper', 'lightshaper']], ['work', ['writeshaper', 'fileshaper']], ['care', ['moveshaper', 'diskshaper', 'startshaper']]];
+const GROUPS = [['create', ['melodyshaper', 'clipshaper', 'captionshaper', 'lightshaper']], ['work', ['writeshaper', 'fileshaper']], ['care', ['moveshaper', 'diskshaper', 'startshaper']]];
 const GROUP_OF = Object.fromEntries(GROUPS.flatMap(([g, ks]) => ks.map((k) => [k, g])));
 const COLL = {
-  en: { all: 'All', create: 'Create', work: 'Work', care: 'Computer care', h: 'Apps', p: 'Eight free apps for Mac and Windows. Pick the one you need, or get them all.', open: 'Open', web: 'Also in your browser', demosH: 'See them work', demosP: 'Live demos of the real apps. Pick one.' },
-  es: { all: 'Todas', create: 'Crear', work: 'Trabajo', care: 'Cuidado del equipo', h: 'Apps', p: 'Ocho apps gratis para Mac y Windows. Elige la que necesites, o llévatelas todas.', open: 'Abrir', web: 'También en el navegador', demosH: 'Míralas en acción', demosP: 'Demos en vivo de las apps reales. Elige una.' },
-  fr: { all: 'Toutes', create: 'Créer', work: 'Travail', care: 'Entretien du PC', h: 'Applis', p: 'Huit applis gratuites pour Mac et Windows. Prenez celle qu’il vous faut, ou toutes.', open: 'Ouvrir', web: 'Aussi dans le navigateur', demosH: 'Voyez-les à l’œuvre', demosP: 'Démos en direct des vraies applis. Choisissez-en une.' },
-  de: { all: 'Alle', create: 'Erstellen', work: 'Arbeit', care: 'PC-Pflege', h: 'Apps', p: 'Acht kostenlose Apps für Mac und Windows. Nimm die, die du brauchst, oder alle.', open: 'Öffnen', web: 'Auch im Browser', demosH: 'So arbeiten sie', demosP: 'Live-Demos der echten Apps. Wähl eine aus.' },
-  ru: { all: 'Все', create: 'Создание', work: 'Работа', care: 'Уход за ПК', h: 'Приложения', p: 'Восемь бесплатных приложений для Mac и Windows. Возьмите нужное — или все сразу.', open: 'Открыть', web: 'Есть и в браузере', demosH: 'Посмотрите в деле', demosP: 'Живые демо настоящих приложений. Выберите любое.' },
-  zh: { all: '全部', create: '创作', work: '工作', care: '电脑维护', h: '应用', p: '八款适用于 Mac 和 Windows 的免费应用。按需挑选，或者全部拿走。', open: '打开', web: '也能在浏览器中使用', demosH: '看看它们怎么工作', demosP: '真实应用的实时演示，任选一个。' },
+  en: { all: 'All', create: 'Create', work: 'Work', care: 'Computer care', h: 'Apps', p: 'Nine free apps for Mac and Windows. Pick the one you need, or get them all.', open: 'Open', web: 'Also in your browser', demosH: 'See them work', demosP: 'Live demos of the real apps. Pick one.' },
+  es: { all: 'Todas', create: 'Crear', work: 'Trabajo', care: 'Cuidado del equipo', h: 'Apps', p: 'Nueve apps gratis para Mac y Windows. Elige la que necesites, o llévatelas todas.', open: 'Abrir', web: 'También en el navegador', demosH: 'Míralas en acción', demosP: 'Demos en vivo de las apps reales. Elige una.' },
+  fr: { all: 'Toutes', create: 'Créer', work: 'Travail', care: 'Entretien du PC', h: 'Applis', p: 'Neuf applis gratuites pour Mac et Windows. Prenez celle qu’il vous faut, ou toutes.', open: 'Ouvrir', web: 'Aussi dans le navigateur', demosH: 'Voyez-les à l’œuvre', demosP: 'Démos en direct des vraies applis. Choisissez-en une.' },
+  de: { all: 'Alle', create: 'Erstellen', work: 'Arbeit', care: 'PC-Pflege', h: 'Apps', p: 'Neun kostenlose Apps für Mac und Windows. Nimm die, die du brauchst, oder alle.', open: 'Öffnen', web: 'Auch im Browser', demosH: 'So arbeiten sie', demosP: 'Live-Demos der echten Apps. Wähl eine aus.' },
+  ru: { all: 'Все', create: 'Создание', work: 'Работа', care: 'Уход за ПК', h: 'Приложения', p: 'Девять бесплатных приложений для Mac и Windows. Возьмите нужное — или все сразу.', open: 'Открыть', web: 'Есть и в браузере', demosH: 'Посмотрите в деле', demosP: 'Живые демо настоящих приложений. Выберите любое.' },
+  zh: { all: '全部', create: '创作', work: '工作', care: '电脑维护', h: '应用', p: '九款适用于 Mac 和 Windows 的免费应用。按需挑选，或者全部拿走。', open: '打开', web: '也能在浏览器中使用', demosH: '看看它们怎么工作', demosP: '真实应用的实时演示，任选一个。' },
 };
 const coll = (L) => COLL[L.lang] || COLL.en;
 // Screenshot sizes for the home page cards.
-const SHOT = { clipshaper: [1600, 1018], fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018], lightshaper: [2560, 1628], moveshaper: [2560, 1628] };
+const SHOT = { clipshaper: [1600, 1018], fileshaper: [1600, 1018], captionshaper: [1600, 1018], diskshaper: [1600, 1025], writeshaper: [1600, 1085], startshaper: [1600, 1018], lightshaper: [2560, 1628], moveshaper: [2560, 1628], melodyshaper: [2560, 1628] };
 
 for (const p of Object.values(P)) {
   let rel = p.fallback;
@@ -108,7 +115,7 @@ for (const p of Object.values(P)) {
 // Each product site has the same languages, at /<lang>/ (English at the root).
 const siteIn = (p, lang) => p.site + (lang === 'en' || p.enOnly ? '' : `${lang}/`);
 const changelog = (p, lang) => (p.own ? p.releases : `${siteIn(p, lang)}changelog.html`);
-const CL = P.clipshaper, FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper, LS = P.lightshaper, MV = P.moveshaper;
+const CL = P.clipshaper, FS = P.fileshaper, CS = P.captionshaper, DS = P.diskshaper, WS = P.writeshaper, SS = P.startshaper, LS = P.lightshaper, MV = P.moveshaper, MS = P.melodyshaper;
 
 /* ---------- icons ---------- */
 const GH = 'M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.23 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z';
@@ -159,12 +166,12 @@ const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u,
 // Paths are written root-absolute for the page's language (/es/about/), then made relative at write time.
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
 const navItems = (L) => [
-  [siteIn(CL, L.lang), 'Clipshaper', 'clipshaper'], [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'], [`${pre(L)}/moveshaper/`, 'Moveshaper', 'moveshaper'],
+  [siteIn(CL, L.lang), 'Clipshaper', 'clipshaper'], [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'], [`${pre(L)}/moveshaper/`, 'Moveshaper', 'moveshaper'], [`${pre(L)}/melodyshaper/`, 'Melodyshaper', 'melodyshaper'],
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 const APPS_LABEL = { en: 'Apps', es: 'Apps', fr: 'Apps', de: 'Apps', ru: 'Приложения', zh: '应用' };
 const FILM_LABEL = { en: 'Watch the film', es: 'Ver el vídeo', fr: 'Voir le film', de: 'Film ansehen', ru: 'Смотреть видео', zh: '观看短片' };
-const APP_KEYS = ['clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper', 'moveshaper'];
+const APP_KEYS = ['clipshaper', 'fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'startshaper', 'lightshaper', 'moveshaper', 'melodyshaper'];
 const cap1 = (x) => x.charAt(0).toUpperCase() + x.slice(1);
 const topNav = (L, key) => {
   const apps = navItems(L).slice(0, APP_KEYS.length), rest = [[`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/donate/`, L.nav.donate, 'donate']];
@@ -222,7 +229,7 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css?v=${CSSV}">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://discord.gg/ENSTjVpJj8","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/","https://hollowbit.dev/lightshaper/","https://hollowbit.dev/clipshaper/","https://hollowbit.dev/moveshaper/","https://fuseduo.com/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://discord.gg/ENSTjVpJj8","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/","https://hollowbit.dev/lightshaper/","https://hollowbit.dev/clipshaper/","https://hollowbit.dev/moveshaper/","https://hollowbit.dev/melodyshaper/","https://fuseduo.com/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note, enOnly })}</script>
 </head>
 <body class="${cls}">
@@ -253,7 +260,7 @@ ${body}
         <a class="foot-mail" data-email-link href="${pre(L)}/contact/">${ic('mail')}<span data-email>${esc(t.footer.contact)}</span></a>
         ${socials()}
       </div>
-      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${siteIn(CL, L.lang)}">Clipshaper</a><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/lightshaper/">Lightshaper</a><a href="${pre(L)}/moveshaper/">Moveshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
+      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${siteIn(CL, L.lang)}">Clipshaper</a><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/lightshaper/">Lightshaper</a><a href="${pre(L)}/moveshaper/">Moveshaper</a><a href="${pre(L)}/melodyshaper/">Melodyshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
       <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="/press/">Press kit</a><a href="https://fuseduo.com/">Fuseduo</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
       <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://discord.gg/ENSTjVpJj8">Discord</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
     </div>
@@ -446,17 +453,37 @@ const mvDemo = (L) => `<div class="demo demo-mv" id="demo-mv" role="tabpanel" ar
   </div>
 </div>`;
 
+// Melodyshaper demo: a hummed tune becomes notes, then chords that fit it are picked.
+const MS_TUNE = [[7, 0, 4], [9, 4, 2], [8, 6, 2], [7, 8, 8], [8, 16, 4], [6, 20, 4], [4, 24, 8], [5, 32, 4], [7, 36, 2], [9, 38, 2], [9, 40, 8], [7, 48, 4], [6, 52, 4], [7, 56, 8]];
+const MS_CHORDS = [0, 4, 5, 0];
+const msNote = (cls, deg, step, len, extra = '') => `<i class="${cls}" data-step="${step}" style="left:${(step / 64) * 100}%;top:${((9 - deg) / 17) * 100}%;width:${(len / 64) * 100}%;height:${100 / 17}%"${extra}></i>`;
+const msDemo = (L) => `<div class="demo demo-ms" id="demo-ms" role="tabpanel" aria-labelledby="tab-ms">
+  <p class="sr-only">${esc(L.home.srMs)}</p>
+  <div class="win" aria-hidden="true">
+    <div class="ms-top"><div class="tl"><i></i><i></i><i></i></div><span class="ms-brand"><img src="/assets/img/melodyshaper-icon.png" alt="">Melodyshaper</span><span class="ms-status"></span></div>
+    <div class="ms-body">
+      <div class="ms-roll">${Array.from({ length: 16 }, (_, b) => `<span class="ms-bar" style="left:${(b / 16) * 100}%"></span>`).join('')}${MS_CHORDS.flatMap((root, bar) => [0, 2, 4].map((o) => msNote('ms-c', root + o - 7, bar * 16, 16))).join('')}${MS_TUNE.map(([d, s, l]) => msNote('ms-n', d, s, l)).join('')}<div class="ms-head"><b></b></div></div>
+      <div class="ms-side">
+        <div class="ms-hum"><span class="ms-dot"></span>Hum a melody</div>
+        <div class="ms-wave">${Array.from({ length: 22 }, (_, i) => `<i style="--d:${(i * 83) % 620}ms"></i>`).join('')}</div>
+        <small>Fits your tune</small>
+        <div class="ms-opts">${[['C  G  Am  C', 91], ['Am  G  Am  F', 91], ['C  G  C  F', 84]].map(([n, m]) => `<span class="ms-opt"><b>${n}</b><em>${m}%</em></span>`).join('')}</div>
+      </div>
+    </div>
+  </div>
+</div>`;
+
 function stage(L, only) {
   const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'cl'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
-  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('cl', CL)}${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}${tab('mv', MV)}</div>`;
-  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : only === 'mv' ? mvDemo(L) : clDemo(L) + fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L) + mvDemo(L);
+  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('cl', CL)}${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}${tab('mv', MV)}${tab('ms', MS)}</div>`;
+  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : only === 'mv' ? mvDemo(L) : only === 'ms' ? msDemo(L) : clDemo(L) + fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L) + mvDemo(L) + msDemo(L);
   return `<div class="stage${only ? ' stage-single' : ''}" data-stage>${tabs}<div class="stage-frame"><div class="stage-scale">${demos}</div></div></div>`;
 }
 
 const ticker = (L) => {
   const items = (p) => L.products[p.slug].tasks.map((t) => `<span style="--c: var(--${p.v})"><i></i>${esc(t)}</span>`).join('');
-  const a = items(CL) + items(FS) + items(MV) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
-  const b = items(CS) + items(SS) + items(CL) + items(MV) + items(LS) + items(DS) + items(FS) + items(WS);
+  const a = items(MS) + items(CL) + items(FS) + items(MV) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
+  const b = items(CS) + items(MS) + items(SS) + items(CL) + items(MV) + items(LS) + items(DS) + items(FS) + items(WS);
   return `<div class="ticker" aria-hidden="true"><div class="ticker-track">${a}${a}</div><div class="ticker-track rev">${b}${b}</div></div>`;
 };
 const PR_ICONS = ['i-upload', 'i-wifi', 'i-ads', 'i-account', 'i-track', 'i-code'];
@@ -468,7 +495,7 @@ function collection(L) {
   const row = (k, i) => {
     const p = P[k], c = L.products[k];
     const href = p.page ? `${pre(L)}/${p.slug}/` : siteIn(p, L.lang);
-    const isNew = k === 'moveshaper';
+    const isNew = k === 'melodyshaper';
     return `<a class="app-row" href="${href}" data-cat="${GROUP_OF[k]}" style="--c: var(--${p.v}); --d:${i * 40}ms">
       <img src="/assets/img/${p.slug}-icon.png" width="56" height="56" alt="">
       <span class="ar-txt"><span class="ar-name">${p.name}${isNew && c.newTag ? `<em>${esc(c.newTag)}</em>` : ''}</span><span class="ar-kind">${esc(cap1(c.kind))}</span><span class="ar-blurb">${esc(c.blurb)}</span></span>
@@ -492,7 +519,7 @@ const home = (L) => page(L, {
   og: { id: 'home', kind: 'home', h: L.home.h1, hl: L.home.hl, sub: L.home.sub },
   body: `
 <section class="hero wrap">
-  <a class="hero-badge in-0" href="${pre(L)}/moveshaper/"><span class="dot"></span>${esc(fill(L.home.badge, { v: MV.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  <a class="hero-badge in-0" href="${pre(L)}/melodyshaper/"><span class="dot"></span>${esc(fill(L.home.badge, { v: MS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
   <h1 class="hero-title" data-words data-icons="${['clipshaper', 'captionshaper', 'lightshaper', 'writeshaper'].join(' ')}">${esc(L.home.h1)}</h1>
   <p class="hero-sub in-1">${esc(L.home.sub)}</p>
   <div class="hero-cta in-2">
@@ -869,31 +896,6 @@ const workPage = (w) => {
 };
 
 /* ---------- Melodyshaper coming soon (English only, not in the app lists until it ships) ---------- */
-const MS_POINTS = [
-  ['Hum it', 'Hum or sing a tune and hear it back on piano, strings, flute, sax and more.'],
-  ['Nothing sounds wrong', 'Every note stays in key and every sound lands on the beat.'],
-  ['Real instruments', '23 recorded instruments and an 11-piece drum kit, with no AI-generated music.'],
-  ['Make whole songs', 'Build verses and choruses, record your voice, then export MP3, WAV, stems or MIDI.'],
-];
-const melodyshaper = () => page(LANGS[0], {
-  path: '/melodyshaper/', title: 'Melodyshaper, coming soon · Hollowbit Studio', enOnly: true, cls: 'p-ms',
-  desc: 'Hum a tune and hear it on a real instrument. Melodyshaper is a free music maker for beginners, coming soon to Mac and Windows.',
-  og: { id: 'melodyshaper', kind: 'plain', h: 'Hum a tune. Hear it played.', sub: 'Melodyshaper. Coming soon, free.' },
-  body: `
-<section class="wrap ms-hero">
-  <img class="ms-icon in-0" src="/assets/img/melodyshaper-icon.png" alt="" width="84" height="84">
-  <p class="ms-soon in-0">Coming soon</p>
-  <h1 class="h1" data-words>Hum a tune. Hear it played.</h1>
-  <p class="lead in-1">Melodyshaper is a free music maker for complete beginners. Hum an idea and it becomes a real instrument, in key and on the beat.</p>
-  <div class="hero-cta in-2"><a class="btn btn-primary btn-lg" href="https://discord.gg/ENSTjVpJj8">Get told on Discord ${ic('arrow')}</a><a class="btn btn-ghost btn-lg" href="/">See our other apps</a></div>
-  <p class="ms-meta in-2">Free · Mac and Windows · Works offline</p>
-  <figure class="ms-shot in-2"><img src="/assets/img/melodyshaper-app.webp" width="1320" height="840" alt="The Melodyshaper editor with tracks, a melody on a note grid, and playable pads"></figure>
-</section>
-<section class="wrap sec">
-  <div class="ms-points">${MS_POINTS.map(([h, p], i) => `<article class="reveal" style="--d:${i * 70}ms"><h2>${esc(h)}</h2><p>${esc(p)}</p></article>`).join('')}</div>
-</section>`,
-});
-
 /* ---------- services (English only; footer link only) ---------- */
 const SAMPLES = [
   ['kettlewick', 'Kettlewick Coffee', 'Neighbourhood café · Portland, US', 'Menu with prices, opening hours, order-ahead button, photo gallery.', 'fs'],
@@ -989,12 +991,13 @@ const PRESS_APPS = [
   ['lightshaper', 'Lightshaper', 'https://hollowbit.dev/lightshaper/', '/assets/img/lightshaper-app.webp'],
   ['clipshaper', 'Clipshaper', 'https://hollowbit.dev/clipshaper/', '/press/screenshots/clipshaper-app.png'],
   ['moveshaper', 'Moveshaper', 'https://hollowbit.dev/moveshaper/', '/assets/img/moveshaper-app.webp'],
+  ['melodyshaper', 'Melodyshaper', 'https://hollowbit.dev/melodyshaper/', '/assets/img/melodyshaper-app.webp'],
   ['fuseduo', 'Fuseduo', 'https://fuseduo.com/', '/fuseduo/assets/img/app-board.webp'],
 ];
 const PRESS_BLURB = { fuseduo: 'Drop one Mac app onto another and get a working automation between them, explained in plain English before anything runs.' };
 const PRESS_FACTS = [
   ['Studio', 'Hollowbit Studio'], ['Founder', 'Elvis Zygmanta'], ['Started', 'November 2026'], ['Languages', 'Sites in 6 languages'],
-  ['Apps', '9, all free'], ['Platforms', 'Mac and Windows'], ['Price', 'Free. No ads, accounts or tiers'], ['Source', 'Open source on GitHub'],
+  ['Apps', '10, all free'], ['Platforms', 'Mac and Windows'], ['Price', 'Free. No ads, accounts or tiers'], ['Source', 'Open source on GitHub'],
 ];
 // Press assets are gathered from each app's repo on every build, so new icons and screenshots show up by themselves.
 // A new app only needs a line in PRESS_APPS above (and its folder next to this one on the Desktop).
@@ -1039,7 +1042,7 @@ const press = () => page(LANGS[0], {
   <p class="pk-copy">Hollowbit Studio makes free apps for Mac and Windows that never upload your files. Each one replaces a website or subscription with an app that does the job on your own computer, with no ads, no accounts and no watermarks.</p>
   <h2>Long description</h2>
   <p class="pk-copy">Hollowbit Studio is an independent studio run by Elvis Zygmanta. It started with a simple annoyance: everyday jobs like shrinking a video, converting a photo or adding subtitles meant uploading files to a website, waiting in a queue and paying to remove a watermark.</p>
-  <p class="pk-copy">Each Hollowbit app takes one of those jobs and does it offline, for free. The line-up covers file conversion (Fileshaper), subtitles (Captionshaper), storage cleaning (Diskshaper), writing help (Writeshaper), PC speed-ups (Startshaper), photo editing (Lightshaper), short clips from long videos (Clipshaper), moving to a new computer (Moveshaper) and app automations (Fuseduo).</p>
+  <p class="pk-copy">Each Hollowbit app takes one of those jobs and does it offline, for free. The line-up covers file conversion (Fileshaper), subtitles (Captionshaper), storage cleaning (Diskshaper), writing help (Writeshaper), PC speed-ups (Startshaper), photo editing (Lightshaper), short clips from long videos (Clipshaper), moving to a new computer (Moveshaper), making music (Melodyshaper) and app automations (Fuseduo).</p>
   <p class="pk-copy">Every app is open source, works with the Wi-Fi off and has no paid tier. There is no tracking in the apps or on the websites.</p>
   <h2>About the founder</h2>
   <p class="pk-copy">Elvis Zygmanta is the founder of Hollowbit Studio. Elvis designs and releases the studio’s apps, websites and videos, and runs its community on Discord.</p>
@@ -1087,7 +1090,8 @@ for (const L of LANGS) {
     [`${d}captionshaper/index.html`]: productPage(L, CS, DS),
     [`${d}startshaper/index.html`]: productPage(L, SS, LS),
     [`${d}lightshaper/index.html`]: productPage(L, LS, MV),
-    [`${d}moveshaper/index.html`]: productPage(L, MV, DS),
+    [`${d}moveshaper/index.html`]: productPage(L, MV, MS),
+    [`${d}melodyshaper/index.html`]: productPage(L, MS, LS),
     [`${d}download/index.html`]: download(L),
     [`${d}about/index.html`]: about(L),
     [`${d}contact/index.html`]: contact(L),
@@ -1098,7 +1102,6 @@ for (const L of LANGS) {
 out['404.html'] = notFound(LANGS[0]);
 out['work/index.html'] = workIndex();
 out['services/index.html'] = services();
-out['melodyshaper/index.html'] = melodyshaper();
 out['press/index.html'] = press();
 for (const w of WORK) out[`work/${w.slug}/index.html`] = workPage(w);
 // Root-relative links become relative, so pages also work opened straight from the folder.
@@ -1115,8 +1118,8 @@ for (const [f, raw] of Object.entries(out)) {
 }
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
-const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/lightshaper/', '/moveshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
-const workPaths = ['/work/', '/services/', '/press/', '/melodyshaper/', ...WORK.map((w) => `/work/${w.slug}/`)];
+const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/lightshaper/', '/moveshaper/', '/melodyshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
+const workPaths = ['/work/', '/services/', '/press/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -1124,6 +1127,6 @@ ${paths.flatMap((p) => LANGS.map((L) => `  <url><loc>${u(L.lang, p)}</loc><lastm
 ${workPaths.map((p) => `  <url><loc>${u('en', p)}</loc><lastmod>2026-11-12</lastmod></url>`).join('\n')}
 </urlset>
 `);
-console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version, '| startshaper', SS.version, '| lightshaper', LS.version, '| moveshaper', MV.version);
+console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version, '| startshaper', SS.version, '| lightshaper', LS.version, '| moveshaper', MV.version, '| melodyshaper', MS.version);
 // Fuseduo's own pages (/fuseduo/) are built by their own script.
 await import('./fuseduo.mjs');

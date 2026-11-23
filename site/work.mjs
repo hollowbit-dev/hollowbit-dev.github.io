@@ -209,4 +209,28 @@ export const WORK = [
     ],
     next: ['Testing on real Windows PCs.', 'A real-world Wi-Fi speed check.'],
   },
+  {
+    slug: 'melodyshaper', v: 'ms', name: 'Melodyshaper', site: 'https://hollowbit.dev/melodyshaper/', repo: 'hollowbit-dev/melodyshaper',
+    tagline: 'Hum a tune and hear it on a real instrument. A free music maker for complete beginners.',
+    released: 'November 2026', platform: 'Mac and Windows', license: 'MIT',
+    stack: 'Electron, the Web Audio API, classic pitch detection, CC0 instrument recordings',
+    stats: [['23', 'Recorded instruments, plus an 11-piece drum kit'], ['3', 'Chord progressions offered for each melody'], ['0', 'AI models or AI-generated sounds']],
+    problem: [
+      'Most people with a tune in their head have no way to get it out. Full music software assumes you already know about keys, chords and arranging.',
+      'Free hum-to-notes tools are mostly phone apps, or plugins that need a professional music app around them.',
+    ],
+    what: 'Hum or sing along with a click and Melodyshaper turns your voice into notes on a real instrument, in key and on the beat. It then offers chords that fit the tune. Add drums, bass, more sections and your own vocals, and export MP3, WAV, stems or MIDI.',
+    decisions: [
+      ['Notes are stored as positions in the scale.', 'A note is saved as a step in the key, not a fixed pitch, so changing key or mood keeps every note in tune.'],
+      ['Plain signal processing, not AI.', 'Pitch and beatbox detection are classic audio techniques, and the chord finder scores chords with music theory. No model listens to or generates anything.'],
+      ['Real recordings only.', 'Every instrument is a real recording from public-domain CC0 libraries. There are no finished loops or demo songs to pass off as your own.'],
+      ['Nothing locked.', 'Songs save, reopen and export for free, and recordings travel inside the song file.'],
+    ],
+    tested: [
+      'Automated tests check that every note in every key and scale stays in key.',
+      'Pitch and beatbox detection run on simulated voices and drum sounds at several speeds, through the same path as the microphone.',
+      'End-to-end tests drive the real app through editing, saving, reopening and every export, and playback holds 60 frames per second under a 4x CPU slowdown.',
+    ],
+    next: ['Testing with more real voices and microphones.', 'Testing on real Windows PCs and with more MIDI keyboards.'],
+  },
 ];

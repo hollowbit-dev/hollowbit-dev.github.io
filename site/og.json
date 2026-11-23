@@ -79,6 +79,20 @@
   "domain": "hollowbit.dev/moveshaper"
  },
  {
+  "file": "assets/img/og/en/melodyshaper.png",
+  "lang": "en",
+  "id": "melodyshaper",
+  "kind": "product",
+  "v": "ms",
+  "slug": "melodyshaper",
+  "name": "Melodyshaper",
+  "h": "Melodyshaper",
+  "sub": "Hum a tune and hear it on a real instrument. Get chords that fit, add drums and bass, and export a whole song.",
+  "kicker": "free music maker",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/melodyshaper"
+ },
+ {
   "file": "assets/img/og/en/download.png",
   "lang": "en",
   "id": "download",
@@ -196,6 +210,20 @@
   "kicker": "traspaso gratis entre PC y Mac",
   "plats": "Mac y Windows",
   "domain": "hollowbit.dev/moveshaper"
+ },
+ {
+  "file": "assets/img/og/es/melodyshaper.png",
+  "lang": "es",
+  "id": "melodyshaper",
+  "kind": "product",
+  "v": "ms",
+  "slug": "melodyshaper",
+  "name": "Melodyshaper",
+  "h": "Melodyshaper",
+  "sub": "Tararea una melodía y escúchala en un instrumento real. Consigue acordes que encajen, añade batería y bajo, y exporta una canción entera.",
+  "kicker": "creador de música gratis",
+  "plats": "Mac y Windows",
+  "domain": "hollowbit.dev/melodyshaper"
  },
  {
   "file": "assets/img/og/es/download.png",
@@ -317,6 +345,20 @@
   "domain": "hollowbit.dev/moveshaper"
  },
  {
+  "file": "assets/img/og/fr/melodyshaper.png",
+  "lang": "fr",
+  "id": "melodyshaper",
+  "kind": "product",
+  "v": "ms",
+  "slug": "melodyshaper",
+  "name": "Melodyshaper",
+  "h": "Melodyshaper",
+  "sub": "Fredonnez un air et écoutez-le sur un vrai instrument. Trouvez les accords qui vont avec, ajoutez batterie et basse, et exportez une chanson entière.",
+  "kicker": "création musicale gratuite",
+  "plats": "Mac et Windows",
+  "domain": "hollowbit.dev/melodyshaper"
+ },
+ {
   "file": "assets/img/og/fr/download.png",
   "lang": "fr",
   "id": "download",
@@ -434,6 +476,20 @@
   "kicker": "kostenloser PC- und Mac-Umzug",
   "plats": "Mac und Windows",
   "domain": "hollowbit.dev/moveshaper"
+ },
+ {
+  "file": "assets/img/og/de/melodyshaper.png",
+  "lang": "de",
+  "id": "melodyshaper",
+  "kind": "product",
+  "v": "ms",
+  "slug": "melodyshaper",
+  "name": "Melodyshaper",
+  "h": "Melodyshaper",
+  "sub": "Summ eine Melodie und hör sie auf einem echten Instrument. Hol dir passende Akkorde, füge Drums und Bass hinzu und exportiere einen ganzen Song.",
+  "kicker": "kostenloser Musik-Maker",
+  "plats": "Mac und Windows",
+  "domain": "hollowbit.dev/melodyshaper"
  },
  {
   "file": "assets/img/og/de/download.png",
@@ -555,6 +611,20 @@
   "domain": "hollowbit.dev/moveshaper"
  },
  {
+  "file": "assets/img/og/ru/melodyshaper.png",
+  "lang": "ru",
+  "id": "melodyshaper",
+  "kind": "product",
+  "v": "ms",
+  "slug": "melodyshaper",
+  "name": "Melodyshaper",
+  "h": "Melodyshaper",
+  "sub": "Напойте мелодию и услышьте её на настоящем инструменте. Подберите аккорды, добавьте барабаны и бас и экспортируйте целую песню.",
+  "kicker": "бесплатное создание музыки",
+  "plats": "Mac и Windows",
+  "domain": "hollowbit.dev/melodyshaper"
+ },
+ {
   "file": "assets/img/og/ru/download.png",
   "lang": "ru",
   "id": "download",
@@ -674,6 +744,20 @@
   "domain": "hollowbit.dev/moveshaper"
  },
  {
+  "file": "assets/img/og/zh/melodyshaper.png",
+  "lang": "zh",
+  "id": "melodyshaper",
+  "kind": "product",
+  "v": "ms",
+  "slug": "melodyshaper",
+  "name": "Melodyshaper",
+  "h": "Melodyshaper",
+  "sub": "哼一段旋律，用真实乐器听到它。找到合适的和弦，加上鼓和贝斯，导出一首完整的歌。",
+  "kicker": "免费音乐创作工具",
+  "plats": "Mac 和 Windows",
+  "domain": "hollowbit.dev/melodyshaper"
+ },
+ {
   "file": "assets/img/og/zh/download.png",
   "lang": "zh",
   "id": "download",
@@ -728,14 +812,6 @@
   "kind": "plain",
   "h": "Websites for small businesses.",
   "sub": "Fast, accessible sites for cafés, clinics, tour companies and more. Fixed prices."
- },
- {
-  "file": "assets/img/og/en/melodyshaper.png",
-  "lang": "en",
-  "id": "melodyshaper",
-  "kind": "plain",
-  "h": "Hum a tune. Hear it played.",
-  "sub": "Melodyshaper. Coming soon, free."
  },
  {
   "file": "assets/img/og/en/press.png",
@@ -853,6 +929,20 @@
   "name": "Moveshaper",
   "h": "Moveshaper",
   "sub": "Move everything from your old computer to your new one: files, apps, bookmarks, Wi-Fi and wallpaper. Windows and Mac, both ways.",
+  "kicker": "Case study",
+  "plats": "Mac and Windows",
+  "domain": "hollowbit.dev/work"
+ },
+ {
+  "file": "assets/img/og/en/work-melodyshaper.png",
+  "lang": "en",
+  "id": "work-melodyshaper",
+  "kind": "product",
+  "v": "ms",
+  "slug": "melodyshaper",
+  "name": "Melodyshaper",
+  "h": "Melodyshaper",
+  "sub": "Hum a tune and hear it on a real instrument. A free music maker for complete beginners.",
   "kicker": "Case study",
   "plats": "Mac and Windows",
   "domain": "hollowbit.dev/work"

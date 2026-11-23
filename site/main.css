@@ -21,6 +21,8 @@
   --ls: #a98bff;
   --cl: #22d3ee;
   --mv: #2dd4bf;
+  --ms: #ff7ab6;
+  --ms-grad: linear-gradient(120deg, #ffa8d0, #ff7ab6 48%, #a78bfa);
   --mv-grad: linear-gradient(120deg, #7cf0dc, #2dd4bf 48%, #38bdf8);
   --ls-grad: linear-gradient(120deg, #d2c4ff, #a98bff 45%, #7a5cff);
   --ws-grad: linear-gradient(120deg, #ff9f4d, #f9457f 52%, #7f54f8);
@@ -217,7 +219,7 @@ button { font: inherit; color: inherit; }
 .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; perspective: 1600px; }
 .pcard { position: relative; overflow: hidden; border-radius: 30px; color: var(--text); display: flex; flex-direction: column; min-height: 600px; transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)); transition: transform .6s var(--ease), box-shadow .4s; isolation: isolate; }
 .js .pcard.reveal { transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease); }
-.pcard-fs { --c: var(--fs); } .pcard-cs { --c: var(--cs); } .pcard-ds { --c: var(--ds); } .pcard-ws { --c: var(--ws); } .pcard-ss { --c: var(--ss); } .pcard-ls { --c: var(--ls); } .pcard-mv { --c: var(--mv); }
+.pcard-fs { --c: var(--fs); } .pcard-cs { --c: var(--cs); } .pcard-ds { --c: var(--ds); } .pcard-ws { --c: var(--ws); } .pcard-ss { --c: var(--ss); } .pcard-ls { --c: var(--ls); } .pcard-mv { --c: var(--mv); } .pcard-ms { --c: var(--ms); }
 /* the product's light, from the top corner */
 .pcard::after { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none;
   background: radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--c) 34%, transparent), transparent 55%), radial-gradient(90% 60% at 100% 100%, color-mix(in srgb, var(--c) 14%, transparent), transparent 60%); }
@@ -818,16 +820,3 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 @media (max-width: 560px) { .pk-apps { grid-template-columns: 1fr; } .pk-logos { grid-template-columns: repeat(2, 1fr); } }
 
 /* Melodyshaper coming soon */
-.ms-hero { padding-top: 132px; text-align: center; }
-.ms-hero .lead { max-width: 620px; margin: 20px auto 0; }
-.ms-icon { display: block; width: 84px; height: 84px; margin: 0 auto 14px; }
-.ms-soon { width: max-content; margin: 0 auto 18px; padding: 5px 12px; color: #ff9ccb; font-size: 13px; font-weight: 600; border: 1px solid rgba(255, 122, 182, .35); border-radius: 999px; background: rgba(255, 122, 182, .1); }
-.ms-meta { margin: 18px 0 0; color: var(--muted, #a5a2b4); font-size: 14px; }
-.ms-shot { max-width: 1120px; margin: 54px auto 0; overflow: hidden; border: 1px solid rgba(255, 255, 255, .12); border-radius: 16px; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); }
-.ms-shot img { display: block; width: 100%; height: auto; }
-.ms-points { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 1120px; margin: 0 auto; }
-.ms-points article { padding: 22px; border: 1px solid rgba(255, 255, 255, .09); border-radius: 14px; background: rgba(38, 36, 50, .55); }
-.ms-points h2 { margin: 0 0 7px; font-size: 17px; }
-.ms-points p { margin: 0; color: var(--muted, #a5a2b4); font-size: 14.5px; line-height: 1.5; }
-@media (max-width: 900px) { .ms-points { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .ms-hero { padding-top: 104px; } .ms-points { grid-template-columns: 1fr; } .ms-shot { margin-top: 36px; border-radius: 10px; } }

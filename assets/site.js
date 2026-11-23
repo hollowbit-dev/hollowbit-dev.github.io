@@ -284,6 +284,43 @@
         await sleep(2300, sig);
       },
     },
+    'demo-ms': {
+      length: 10000,
+      setup(d) { return d; },
+      reset(d, final) {
+        d.classList.remove('listen', 'moving');
+        $$('.ms-n, .ms-c, .ms-opt', d).forEach((x) => { x.classList.toggle('on', final); x.classList.remove('press'); });
+        $$('.ms-opt', d).forEach((x, i) => x.classList.toggle('pick', final && i === 0));
+        $('.ms-head', d).style.transform = 'translateX(0)';
+        $('.ms-status', d).textContent = final ? 'Chords added' : 'Ready';
+      },
+      async run(d, sig) {
+        const head = $('.ms-head', d), status = $('.ms-status', d), notes = $$('.ms-n', d), chords = $$('.ms-c', d), opts = $$('.ms-opt', d);
+        await sleep(400, sig);
+        // 1. the hummed tune appears on the grid as it is heard
+        d.classList.add('listen', 'moving'); status.textContent = 'Listening…';
+        await tween(3800, (p) => {
+          head.style.transform = `translateX(${p * 100}%)`;
+          for (const n of notes) if (p * 64 >= Number(n.dataset.step)) n.classList.add('on');
+        }, sig);
+        d.classList.remove('listen', 'moving');
+        status.textContent = `${notes.length} notes, all in key`;
+        await sleep(450, sig);
+        // 2. three chord options that fit it
+        for (const o of opts) { o.classList.add('on'); await sleep(120, sig); }
+        await sleep(600, sig);
+        opts[0].classList.add('press'); await sleep(150, sig);
+        opts[0].classList.remove('press'); opts[0].classList.add('pick');
+        for (let i = 0; i < chords.length; i += 3) { chords.slice(i, i + 3).forEach((c) => c.classList.add('on')); await sleep(90, sig); }
+        status.textContent = 'Chords added';
+        await sleep(250, sig);
+        // 3. it plays back as a song
+        d.classList.add('moving');
+        await tween(2600, (p) => { head.style.transform = `translateX(${p * 100}%)`; }, sig);
+        d.classList.remove('moving');
+        await sleep(800, sig);
+      },
+    },
     'demo-ss': {
       length: 8600,
       setup(d) { return d; },
