@@ -822,6 +822,8 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 /* Melodyshaper coming soon */
 
 /* All pages */
+.sm-page { padding-top: 150px; padding-bottom: 40px; }
+.sm-page .lead { margin: 16px 0 56px; }
 .sm-grid { columns: 3 280px; column-gap: 40px; }
 .sm-group { break-inside: avoid; display: flex; flex-direction: column; gap: 9px; padding: 0 0 40px; }
 .sm-group h2 { margin: 0 0 5px; font-size: 18px; line-height: 1.3; }

@@ -1123,8 +1123,7 @@ const sitemapPage = () => {
     path: '/sitemap/', key: 'sitemap', enOnly: true, title: 'All pages · Hollowbit Studio',
     desc: 'Every app, guide, free tool and page from Hollowbit Studio in one list.',
     body: `
-<section class="wrap-narrow doc svc-hero"><h1 class="h1">All pages.</h1><p class="lead">Every app, guide and free tool from Hollowbit Studio.</p></section>
-<section class="wrap sec"><div class="sm-grid">${groups.map(([h, links]) => `<nav class="sm-group" aria-label="${esc(h)}"><h2>${esc(h)}</h2>${links.map(([u, l]) => `<a href="${u}">${esc(l)}</a>`).join('')}</nav>`).join('')}</div></section>`,
+<section class="wrap sm-page"><h1 class="h1">All pages.</h1><p class="lead">Every app, guide and free tool from Hollowbit Studio.</p><div class="sm-grid">${groups.map(([h, links]) => `<nav class="sm-group" aria-label="${esc(h)}"><h2>${esc(h)}</h2>${links.map(([u, l]) => `<a href="${u}">${esc(l)}</a>`).join('')}</nav>`).join('')}</div></section>`,
   });
 };
 for (const L of LANGS) {
