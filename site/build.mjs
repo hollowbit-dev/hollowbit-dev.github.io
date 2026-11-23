@@ -17,14 +17,14 @@ const fill = (s, o) => String(s).replace(/\{(\w+)\}/g, (_, k) => o[k] ?? '');
 /* ---------- products (language-neutral facts) ---------- */
 const P = {
   fileshaper: {
-    slug: 'fileshaper', name: 'Fileshaper', v: 'fs', domain: 'fileshaper.app', page: true,
-    site: 'https://fileshaper.app/', repo: 'hollowbit-dev/fileshaper',
+    slug: 'fileshaper', name: 'Fileshaper', v: 'fs', domain: 'hollowbit.dev/fileshaper', page: false,
+    site: 'https://hollowbit.dev/fileshaper/', repo: 'hollowbit-dev/fileshaper',
     imgs: [['fileshaper-video.webp', 1200, 760], ['fileshaper-images.webp', 1200, 760], ['fileshaper-pdf-sign.webp', 1200, 760]],
     fallback: { tag: 'v1.2.0', assets: ['Fileshaper-1.2.0-mac-arm64.dmg', 'Fileshaper-1.2.0-mac-x64.dmg', 'Fileshaper-Setup-1.2.0-win-x64.exe'] },
   },
   captionshaper: {
-    slug: 'captionshaper', name: 'Captionshaper', v: 'cs', domain: 'captionshaper.app', page: true,
-    site: 'https://captionshaper.app/', repo: 'hollowbit-dev/captionshaper',
+    slug: 'captionshaper', name: 'Captionshaper', v: 'cs', domain: 'hollowbit.dev/captionshaper', page: false,
+    site: 'https://hollowbit.dev/captionshaper/', repo: 'hollowbit-dev/captionshaper',
     imgs: [['captionshaper-app-working.webp', 1440, 792], ['captionshaper-app-style.webp', 1600, 1018], ['captionshaper-app.webp', 1600, 1018]],
     fallback: { tag: 'v1.1.0', assets: ['Captionshaper-1.1.0-mac-arm64.dmg', 'Captionshaper-Setup-1.1.0-win-x64.exe'] },
   },
@@ -166,7 +166,7 @@ const socials = (cls = '') => `<div class="socials ${cls}">${SOCIALS.map(([n, u,
 // Paths are written root-absolute for the page's language (/es/about/), then made relative at write time.
 const pre = (L) => (L.lang === 'en' ? '' : `/${L.lang}`);
 const navItems = (L) => [
-  [siteIn(CL, L.lang), 'Clipshaper', 'clipshaper'], [`${pre(L)}/fileshaper/`, 'Fileshaper', 'fileshaper'], [`${pre(L)}/captionshaper/`, 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'], [`${pre(L)}/moveshaper/`, 'Moveshaper', 'moveshaper'], [`${pre(L)}/melodyshaper/`, 'Melodyshaper', 'melodyshaper'],
+  [siteIn(CL, L.lang), 'Clipshaper', 'clipshaper'], [siteIn(FS, L.lang), 'Fileshaper', 'fileshaper'], [siteIn(CS, L.lang), 'Captionshaper', 'captionshaper'], [siteIn(DS, L.lang), 'Diskshaper', 'diskshaper'], [siteIn(WS, L.lang), 'Writeshaper', 'writeshaper'], [`${pre(L)}/startshaper/`, 'Startshaper', 'startshaper'], [`${pre(L)}/lightshaper/`, 'Lightshaper', 'lightshaper'], [`${pre(L)}/moveshaper/`, 'Moveshaper', 'moveshaper'], [`${pre(L)}/melodyshaper/`, 'Melodyshaper', 'melodyshaper'],
   [`${pre(L)}/download/`, L.nav.download, 'download'], [`${pre(L)}/about/`, L.nav.about, 'about'], ['/services/', L.nav.services, 'services'], [`${pre(L)}/contact/`, L.nav.contact, 'contact'], [`${pre(L)}/donate/`, L.nav.donate, 'donate'],
 ];
 const APPS_LABEL = { en: 'Apps', es: 'Apps', fr: 'Apps', de: 'Apps', ru: 'Приложения', zh: '应用' };
@@ -186,7 +186,7 @@ const topNav = (L, key) => {
 // Share cards: every page gets its own 1200x630 image per language, rendered by scripts/og.mjs from site/og.json.
 const OG = [];
 const OG_COLOR = { fs: '#f26a1b', cs: '#c6ff3d', ds: '#5b9dff', ws: '#f9457f', ss: '#ff8f4d', ls: '#a98bff', mv: '#2dd4bf', studio: '#a07cff' };
-function page(L, { path, key = '', title, desc, body, cls = '', og, enOnly = false }) {
+function page(L, { path, key = '', title, desc, body, cls = '', og, enOnly = false, ld = null }) {
   const t = L;
   const ogFile = og ? `assets/img/og/${L.lang}/${og.id}.png` : 'assets/img/og/en/home.png';
   if (og) OG.push({ file: ogFile, lang: L.lang, ...og });
@@ -229,8 +229,8 @@ ${path ? `<meta property="og:url" content="${url(L.lang)}">` : ''}
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css?v=${CSSV}">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://discord.gg/ENSTjVpJj8","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://fileshaper.app","https://captionshaper.app","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/","https://hollowbit.dev/lightshaper/","https://hollowbit.dev/clipshaper/","https://hollowbit.dev/moveshaper/","https://hollowbit.dev/melodyshaper/","https://fuseduo.com/"]}</script>
-<script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note, enOnly })}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://discord.gg/ENSTjVpJj8","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://hollowbit.dev/fileshaper/","https://hollowbit.dev/captionshaper/","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/","https://hollowbit.dev/lightshaper/","https://hollowbit.dev/clipshaper/","https://hollowbit.dev/moveshaper/","https://hollowbit.dev/melodyshaper/","https://fuseduo.com/"]}</script>
+${ld ? `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>\n` : ''}<script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB=${JSON.stringify({ lang: L.lang, langs: CODES, copied: t.contact.copied, osNote: t.download.note, enOnly })}</script>
 </head>
 <body class="${cls}">
 <div class="wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -260,9 +260,9 @@ ${body}
         <a class="foot-mail" data-email-link href="${pre(L)}/contact/">${ic('mail')}<span data-email>${esc(t.footer.contact)}</span></a>
         ${socials()}
       </div>
-      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${siteIn(CL, L.lang)}">Clipshaper</a><a href="${pre(L)}/fileshaper/">Fileshaper</a><a href="${pre(L)}/captionshaper/">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/lightshaper/">Lightshaper</a><a href="${pre(L)}/moveshaper/">Moveshaper</a><a href="${pre(L)}/melodyshaper/">Melodyshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
-      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="/press/">Press kit</a><a href="https://fuseduo.com/">Fuseduo</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a></nav>
-      <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://discord.gg/ENSTjVpJj8">Discord</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a><a href="${siteIn(FS, L.lang)}">fileshaper.app</a><a href="${siteIn(CS, L.lang)}">captionshaper.app</a></nav>
+      <nav aria-label="${esc(t.footer.products)}"><h2>${esc(t.footer.products)}</h2><a href="${siteIn(CL, L.lang)}">Clipshaper</a><a href="${siteIn(FS, L.lang)}">Fileshaper</a><a href="${siteIn(CS, L.lang)}">Captionshaper</a><a href="${siteIn(DS, L.lang)}">Diskshaper</a><a href="${siteIn(WS, L.lang)}">Writeshaper</a><a href="${pre(L)}/startshaper/">Startshaper</a><a href="${pre(L)}/lightshaper/">Lightshaper</a><a href="${pre(L)}/moveshaper/">Moveshaper</a><a href="${pre(L)}/melodyshaper/">Melodyshaper</a><a href="${pre(L)}/download/">${esc(t.nav.download)}</a></nav>
+      <nav aria-label="${esc(t.footer.studio)}"><h2>${esc(t.footer.studio)}</h2><a href="${pre(L)}/about/">${esc(t.nav.about)}</a><a href="/work/">${esc(t.footer.work || 'Case studies')}</a><a href="/services/">Services</a><a href="/press/">Press kit</a><a href="https://fuseduo.com/">Fuseduo</a><a href="${pre(L)}/contact/">${esc(t.nav.contact)}</a><a href="${pre(L)}/donate/">${esc(t.nav.donate)}</a><a href="${pre(L)}/privacy/">${esc(t.footer.privacy)}</a><a href="/sitemap/">Sitemap</a></nav>
+      <nav aria-label="${esc(t.footer.elsewhere)}"><h2>${esc(t.footer.elsewhere)}</h2><a href="https://github.com/hollowbit-dev">GitHub</a><a href="https://discord.gg/ENSTjVpJj8">Discord</a><a href="https://ko-fi.com/hollowbit">Ko-fi</a></nav>
     </div>
     <div class="foot-bottom"><span>© 2026 Hollowbit Studio · Elvis Zygmanta</span><span>${esc(t.footer.note)}</span></div>
   </div>
@@ -569,10 +569,22 @@ ${ticker(L)}
 </section>`,
 });
 
+// Apps with their own domain have no page here. Old addresses forward to the real site.
+const forward = (L, p) => { const to = siteIn(p, L.lang); return `<!doctype html><html lang="${L.html}"><head><meta charset="utf-8"><title>${p.name}</title><link rel="canonical" href="${to}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${to}"></head><body><a href="${to}">${p.name}</a></body></html>`; };
 function productPage(L, p, next) {
   const c = L.products[p.slug], n = L.products[next.slug];
   return page(L, {
     path: `/${p.slug}/`, key: p.slug, cls: `p-${p.v}`,
+    ld: p.own ? {
+      '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: p.name, description: c.blurb,
+      url: `${ORIGIN}${L.lang === 'en' ? '' : `/${L.lang}`}/${p.slug}/`, inLanguage: L.html,
+      applicationCategory: ['lightshaper', 'melodyshaper'].includes(p.slug) ? 'MultimediaApplication' : 'UtilitiesApplication',
+      operatingSystem: p.plat === 'both' ? 'macOS, Windows' : p.plat === 'mac' ? 'macOS' : 'Windows',
+      softwareVersion: p.version, downloadUrl: p.releases, codeRepository: p.source, isAccessibleForFree: true,
+      image: `${ORIGIN}/assets/img/${p.slug}-icon.png`,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      author: { '@type': 'Organization', name: 'Hollowbit Studio', url: `${ORIGIN}/` },
+    } : null,
     og: { id: p.slug, kind: 'product', v: p.v, slug: p.slug, name: p.name, h: p.name, sub: c.blurb, kicker: c.kind, plats: plats(L, p), domain: p.domain },
     title: `${p.name}: ${c.kind} ${L.product.titleSuffix}`,
     desc: fill(L.product.desc, { blurb: c.blurb, plats: plats(L, p) }),
@@ -983,8 +995,8 @@ const services = () => page(LANGS[0], {
 
 /* ---------- press kit (English only; footer link) ---------- */
 const PRESS_APPS = [
-  ['fileshaper', 'Fileshaper', 'https://fileshaper.app/', '/assets/img/fileshaper-app.webp'],
-  ['captionshaper', 'Captionshaper', 'https://captionshaper.app/', '/assets/img/captionshaper-app.webp'],
+  ['fileshaper', 'Fileshaper', 'https://hollowbit.dev/fileshaper/', '/assets/img/fileshaper-app.webp'],
+  ['captionshaper', 'Captionshaper', 'https://hollowbit.dev/captionshaper/', '/assets/img/captionshaper-app.webp'],
   ['diskshaper', 'Diskshaper', 'https://hollowbit.dev/diskshaper/', '/assets/img/diskshaper-app.webp'],
   ['writeshaper', 'Writeshaper', 'https://hollowbit.dev/writeshaper/', '/assets/img/writeshaper-app.webp'],
   ['startshaper', 'Startshaper', 'https://hollowbit.dev/startshaper/', '/assets/img/startshaper-app.webp'],
@@ -1082,12 +1094,44 @@ const press = () => page(LANGS[0], {
 
 /* ---------- write ---------- */
 const out = {};
+// Apps whose website is built in their own repo and published under this domain.
+const SITE_APPS = ['fileshaper', 'captionshaper', 'diskshaper', 'writeshaper', 'clipshaper'];
+const pageLabel = (html, fallback) => {
+  const m = /<title[^>]*>([^<]+)<\/title>/i.exec(html || '');
+  return (m ? m[1] : fallback).replace(/&amp;/g, '&').replace(/&#39;|&apos;/g, "'").replace(/\s*[·|]\s*(Hollowbit Studio|Fileshaper|Captionshaper|Diskshaper|Writeshaper|Clipshaper)\s*$/, '').trim();
+};
+// Every English page of an app's own site, read from that app's built sitemap.
+const appLinks = (p) => {
+  const dir = resolve(root, '..', p.name, 'docs');
+  let xml = '';
+  try { xml = readFileSync(resolve(dir, 'sitemap.xml'), 'utf8'); } catch { console.warn(`WARNING: ${p.name}: no local sitemap, its pages are missing from /sitemap/.`); return [[p.site, p.name]]; }
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).filter((u) => u.startsWith(p.site) && !/^(es|fr|de|ru|zh)\//.test(u.slice(p.site.length))).map((u) => {
+    const rel = u.slice(p.site.length);
+    let html = '';
+    try { html = readFileSync(resolve(dir, !rel || rel.endsWith('/') ? `${rel}index.html` : rel), 'utf8'); } catch {}
+    return [u, rel ? pageLabel(html, rel) : p.name];
+  });
+};
+const sitemapPage = () => {
+  const studio = [['/', 'Home'], ['/download/', 'Download all apps'], ['/about/', 'About'], ['/work/', 'Case studies'], ['/services/', 'Services'], ['/press/', 'Press kit'], ['/contact/', 'Contact'], ['/donate/', 'Donate'], ['/privacy/', 'Privacy']];
+  const groups = [['Hollowbit Studio', studio], ...ORDER.map((k) => {
+    const p = P[k];
+    const links = SITE_APPS.includes(k) ? appLinks(p) : [[`/${k}/`, p.name]];
+    return [p.name, [...links, [`/work/${k}/`, `How ${p.name} was made`]]];
+  }), ['Fuseduo', [['https://fuseduo.com/', 'Fuseduo'], ['https://fuseduo.com/how-it-works/', 'How it works'], ['https://fuseduo.com/safety/', 'Safety'], ['https://fuseduo.com/support/', 'Support']]]];
+  return page(LANGS[0], {
+    path: '/sitemap/', key: 'sitemap', enOnly: true, title: 'All pages · Hollowbit Studio',
+    desc: 'Every app, guide, free tool and page from Hollowbit Studio in one list.',
+    body: `
+<section class="wrap-narrow doc svc-hero"><h1 class="h1">All pages.</h1><p class="lead">Every app, guide and free tool from Hollowbit Studio.</p></section>
+<section class="wrap sec"><div class="sm-grid">${groups.map(([h, links]) => `<nav class="sm-group" aria-label="${esc(h)}"><h2>${esc(h)}</h2>${links.map(([u, l]) => `<a href="${u}">${esc(l)}</a>`).join('')}</nav>`).join('')}</div></section>`,
+  });
+};
 for (const L of LANGS) {
   const d = L.lang === 'en' ? '' : `${L.lang}/`;
   Object.assign(out, {
     [`${d}index.html`]: home(L),
-    [`${d}fileshaper/index.html`]: productPage(L, FS, CS),
-    [`${d}captionshaper/index.html`]: productPage(L, CS, DS),
+    ...(d ? { [`${d}fileshaper/index.html`]: forward(L, FS), [`${d}captionshaper/index.html`]: forward(L, CS) } : {}),
     [`${d}startshaper/index.html`]: productPage(L, SS, LS),
     [`${d}lightshaper/index.html`]: productPage(L, LS, MV),
     [`${d}moveshaper/index.html`]: productPage(L, MV, MS),
@@ -1104,6 +1148,7 @@ out['work/index.html'] = workIndex();
 out['services/index.html'] = services();
 out['press/index.html'] = press();
 for (const w of WORK) out[`work/${w.slug}/index.html`] = workPage(w);
+out['sitemap/index.html'] = sitemapPage();
 // Root-relative links become relative, so pages also work opened straight from the folder.
 // 404.html keeps absolute paths: GitHub Pages serves it at any depth.
 const relink = (html, f) => {
@@ -1118,14 +1163,37 @@ for (const [f, raw] of Object.entries(out)) {
 }
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
-const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/lightshaper/', '/moveshaper/', '/melodyshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
-const workPaths = ['/work/', '/services/', '/press/', ...WORK.map((w) => `/work/${w.slug}/`)];
+// Fileshaper and Captionshaper are left out: their own domains have their own sitemaps.
+const paths = ['/', '/startshaper/', '/lightshaper/', '/moveshaper/', '/melodyshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
+const workPaths = ['/work/', '/services/', '/press/', '/sitemap/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
-writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+writeFileSync(resolve(root, 'sitemap-pages.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${paths.flatMap((p) => LANGS.map((L) => `  <url><loc>${u(L.lang, p)}</loc><lastmod>2026-11-11</lastmod>${LANGS.map((a) => `<xhtml:link rel="alternate" hreflang="${a.html}" href="${u(a.lang, p)}"/>`).join('')}</url>`)).join('\n')}
-${workPaths.map((p) => `  <url><loc>${u('en', p)}</loc><lastmod>2026-11-12</lastmod></url>`).join('\n')}
+${paths.flatMap((p) => LANGS.map((L) => `  <url><loc>${u(L.lang, p)}</loc>${LANGS.map((a) => `<xhtml:link rel="alternate" hreflang="${a.html}" href="${u(a.lang, p)}"/>`).join('')}</url>`)).join('\n')}
+${workPaths.map((p) => `  <url><loc>${u('en', p)}</loc></url>`).join('\n')}
 </urlset>
+`);
+// The master sitemap: submit this one address and search engines find every page of every app.
+writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${['sitemap-pages.xml', ...SITE_APPS.map((k) => `${k}/sitemap.xml`)].map((f) => `  <sitemap><loc>${ORIGIN}/${f}</loc></sitemap>`).join('\n')}
+</sitemapindex>
+`);
+// A plain summary of the studio for AI search tools.
+writeFileSync(resolve(root, 'llms.txt'), `# Hollowbit Studio
+
+> Hollowbit Studio makes free, open-source desktop apps for Mac and Windows. Fuseduo is Mac only.
+
+## Apps
+${ORDER.map((k) => `- [${P[k].name}](${P[k].site}): ${LANGS[0].products[k].blurb} Source: ${P[k].source}`).join('\n')}
+- [Fuseduo](https://fuseduo.com/): Turns two Mac apps into a working automation. Drag one onto the other. Source: https://github.com/hollowbit-dev/fuseduo
+
+## Studio
+- [All downloads](${ORIGIN}/download/)
+- [About](${ORIGIN}/about/)
+- [Privacy](${ORIGIN}/privacy/)
+- [Press kit](${ORIGIN}/press/)
+- [GitHub](https://github.com/hollowbit-dev)
 `);
 console.log('built', Object.keys(out).length, 'pages in', LANGS.length, 'languages | fileshaper', FS.version, '| captionshaper', CS.version, '| diskshaper', DS.version, '| startshaper', SS.version, '| lightshaper', LS.version, '| moveshaper', MV.version, '| melodyshaper', MS.version);
 // Fuseduo's own pages (/fuseduo/) are built by their own script.

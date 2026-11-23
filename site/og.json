@@ -9,34 +9,6 @@
   "sub": "For Mac and Windows. Your files never leave your computer."
  },
  {
-  "file": "assets/img/og/en/fileshaper.png",
-  "lang": "en",
-  "id": "fileshaper",
-  "kind": "product",
-  "v": "fs",
-  "slug": "fileshaper",
-  "name": "Fileshaper",
-  "h": "Fileshaper",
-  "sub": "Compress videos for Discord, convert iPhone photos, merge and sign PDFs. One toolbox, fully offline.",
-  "kicker": "free offline file toolbox",
-  "plats": "Mac and Windows",
-  "domain": "fileshaper.app"
- },
- {
-  "file": "assets/img/og/en/captionshaper.png",
-  "lang": "en",
-  "id": "captionshaper",
-  "kind": "product",
-  "v": "cs",
-  "slug": "captionshaper",
-  "name": "Captionshaper",
-  "h": "Captionshaper",
-  "sub": "Word-timed subtitles for any video, written by a speech model on your own computer. SRT, VTT or burned in.",
-  "kicker": "free offline auto subtitles",
-  "plats": "Mac and Windows",
-  "domain": "captionshaper.app"
- },
- {
   "file": "assets/img/og/en/startshaper.png",
   "lang": "en",
   "id": "startshaper",
@@ -140,34 +112,6 @@
   "h": "Apps sencillas. Totalmente gratis.",
   "hl": "Totalmente gratis.",
   "sub": "Para Mac y Windows. Tus archivos nunca salen de tu ordenador."
- },
- {
-  "file": "assets/img/og/es/fileshaper.png",
-  "lang": "es",
-  "id": "fileshaper",
-  "kind": "product",
-  "v": "fs",
-  "slug": "fileshaper",
-  "name": "Fileshaper",
-  "h": "Fileshaper",
-  "sub": "Comprime vídeos para Discord, convierte fotos del iPhone, une y firma PDF. Una sola caja de herramientas, totalmente sin conexión.",
-  "kicker": "caja de herramientas de archivos gratis y sin conexión",
-  "plats": "Mac y Windows",
-  "domain": "fileshaper.app"
- },
- {
-  "file": "assets/img/og/es/captionshaper.png",
-  "lang": "es",
-  "id": "captionshaper",
-  "kind": "product",
-  "v": "cs",
-  "slug": "captionshaper",
-  "name": "Captionshaper",
-  "h": "Captionshaper",
-  "sub": "Subtítulos sincronizados palabra por palabra para cualquier vídeo, escritos por un modelo de voz en tu propio ordenador. SRT, VTT o incrustados.",
-  "kicker": "subtítulos automáticos gratis y sin conexión",
-  "plats": "Mac y Windows",
-  "domain": "captionshaper.app"
  },
  {
   "file": "assets/img/og/es/startshaper.png",
@@ -275,34 +219,6 @@
   "sub": "Pour Mac et Windows. Vos fichiers ne quittent jamais votre ordinateur."
  },
  {
-  "file": "assets/img/og/fr/fileshaper.png",
-  "lang": "fr",
-  "id": "fileshaper",
-  "kind": "product",
-  "v": "fs",
-  "slug": "fileshaper",
-  "name": "Fileshaper",
-  "h": "Fileshaper",
-  "sub": "Compressez des vidéos pour Discord, convertissez les photos d’iPhone, fusionnez et signez des PDF. Une seule boîte à outils, entièrement hors ligne.",
-  "kicker": "boîte à outils de fichiers gratuite et hors ligne",
-  "plats": "Mac et Windows",
-  "domain": "fileshaper.app"
- },
- {
-  "file": "assets/img/og/fr/captionshaper.png",
-  "lang": "fr",
-  "id": "captionshaper",
-  "kind": "product",
-  "v": "cs",
-  "slug": "captionshaper",
-  "name": "Captionshaper",
-  "h": "Captionshaper",
-  "sub": "Des sous-titres calés mot par mot pour n’importe quelle vidéo, écrits par un modèle vocal sur votre propre ordinateur. SRT, VTT ou incrustés.",
-  "kicker": "sous-titres automatiques gratuits et hors ligne",
-  "plats": "Mac et Windows",
-  "domain": "captionshaper.app"
- },
- {
   "file": "assets/img/og/fr/startshaper.png",
   "lang": "fr",
   "id": "startshaper",
@@ -406,34 +322,6 @@
   "h": "Einfache Apps. Komplett kostenlos.",
   "hl": "Komplett kostenlos.",
   "sub": "Für Mac und Windows. Deine Dateien verlassen nie deinen Computer."
- },
- {
-  "file": "assets/img/og/de/fileshaper.png",
-  "lang": "de",
-  "id": "fileshaper",
-  "kind": "product",
-  "v": "fs",
-  "slug": "fileshaper",
-  "name": "Fileshaper",
-  "h": "Fileshaper",
-  "sub": "Videos für Discord komprimieren, iPhone-Fotos umwandeln, PDFs zusammenfügen und unterschreiben. Ein Werkzeugkasten, komplett offline.",
-  "kicker": "kostenlose Offline-Dateiwerkzeuge",
-  "plats": "Mac und Windows",
-  "domain": "fileshaper.app"
- },
- {
-  "file": "assets/img/og/de/captionshaper.png",
-  "lang": "de",
-  "id": "captionshaper",
-  "kind": "product",
-  "v": "cs",
-  "slug": "captionshaper",
-  "name": "Captionshaper",
-  "h": "Captionshaper",
-  "sub": "Wortgenaue Untertitel für jedes Video, geschrieben von einem Sprachmodell auf deinem eigenen Computer. SRT, VTT oder eingebrannt.",
-  "kicker": "kostenlose Offline-Untertitel",
-  "plats": "Mac und Windows",
-  "domain": "captionshaper.app"
  },
  {
   "file": "assets/img/og/de/startshaper.png",
@@ -541,34 +429,6 @@
   "sub": "Для Mac и Windows. Ваши файлы не покидают ваш компьютер."
  },
  {
-  "file": "assets/img/og/ru/fileshaper.png",
-  "lang": "ru",
-  "id": "fileshaper",
-  "kind": "product",
-  "v": "fs",
-  "slug": "fileshaper",
-  "name": "Fileshaper",
-  "h": "Fileshaper",
-  "sub": "Сжимайте видео для Discord, конвертируйте фото с iPhone, объединяйте и подписывайте PDF. Один набор инструментов, полностью офлайн.",
-  "kicker": "бесплатный офлайн-набор для файлов",
-  "plats": "Mac и Windows",
-  "domain": "fileshaper.app"
- },
- {
-  "file": "assets/img/og/ru/captionshaper.png",
-  "lang": "ru",
-  "id": "captionshaper",
-  "kind": "product",
-  "v": "cs",
-  "slug": "captionshaper",
-  "name": "Captionshaper",
-  "h": "Captionshaper",
-  "sub": "Субтитры с точностью до слова для любого видео, написанные речевой моделью на вашем компьютере. SRT, VTT или вшитые в видео.",
-  "kicker": "бесплатные офлайн-субтитры",
-  "plats": "Mac и Windows",
-  "domain": "captionshaper.app"
- },
- {
   "file": "assets/img/og/ru/startshaper.png",
   "lang": "ru",
   "id": "startshaper",
@@ -672,34 +532,6 @@
   "h": "简单好用的应用。完全免费。",
   "hl": "完全免费。",
   "sub": "支持 Mac 和 Windows。你的文件从不离开你的电脑。"
- },
- {
-  "file": "assets/img/og/zh/fileshaper.png",
-  "lang": "zh",
-  "id": "fileshaper",
-  "kind": "product",
-  "v": "fs",
-  "slug": "fileshaper",
-  "name": "Fileshaper",
-  "h": "Fileshaper",
-  "sub": "为 Discord 压缩视频、转换 iPhone 照片、合并和签署 PDF。一个工具箱，完全离线。",
-  "kicker": "免费离线文件工具箱",
-  "plats": "Mac 和 Windows",
-  "domain": "fileshaper.app"
- },
- {
-  "file": "assets/img/og/zh/captionshaper.png",
-  "lang": "zh",
-  "id": "captionshaper",
-  "kind": "product",
-  "v": "cs",
-  "slug": "captionshaper",
-  "name": "Captionshaper",
-  "h": "Captionshaper",
-  "sub": "为任何视频生成逐词对齐的字幕，由你电脑上的语音模型完成。导出 SRT、VTT 或直接烧录进视频。",
-  "kicker": "免费离线自动字幕",
-  "plats": "Mac 和 Windows",
-  "domain": "captionshaper.app"
  },
  {
   "file": "assets/img/og/zh/startshaper.png",

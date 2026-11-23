@@ -14,7 +14,7 @@ export const WORK_INTRO = {
 
 export const WORK = [
   {
-    slug: 'fileshaper', v: 'fs', name: 'Fileshaper', site: 'https://fileshaper.app/', repo: 'hollowbit-dev/fileshaper',
+    slug: 'fileshaper', v: 'fs', name: 'Fileshaper', site: 'https://hollowbit.dev/fileshaper/', repo: 'hollowbit-dev/fileshaper',
     tagline: 'A free file toolbox that never uploads your files.',
     released: 'November 2026', platform: 'Mac and Windows', license: 'GPL-3.0',
     stack: 'Electron, FFmpeg, pdf-lib, PDF.js',
@@ -39,7 +39,7 @@ export const WORK = [
     next: ['Signing the app with Apple and Microsoft certificates, so the first launch shows no warning.', 'Testing on more Windows PCs.', 'Translating the app itself, not just the website.'],
   },
   {
-    slug: 'captionshaper', v: 'cs', name: 'Captionshaper', site: 'https://captionshaper.app/', repo: 'hollowbit-dev/captionshaper',
+    slug: 'captionshaper', v: 'cs', name: 'Captionshaper', site: 'https://hollowbit.dev/captionshaper/', repo: 'hollowbit-dev/captionshaper',
     tagline: 'Word-timed subtitles, written by a speech model on your own computer.',
     released: 'November 2026', platform: 'Mac (Apple Silicon) and Windows', license: 'GPL-3.0',
     stack: 'Electron, whisper.cpp, Silero VAD, FFmpeg with libass',

@@ -1,0 +1,22 @@
+# Hollowbit Studio
+
+> Hollowbit Studio makes free, open-source desktop apps for Mac and Windows. Fuseduo is Mac only.
+
+## Apps
+- [Melodyshaper](https://hollowbit.dev/melodyshaper/): Hum a tune and hear it on a real instrument. Get chords that fit, add drums and bass, and export a whole song. Source: https://github.com/hollowbit-dev/melodyshaper
+- [Moveshaper](https://hollowbit.dev/moveshaper/): Move everything from your old computer to your new one: files, apps, bookmarks, Wi-Fi and wallpaper. Windows and Mac, both ways. Source: https://github.com/hollowbit-dev/moveshaper
+- [Clipshaper](https://hollowbit.dev/clipshaper/): Turn a long video into short vertical clips with captions. It finds the best moments, follows the speaker and exports for TikTok, Reels and Shorts. No watermark. Source: https://github.com/hollowbit-dev/clipshaper
+- [Fileshaper](https://hollowbit.dev/fileshaper/): Compress videos for Discord, convert iPhone photos, merge and sign PDFs. One toolbox, fully offline. Source: https://github.com/hollowbit-dev/fileshaper
+- [Captionshaper](https://hollowbit.dev/captionshaper/): Word-timed subtitles for any video, written by a speech model on your own computer. SRT, VTT or burned in. Source: https://github.com/hollowbit-dev/captionshaper
+- [Diskshaper](https://hollowbit.dev/diskshaper/): See what’s eating your storage, from shader caches and Steam leftovers to Premiere caches and duplicate photos. Clean only what’s safe, always to the Trash. Source: https://github.com/hollowbit-dev/diskshaper
+- [Writeshaper](https://hollowbit.dev/writeshaper/): Select text in any app, press a shortcut, and it’s fixed, or made clearer, shorter, friendlier or more professional. The writing model runs on your computer. Source: https://github.com/hollowbit-dev/writeshaper
+- [Startshaper](https://hollowbit.dev/startshaper/): Find out why your computer is slow. See every app that starts by itself, what it is in plain words, and switch off the ones you don’t need. Every change can be undone. Source: https://github.com/hollowbit-dev/startshaper
+- [Lightshaper](https://hollowbit.dev/lightshaper/): Edit your photos, camera RAW included, with sliders, masks and looks. Batch-edit a whole folder and export. Your originals are never changed. Source: https://github.com/hollowbit-dev/lightshaper
+- [Fuseduo](https://fuseduo.com/): Turns two Mac apps into a working automation. Drag one onto the other. Source: https://github.com/hollowbit-dev/fuseduo
+
+## Studio
+- [All downloads](https://hollowbit.dev/download/)
+- [About](https://hollowbit.dev/about/)
+- [Privacy](https://hollowbit.dev/privacy/)
+- [Press kit](https://hollowbit.dev/press/)
+- [GitHub](https://github.com/hollowbit-dev)
