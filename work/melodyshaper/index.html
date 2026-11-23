@@ -14,7 +14,7 @@
 <meta property="og:title" content="Melodyshaper case study · Hollowbit Studio">
 <meta property="og:description" content="Hum a tune and hear it on a real instrument. A free music maker for complete beginners. The problem, the key decisions and how it was tested.">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://hollowbit.dev/assets/img/og/en/work-melodyshaper.png?v=56bd32e6">
+<meta property="og:image" content="https://hollowbit.dev/assets/img/og/en/work-melodyshaper.png?v=82326570">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Melodyshaper Hum a tune and hear it on a real instrument. A free music maker for complete beginners.">
@@ -22,7 +22,7 @@
 <meta name="twitter:site" content="@hollowbitstudio">
 <meta name="twitter:title" content="Melodyshaper case study · Hollowbit Studio">
 <meta name="twitter:description" content="Hum a tune and hear it on a real instrument. A free music maker for complete beginners. The problem, the key decisions and how it was tested.">
-<meta name="twitter:image" content="https://hollowbit.dev/assets/img/og/en/work-melodyshaper.png?v=56bd32e6">
+<meta name="twitter:image" content="https://hollowbit.dev/assets/img/og/en/work-melodyshaper.png?v=82326570">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
@@ -81,24 +81,24 @@
     <dl class="wk-meta in-2">
       <div><dt>Platform</dt><dd>Mac and Windows</dd></div>
       <div><dt>Built with</dt><dd>Electron, the Web Audio API, classic pitch detection, CC0 instrument recordings</dd></div>
-      <div><dt>First release</dt><dd>November 2026 · now v1.0.0</dd></div>
+      <div><dt>First release</dt><dd>November 2026 · now v1.1.0</dd></div>
       <div><dt>Licence</dt><dd>MIT</dd></div>
     </dl>
   </div>
   <div class="wk-stats">
-    <div class="wk-stat reveal" style="--d:0ms"><strong>23</strong><span>Recorded instruments, plus an 11-piece drum kit</span></div><div class="wk-stat reveal" style="--d:80ms"><strong>3</strong><span>Chord progressions offered for each melody</span></div><div class="wk-stat reveal" style="--d:160ms"><strong>0</strong><span>AI models or AI-generated sounds</span></div>
+    <div class="wk-stat reveal" style="--d:0ms"><strong>43</strong><span>Recorded instruments, plus 29 drum sounds</span></div><div class="wk-stat reveal" style="--d:80ms"><strong>119</strong><span>Drum presets across everyday styles</span></div><div class="wk-stat reveal" style="--d:160ms"><strong>0</strong><span>AI models or AI-generated sounds</span></div>
   </div>
   <h2>The problem</h2>
   <p>Most people with a tune in their head have no way to get it out. Full music software assumes you already know about keys, chords and arranging.</p><p>Free hum-to-notes tools are mostly phone apps, or plugins that need a professional music app around them.</p>
   <h2>What it does</h2>
-  <p>Hum or sing along with a click and Melodyshaper turns your voice into notes on a real instrument, in key and on the beat. It then offers chords that fit the tune. Add drums, bass, more sections and your own vocals, and export MP3, WAV, stems or MIDI.</p>
+  <p>Hum or sing along with a click and Melodyshaper turns your voice into notes on a real instrument, in key and on the beat. It then offers chords that fit the tune, or writes a melody from your chords or bass. Add drums, more sections, your vocals or a plugged-in guitar, and export MP3, WAV, stems or MIDI.</p>
   <figure class="wk-shot reveal"><img src="../../assets/img/melodyshaper-app.webp" alt="Melodyshaper app window" loading="lazy"></figure>
   <h2>Key decisions</h2>
-  <ol class="wk-decisions"><li><b>Notes are stored as positions in the scale.</b> A note is saved as a step in the key, not a fixed pitch, so changing key or mood keeps every note in tune.</li><li><b>Plain signal processing, not AI.</b> Pitch and beatbox detection are classic audio techniques, and the chord finder scores chords with music theory. No model listens to or generates anything.</li><li><b>Real recordings only.</b> Every instrument is a real recording from public-domain CC0 libraries. There are no finished loops or demo songs to pass off as your own.</li><li><b>Nothing locked.</b> Songs save, reopen and export for free, and recordings travel inside the song file.</li></ol>
+  <ol class="wk-decisions"><li><b>Notes are stored as positions in the scale.</b> A note is saved as a step in the key, not a fixed pitch, so changing key or mood keeps every note in tune.</li><li><b>Plain signal processing, not AI.</b> Pitch and beatbox detection are classic audio techniques, and the chord finder and melody maker follow fixed music-theory rules. No AI model listens to or generates anything.</li><li><b>Real recordings only.</b> Every instrument is a real recording from public-domain CC0 libraries. There are no finished loops or demo songs to pass off as your own.</li><li><b>Nothing locked.</b> Songs save, reopen and export for free, and recordings travel inside the song file.</li></ol>
   <h2>How it was tested</h2>
   <ul class="wk-list"><li>Automated tests check that every note in every key and scale stays in key.</li><li>Pitch and beatbox detection run on simulated voices and drum sounds at several speeds, through the same path as the microphone.</li><li>End-to-end tests drive the real app through editing, saving, reopening and every export, and playback holds 60 frames per second under a 4x CPU slowdown.</li></ul>
   <h2>What’s next</h2>
-  <ul class="wk-list"><li>Testing with more real voices and microphones.</li><li>Testing on real Windows PCs and with more MIDI keyboards.</li></ul>
+  <ul class="wk-list"><li>Testing with real voices, guitars, audio interfaces and MIDI devices.</li><li>Testing on real Windows PCs.</li></ul>
   <div class="wk-links">
     <a class="btn btn-primary" href="https://hollowbit.dev/melodyshaper/">Website <svg class="" aria-hidden="true"><use href="#out"/></svg></a>
     <a class="btn btn-ghost" href="https://github.com/hollowbit-dev/melodyshaper">Source code <svg class="" aria-hidden="true"><use href="#out"/></svg></a>
