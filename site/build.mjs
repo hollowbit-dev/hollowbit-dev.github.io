@@ -868,6 +868,32 @@ const workPage = (w) => {
   });
 };
 
+/* ---------- Melodyshaper coming soon (English only, not in the app lists until it ships) ---------- */
+const MS_POINTS = [
+  ['Hum it', 'Hum or sing a tune and hear it back on piano, strings, flute, sax and more.'],
+  ['Nothing sounds wrong', 'Every note stays in key and every sound lands on the beat.'],
+  ['Real instruments', '23 recorded instruments and an 11-piece drum kit, with no AI-generated music.'],
+  ['Make whole songs', 'Build verses and choruses, record your voice, then export MP3, WAV, stems or MIDI.'],
+];
+const melodyshaper = () => page(LANGS[0], {
+  path: '/melodyshaper/', title: 'Melodyshaper, coming soon · Hollowbit Studio', enOnly: true, cls: 'p-ms',
+  desc: 'Hum a tune and hear it on a real instrument. Melodyshaper is a free music maker for beginners, coming soon to Mac and Windows.',
+  og: { id: 'melodyshaper', kind: 'plain', h: 'Hum a tune. Hear it played.', sub: 'Melodyshaper. Coming soon, free.' },
+  body: `
+<section class="wrap ms-hero">
+  <img class="ms-icon in-0" src="/assets/img/melodyshaper-icon.png" alt="" width="84" height="84">
+  <p class="ms-soon in-0">Coming soon</p>
+  <h1 class="h1" data-words>Hum a tune. Hear it played.</h1>
+  <p class="lead in-1">Melodyshaper is a free music maker for complete beginners. Hum an idea and it becomes a real instrument, in key and on the beat.</p>
+  <div class="hero-cta in-2"><a class="btn btn-primary btn-lg" href="https://discord.gg/ENSTjVpJj8">Get told on Discord ${ic('arrow')}</a><a class="btn btn-ghost btn-lg" href="/">See our other apps</a></div>
+  <p class="ms-meta in-2">Free · Mac and Windows · Works offline</p>
+  <figure class="ms-shot in-2"><img src="/assets/img/melodyshaper-app.webp" width="1320" height="840" alt="The Melodyshaper editor with tracks, a melody on a note grid, and playable pads"></figure>
+</section>
+<section class="wrap sec">
+  <div class="ms-points">${MS_POINTS.map(([h, p], i) => `<article class="reveal" style="--d:${i * 70}ms"><h2>${esc(h)}</h2><p>${esc(p)}</p></article>`).join('')}</div>
+</section>`,
+});
+
 /* ---------- services (English only; footer link only) ---------- */
 const SAMPLES = [
   ['kettlewick', 'Kettlewick Coffee', 'Neighbourhood café · Portland, US', 'Menu with prices, opening hours, order-ahead button, photo gallery.', 'fs'],
@@ -1072,6 +1098,7 @@ for (const L of LANGS) {
 out['404.html'] = notFound(LANGS[0]);
 out['work/index.html'] = workIndex();
 out['services/index.html'] = services();
+out['melodyshaper/index.html'] = melodyshaper();
 out['press/index.html'] = press();
 for (const w of WORK) out[`work/${w.slug}/index.html`] = workPage(w);
 // Root-relative links become relative, so pages also work opened straight from the folder.
@@ -1089,7 +1116,7 @@ for (const [f, raw] of Object.entries(out)) {
 writeFileSync(resolve(root, 'site/og.json'), JSON.stringify(OG, null, 1));
 writeFileSync(resolve(root, 'assets/style.css'), readFileSync(resolve(root, 'site/main.css'), 'utf8') + '\n' + readFileSync(resolve(root, 'site/demo.css'), 'utf8'));
 const paths = ['/', '/fileshaper/', '/captionshaper/', '/startshaper/', '/lightshaper/', '/moveshaper/', '/download/', '/about/', '/contact/', '/donate/', '/privacy/'];
-const workPaths = ['/work/', '/services/', '/press/', ...WORK.map((w) => `/work/${w.slug}/`)];
+const workPaths = ['/work/', '/services/', '/press/', '/melodyshaper/', ...WORK.map((w) => `/work/${w.slug}/`)];
 const u = (code, p) => `${ORIGIN}${code === 'en' ? '' : `/${code}`}${p}`;
 writeFileSync(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

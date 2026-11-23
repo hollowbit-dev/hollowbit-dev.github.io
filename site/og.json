@@ -730,6 +730,14 @@
   "sub": "Fast, accessible sites for cafés, clinics, tour companies and more. Fixed prices."
  },
  {
+  "file": "assets/img/og/en/melodyshaper.png",
+  "lang": "en",
+  "id": "melodyshaper",
+  "kind": "plain",
+  "h": "Hum a tune. Hear it played.",
+  "sub": "Melodyshaper. Coming soon, free."
+ },
+ {
   "file": "assets/img/og/en/press.png",
   "lang": "en",
   "id": "press",

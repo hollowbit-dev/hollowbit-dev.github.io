@@ -817,6 +817,21 @@ html[data-os="mac"] .band-color .dl-btn[data-os-btn="win"], html[data-os="win"] 
 @media (max-width: 900px) { .pk-facts { grid-template-columns: repeat(2, 1fr); } .pk-apps { grid-template-columns: repeat(2, 1fr); } .pk-logos { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 560px) { .pk-apps { grid-template-columns: 1fr; } .pk-logos { grid-template-columns: repeat(2, 1fr); } }
 
+/* Melodyshaper coming soon */
+.ms-hero { padding-top: 132px; text-align: center; }
+.ms-hero .lead { max-width: 620px; margin: 20px auto 0; }
+.ms-icon { display: block; width: 84px; height: 84px; margin: 0 auto 14px; }
+.ms-soon { width: max-content; margin: 0 auto 18px; padding: 5px 12px; color: #ff9ccb; font-size: 13px; font-weight: 600; border: 1px solid rgba(255, 122, 182, .35); border-radius: 999px; background: rgba(255, 122, 182, .1); }
+.ms-meta { margin: 18px 0 0; color: var(--muted, #a5a2b4); font-size: 14px; }
+.ms-shot { max-width: 1120px; margin: 54px auto 0; overflow: hidden; border: 1px solid rgba(255, 255, 255, .12); border-radius: 16px; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); }
+.ms-shot img { display: block; width: 100%; height: auto; }
+.ms-points { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 1120px; margin: 0 auto; }
+.ms-points article { padding: 22px; border: 1px solid rgba(255, 255, 255, .09); border-radius: 14px; background: rgba(38, 36, 50, .55); }
+.ms-points h2 { margin: 0 0 7px; font-size: 17px; }
+.ms-points p { margin: 0; color: var(--muted, #a5a2b4); font-size: 14.5px; line-height: 1.5; }
+@media (max-width: 900px) { .ms-points { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .ms-hero { padding-top: 104px; } .ms-points { grid-template-columns: 1fr; } .ms-shot { margin-top: 36px; border-radius: 10px; } }
+
 /* ---------- demo stage ---------- */
 .stage { position: relative; margin-top: clamp(48px, 8vh, 80px); --glow: var(--fs); }
 /* coloured light behind the window, in the colour of the demo that's playing */
