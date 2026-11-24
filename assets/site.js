@@ -126,6 +126,17 @@
   });
   const ease = (p) => 1 - Math.pow(1 - p, 3);
 
+  const DX = {
+    art(d, k, tint) {
+      const a = $('.dx-bg-a', d), b = $('.dx-bg-b', d), front = a.classList.contains('on') ? a : b, back = front === a ? b : a;
+      const url = `url(/assets/img/dx/${k}-hero.webp)`;
+      if (front.style.backgroundImage.includes(`${k}-hero`)) return;
+      back.style.backgroundImage = url; back.classList.add('on'); front.classList.remove('on');
+      d.style.setProperty('--dxt', tint);
+      const logo = $('.dx-logo', d); logo.classList.add('swap');
+      setTimeout(() => { logo.src = `/assets/img/dx/${k}-logo.webp`; logo.classList.remove('swap'); }, 220);
+    },
+  };
   const DEMOS = {
 
     'demo-cl': {
@@ -285,15 +296,30 @@
       },
     },
     'demo-dx': {
-      length: 7200,
+      length: 9800,
       setup(d) { return d; },
-      reset(d, final) { d.classList.remove('drag', 'over', 'dropped'); d.classList.toggle('toast', final); },
+      reset(d, final) {
+        d.classList.remove('drag', 'over', 'dropped', 'press', 'slot');
+        ['filled', 'toast', 'playing'].forEach((c) => d.classList.toggle(c, final));
+        const cs = $$('.dx-c', d);
+        cs.forEach((c, i) => c.classList.toggle('sel', final ? i === 0 : i === 1));
+        if (final) d.classList.add('slot');
+        DX.art(d, final ? 'celeste' : 'hk', '#8c9bff');
+        $('.dx-play em', d).textContent = final ? 'Stop' : 'Play';
+      },
       async run(d, sig) {
-        await sleep(500, sig);
-        d.classList.add('drag'); await sleep(900, sig);
-        d.classList.add('over'); await sleep(1300, sig);
-        d.classList.add('dropped'); d.classList.remove('over'); await sleep(400, sig);
-        d.classList.add('toast'); await sleep(2600, sig);
+        const cs = $$('.dx-c', d), sel = (i) => cs.forEach((c, j) => c.classList.toggle('sel', j === i));
+        await sleep(900, sig);
+        sel(2); DX.art(d, 'hades', '#e0553b'); await sleep(1500, sig);
+        sel(1); DX.art(d, 'hk', '#9fb4d8'); await sleep(900, sig);
+        d.classList.add('drag'); await sleep(700, sig);
+        d.classList.add('over', 'slot'); sel(-1); await sleep(1100, sig);
+        d.classList.add('dropped'); await sleep(350, sig);
+        d.classList.remove('over'); d.classList.add('filled'); sel(0); DX.art(d, 'celeste', '#c75bd8');
+        await sleep(300, sig); d.classList.add('toast'); await sleep(1500, sig);
+        d.classList.remove('toast'); d.classList.add('press'); await sleep(160, sig);
+        d.classList.remove('press'); d.classList.add('playing'); $('.dx-play em', d).textContent = 'Stop';
+        await sleep(1700, sig);
       },
     },
     'demo-ms': {

@@ -249,17 +249,46 @@ kbd { font: 500 10.5px var(--sans); padding: 1px 5px; border-radius: 4px; box-sh
 @media (max-width: 640px) { .tab { padding: 9px 12px; } .tab img { width: 22px; height: 22px; } }
 
 /* DropExe demo */
-.demo-dx .dx-win { background: #0d1020; }
-.demo-dx .dx-app { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.demo-dx .dx-over { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding-left: 7%; gap: 10px; background: rgba(13,16,32,.72); opacity: 0; transition: opacity .3s; }
-.demo-dx .dx-over b { font-size: 76px; font-weight: 850; font-stretch: 125%; letter-spacing: -.035em; color: #fff; }
-.demo-dx .dx-over span { font-size: 22px; color: #c9cde6; }
-.demo-dx .dx-file { position: absolute; right: -320px; top: 52%; display: flex; align-items: center; gap: 14px; padding: 14px 22px 14px 14px; border-radius: 16px; background: #f3f4fc; color: #0d1020; font-size: 22px; font-weight: 700; box-shadow: 0 30px 60px rgba(0,0,0,.5); transition: transform 1.1s cubic-bezier(.2,.7,.2,1), opacity .3s; }
-.demo-dx .dx-ico { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 12px; background: #8c9bff; color: #fff; font-size: 15px; font-weight: 800; }
-.demo-dx .dx-toast { position: absolute; left: 50%; bottom: 7%; transform: translate(-50%, 30px); padding: 16px 26px; border-radius: 16px; background: #f3f4fc; color: #0d1020; font-size: 22px; font-weight: 700; opacity: 0; transition: transform .45s cubic-bezier(.2,1.3,.35,1), opacity .3s; }
-.demo-dx.drag .dx-file { transform: translateX(-760px) rotate(-6deg); }
-.demo-dx.over .dx-over { opacity: 1; }
-.demo-dx.dropped .dx-file { transform: translateX(-760px) translateY(220px) scale(.3); opacity: 0; }
+.demo-dx .dx-win { background: #0d1020; font-family: inherit; }
+.dx-bg { position: absolute; inset: -3%; background-size: cover; background-position: center 25%; opacity: 0; transition: opacity .8s ease; }
+.dx-bg.on { opacity: 1; animation: dxDrift 14s ease-in-out infinite alternate; }
+@keyframes dxDrift { to { transform: scale(1.06) translate(-1%, -1%); } }
+.dx-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(13,16,32,.95), rgba(13,16,32,.75) 34%, rgba(13,16,32,.1) 70%), linear-gradient(0deg, #0d1020 2%, rgba(13,16,32,.9) 34%, rgba(13,16,32,0) 66%), radial-gradient(90% 60% at 0% 100%, color-mix(in srgb, var(--dxt, #8c9bff) 35%, transparent), transparent 62%); transition: background .8s; }
+.dx-top { position: absolute; left: 0; right: 0; top: 0; height: 46px; display: flex; align-items: center; gap: 22px; padding: 0 16px; }
+.dx-top .tl { display: flex; gap: 6px; } .dx-top .tl i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; } .dx-top .tl i:nth-child(2) { background: #febc2e; } .dx-top .tl i:nth-child(3) { background: #28c840; }
+.dx-tabs { display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(13,16,32,.7); font-size: 11.5px; font-weight: 600; color: #a9aecb; }
+.dx-tabs b, .dx-tabs span { padding: 4px 11px; border-radius: 999px; } .dx-tabs b { background: #f3f4fc; color: #0d1020; }
+.dx-r { margin-left: auto; display: flex; gap: 8px; font-size: 11px; font-weight: 600; } .dx-r span { padding: 6px 11px; border-radius: 9px; background: rgba(13,16,32,.75); box-shadow: inset 0 0 0 1px rgba(220,226,255,.14); }
+.dx-hero { position: absolute; left: 40px; top: 118px; }
+.dx-kind { display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(13,16,32,.6); box-shadow: inset 0 0 0 1px rgba(220,226,255,.14); font-size: 11px; font-weight: 600; }
+.dx-logo { display: block; height: 96px; max-width: 330px; object-fit: contain; object-position: left; margin: 14px 0 18px; filter: drop-shadow(0 6px 20px rgba(0,0,0,.6)); transition: opacity .3s, transform .5s cubic-bezier(.2,1.3,.35,1); }
+.dx-logo.swap { opacity: 0; transform: translateY(10px); }
+.dx-acts { display: flex; gap: 8px; }
+.dx-play, .dx-btn { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px; border-radius: 10px; font-size: 12.5px; font-weight: 600; transition: transform .3s cubic-bezier(.2,1.3,.35,1), background .25s, color .25s; }
+.dx-play { background: #f3f4fc; color: #0d1020; min-width: 86px; } .dx-play i { width: 0; height: 0; border-left: 9px solid currentColor; border-top: 5.5px solid transparent; border-bottom: 5.5px solid transparent; }
+.dx-btn { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+.demo-dx.press .dx-play { transform: scale(.92); }
+.demo-dx.playing .dx-play { background: #5be49b; color: #062814; } .demo-dx.playing .dx-play i { border: 0; width: 9px; height: 9px; background: currentColor; border-radius: 2px; }
+.dx-shelf { position: absolute; left: 40px; right: -200px; bottom: 34px; display: flex; gap: 12px; align-items: flex-end; }
+.dx-c { position: relative; flex: none; width: 104px; height: 156px; border-radius: 11px; overflow: hidden; background: #171b31; box-shadow: 0 10px 24px rgba(0,0,0,.45); transform-origin: 50% 100%; transition: transform .5s cubic-bezier(.2,1.3,.35,1), box-shadow .3s, opacity .3s; }
+.dx-c img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dx-c.sel { transform: translateY(-10px) scale(1.08); box-shadow: 0 20px 40px rgba(0,0,0,.55), 0 0 0 3px #fff, 0 0 34px color-mix(in srgb, var(--dxt, #8c9bff) 70%, transparent); }
+.dx-new { width: 0; margin-right: -12px; opacity: 0; transition: width .55s cubic-bezier(.2,1.3,.35,1), margin .55s cubic-bezier(.2,1.3,.35,1), opacity .25s, transform .5s cubic-bezier(.2,1.3,.35,1), box-shadow .3s; }
+.dx-new img { opacity: 0; transform: rotateY(90deg); transition: opacity .2s, transform .6s cubic-bezier(.2,1.3,.35,1); }
+.demo-dx.slot .dx-new { width: 104px; margin-right: 0; opacity: 1; background: color-mix(in srgb, #8c9bff 22%, transparent); box-shadow: inset 0 0 0 2px rgba(255,255,255,.8); }
+.demo-dx.filled .dx-new img { opacity: 1; transform: none; }
+.demo-dx.filled .dx-new { box-shadow: 0 10px 24px rgba(0,0,0,.45); }
+.dx-tag { position: absolute; left: 6px; bottom: 6px; padding: 2px 7px; border-radius: 6px; font-size: 10px; background: #5be49b; color: #062814; opacity: 0; transition: opacity .3s; }
+.demo-dx.playing .dx-tag { opacity: 1; }
+.demo-dx.over .dx-c:not(.dx-new) { opacity: .45; }
+.dx-over { position: absolute; left: 0; right: 0; top: 0; bottom: 210px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 26px 40px; gap: 6px; opacity: 0; transition: opacity .3s; background: linear-gradient(180deg, rgba(13,16,32,.55), rgba(13,16,32,.85)); }
+.dx-over b { font-size: 64px; font-weight: 850; letter-spacing: -.035em; color: #fff; line-height: 1; } .dx-over span { font-size: 15px; color: #c9cde6; }
+.demo-dx.over .dx-over { opacity: 1; } .demo-dx.over .dx-hero { opacity: 0; } .dx-hero { transition: opacity .3s; }
+.dx-file { position: absolute; left: 1100px; top: 250px; display: flex; align-items: center; gap: 11px; padding: 10px 16px 10px 10px; border-radius: 13px; background: #f3f4fc; color: #0d1020; font-size: 15px; font-weight: 700; box-shadow: 0 24px 50px rgba(0,0,0,.55); transition: transform 1s cubic-bezier(.2,.7,.2,1), opacity .35s; }
+.dx-ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: #8c9bff; color: #fff; font-size: 11px; font-weight: 800; }
+.demo-dx.drag .dx-file { transform: translate(-620px, 40px) rotate(-7deg); }
+.demo-dx.dropped .dx-file { transform: translate(-1030px, 270px) scale(.25) rotate(-12deg); opacity: 0; transition: transform .55s cubic-bezier(.5,0,.75,0), opacity .5s .1s; }
+.dx-toast { position: absolute; left: 50%; top: 64px; transform: translate(-50%, -20px); padding: 10px 18px; border-radius: 12px; background: #f3f4fc; color: #0d1020; font-size: 14px; font-weight: 700; opacity: 0; box-shadow: 0 16px 40px rgba(0,0,0,.45); transition: transform .45s cubic-bezier(.2,1.3,.35,1), opacity .3s; }
 .demo-dx.toast .dx-toast { transform: translate(-50%, 0); opacity: 1; }
 
 /* Startshaper demo: rows land with their startup seconds, the bar fills, the safe ones switch off */

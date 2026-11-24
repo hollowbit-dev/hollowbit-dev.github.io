@@ -480,11 +480,23 @@ const msDemo = (L) => `<div class="demo demo-ms" id="demo-ms" role="tabpanel" ar
   </div>
 </div>`;
 
-// DropExe demo: a game's .exe is dragged onto DropExe, the shelf takes it, and it's ready to play.
+// DropExe demo: the shelf, the selection gliding across it (art and colour follow), an .exe dropped in
+// (the shelf opens a slot, the cover flips in) and Play. Art is Steam's, hosted here (assets/img/dx).
+const DX_SHELF = [['hk', 'Hollow Knight'], ['hades', 'Hades'], ['stardew', 'Stardew Valley'], ['portal', 'Portal 2'], ['cuphead', 'Cuphead'], ['terraria', 'Terraria']];
 const dxDemo = (L) => `<div class="demo demo-dx" id="demo-dx" role="tabpanel" aria-labelledby="tab-dx">
-  <p class="sr-only">${esc(L.home.srDx || 'Animated demo: a Windows game is dropped onto DropExe and appears on its shelf, ready to play.')}</p>
+  <p class="sr-only">${esc(L.home.srDx || 'Animated demo: in DropExe, the selection moves across a shelf of Windows games, Celeste.exe is dropped in and appears on the shelf, then Play is pressed.')}</p>
   <div class="win dx-win" aria-hidden="true">
-    <img class="dx-app" src="/assets/img/dropexe-library.webp" alt="" width="2560" height="1600">
+    <div class="dx-bg dx-bg-a on" style="background-image:url(/assets/img/dx/hk-hero.webp)"></div><div class="dx-bg dx-bg-b"></div><div class="dx-shade"></div>
+    <div class="dx-top"><div class="tl"><i></i><i></i><i></i></div><span class="dx-tabs"><b>Library</b><span>Stores</span></span><span class="dx-r"><span>Find my games</span><span>Add a Windows program</span></span></div>
+    <div class="dx-hero">
+      <span class="dx-kind">Steam, Windows version</span>
+      <img class="dx-logo" src="/assets/img/dx/hk-logo.webp" alt="">
+      <div class="dx-acts"><span class="dx-play"><i></i><em>Play</em></span><span class="dx-btn">Make it run</span><span class="dx-btn">Add to Launchpad</span></div>
+    </div>
+    <div class="dx-shelf">
+      <span class="dx-c dx-new"><img src="/assets/img/dx/celeste-cover.webp" alt=""><b class="dx-tag">Playing</b></span>
+      ${DX_SHELF.map(([k], i) => `<span class="dx-c${i === 0 ? ' sel' : ''}"><img src="/assets/img/dx/${k}-cover.webp" alt=""></span>`).join('')}
+    </div>
     <div class="dx-over"><b>Drop to add</b><span>Games, apps and installers</span></div>
     <div class="dx-file"><span class="dx-ico">EXE</span><span>Celeste.exe</span></div>
     <div class="dx-toast">Celeste added. Press Play.</div>

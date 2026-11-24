@@ -32,7 +32,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=84e491a2">
+<link rel="stylesheet" href="assets/style.css?v=e8b56d53">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Hollowbit Studio","alternateName":"Hollowbit","url":"https://hollowbit.dev/","logo":"https://hollowbit.dev/favicon.png","founder":{"@type":"Person","name":"Elvis Zygmanta"},"email":"hollowbitstudio@gmail.com","sameAs":["https://github.com/hollowbit-dev","https://discord.gg/ENSTjVpJj8","https://ko-fi.com/hollowbit","https://x.com/hollowbitstudio","https://www.youtube.com/@hollowbitstudio","https://www.tiktok.com/@hollowbitstudio","https://www.instagram.com/hollowbitstudio","https://www.reddit.com/user/hollowbitstudio","https://hollowbit.dev/fileshaper/","https://hollowbit.dev/captionshaper/","https://hollowbit.dev/diskshaper/","https://hollowbit.dev/writeshaper/","https://hollowbit.dev/startshaper/","https://hollowbit.dev/lightshaper/","https://hollowbit.dev/clipshaper/","https://hollowbit.dev/moveshaper/","https://hollowbit.dev/melodyshaper/","https://hollowbit.dev/dropexe/","https://fuseduo.com/"]}</script>
 <script>(function(d,u){d.classList.add('js');d.dataset.os=/Windows/.test(u)?'win':/Macintosh/.test(u)?'mac':'other'})(document.documentElement,navigator.userAgent);window.HB={"lang":"en","langs":["en","es","fr","de","ru","zh"],"copied":"Copied","osNote":{"mac":"You’re on a Mac, so the Mac download is highlighted.","win":"You’re on Windows, so the Windows download is highlighted."},"enOnly":false}</script>
 </head>
@@ -146,9 +146,19 @@
     <p class="reveal">Live demos of the real apps. Pick one.</p>
   </div>
   <div class="reveal"><div class="stage" data-stage><div class="stage-tabs" role="tablist" aria-label="Product demos"><button class="tab" role="tab" aria-selected="true" title="DropExe" aria-controls="demo-dx" id="tab-dx" style="--c: var(--dx)"><img src="assets/img/dropexe-icon.png" alt="" width="20" height="20"><span class="tab-name">DropExe</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Clipshaper" aria-controls="demo-cl" id="tab-cl" style="--c: var(--cl)"><img src="assets/img/clipshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Clipshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Fileshaper" aria-controls="demo-fs" id="tab-fs" style="--c: var(--fs)"><img src="assets/img/fileshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Fileshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Captionshaper" aria-controls="demo-cs" id="tab-cs" style="--c: var(--cs)"><img src="assets/img/captionshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Captionshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Diskshaper" aria-controls="demo-ds" id="tab-ds" style="--c: var(--ds)"><img src="assets/img/diskshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Diskshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Writeshaper" aria-controls="demo-ws" id="tab-ws" style="--c: var(--ws)"><img src="assets/img/writeshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Writeshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Startshaper" aria-controls="demo-ss" id="tab-ss" style="--c: var(--ss)"><img src="assets/img/startshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Startshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Lightshaper" aria-controls="demo-ls" id="tab-ls" style="--c: var(--ls)"><img src="assets/img/lightshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Lightshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Moveshaper" aria-controls="demo-mv" id="tab-mv" style="--c: var(--mv)"><img src="assets/img/moveshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Moveshaper</span><span class="tab-bar"><i></i></span></button><button class="tab" role="tab" aria-selected="false" title="Melodyshaper" aria-controls="demo-ms" id="tab-ms" style="--c: var(--ms)"><img src="assets/img/melodyshaper-icon.png" alt="" width="20" height="20"><span class="tab-name">Melodyshaper</span><span class="tab-bar"><i></i></span></button></div><div class="stage-frame"><div class="stage-scale"><div class="demo demo-dx" id="demo-dx" role="tabpanel" aria-labelledby="tab-dx">
-  <p class="sr-only">Animated demo: a Windows game is dropped onto DropExe and appears on its shelf, ready to play.</p>
+  <p class="sr-only">Animated demo: in DropExe, the selection moves across a shelf of Windows games, Celeste.exe is dropped in and appears on the shelf, then Play is pressed.</p>
   <div class="win dx-win" aria-hidden="true">
-    <img class="dx-app" src="assets/img/dropexe-library.webp" alt="" width="2560" height="1600">
+    <div class="dx-bg dx-bg-a on" style="background-image:url(/assets/img/dx/hk-hero.webp)"></div><div class="dx-bg dx-bg-b"></div><div class="dx-shade"></div>
+    <div class="dx-top"><div class="tl"><i></i><i></i><i></i></div><span class="dx-tabs"><b>Library</b><span>Stores</span></span><span class="dx-r"><span>Find my games</span><span>Add a Windows program</span></span></div>
+    <div class="dx-hero">
+      <span class="dx-kind">Steam, Windows version</span>
+      <img class="dx-logo" src="assets/img/dx/hk-logo.webp" alt="">
+      <div class="dx-acts"><span class="dx-play"><i></i><em>Play</em></span><span class="dx-btn">Make it run</span><span class="dx-btn">Add to Launchpad</span></div>
+    </div>
+    <div class="dx-shelf">
+      <span class="dx-c dx-new"><img src="assets/img/dx/celeste-cover.webp" alt=""><b class="dx-tag">Playing</b></span>
+      <span class="dx-c sel"><img src="assets/img/dx/hk-cover.webp" alt=""></span><span class="dx-c"><img src="assets/img/dx/hades-cover.webp" alt=""></span><span class="dx-c"><img src="assets/img/dx/stardew-cover.webp" alt=""></span><span class="dx-c"><img src="assets/img/dx/portal-cover.webp" alt=""></span><span class="dx-c"><img src="assets/img/dx/cuphead-cover.webp" alt=""></span><span class="dx-c"><img src="assets/img/dx/terraria-cover.webp" alt=""></span>
+    </div>
     <div class="dx-over"><b>Drop to add</b><span>Games, apps and installers</span></div>
     <div class="dx-file"><span class="dx-ico">EXE</span><span>Celeste.exe</span></div>
     <div class="dx-toast">Celeste added. Press Play.</div>
@@ -356,6 +366,6 @@
   </div>
   <div class="foot-word" aria-hidden="true"><span>Hollowbit</span></div>
 </footer>
-<script src="assets/site.js?v=1541cc3f" defer></script>
+<script src="assets/site.js?v=12bee5d1" defer></script>
 </body>
 </html>
