@@ -480,18 +480,29 @@ const msDemo = (L) => `<div class="demo demo-ms" id="demo-ms" role="tabpanel" ar
   </div>
 </div>`;
 
+// DropExe demo: a game's .exe is dragged onto DropExe, the shelf takes it, and it's ready to play.
+const dxDemo = (L) => `<div class="demo demo-dx" id="demo-dx" role="tabpanel" aria-labelledby="tab-dx">
+  <p class="sr-only">${esc(L.home.srDx || 'Animated demo: a Windows game is dropped onto DropExe and appears on its shelf, ready to play.')}</p>
+  <div class="win dx-win" aria-hidden="true">
+    <img class="dx-app" src="/assets/img/dropexe-library.webp" alt="" width="2560" height="1600">
+    <div class="dx-over"><b>Drop to add</b><span>Games, apps and installers</span></div>
+    <div class="dx-file"><span class="dx-ico">EXE</span><span>Celeste.exe</span></div>
+    <div class="dx-toast">Celeste added. Press Play.</div>
+  </div>
+</div>`;
+
 function stage(L, only) {
   // DropExe has no animated demo: its hero is the real app with a real library.
   if (only === 'dx') return `<figure class="dx-shot"><img src="/assets/img/dropexe-library.webp" width="2560" height="1600" alt="DropExe's library: Windows, Steam and Mac games on one shelf."></figure>`;
-  const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'cl'}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
-  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('cl', CL)}${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}${tab('mv', MV)}${tab('ms', MS)}</div>`;
-  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : only === 'mv' ? mvDemo(L) : only === 'ms' ? msDemo(L) : clDemo(L) + fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L) + mvDemo(L) + msDemo(L);
+  const tab = (id, p) => `<button class="tab" role="tab" aria-selected="${id === 'dx'}" title="${p.name}" aria-controls="demo-${id}" id="tab-${id}" style="--c: var(--${id})"><img src="/assets/img/${p.slug}-icon.png" alt="" width="20" height="20"><span class="tab-name">${p.name}</span><span class="tab-bar"><i></i></span></button>`;
+  const tabs = only ? '' : `<div class="stage-tabs" role="tablist" aria-label="${esc(L.home.demos)}">${tab('dx', DX)}${tab('cl', CL)}${tab('fs', FS)}${tab('cs', CS)}${tab('ds', DS)}${tab('ws', WS)}${tab('ss', SS)}${tab('ls', LS)}${tab('mv', MV)}${tab('ms', MS)}</div>`;
+  const demos = only === 'fs' ? fsDemo(L) : only === 'cs' ? csDemo(L) : only === 'ss' ? ssDemo(L) : only === 'ls' ? lsDemo(L) : only === 'mv' ? mvDemo(L) : only === 'ms' ? msDemo(L) : dxDemo(L) + clDemo(L) + fsDemo(L) + csDemo(L) + dsDemo(L) + wsDemo(L) + ssDemo(L) + lsDemo(L) + mvDemo(L) + msDemo(L);
   return `<div class="stage${only ? ' stage-single' : ''}" data-stage>${tabs}<div class="stage-frame"><div class="stage-scale">${demos}</div></div></div>`;
 }
 
 const ticker = (L) => {
   const items = (p) => L.products[p.slug].tasks.map((t) => `<span style="--c: var(--${p.v})"><i></i>${esc(t)}</span>`).join('');
-  const a = items(MS) + items(CL) + items(FS) + items(MV) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
+  const a = items(DX) + items(MS) + items(CL) + items(FS) + items(MV) + items(WS) + items(LS) + items(SS) + items(DS) + items(CS);
   const b = items(CS) + items(MS) + items(SS) + items(CL) + items(MV) + items(LS) + items(DS) + items(FS) + items(WS);
   return `<div class="ticker" aria-hidden="true"><div class="ticker-track">${a}${a}</div><div class="ticker-track rev">${b}${b}</div></div>`;
 };

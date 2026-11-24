@@ -284,6 +284,18 @@
         await sleep(2300, sig);
       },
     },
+    'demo-dx': {
+      length: 7200,
+      setup(d) { return d; },
+      reset(d, final) { d.classList.remove('drag', 'over', 'dropped'); d.classList.toggle('toast', final); },
+      async run(d, sig) {
+        await sleep(500, sig);
+        d.classList.add('drag'); await sleep(900, sig);
+        d.classList.add('over'); await sleep(1300, sig);
+        d.classList.add('dropped'); d.classList.remove('over'); await sleep(400, sig);
+        d.classList.add('toast'); await sleep(2600, sig);
+      },
+    },
     'demo-ms': {
       length: 10000,
       setup(d) { return d; },

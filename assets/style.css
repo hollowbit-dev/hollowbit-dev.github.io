@@ -1078,14 +1078,26 @@ kbd { font: 500 10.5px var(--sans); padding: 1px 5px; border-radius: 4px; box-sh
 .compact .demo-ws .ws-panel { width: 540px; margin-left: -270px; top: 250px; }
 .compact .demo-ws .ws-text { font-size: 19px; padding: 22px 24px; }
 .compact .demo-ws .ws-keys { right: 30px; top: 170px; }
-/* Phones: four tabs don't fit with names, so only the selected one shows its name */
-@media (max-width: 640px) {
-  .tab { gap: 0; padding: 9px 12px; }
-  .tab .tab-name { display: none; }
-  .tab[aria-selected="true"] { gap: 8px; }
-  .tab[aria-selected="true"] .tab-name { display: inline; }
-  .tab img { width: 22px; height: 22px; }
-}
+/* Eleven apps don't fit with names, so only the selected tab shows its name (the rest have a tooltip) */
+.tab { flex: none; white-space: nowrap; gap: 0; }
+.tab .tab-name { display: none; }
+.tab[aria-selected="true"] { gap: 8px; }
+.tab[aria-selected="true"] .tab-name { display: inline; }
+@media (max-width: 640px) { .tab { padding: 9px 12px; } .tab img { width: 22px; height: 22px; } }
+
+/* DropExe demo */
+.demo-dx .dx-win { background: #0d1020; }
+.demo-dx .dx-app { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.demo-dx .dx-over { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding-left: 7%; gap: 10px; background: rgba(13,16,32,.72); opacity: 0; transition: opacity .3s; }
+.demo-dx .dx-over b { font-size: 76px; font-weight: 850; font-stretch: 125%; letter-spacing: -.035em; color: #fff; }
+.demo-dx .dx-over span { font-size: 22px; color: #c9cde6; }
+.demo-dx .dx-file { position: absolute; right: -320px; top: 52%; display: flex; align-items: center; gap: 14px; padding: 14px 22px 14px 14px; border-radius: 16px; background: #f3f4fc; color: #0d1020; font-size: 22px; font-weight: 700; box-shadow: 0 30px 60px rgba(0,0,0,.5); transition: transform 1.1s cubic-bezier(.2,.7,.2,1), opacity .3s; }
+.demo-dx .dx-ico { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 12px; background: #8c9bff; color: #fff; font-size: 15px; font-weight: 800; }
+.demo-dx .dx-toast { position: absolute; left: 50%; bottom: 7%; transform: translate(-50%, 30px); padding: 16px 26px; border-radius: 16px; background: #f3f4fc; color: #0d1020; font-size: 22px; font-weight: 700; opacity: 0; transition: transform .45s cubic-bezier(.2,1.3,.35,1), opacity .3s; }
+.demo-dx.drag .dx-file { transform: translateX(-760px) rotate(-6deg); }
+.demo-dx.over .dx-over { opacity: 1; }
+.demo-dx.dropped .dx-file { transform: translateX(-760px) translateY(220px) scale(.3); opacity: 0; }
+.demo-dx.toast .dx-toast { transform: translate(-50%, 0); opacity: 1; }
 
 /* Startshaper demo: rows land with their startup seconds, the bar fills, the safe ones switch off */
 .demo-ss .win { display: grid; grid-template-rows: 48px 1fr; background: radial-gradient(70% 60% at 85% -10%, rgba(255,143,77,.12), transparent 60%), #111017; }
