@@ -65,6 +65,20 @@
   "domain": "hollowbit.dev/melodyshaper"
  },
  {
+  "file": "assets/img/og/en/dropexe.png",
+  "lang": "en",
+  "id": "dropexe",
+  "kind": "product",
+  "v": "dx",
+  "slug": "dropexe",
+  "name": "DropExe",
+  "h": "DropExe",
+  "sub": "Play Windows games on your Mac. One shelf for Steam, Windows and Mac games, one-click Steam, and a button that makes stubborn games run.",
+  "kicker": "free CrossOver alternative",
+  "plats": "Mac",
+  "domain": "hollowbit.dev/dropexe"
+ },
+ {
   "file": "assets/img/og/en/download.png",
   "lang": "en",
   "id": "download",
@@ -168,6 +182,20 @@
   "kicker": "creador de música gratis",
   "plats": "Mac y Windows",
   "domain": "hollowbit.dev/melodyshaper"
+ },
+ {
+  "file": "assets/img/og/es/dropexe.png",
+  "lang": "es",
+  "id": "dropexe",
+  "kind": "product",
+  "v": "dx",
+  "slug": "dropexe",
+  "name": "DropExe",
+  "h": "DropExe",
+  "sub": "Play Windows games on your Mac. One shelf for Steam, Windows and Mac games, one-click Steam, and a button that makes stubborn games run.",
+  "kicker": "free CrossOver alternative",
+  "plats": "Mac",
+  "domain": "hollowbit.dev/dropexe"
  },
  {
   "file": "assets/img/og/es/download.png",
@@ -275,6 +303,20 @@
   "domain": "hollowbit.dev/melodyshaper"
  },
  {
+  "file": "assets/img/og/fr/dropexe.png",
+  "lang": "fr",
+  "id": "dropexe",
+  "kind": "product",
+  "v": "dx",
+  "slug": "dropexe",
+  "name": "DropExe",
+  "h": "DropExe",
+  "sub": "Play Windows games on your Mac. One shelf for Steam, Windows and Mac games, one-click Steam, and a button that makes stubborn games run.",
+  "kicker": "free CrossOver alternative",
+  "plats": "Mac",
+  "domain": "hollowbit.dev/dropexe"
+ },
+ {
   "file": "assets/img/og/fr/download.png",
   "lang": "fr",
   "id": "download",
@@ -378,6 +420,20 @@
   "kicker": "kostenloser Musik-Maker",
   "plats": "Mac und Windows",
   "domain": "hollowbit.dev/melodyshaper"
+ },
+ {
+  "file": "assets/img/og/de/dropexe.png",
+  "lang": "de",
+  "id": "dropexe",
+  "kind": "product",
+  "v": "dx",
+  "slug": "dropexe",
+  "name": "DropExe",
+  "h": "DropExe",
+  "sub": "Play Windows games on your Mac. One shelf for Steam, Windows and Mac games, one-click Steam, and a button that makes stubborn games run.",
+  "kicker": "free CrossOver alternative",
+  "plats": "Mac",
+  "domain": "hollowbit.dev/dropexe"
  },
  {
   "file": "assets/img/og/de/download.png",
@@ -485,6 +541,20 @@
   "domain": "hollowbit.dev/melodyshaper"
  },
  {
+  "file": "assets/img/og/ru/dropexe.png",
+  "lang": "ru",
+  "id": "dropexe",
+  "kind": "product",
+  "v": "dx",
+  "slug": "dropexe",
+  "name": "DropExe",
+  "h": "DropExe",
+  "sub": "Play Windows games on your Mac. One shelf for Steam, Windows and Mac games, one-click Steam, and a button that makes stubborn games run.",
+  "kicker": "free CrossOver alternative",
+  "plats": "Mac",
+  "domain": "hollowbit.dev/dropexe"
+ },
+ {
   "file": "assets/img/og/ru/download.png",
   "lang": "ru",
   "id": "download",
@@ -588,6 +658,20 @@
   "kicker": "免费音乐创作工具",
   "plats": "Mac 和 Windows",
   "domain": "hollowbit.dev/melodyshaper"
+ },
+ {
+  "file": "assets/img/og/zh/dropexe.png",
+  "lang": "zh",
+  "id": "dropexe",
+  "kind": "product",
+  "v": "dx",
+  "slug": "dropexe",
+  "name": "DropExe",
+  "h": "DropExe",
+  "sub": "Play Windows games on your Mac. One shelf for Steam, Windows and Mac games, one-click Steam, and a button that makes stubborn games run.",
+  "kicker": "free CrossOver alternative",
+  "plats": "Mac",
+  "domain": "hollowbit.dev/dropexe"
  },
  {
   "file": "assets/img/og/zh/download.png",

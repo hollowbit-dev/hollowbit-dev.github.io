@@ -3,6 +3,7 @@
 > Hollowbit Studio makes free, open-source desktop apps for Mac and Windows. Fuseduo is Mac only.
 
 ## Apps
+- [DropExe](https://hollowbit.dev/dropexe/): Play Windows games on your Mac. One shelf for Steam, Windows and Mac games, one-click Steam, and a button that makes stubborn games run. Source: https://github.com/hollowbit-dev/dropexe
 - [Melodyshaper](https://hollowbit.dev/melodyshaper/): Hum a tune and hear it on a real instrument. Get chords that fit, add drums and bass, and export a whole song. Source: https://github.com/hollowbit-dev/melodyshaper
 - [Moveshaper](https://hollowbit.dev/moveshaper/): Move everything from your old computer to your new one: files, apps, bookmarks, Wi-Fi and wallpaper. Windows and Mac, both ways. Source: https://github.com/hollowbit-dev/moveshaper
 - [Clipshaper](https://hollowbit.dev/clipshaper/): Turn a long video into short vertical clips with captions. It finds the best moments, follows the speaker and exports for TikTok, Reels and Shorts. No watermark. Source: https://github.com/hollowbit-dev/clipshaper

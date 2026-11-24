@@ -79,6 +79,7 @@ export default {
       newTag: "新",
     },
     moveshaper: {"kind": "免费的 PC 与 Mac 搬家工具", "blurb": "把旧电脑上的一切搬到新电脑：文件、应用、书签、Wi-Fi 和壁纸。Windows 和 Mac，双向都行。", "line": "新电脑，和旧的一样顺手。", "lede": "在两台电脑上打开 Moveshaper，输入代码。文件直接通过你自己的 Wi-Fi 传过去，应用自动重新安装，书签、Wi-Fi 网络和壁纸也一起搬走。Windows 到 Mac、Mac 到 Windows，或同系统之间都可以。", "tasks": ["换新电脑", "Windows 到 Mac", "Mac 到 Windows", "自动重装应用", "带上书签", "复制 Wi-Fi 密码", "保留壁纸", "搬 100 GB 照片", "中断后接着传", "不用云盘和 U 盘"], "req": {"mac": "macOS 12 Monterey 或更新版本", "win": "Windows 10 或 11，64 位", "extra": ["两台电脑连在同一个 Wi-Fi 或网络", "文件直接发到你的另一台电脑，从不经过服务器", "只在下载你选的应用时联网，直接从开发者那里下载"]}, "rows": [["勾选要搬的，点「搬移」。", "Moveshaper 会统计桌面、文稿、图片、音乐、视频和下载，找出你的浏览器和 Wi-Fi 网络，并全部勾上。不需要的取消勾选即可。它还会检查新电脑空间够不够。", "Moveshaper 列出要搬到 MacBook 的文件夹、应用、书签和 Wi-Fi。"], ["应用自己装好。", "新电脑会直接从开发者那里下载应用的全新版本：Chrome、Spotify、Discord、Steam 等约 90 款，甚至能从 Windows 搬到 Mac。少数拿不到的会列出来并附上链接。", "Moveshaper 中将在新电脑上安装的应用列表。"], ["不丢东西，也不覆盖。", "文件通过你自己的网络直接传输，全程加密，从不经过云端。如果同名文件已经存在，两个都会保留。传输中断时再点一次「搬移」，就会从断点继续。", "Moveshaper 完成界面：文件、应用、书签和 Wi-Fi 都已搬好。"]], "close": "PCmover 和迁移助理的免费替代品。", "firstMac": ["打开 .dmg，把 Moveshaper 拖到「应用程序」。", "右键点 Moveshaper，选「打开」，再点「打开」。允许它查找本地网络上的设备。", "在两台电脑上打开 Moveshaper，输入新电脑上显示的代码。"], "firstWin": ["运行安装程序。如果出现 SmartScreen，点「更多信息」，再点「仍要运行」。", "Windows 询问时允许 Moveshaper 访问专用网络，然后输入新电脑上显示的代码。"], "newTag": "新品"},
+    dropexe: {"kind": "free CrossOver alternative", "blurb": "Play Windows games on your Mac. One shelf for Steam, Windows and Mac games, one-click Steam, and a button that makes stubborn games run.", "line": "Windows games. On your Mac.", "lede": "DropExe runs Windows games and apps on Apple Silicon Macs, free. Bring in your Steam library and the games in your folders, drop in any .exe, and press Play.", "tasks": ["Play Windows games on Mac", "Install Steam in one click", "Drop in any .exe", "Find my games", "Fix a game that won't start", "Add games to Launchpad", "Run Windows installers", "Epic Games on Mac", "Check your controller", "Sharper Retina graphics", "Free CrossOver alternative", "No account, no ads"], "req": {"mac": "Apple Silicon Mac, macOS 13 or newer", "win": "Not for Windows (it runs Windows games on a Mac)", "extra": ["Downloads its Windows engine on first launch (about 240 MB)", "Games with anti-cheat or DirectX 12 usually won't run", "Ubisoft Connect and the EA app don't work yet"]}, "rows": [["Every game, one shelf.", "Find my games pulls in your Steam library with its real covers and logos, the Windows games in your folders, and your Mac games. Drag any .exe onto the window to add more.", "DropExe's library: game covers on a shelf, with the selected game's art behind it."], ["Windows games from anywhere.", "Games you downloaded from itch.io, Game Jolt or anywhere else get their real name and icon. Find my games spots them in your folders, and leaves anything that looks like a lone installer unticked.", "DropExe showing FNAF Plus, a Windows game from Game Jolt, with its own icon."], ["Stores in one click.", "Steam and Epic Games install with one button, each in its own Windows drive so one never breaks another. When a game won't start, Make it run tries one fix at a time and keeps the one that works.", "DropExe's Stores page with Steam, Epic Games, GOG Galaxy and Battle.net."]], "close": "Play your Windows games tonight, for free.", "firstMac": ["Open the .dmg and drag DropExe to Applications.", "Right-click DropExe and choose Open, then click Open.", "Press Set up DropExe, then Find my games."], "firstWin": ["DropExe is for Mac only."], "newTag": "New"},
     melodyshaper: {"kind": "免费音乐创作工具", "blurb": "哼一段旋律，用真实乐器听到它。找到合适的和弦，加上鼓和贝斯，导出一首完整的歌。", "line": "哼一段，听它奏响。", "lede": "Melodyshaper 是为零基础新手打造的免费音乐创作工具。哼出一个想法，它就变成真实的乐器声，音准、节奏都对。再选一组贴合旋律的和弦，把它做成一首歌。", "tasks": ["录制你的吉他", "用和弦生成旋律", "哼一段旋律", "为旋律配和弦", "用嘴打节拍", "录制人声", "免费做一首歌", "导出 MP3 或 WAV", "导出分轨和 MIDI", "连接 MIDI 键盘", "编排主歌和副歌", "没有 AI 生成的音乐"], "req": {"mac": "macOS 12 Monterey 或更新版本", "win": "Windows 10 或 11，64 位", "extra": ["需要麦克风来哼唱（戴耳机效果最好）", "可离线使用，你的声音只留在你的电脑上", "USB 吉他线、音频接口或 MIDI 键盘可选"]}, "rows": [["你的声音就是旋律。", "跟着节拍器哼或唱。Melodyshaper 用经典音高检测找出你的音符，对准调性和节拍，再用钢琴、弦乐、长笛、萨克斯等乐器演奏出来。", "Melodyshaper 中哼出的旋律，下方是和弦、贝斯和鼓。"], ["和弦贴合你哼的旋律。", "Melodyshaper 读取你的旋律，给出三组合适的和弦进行，并标出匹配度。点一下就能试听，再让贝斯跟上。 也可以按固定的音乐规则，根据你的和弦或贝斯写出新旋律。", "Melodyshaper 的和弦查找，显示三组贴合旋律的和弦进行。"], ["从一个想法到一首完整的歌。", "43 种真实录制的乐器、29 种鼓声和 119 种鼓组预设。连接吉他或 MIDI 键盘，用最多 16 条音轨编排主歌和副歌，再导出 MP3、WAV、分轨或 MIDI。", "Melodyshaper 中的主歌、副歌段落和淡出结尾。"]], "close": "今天就免费做出你的第一首歌。", "firstMac": ["打开 .dmg，把 Melodyshaper 拖到“应用程序”。", "右键点按 Melodyshaper，选择“打开”，再点“打开”。", "按下 Hum a melody，并允许使用麦克风。"], "firstWin": ["运行安装程序。如果出现 SmartScreen，点“更多信息”，再点“仍要运行”。", "打开 Melodyshaper，按下 Hum a melody，并允许使用麦克风。"], "newTag": "新"},
   },
   principles: [
@@ -105,11 +106,11 @@ export default {
     srLs: "动画演示：随着滑块移动，Lightshaper 把一张平淡的田野 RAW 照片变得浓郁，然后对比前后效果。",
     srMv: "动画演示：Moveshaper 用代码把旧 PC 和新 Mac 连起来，搬移 112 GB 文件并安装八款应用。",
     srMs: "动画演示：哼出的旋律在 Melodyshaper 中变成音符，出现三组和弦选项，并加入最合适的一组。",
-    toolsH: '九款应用。全部免费，永远免费。',
+    toolsH: '十款应用。全部免费，永远免费。',
     toolsP: '每一款都替代了一个想要你的文件、时间或钱的网站或订阅。',
     freeH: '免费就是免费。',
     freeP: '没有试用期，没有“专业版”，不偷偷收集数据。这些原则适用于每一款 Hollowbit 应用和本网站。',
-    ctaH: '九款都拿走，一分不花。', ctaP: 'Mac 和 Windows 安装包，直接来自 GitHub。', ctaGo: '前往下载', ctaWho: '是谁做的？',
+    ctaH: '十款都拿走，一分不花。', ctaP: 'Mac 和 Windows 安装包，直接来自 GitHub。', ctaGo: '前往下载', ctaWho: '是谁做的？',
   },
   product: { titleSuffix: '· Hollowbit Studio', desc: '{blurb} {plats} 免费使用，不上传任何内容。', bandP: '{plats} 免费使用。无需账号，没有水印，不上传任何内容。', allDl: '全部下载和安装帮助', also: 'Hollowbit Studio 的其他作品', plats: { both: 'Mac 和 Windows', mac: 'Mac', win: 'Windows' } },
   download: {
@@ -135,7 +136,7 @@ export default {
       ['没有水印。', '没有试用期，也没有“专业版”。免费版就是完整版。'],
       ['开源。', '每一行代码都在 GitHub 上。'],
     ],
-    appsH: '目前的应用', appsP: '已发布九款，全部免费，全部开源。',
+    appsH: '目前的应用', appsP: '已发布十款，全部免费，全部开源。',
     touch: '联系我', touchP: '邮件、错误报告和想法', donate: '捐助', donateP: '帮助应用保持免费',
   },
   contact: {
