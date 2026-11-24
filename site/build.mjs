@@ -528,7 +528,7 @@ const home = (L) => page(L, {
   og: { id: 'home', kind: 'home', h: L.home.h1, hl: L.home.hl, sub: L.home.sub },
   body: `
 <section class="hero wrap">
-  <a class="hero-badge in-0" href="${pre(L)}/melodyshaper/"><span class="dot"></span>${esc(fill(L.home.badge, { v: MS.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
+  <a class="hero-badge in-0" href="${pre(L)}/dropexe/"><span class="dot"></span>${esc(fill(L.home.badge, { v: DX.version }))}<svg aria-hidden="true"><use href="#arrow"/></svg></a>
   <h1 class="hero-title" data-words data-icons="${['clipshaper', 'captionshaper', 'lightshaper', 'writeshaper'].join(' ')}">${esc(L.home.h1)}</h1>
   <p class="hero-sub in-1">${esc(L.home.sub)}</p>
   <div class="hero-cta in-2">
