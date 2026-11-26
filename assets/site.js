@@ -127,15 +127,12 @@
   const ease = (p) => 1 - Math.pow(1 - p, 3);
 
   const DX = {
+    // Show one game: its hero and logo layers crossfade in (all preloaded in the markup), tint follows.
     art(d, k, tint) {
-      const a = $('.dx-bg-a', d), b = $('.dx-bg-b', d), front = a.classList.contains('on') ? a : b, back = front === a ? b : a;
-      const url = `url(/assets/img/dx/${k}-hero.webp)`;
-      if (front.style.backgroundImage.includes(`${k}-hero`)) return;
-      back.style.backgroundImage = url; back.classList.add('on'); front.classList.remove('on');
+      $$('.dx-bg, .dx-logo', d).forEach((x) => x.classList.toggle('on', x.dataset.k === k));
       d.style.setProperty('--dxt', tint);
-      const logo = $('.dx-logo', d); logo.classList.add('swap');
-      setTimeout(() => { logo.src = `/assets/img/dx/${k}-logo.webp`; logo.classList.remove('swap'); }, 220);
     },
+    kind(d, text) { $('.dx-kind span', d).textContent = text; },
   };
   const DEMOS = {
 
@@ -296,30 +293,31 @@
       },
     },
     'demo-dx': {
-      length: 9800,
+      length: 11000,
       setup(d) { return d; },
       reset(d, final) {
-        d.classList.remove('drag', 'over', 'dropped', 'press', 'slot');
-        ['filled', 'toast', 'playing'].forEach((c) => d.classList.toggle(c, final));
-        const cs = $$('.dx-c', d);
-        cs.forEach((c, i) => c.classList.toggle('sel', final ? i === 0 : i === 1));
-        if (final) d.classList.add('slot');
-        DX.art(d, final ? 'celeste' : 'hk', '#8c9bff');
-        $('.dx-play em', d).textContent = final ? 'Stop' : 'Play';
+        d.classList.add('snap'); // jump straight to the start state, no transitions running backwards
+        d.classList.remove('drag', 'over', 'dropped', 'press', 'toast', 'ready');
+        ['slot', 'filled', 'launch', 'hud'].forEach((c) => d.classList.toggle(c, final));
+        $$('.dx-c', d).forEach((c, i) => c.classList.toggle('sel', i === (final ? 0 : 1)));
+        DX.art(d, final ? 'celeste' : 'hk', final ? '#c27bff' : '#9fb4d8');
+        DX.kind(d, final ? 'Windows .exe, dropped in' : 'Steam, Windows version');
+        void d.offsetWidth; d.classList.remove('snap');
       },
       async run(d, sig) {
         const cs = $$('.dx-c', d), sel = (i) => cs.forEach((c, j) => c.classList.toggle('sel', j === i));
-        await sleep(900, sig);
-        sel(2); DX.art(d, 'hades', '#e0553b'); await sleep(1500, sig);
-        sel(1); DX.art(d, 'hk', '#9fb4d8'); await sleep(900, sig);
-        d.classList.add('drag'); await sleep(700, sig);
-        d.classList.add('over', 'slot'); sel(-1); await sleep(1100, sig);
-        d.classList.add('dropped'); await sleep(350, sig);
-        d.classList.remove('over'); d.classList.add('filled'); sel(0); DX.art(d, 'celeste', '#c75bd8');
-        await sleep(300, sig); d.classList.add('toast'); await sleep(1500, sig);
-        d.classList.remove('toast'); d.classList.add('press'); await sleep(160, sig);
-        d.classList.remove('press'); d.classList.add('playing'); $('.dx-play em', d).textContent = 'Stop';
-        await sleep(1700, sig);
+        await sleep(1100, sig);
+        sel(2); DX.art(d, 'hades', '#ff6a3d'); await sleep(1500, sig);
+        sel(3); DX.art(d, 'stardew', '#5fc8ff'); await sleep(1400, sig);
+        d.classList.add('drag'); await sleep(750, sig);
+        d.classList.add('over', 'slot'); sel(-1); await sleep(1050, sig);
+        d.classList.add('dropped'); await sleep(380, sig);
+        DX.kind(d, 'Windows .exe, dropped in');
+        d.classList.remove('over'); d.classList.add('filled'); sel(0); DX.art(d, 'celeste', '#c27bff');
+        await sleep(250, sig); d.classList.add('toast', 'ready'); await sleep(1450, sig);
+        d.classList.remove('toast'); d.classList.add('press'); await sleep(170, sig);
+        d.classList.remove('press', 'ready'); d.classList.add('launch'); await sleep(650, sig);
+        d.classList.add('hud'); await sleep(2300, sig);
       },
     },
     'demo-ms': {

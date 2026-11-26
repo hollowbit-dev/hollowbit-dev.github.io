@@ -480,26 +480,30 @@ const msDemo = (L) => `<div class="demo demo-ms" id="demo-ms" role="tabpanel" ar
   </div>
 </div>`;
 
-// DropExe demo: the shelf, the selection gliding across it (art and colour follow), an .exe dropped in
-// (the shelf opens a slot, the cover flips in) and Play. Art is Steam's, hosted here (assets/img/dx).
-const DX_SHELF = [['hk', 'Hollow Knight'], ['hades', 'Hades'], ['stardew', 'Stardew Valley'], ['portal', 'Portal 2'], ['cuphead', 'Cuphead'], ['terraria', 'Terraria']];
+// DropExe demo: browse the shelf (sharp Steam art and logos crossfade, nothing swaps in place), drop
+// Celeste.exe in (the old title is fully gone before "Drop to add" shows), press Play, and the new cover
+// opens into the running game. Art is Steam's, hosted here (assets/img/dx). --bx/--cx place each wide
+// hero so its character sits right of the title on wide and compact stages.
+const DX_ART = [['hk', '13%', '33%'], ['hades', '31%', '41%'], ['stardew', '70%', '75%'], ['celeste', '31%', '41%']];
+const DX_SHELF = ['hk', 'hades', 'stardew', 'portal', 'cuphead', 'terraria'];
 const dxDemo = (L) => `<div class="demo demo-dx" id="demo-dx" role="tabpanel" aria-labelledby="tab-dx">
-  <p class="sr-only">${esc(L.home.srDx || 'Animated demo: in DropExe, the selection moves across a shelf of Windows games, Celeste.exe is dropped in and appears on the shelf, then Play is pressed.')}</p>
+  <p class="sr-only">${esc(L.home.srDx || 'Animated demo: in DropExe, the selection moves across a shelf of Windows games, Celeste.exe is dropped in and appears on the shelf, then Play opens the game running on a Mac.')}</p>
   <div class="win dx-win" aria-hidden="true">
-    <div class="dx-bg dx-bg-a on" style="background-image:url(/assets/img/dx/hk-hero.webp)"></div><div class="dx-bg dx-bg-b"></div><div class="dx-shade"></div>
+    ${DX_ART.map(([k, bx, cx]) => `<div class="dx-bg" data-k="${k}" style="background-image:url(/assets/img/dx/${k}-hero.webp);--bx:${bx};--cx:${cx}"></div>`).join('')}<div class="dx-shade"></div>
     <div class="dx-top"><div class="tl"><i></i><i></i><i></i></div><span class="dx-tabs"><b>Library</b><span>Stores</span></span><span class="dx-r"><span>Find my games</span><span>Add a Windows program</span></span></div>
     <div class="dx-hero">
-      <span class="dx-kind">Steam, Windows version</span>
-      <img class="dx-logo" src="/assets/img/dx/hk-logo.webp" alt="">
-      <div class="dx-acts"><span class="dx-play"><i></i><em>Play</em></span><span class="dx-btn">Make it run</span><span class="dx-btn">Add to Launchpad</span></div>
+      <span class="dx-kind"><i></i><span>Steam, Windows version</span></span>
+      <div class="dx-logos">${DX_ART.map(([k]) => `<img class="dx-logo" data-k="${k}" src="/assets/img/dx/${k}-logo.webp" alt="">`).join('')}</div>
+      <div class="dx-acts"><span class="dx-play"><i></i><span>Play</span></span><span class="dx-btn">Make it run</span><span class="dx-btn">Add to Launchpad</span></div>
     </div>
     <div class="dx-shelf">
-      <span class="dx-c dx-new"><img src="/assets/img/dx/celeste-cover.webp" alt=""><b class="dx-tag">Playing</b></span>
-      ${DX_SHELF.map(([k], i) => `<span class="dx-c${i === 0 ? ' sel' : ''}"><img src="/assets/img/dx/${k}-cover.webp" alt=""></span>`).join('')}
+      <span class="dx-c dx-new"><img src="/assets/img/dx/celeste-cover.webp" alt=""></span>
+      ${DX_SHELF.map((k) => `<span class="dx-c"><img src="/assets/img/dx/${k}-cover.webp" alt=""></span>`).join('')}
     </div>
     <div class="dx-over"><b>Drop to add</b><span>Games, apps and installers</span></div>
-    <div class="dx-file"><span class="dx-ico">EXE</span><span>Celeste.exe</span></div>
-    <div class="dx-toast">Celeste added. Press Play.</div>
+    <div class="dx-file"><span class="dx-ico">EXE</span><span><b>Celeste.exe</b><small>Windows game</small></span></div>
+    <div class="dx-toast"><i></i>Celeste is ready. No setup.</div>
+    <div class="dx-game"><img src="/assets/img/dx/celeste-play.webp" alt=""><div class="dx-hud"><span class="dx-live"><i></i>Celeste.exe, running on your Mac</span><span class="dx-fps"><b>60</b> FPS<em>Metal</em></span></div></div>
   </div>
 </div>`;
 
